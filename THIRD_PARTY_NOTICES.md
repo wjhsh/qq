@@ -6,5 +6,5 @@ The authenticated Chat image worker retains the protocol-reference notice and MI
 
 Pi, Codex CLI, the official QQ client and the OneBot transport runtime are deployment dependencies, not bundled binaries in this repository. Their own licenses and service terms remain applicable. Runtime authorization files are not included.
 
-The built-in role card source preserves its attribution and licensing notes. Personal user-authored role cards are excluded. This maintenance snapshot does not grant a new blanket license over third-party components.
+The built-in role card source preserves its attribution and licensing notes. Administrator-authorized analysis snapshots include saved role texts and their existing source/license notes. Publication of those materials does not grant a new blanket license over third-party characters or components.
 
