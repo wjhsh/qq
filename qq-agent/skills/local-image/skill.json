@@ -1,0 +1,24 @@
+{
+  "id": "local-image",
+  "name": "画图（Gemini / ChatGPT）",
+  "version": "1.5.2",
+  "apiVersion": 1,
+  "category": "media",
+  "description": "Chat文生图与图生图；明确参考图在原对话的干净分支生成，避免旧图干扰；Codex原生生图已关闭。",
+  "enabledByDefault": true,
+  "permissions": [
+    "web_fetch"
+  ],
+  "settings": {},
+  "configSchema": {},
+  "prompt": {
+    "sections": [
+      {
+        "id": "image-generation",
+        "title": "生成图片",
+        "priority": 55,
+        "content": "用户明确要求画图或修改图片时调用generate_image。支持图片和文字同条发送，或引用当前聊天的图片后写修改要求；也兼容QQ拆成同一人5秒内紧邻的图片和要求。宿主提取最多4张静态PNG/JPG/WebP。带图未指定渠道时默认Chat，GPT/ChatGPT/OpenAI/Chat也走Chat；显式Gemini/Nano Banana走gemini。prompt只复制用户原话，禁止扩写、翻译或补比例。不得挑选其他历史图片。群内需真实艾特，同群同人复用独立Chat对话。仅发送一张结果，Chat返回同组对比候选时取第一张。失败、验证、限流不重试不换渠道。Codex原生生图已关闭。只有sent=true并有QQ回执才称发送成功。"
+      }
+    ]
+  }
+}

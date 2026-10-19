@@ -1,0 +1,1346 @@
+{
+  "captured_at": "2026-10-19T16:05:04.344854+00:00",
+  "source": "running_deployment",
+  "files": [
+    {
+      "path": "harness/admin-runtime.mjs",
+      "source_sha256": "fa777d6b4ff48e46ee81bcce7290d4cab0a63736728292c529b831cd18f10eb4",
+      "sha256": "fa777d6b4ff48e46ee81bcce7290d4cab0a63736728292c529b831cd18f10eb4",
+      "bytes": 7572,
+      "transforms": []
+    },
+    {
+      "path": "harness/bili-reader.mjs",
+      "source_sha256": "35472a4c754a942b2e4f1f4026cf8526904ebe4c905e3c79a66565ef6d5e5c0e",
+      "sha256": "35472a4c754a942b2e4f1f4026cf8526904ebe4c905e3c79a66565ef6d5e5c0e",
+      "bytes": 8246,
+      "transforms": []
+    },
+    {
+      "path": "harness/bili-view.mjs",
+      "source_sha256": "d8c77f601d410a729b965577eab236863c1979e5a26e093c96338aa7b8d0efb3",
+      "sha256": "d8c77f601d410a729b965577eab236863c1979e5a26e093c96338aa7b8d0efb3",
+      "bytes": 3038,
+      "transforms": []
+    },
+    {
+      "path": "harness/chat-image-LICENSE",
+      "source_sha256": "0b2b8c25a6acd89098035bad3b673ca4698b331eabd9a35039913d77cb89f853",
+      "sha256": "0b2b8c25a6acd89098035bad3b673ca4698b331eabd9a35039913d77cb89f853",
+      "bytes": 1064,
+      "transforms": []
+    },
+    {
+      "path": "harness/chat-silence.mjs",
+      "source_sha256": "cfd28d28ada88153949feb8466c80da08746c7ceabed4fb95ab1b1d52b40036a",
+      "sha256": "cfd28d28ada88153949feb8466c80da08746c7ceabed4fb95ab1b1d52b40036a",
+      "bytes": 1487,
+      "transforms": []
+    },
+    {
+      "path": "harness/chat_image.py",
+      "source_sha256": "3da5dfb7ab7b3cb7f5b292e6c4ca9acc9ff867aa9fe076c3fd461ae0516e2cf3",
+      "sha256": "3da5dfb7ab7b3cb7f5b292e6c4ca9acc9ff867aa9fe076c3fd461ae0516e2cf3",
+      "bytes": 26007,
+      "transforms": []
+    },
+    {
+      "path": "harness/chat_sessions.py",
+      "source_sha256": "6d8c3623eca3b27736cec4f0e9a35c605a658b731cd09147b87c584aca2291df",
+      "sha256": "6d8c3623eca3b27736cec4f0e9a35c605a658b731cd09147b87c584aca2291df",
+      "bytes": 2636,
+      "transforms": []
+    },
+    {
+      "path": "harness/cloud_controls.py",
+      "source_sha256": "58281cbdfaa0a805bdd0b607197699a6c75d008e1685dd14a9544e8ebdb2e417",
+      "sha256": "dfdd5fc01ae32885c19bed065d24715b4f1732afde23842e803c6e7026197262",
+      "bytes": 10463,
+      "transforms": [
+        "oauth_client_constants_externalized_to_private_environment"
+      ]
+    },
+    {
+      "path": "harness/codex_engine.py",
+      "source_sha256": "9c7b4bee31229ea377bb7370959dba62d0a774b794af477e6cfd4cbe669ad565",
+      "sha256": "9c7b4bee31229ea377bb7370959dba62d0a774b794af477e6cfd4cbe669ad565",
+      "bytes": 2634,
+      "transforms": []
+    },
+    {
+      "path": "harness/community-access.mjs",
+      "source_sha256": "ac9cd33b465444c57f885b5ff80d07d54464a62719416ddfbb497dfc3908ff17",
+      "sha256": "ac9cd33b465444c57f885b5ff80d07d54464a62719416ddfbb497dfc3908ff17",
+      "bytes": 1313,
+      "transforms": []
+    },
+    {
+      "path": "harness/community-commands.mjs",
+      "source_sha256": "206e8c305af36c551c0c9618ae169b0394a12b729434f28484fb36a86e101be5",
+      "sha256": "206e8c305af36c551c0c9618ae169b0394a12b729434f28484fb36a86e101be5",
+      "bytes": 5459,
+      "transforms": []
+    },
+    {
+      "path": "harness/community-tools.mjs",
+      "source_sha256": "7aa718efca297f6267f945b767bfcab150feb48e5ec32190969d55c1215ca528",
+      "sha256": "7aa718efca297f6267f945b767bfcab150feb48e5ec32190969d55c1215ca528",
+      "bytes": 2603,
+      "transforms": []
+    },
+    {
+      "path": "harness/guardian-status.mjs",
+      "source_sha256": "ea5ffc0b055919b5a2bbf4ace14587aa29c7ed0b4de8d41d5d9b780ba01da3c7",
+      "sha256": "ea5ffc0b055919b5a2bbf4ace14587aa29c7ed0b4de8d41d5d9b780ba01da3c7",
+      "bytes": 2043,
+      "transforms": []
+    },
+    {
+      "path": "harness/harness.py",
+      "source_sha256": "6d6b51b8d1282a2ed7ed2eef5cd127d7348f0be1da4d2750061eb189f72bf596",
+      "sha256": "6d6b51b8d1282a2ed7ed2eef5cd127d7348f0be1da4d2750061eb189f72bf596",
+      "bytes": 36317,
+      "transforms": []
+    },
+    {
+      "path": "harness/image_inputs.py",
+      "source_sha256": "2346e8804d9440daaccaa33cd75d9682ae4ed587babb9eabe51a340d7f681083",
+      "sha256": "2346e8804d9440daaccaa33cd75d9682ae4ed587babb9eabe51a340d7f681083",
+      "bytes": 2965,
+      "transforms": []
+    },
+    {
+      "path": "harness/image_jobs.py",
+      "source_sha256": "3ee5f1bf1820f071f8b7c29819aa7f19ce5d5a6da26d1af01c890bf5eb25c6ac",
+      "sha256": "3ee5f1bf1820f071f8b7c29819aa7f19ce5d5a6da26d1af01c890bf5eb25c6ac",
+      "bytes": 3591,
+      "transforms": []
+    },
+    {
+      "path": "harness/maintenance_jobs.py",
+      "source_sha256": "7b0d06bbaec3fed2d7080b4ca3b86de11772489125ec75f1d45e1cf75263edc0",
+      "sha256": "7b0d06bbaec3fed2d7080b4ca3b86de11772489125ec75f1d45e1cf75263edc0",
+      "bytes": 12797,
+      "transforms": []
+    },
+    {
+      "path": "harness/meme-extractor.mjs",
+      "source_sha256": "fe602b07d0a152b01f46875cad7e8f29c1193c689135834c1b793b764fbad1ad",
+      "sha256": "fe602b07d0a152b01f46875cad7e8f29c1193c689135834c1b793b764fbad1ad",
+      "bytes": 2486,
+      "transforms": []
+    },
+    {
+      "path": "harness/meme-library.mjs",
+      "source_sha256": "30f5b273c74acee88bbc31a1e02950c9dff66995ae80dd04ab7dca2ca1ec1dea",
+      "sha256": "30f5b273c74acee88bbc31a1e02950c9dff66995ae80dd04ab7dca2ca1ec1dea",
+      "bytes": 4881,
+      "transforms": []
+    },
+    {
+      "path": "harness/natural-admin.mjs",
+      "source_sha256": "067144a4e24a9a1a56dfe081b11311e69a1478458517d37acce5fd878e799c57",
+      "sha256": "067144a4e24a9a1a56dfe081b11311e69a1478458517d37acce5fd878e799c57",
+      "bytes": 12387,
+      "transforms": []
+    },
+    {
+      "path": "harness/owner-harness.mjs",
+      "source_sha256": "d95ce77589c5932a66b541ef24ab24782f3e2f1a849430ba18029cda84400019",
+      "sha256": "d95ce77589c5932a66b541ef24ab24782f3e2f1a849430ba18029cda84400019",
+      "bytes": 13482,
+      "transforms": []
+    },
+    {
+      "path": "harness/pi-task-guard.mjs",
+      "source_sha256": "440ba6c642275a26ff6f295b198d53fba38f8ff8422f9f0cdcf71951472ac53c",
+      "sha256": "440ba6c642275a26ff6f295b198d53fba38f8ff8422f9f0cdcf71951472ac53c",
+      "bytes": 861,
+      "transforms": []
+    },
+    {
+      "path": "harness/probe-bili.mjs",
+      "source_sha256": "a9d0e349c28eeccbb609f2c84f0773839c857f18bec9676624da4c3cd109252a",
+      "sha256": "a9d0e349c28eeccbb609f2c84f0773839c857f18bec9676624da4c3cd109252a",
+      "bytes": 908,
+      "transforms": []
+    },
+    {
+      "path": "harness/probe-community-live.mjs",
+      "source_sha256": "cfa585d037d77ac9989d92b4272493b701f681f23dc2f8f31884d49b6dc631b2",
+      "sha256": "cfa585d037d77ac9989d92b4272493b701f681f23dc2f8f31884d49b6dc631b2",
+      "bytes": 2988,
+      "transforms": []
+    },
+    {
+      "path": "harness/qq_client_control.py",
+      "source_sha256": "ac603d5b7f097e54d81a4e5580a1f966c701d771e7e29a4b5d4221d0437b891f",
+      "sha256": "ac603d5b7f097e54d81a4e5580a1f966c701d771e7e29a4b5d4221d0437b891f",
+      "bytes": 2990,
+      "transforms": []
+    },
+    {
+      "path": "harness/resource_policy.py",
+      "source_sha256": "0e818c249e749e54a9bfea802538e680b1ac9d49e78df7ff7c81b8e894269652",
+      "sha256": "0e818c249e749e54a9bfea802538e680b1ac9d49e78df7ff7c81b8e894269652",
+      "bytes": 3035,
+      "transforms": []
+    },
+    {
+      "path": "harness/role-isolation.mjs",
+      "source_sha256": "f1b516f63b7fca6bb03f9ac86fc4018f62179c61df496feb83dc25293efcdc53",
+      "sha256": "f1b516f63b7fca6bb03f9ac86fc4018f62179c61df496feb83dc25293efcdc53",
+      "bytes": 3687,
+      "transforms": []
+    },
+    {
+      "path": "harness/runtime_settings.py",
+      "source_sha256": "d992ca30caeeb99fc7950bbc3c10d6a86a8adf212d3993189ecf0f0aacd86cb3",
+      "sha256": "d992ca30caeeb99fc7950bbc3c10d6a86a8adf212d3993189ecf0f0aacd86cb3",
+      "bytes": 11315,
+      "transforms": []
+    },
+    {
+      "path": "harness/task-receipt-access.mjs",
+      "source_sha256": "1e1309cce80ed3e0a5b3f46f117d2a992becef717784675689f46f8dd48ecd82",
+      "sha256": "1e1309cce80ed3e0a5b3f46f117d2a992becef717784675689f46f8dd48ecd82",
+      "bytes": 870,
+      "transforms": []
+    },
+    {
+      "path": "harness/task-receipts.mjs",
+      "source_sha256": "fa9cef8e8445ff0423dcad3a5ff3a14ccead53d9be4a0b73773de197a9ba71c6",
+      "sha256": "fa9cef8e8445ff0423dcad3a5ff3a14ccead53d9be4a0b73773de197a9ba71c6",
+      "bytes": 3479,
+      "transforms": []
+    },
+    {
+      "path": "harness/task_diagnostics.py",
+      "source_sha256": "508f5b66d1ba3d8e138ea88a6ff7ae1bb7105422555aaa749500ee8bea26934e",
+      "sha256": "508f5b66d1ba3d8e138ea88a6ff7ae1bb7105422555aaa749500ee8bea26934e",
+      "bytes": 1864,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-admin-live.mjs",
+      "source_sha256": "b243842108d54fff760f3f56eb29ac83ab972adacd6b6ba68107440e011d337a",
+      "sha256": "b243842108d54fff760f3f56eb29ac83ab972adacd6b6ba68107440e011d337a",
+      "bytes": 7468,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-community-host.mjs",
+      "source_sha256": "8b2b43fcba2166181f5d90267f9c1a79a56b8875c9b84f2df3c3bd781756a5c5",
+      "sha256": "8b2b43fcba2166181f5d90267f9c1a79a56b8875c9b84f2df3c3bd781756a5c5",
+      "bytes": 6437,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-community.mjs",
+      "source_sha256": "ded8664df7a1003ceb6b78bc3ea91e47e0bff7f4dc09755c6c0a34cdc50705f2",
+      "sha256": "ded8664df7a1003ceb6b78bc3ea91e47e0bff7f4dc09755c6c0a34cdc50705f2",
+      "bytes": 16265,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-harness.py",
+      "source_sha256": "5f233a10840208f8269885df5718bf025c351c7c64c62d6a8f84b42308a0825d",
+      "sha256": "5f233a10840208f8269885df5718bf025c351c7c64c62d6a8f84b42308a0825d",
+      "bytes": 4865,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-integration.mjs",
+      "source_sha256": "b85fffb3a8fe7ff960c9696b4baa3a7b1ff7bed74104f21d8a4dc02b2d2f5cbd",
+      "sha256": "b85fffb3a8fe7ff960c9696b4baa3a7b1ff7bed74104f21d8a4dc02b2d2f5cbd",
+      "bytes": 2963,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-maintenance-jobs.py",
+      "source_sha256": "3ed17f54635b005dfea20e10f3e4864048ea5bac2c3e315bc1e4ea8debb9b64f",
+      "sha256": "3ed17f54635b005dfea20e10f3e4864048ea5bac2c3e315bc1e4ea8debb9b64f",
+      "bytes": 5058,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-natural-admin.mjs",
+      "source_sha256": "1cbcbde264eb6407e32e0c7c474d5ced15992ddcddf10c462f3a770f7b1cf48c",
+      "sha256": "1cbcbde264eb6407e32e0c7c474d5ced15992ddcddf10c462f3a770f7b1cf48c",
+      "bytes": 7301,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-owner-harness.mjs",
+      "source_sha256": "f373526d0afdefc26a13a870bac6ec5deaea1e188000025c7b30f61d0e97fe97",
+      "sha256": "f373526d0afdefc26a13a870bac6ec5deaea1e188000025c7b30f61d0e97fe97",
+      "bytes": 6010,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-resource-policy.py",
+      "source_sha256": "5a893df1e740a002eaf6ec799a0b17e51bb56260d61c4c048072dbc97f018efa",
+      "sha256": "5a893df1e740a002eaf6ec799a0b17e51bb56260d61c4c048072dbc97f018efa",
+      "bytes": 4223,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-role-isolation.mjs",
+      "source_sha256": "494b5b50bf60ebe8019fc09e5052f48779b66c2b53d62946ef5cfc27d9721afb",
+      "sha256": "494b5b50bf60ebe8019fc09e5052f48779b66c2b53d62946ef5cfc27d9721afb",
+      "bytes": 6408,
+      "transforms": []
+    },
+    {
+      "path": "harness/test-silence.mjs",
+      "source_sha256": "9af9558f1003254f35a8f856d9217891e4bafbe293a9a714133d22bba1606852",
+      "sha256": "9af9558f1003254f35a8f856d9217891e4bafbe293a9a714133d22bba1606852",
+      "bytes": 5331,
+      "transforms": []
+    },
+    {
+      "path": "harness/verify-group-command.mjs",
+      "source_sha256": "08f254cef9e14c4b0879bb18a9fb3e6d8d87f35e0d813138033578d7a0f0412e",
+      "sha256": "08f254cef9e14c4b0879bb18a9fb3e6d8d87f35e0d813138033578d7a0f0412e",
+      "bytes": 1986,
+      "transforms": []
+    },
+    {
+      "path": "ops/bilibili-reader/bili-reader.mjs",
+      "source_sha256": "35472a4c754a942b2e4f1f4026cf8526904ebe4c905e3c79a66565ef6d5e5c0e",
+      "sha256": "35472a4c754a942b2e4f1f4026cf8526904ebe4c905e3c79a66565ef6d5e5c0e",
+      "bytes": 8246,
+      "transforms": []
+    },
+    {
+      "path": "ops/bilibili-reader/bili-service.mjs",
+      "source_sha256": "d20b009fd092b8978cc876e67c5267e1c77ce246e96f2425ccc0fafe31053e60",
+      "sha256": "d20b009fd092b8978cc876e67c5267e1c77ce246e96f2425ccc0fafe31053e60",
+      "bytes": 2137,
+      "transforms": []
+    },
+    {
+      "path": "ops/bilibili-reader/bili-view.mjs",
+      "source_sha256": "d8c77f601d410a729b965577eab236863c1979e5a26e093c96338aa7b8d0efb3",
+      "sha256": "d8c77f601d410a729b965577eab236863c1979e5a26e093c96338aa7b8d0efb3",
+      "bytes": 3038,
+      "transforms": []
+    },
+    {
+      "path": "ops/bilibili-reader/probe-bili.mjs",
+      "source_sha256": "a6bc996cdcd768f5ceb78df7ae9729b969040a027273e15681244ce19e92ef80",
+      "sha256": "a6bc996cdcd768f5ceb78df7ae9729b969040a027273e15681244ce19e92ef80",
+      "bytes": 918,
+      "transforms": []
+    },
+    {
+      "path": "ops/bilibili-reader/probe-community-live.mjs",
+      "source_sha256": "1e6b6d677bc6d74993912d163f0c666b06528b1e0dad72ece94e4fc79e9986d0",
+      "sha256": "1e6b6d677bc6d74993912d163f0c666b06528b1e0dad72ece94e4fc79e9986d0",
+      "bytes": 2996,
+      "transforms": []
+    },
+    {
+      "path": "ops/guardian/cloud_transport.py",
+      "source_sha256": "b13120efc4f370b581121bf5e2079d93ddcb18ff09c4dbb1780d529dc5ff954d",
+      "sha256": "b13120efc4f370b581121bf5e2079d93ddcb18ff09c4dbb1780d529dc5ff954d",
+      "bytes": 2931,
+      "transforms": []
+    },
+    {
+      "path": "ops/guardian/guardian.py",
+      "source_sha256": "c632fae4adbd591a5890e6bbeb618e97f12a3ce9f6a39d5526d4a681ed6c5283",
+      "sha256": "9651ed55aa02c3939abe4284402fd0a20fd706c504f1753b259ca7a0c96d3b6c",
+      "bytes": 16738,
+      "transforms": [
+        "deployment_identifier_redacted"
+      ]
+    },
+    {
+      "path": "ops/guardian/guardian_policy.py",
+      "source_sha256": "d91a024c913c5016621713919c1aad63230438bb0f8ac1cf21e55ae80302ca91",
+      "sha256": "d91a024c913c5016621713919c1aad63230438bb0f8ac1cf21e55ae80302ca91",
+      "bytes": 8133,
+      "transforms": []
+    },
+    {
+      "path": "ops/guardian/onebot_bridge.py",
+      "source_sha256": "6ded98fd5227125280aa1cc5b1b0b5518f6ed145d770e8e2cadd3da6a9f0e632",
+      "sha256": "6ded98fd5227125280aa1cc5b1b0b5518f6ed145d770e8e2cadd3da6a9f0e632",
+      "bytes": 2251,
+      "transforms": []
+    },
+    {
+      "path": "ops/guardian/snowluma_transport.py",
+      "source_sha256": "b1f0167475f18c9e513906964c10ef937cc0eae8ae4e02aa75a74e614552cd8c",
+      "sha256": "a634dedab4c56377d0c149d03df0a464c630557dbd07b05f407d8218a4ffc0e0",
+      "bytes": 2412,
+      "transforms": [
+        "deployment_identifier_redacted"
+      ]
+    },
+    {
+      "path": "ops/guardian/test-guardian-runtime.py",
+      "source_sha256": "90a5e033d4304d52154a7078ecdf36b77e4bea0699967388fc15bbc60125c3d7",
+      "sha256": "90a5e033d4304d52154a7078ecdf36b77e4bea0699967388fc15bbc60125c3d7",
+      "bytes": 9203,
+      "transforms": []
+    },
+    {
+      "path": "ops/guardian/test-guardian.py",
+      "source_sha256": "655ea2dff86c5c779e5c2332e19d1e3d6f5030820b6fc7e3a3feca477663a7fa",
+      "sha256": "655ea2dff86c5c779e5c2332e19d1e3d6f5030820b6fc7e3a3feca477663a7fa",
+      "bytes": 11565,
+      "transforms": []
+    },
+    {
+      "path": "ops/guardian/test-snowluma.py",
+      "source_sha256": "96672bc36527f263cc846ebbd828b93ea901896638a4986fb8a5f5c9e1e56e6b",
+      "sha256": "96672bc36527f263cc846ebbd828b93ea901896638a4986fb8a5f5c9e1e56e6b",
+      "bytes": 3317,
+      "transforms": []
+    },
+    {
+      "path": "ops/mobile-console/agent-workbench.html",
+      "source_sha256": "e0178a7433a0901b0d88fef7806122ee4bfd8333e47c5798eed34bef73492419",
+      "sha256": "e0178a7433a0901b0d88fef7806122ee4bfd8333e47c5798eed34bef73492419",
+      "bytes": 17324,
+      "transforms": []
+    },
+    {
+      "path": "ops/mobile-console/cloud-dns-compat.py",
+      "source_sha256": "fdbc19563882e4e2d243d4859c768281e12990aa2f611795850b96d5971284e2",
+      "sha256": "fdbc19563882e4e2d243d4859c768281e12990aa2f611795850b96d5971284e2",
+      "bytes": 1617,
+      "transforms": []
+    },
+    {
+      "path": "ops/mobile-console/mobile-console-firewall.py",
+      "source_sha256": "283033ddd70ef31fe30d71d26b7122dec66e8f6be342ac153a2f147c15930617",
+      "sha256": "283033ddd70ef31fe30d71d26b7122dec66e8f6be342ac153a2f147c15930617",
+      "bytes": 629,
+      "transforms": []
+    },
+    {
+      "path": "ops/mobile-console/mobile-console.py",
+      "source_sha256": "af30cca6fb2eaaacab392a25b47e3bda57068ab8b7e0a334990f0d5cd5a20ae5",
+      "sha256": "af30cca6fb2eaaacab392a25b47e3bda57068ab8b7e0a334990f0d5cd5a20ae5",
+      "bytes": 7951,
+      "transforms": []
+    },
+    {
+      "path": "ops/mobile-console/test-mobile-console.py",
+      "source_sha256": "6126cc09ffd7043853d9be8938452a18c121f348f1753e4d76b8b9b49c619923",
+      "sha256": "a87dd27aa77a2bdd90578162e59cdffc7a31e3a039ef25209b4c18cbdaf92cd7",
+      "bytes": 6566,
+      "transforms": [
+        "deployment_identifier_redacted"
+      ]
+    },
+    {
+      "path": "ops/resource-policy/desktop-control.py",
+      "source_sha256": "ee76ebefef1a4ec30eef97a3b36c459ca87a1c333567cb0921d3722e9f20052a",
+      "sha256": "ee76ebefef1a4ec30eef97a3b36c459ca87a1c333567cb0921d3722e9f20052a",
+      "bytes": 2775,
+      "transforms": []
+    },
+    {
+      "path": "ops/resource-policy/native-client.py",
+      "source_sha256": "a72bd4296e08fd4dfd65a18e7f60c7f22fca4d24b27b6dabe1d0a8251001d599",
+      "sha256": "bfa90d85f9bf3645eb5ca46f941e14f8558e3410cdb54a2177cda93609359e31",
+      "bytes": 11822,
+      "transforms": [
+        "deployment_identifier_redacted"
+      ]
+    },
+    {
+      "path": "ops/resource-policy/test-native-client.py",
+      "source_sha256": "2d769b52886749fc30840ead40c32bcb205bde463f1397e17cfec7ae207e135e",
+      "sha256": "2d769b52886749fc30840ead40c32bcb205bde463f1397e17cfec7ae207e135e",
+      "bytes": 5390,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/LICENSE",
+      "source_sha256": "052b5cbc979703aa1dedef2517ebdacbb112e535bbacded107ce5ad503807964",
+      "sha256": "052b5cbc979703aa1dedef2517ebdacbb112e535bbacded107ce5ad503807964",
+      "bytes": 1085,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/package-lock.json",
+      "source_sha256": "5303f5d6c18bf97a90934e44ebc49a5e7d0cfbcb2e2540066abeccf654faca10",
+      "sha256": "5303f5d6c18bf97a90934e44ebc49a5e7d0cfbcb2e2540066abeccf654faca10",
+      "bytes": 171793,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/package.json",
+      "source_sha256": "8acf74e12bbf5137e66a37407a205b216c95df4827a0af53820f0f20f911e826",
+      "sha256": "8acf74e12bbf5137e66a37407a205b216c95df4827a0af53820f0f20f911e826",
+      "bytes": 4441,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/skills/local-image/codex-image-client.js",
+      "source_sha256": "65e3bebd28cb528222b5c61cd5d5fdf3eaa1263477ea87e1b04c2ec92f1e8bd2",
+      "sha256": "65e3bebd28cb528222b5c61cd5d5fdf3eaa1263477ea87e1b04c2ec92f1e8bd2",
+      "bytes": 6364,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/skills/local-image/image-inputs.js",
+      "source_sha256": "c62aad5400b28f377248e39216000d40ed5411442c5cdc2fd45b947a1b326d71",
+      "sha256": "c62aad5400b28f377248e39216000d40ed5411442c5cdc2fd45b947a1b326d71",
+      "bytes": 5310,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/skills/local-image/index.js",
+      "source_sha256": "374451dabb09d963a037eee591685e4c474803c7dfff5c32d55af66276bac7cd",
+      "sha256": "374451dabb09d963a037eee591685e4c474803c7dfff5c32d55af66276bac7cd",
+      "bytes": 26308,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/skills/local-image/skill.json",
+      "source_sha256": "a43f8840076b80a433ade451a7e334b0e33e962609cd432214f4063cc4110285",
+      "sha256": "a43f8840076b80a433ade451a7e334b0e33e962609cd432214f4063cc4110285",
+      "bytes": 1307,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/skills/local-voice/index.js",
+      "source_sha256": "b60e85be014770638f2a882966772cfbb8da85a39a6a9a454884bc5b2f5a7cac",
+      "sha256": "b60e85be014770638f2a882966772cfbb8da85a39a6a9a454884bc5b2f5a7cac",
+      "bytes": 7737,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/skills/local-voice/skill.json",
+      "source_sha256": "7c6c7a9e0864a806187e346147614fa5a86911c63f7de0e315fc5cc8c8d2d78e",
+      "sha256": "7c6c7a9e0864a806187e346147614fa5a86911c63f7de0e315fc5cc8c8d2d78e",
+      "bytes": 787,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/skills/local-voice/speak.py",
+      "source_sha256": "4be4f01bf7f53db28c3b7773b2afb9fe0b43765719cc1450a2ec487e6e5f8802",
+      "sha256": "4be4f01bf7f53db28c3b7773b2afb9fe0b43765719cc1450a2ec487e6e5f8802",
+      "bytes": 4593,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/admin-runtime.mjs",
+      "source_sha256": "9101eb65e2f4307fbe20277e9aefa65f27d817d7b3f8e553eaf2f939d62355fc",
+      "sha256": "9101eb65e2f4307fbe20277e9aefa65f27d817d7b3f8e553eaf2f939d62355fc",
+      "bytes": 8070,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/app.js",
+      "source_sha256": "6c531c44edd6afc14416dee05407762bb554d0bbe52f67b606c02879ff66229a",
+      "sha256": "6c531c44edd6afc14416dee05407762bb554d0bbe52f67b606c02879ff66229a",
+      "bytes": 154686,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/bili-reader.mjs",
+      "source_sha256": "35472a4c754a942b2e4f1f4026cf8526904ebe4c905e3c79a66565ef6d5e5c0e",
+      "sha256": "35472a4c754a942b2e4f1f4026cf8526904ebe4c905e3c79a66565ef6d5e5c0e",
+      "bytes": 8246,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/bili-view.mjs",
+      "source_sha256": "d8c77f601d410a729b965577eab236863c1979e5a26e093c96338aa7b8d0efb3",
+      "sha256": "d8c77f601d410a729b965577eab236863c1979e5a26e093c96338aa7b8d0efb3",
+      "bytes": 3038,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/bot-interaction.mjs",
+      "source_sha256": "ca0ade0e581f1e11f8cca06546b52685e72e615fab7ef1e1f3c03d6b736adfa1",
+      "sha256": "ca0ade0e581f1e11f8cca06546b52685e72e615fab7ef1e1f3c03d6b736adfa1",
+      "bytes": 3020,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/cat-role-cards.js",
+      "source_sha256": "21535eb80a7dc6538abd84fa42d99fc901709b8f229641ef0c4bb0bddffdd00e",
+      "sha256": "21535eb80a7dc6538abd84fa42d99fc901709b8f229641ef0c4bb0bddffdd00e",
+      "bytes": 11173,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/chat-silence.mjs",
+      "source_sha256": "cfd28d28ada88153949feb8466c80da08746c7ceabed4fb95ab1b1d52b40036a",
+      "sha256": "cfd28d28ada88153949feb8466c80da08746c7ceabed4fb95ab1b1d52b40036a",
+      "bytes": 1487,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/community-access.mjs",
+      "source_sha256": "ac9cd33b465444c57f885b5ff80d07d54464a62719416ddfbb497dfc3908ff17",
+      "sha256": "ac9cd33b465444c57f885b5ff80d07d54464a62719416ddfbb497dfc3908ff17",
+      "bytes": 1313,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/community-commands.mjs",
+      "source_sha256": "8acbc064b896b68efecd97c8141994485f18d41b0227060196e2ad53f5c6f756",
+      "sha256": "8acbc064b896b68efecd97c8141994485f18d41b0227060196e2ad53f5c6f756",
+      "bytes": 6043,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/community-tools.mjs",
+      "source_sha256": "bcc0f060c1a578adef8550eea1d2061c11942e205816fa665f0f9f943462f9ea",
+      "sha256": "bcc0f060c1a578adef8550eea1d2061c11942e205816fa665f0f9f943462f9ea",
+      "bytes": 3134,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/community.js",
+      "source_sha256": "8048623b3f5b14696490a4b8b2c7510086e2ce1c0234e92026e9f243b73a2084",
+      "sha256": "8048623b3f5b14696490a4b8b2c7510086e2ce1c0234e92026e9f243b73a2084",
+      "bytes": 9148,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/config.js",
+      "source_sha256": "a03be1080893c7d7b6cafe717d885aeafa3bd40f96386bee4ac43e4513b851fa",
+      "sha256": "a03be1080893c7d7b6cafe717d885aeafa3bd40f96386bee4ac43e4513b851fa",
+      "bytes": 46558,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/conversation-cache.mjs",
+      "source_sha256": "0564dbeb45372b0a2821dfa25f68a3f00285f8bca9fbe89734a8957ba855cc21",
+      "sha256": "0564dbeb45372b0a2821dfa25f68a3f00285f8bca9fbe89734a8957ba855cc21",
+      "bytes": 2336,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/event-stream.js",
+      "source_sha256": "3471cc34a958a423a4aab416bb98444a24565126a7745017ead8a360347fec91",
+      "sha256": "3471cc34a958a423a4aab416bb98444a24565126a7745017ead8a360347fec91",
+      "bytes": 998,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/gif-to-video.js",
+      "source_sha256": "16779ff5f25667e552cad03ad6cb70249911f5774f7e2e8896b54930f3ac4b58",
+      "sha256": "16779ff5f25667e552cad03ad6cb70249911f5774f7e2e8896b54930f3ac4b58",
+      "bytes": 12379,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/group-memory.js",
+      "source_sha256": "5972a223d5de555aad3d53d52807cea86327a959bba8008c7ce1567f94518e9c",
+      "sha256": "5972a223d5de555aad3d53d52807cea86327a959bba8008c7ce1567f94518e9c",
+      "bytes": 21746,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/group-mention-policy.mjs",
+      "source_sha256": "cd47d364e4964cabe9fe5efa41a4daecd5535dcb95de625e4a21503d59f26896",
+      "sha256": "cd47d364e4964cabe9fe5efa41a4daecd5535dcb95de625e4a21503d59f26896",
+      "bytes": 985,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/guardian-status.mjs",
+      "source_sha256": "ea5ffc0b055919b5a2bbf4ace14587aa29c7ed0b4de8d41d5d9b780ba01da3c7",
+      "sha256": "ea5ffc0b055919b5a2bbf4ace14587aa29c7ed0b4de8d41d5d9b780ba01da3c7",
+      "bytes": 2043,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/holidays.js",
+      "source_sha256": "a88f8319a911ed903a0f9f871580511dada9542115c2472fbd5dd8abe0706202",
+      "sha256": "a88f8319a911ed903a0f9f871580511dada9542115c2472fbd5dd8abe0706202",
+      "bytes": 7746,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/image-compress.js",
+      "source_sha256": "44ea1db3153ca61670e3427b1d203f1fb0dcda69df3d5905d6dfda085f3d91bc",
+      "sha256": "44ea1db3153ca61670e3427b1d203f1fb0dcda69df3d5905d6dfda085f3d91bc",
+      "bytes": 10962,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/image-outcome.mjs",
+      "source_sha256": "9c3fcd1677a7977ca0c611ce74d401adb2db5cc95fa0674b3b2f8ae7e5deee56",
+      "sha256": "9c3fcd1677a7977ca0c611ce74d401adb2db5cc95fa0674b3b2f8ae7e5deee56",
+      "bytes": 1271,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/image-type.js",
+      "source_sha256": "45ce272d916be970946c1222015e7e98a9c4fd12e5b0d11cfcb234543e2feccf",
+      "sha256": "45ce272d916be970946c1222015e7e98a9c4fd12e5b0d11cfcb234543e2feccf",
+      "bytes": 2392,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/instance-lock.js",
+      "source_sha256": "16db69364fd6dcdfb0b5160ae5c1c798296a67048e956b82ed5d594c428a1333",
+      "sha256": "16db69364fd6dcdfb0b5160ae5c1c798296a67048e956b82ed5d594c428a1333",
+      "bytes": 4559,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/llm.js",
+      "source_sha256": "882a46274854be7e0db7a22f2844446dbd7374171ad39151a4c82c361ea244b3",
+      "sha256": "882a46274854be7e0db7a22f2844446dbd7374171ad39151a4c82c361ea244b3",
+      "bytes": 33454,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/logger.js",
+      "source_sha256": "4ca60ab49d3d235975fb438fe280c773689dfa57c699933e05178da08557ff31",
+      "sha256": "4ca60ab49d3d235975fb438fe280c773689dfa57c699933e05178da08557ff31",
+      "bytes": 7206,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/market.js",
+      "source_sha256": "7a84e22a07416b2cc534fc70f1c871dea1c845b6a21d8f1f3aab4671a9a582da",
+      "sha256": "7a84e22a07416b2cc534fc70f1c871dea1c845b6a21d8f1f3aab4671a9a582da",
+      "bytes": 14287,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/md-to-plain.js",
+      "source_sha256": "2f955a48a6173e8e770e80a7419ec46f4a2565b08e8c717445bd2d584b0bb7c9",
+      "sha256": "2f955a48a6173e8e770e80a7419ec46f4a2565b08e8c717445bd2d584b0bb7c9",
+      "bytes": 2426,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/media-links.js",
+      "source_sha256": "56a50e011b93ee76fe7d5e30a1b1d1f0f921650dcc65ba2434d4e88c90b1c16b",
+      "sha256": "56a50e011b93ee76fe7d5e30a1b1d1f0f921650dcc65ba2434d4e88c90b1c16b",
+      "bytes": 5101,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/meme-extractor.mjs",
+      "source_sha256": "fd7d8875f87ef0771f5e88b09d2d4450e44b801c069d482913b8faada6168a35",
+      "sha256": "fd7d8875f87ef0771f5e88b09d2d4450e44b801c069d482913b8faada6168a35",
+      "bytes": 2828,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/meme-learning.mjs",
+      "source_sha256": "6246677547df09abaa8adca450460e059701bdf94f921f0c59d4577dd42eeb5a",
+      "sha256": "6246677547df09abaa8adca450460e059701bdf94f921f0c59d4577dd42eeb5a",
+      "bytes": 4033,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/meme-library.mjs",
+      "source_sha256": "b6b054cb4ce34a2ca3492295d3e768c9f0a8e1b2327b897cf7506a4f1298a68d",
+      "sha256": "b6b054cb4ce34a2ca3492295d3e768c9f0a8e1b2327b897cf7506a4f1298a68d",
+      "bytes": 5028,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/memory.js",
+      "source_sha256": "39bc94c663f38058b7e02e9a0053b65db407098fe1a65044e10facc28612d412",
+      "sha256": "39bc94c663f38058b7e02e9a0053b65db407098fe1a65044e10facc28612d412",
+      "bytes": 22822,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/mobile-control-commands.js",
+      "source_sha256": "f0d35797823f80e0007c58512efbc4c431bcf993845b1d48e6a16b6e898006af",
+      "sha256": "e742e0e618d091cdc6867ddb4ef916c6790146a2ba9970cfeb3fd2f4b712400b",
+      "bytes": 11870,
+      "transforms": [
+        "deployment_identifier_redacted"
+      ]
+    },
+    {
+      "path": "qq-agent/src/model-commands.js",
+      "source_sha256": "92253afc4a3f3b6f9251f03e993c14cbc98adc2543526aafd6cf0ac0e074f677",
+      "sha256": "92253afc4a3f3b6f9251f03e993c14cbc98adc2543526aafd6cf0ac0e074f677",
+      "bytes": 7930,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/model-prices.js",
+      "source_sha256": "f605221cca8b9da95cefbcd4299f3c36da6da8a40f1de5c497f32720e396badd",
+      "sha256": "f605221cca8b9da95cefbcd4299f3c36da6da8a40f1de5c497f32720e396badd",
+      "bytes": 42751,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/model-selection.js",
+      "source_sha256": "6057ffc7a9ecf8fb19ab142b31aea3dfc22abefff254496d42a14f5c2536baa1",
+      "sha256": "6057ffc7a9ecf8fb19ab142b31aea3dfc22abefff254496d42a14f5c2536baa1",
+      "bytes": 3974,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/model-vision-docs.js",
+      "source_sha256": "927cfed1bfde897a3b55b6870c8773ab0bde9a1e579e15bac13e6219298dba50",
+      "sha256": "927cfed1bfde897a3b55b6870c8773ab0bde9a1e579e15bac13e6219298dba50",
+      "bytes": 18034,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/natural-admin.mjs",
+      "source_sha256": "067144a4e24a9a1a56dfe081b11311e69a1478458517d37acce5fd878e799c57",
+      "sha256": "067144a4e24a9a1a56dfe081b11311e69a1478458517d37acce5fd878e799c57",
+      "bytes": 12387,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/natural-chat.mjs",
+      "source_sha256": "d4af81b9230b9b7c06840cd7d1933acf9137429056fd62d1083a62d06c221ef2",
+      "sha256": "d4af81b9230b9b7c06840cd7d1933acf9137429056fd62d1083a62d06c221ef2",
+      "bytes": 3093,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/onebot.js",
+      "source_sha256": "6579ff811cbf4f05793e60d963f5b36a86692d52300f6e64cce3c13ad2756a0d",
+      "sha256": "6579ff811cbf4f05793e60d963f5b36a86692d52300f6e64cce3c13ad2756a0d",
+      "bytes": 28349,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/orchestrator.js",
+      "source_sha256": "c60e045a44472bea2478fe1d3dbde1221beb1d0d9b5584b9f17dc6612ad3f906",
+      "sha256": "c60e045a44472bea2478fe1d3dbde1221beb1d0d9b5584b9f17dc6612ad3f906",
+      "bytes": 121524,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/owner-console.js",
+      "source_sha256": "52698459c7839dafc3f29ad15e13f86a045fbf781d9b548a6859d319adfcb217",
+      "sha256": "52698459c7839dafc3f29ad15e13f86a045fbf781d9b548a6859d319adfcb217",
+      "bytes": 23417,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/owner-harness.js",
+      "source_sha256": "ce912a59444665c903e695f00323fe70652a472f3dc379156e9fb6f6a969047a",
+      "sha256": "ce912a59444665c903e695f00323fe70652a472f3dc379156e9fb6f6a969047a",
+      "bytes": 16176,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/owner-local-commands.js",
+      "source_sha256": "986b6ebfff9d2834fe9d9df1317b30e4f709361810b333e7d2b6526e541dcfc2",
+      "sha256": "590c8346371cd782672227c755d5bc15bb35d860b358d22437e3572fa064329e",
+      "bytes": 6963,
+      "transforms": [
+        "deployment_identifier_redacted"
+      ]
+    },
+    {
+      "path": "qq-agent/src/owner-private-rules.js",
+      "source_sha256": "031958c2c9f236bfee67629b41109664442489b99a37fab39a5bed83cee2cf94",
+      "sha256": "031958c2c9f236bfee67629b41109664442489b99a37fab39a5bed83cee2cf94",
+      "bytes": 16255,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/owner-tool-defs.js",
+      "source_sha256": "39eefd7fd1d345239e1b34a1048d31591d4193f85ea24b8794ad7daf1855eff1",
+      "sha256": "39eefd7fd1d345239e1b34a1048d31591d4193f85ea24b8794ad7daf1855eff1",
+      "bytes": 6457,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/persona-commands.js",
+      "source_sha256": "35ec58875b480d3a591d093ed1f0e89b9b5ef2e693e544809b0c8237a408eb81",
+      "sha256": "35ec58875b480d3a591d093ed1f0e89b9b5ef2e693e544809b0c8237a408eb81",
+      "bytes": 7367,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/persona-workshop.js",
+      "source_sha256": "46d517d64944fb45432c9e1ddb2f1881612a2a114d173b156083c9e19fc9744d",
+      "sha256": "a0f2f45d5178d8a547be397ad3be4088005a1b171abf8b9576c443b2cd484306",
+      "bytes": 26179,
+      "transforms": [
+        "deployment_identifier_redacted"
+      ]
+    },
+    {
+      "path": "qq-agent/src/personas.js",
+      "source_sha256": "a37129e897c0f6eb44177436005078a0e77b6223a93b886b4d6ec8947ba788c3",
+      "sha256": "a37129e897c0f6eb44177436005078a0e77b6223a93b886b4d6ec8947ba788c3",
+      "bytes": 16250,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/plugin-loader.js",
+      "source_sha256": "063a0bf81ef78d0e1b36696f0edcf3f31b1474e496be7ae16080d32dc3ba7ee7",
+      "sha256": "063a0bf81ef78d0e1b36696f0edcf3f31b1474e496be7ae16080d32dc3ba7ee7",
+      "bytes": 31440,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/price-feed.js",
+      "source_sha256": "9fd008607f41cf9546761a7f21011abe98c8c29e82b2e78efd3565c9f192c819",
+      "sha256": "9fd008607f41cf9546761a7f21011abe98c8c29e82b2e78efd3565c9f192c819",
+      "bytes": 8996,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/profile.js",
+      "source_sha256": "6ffecde2a2f5c057096fac92b52d35aad542cdc9d84e50601c11bda3108c0026",
+      "sha256": "6ffecde2a2f5c057096fac92b52d35aad542cdc9d84e50601c11bda3108c0026",
+      "bytes": 795,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/prompt.js",
+      "source_sha256": "388ac497dc6cdb75f0d26b07590536e84305e7135da237146d186730895cfdb0",
+      "sha256": "388ac497dc6cdb75f0d26b07590536e84305e7135da237146d186730895cfdb0",
+      "bytes": 62708,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/providers.js",
+      "source_sha256": "89890b493d8282ab2519a84f8d40a984ba99198cf62a66ec16b15160a633f087",
+      "sha256": "89890b493d8282ab2519a84f8d40a984ba99198cf62a66ec16b15160a633f087",
+      "bytes": 18508,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/qq-faces.js",
+      "source_sha256": "6353a7f075f42aba50dda75aec2e67591eb1241131beab7fb1a8204278a4cbc8",
+      "sha256": "6353a7f075f42aba50dda75aec2e67591eb1241131beab7fb1a8204278a4cbc8",
+      "bytes": 12864,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/reminders.js",
+      "source_sha256": "9cad56a4f50700bbb270a42ca89b137f5d9cdffa659a897511fe0e0d6884a978",
+      "sha256": "9cad56a4f50700bbb270a42ca89b137f5d9cdffa659a897511fe0e0d6884a978",
+      "bytes": 3030,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/reply-rescue.js",
+      "source_sha256": "b9c8b9f05ab325e721ce634ceb384bc99c7ce0747600b0779051ba796db4926d",
+      "sha256": "b9c8b9f05ab325e721ce634ceb384bc99c7ce0747600b0779051ba796db4926d",
+      "bytes": 5639,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/role-card-extra-presets.js",
+      "source_sha256": "5b111b86729b4e311a8a83b5ab05735695dda7f7ceb429ce3572f62b357d019a",
+      "sha256": "5b111b86729b4e311a8a83b5ab05735695dda7f7ceb429ce3572f62b357d019a",
+      "bytes": 13946,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/role-card-library.js",
+      "source_sha256": "47d5e4cb128eee911ebf0448b909c9b17502feca6e07a2258a8895178f00cfff",
+      "sha256": "47d5e4cb128eee911ebf0448b909c9b17502feca6e07a2258a8895178f00cfff",
+      "bytes": 3739,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/role-card-presets.js",
+      "source_sha256": "d2fca597216549245c4638a2c765180a89d5c222b70baed04e6ac2c96577e9a9",
+      "sha256": "d2fca597216549245c4638a2c765180a89d5c222b70baed04e6ac2c96577e9a9",
+      "bytes": 8569,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/role-isolation.mjs",
+      "source_sha256": "c5d4831448e64130950f638106114226845a644bb79945b0391cbd3ee4474a03",
+      "sha256": "c5d4831448e64130950f638106114226845a644bb79945b0391cbd3ee4474a03",
+      "bytes": 3908,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/routes.js",
+      "source_sha256": "df821b3a04b43d9e3337fd1ef0026528bd229ac2932b7a42c65bf9d271e4a03a",
+      "sha256": "df821b3a04b43d9e3337fd1ef0026528bd229ac2932b7a42c65bf9d271e4a03a",
+      "bytes": 80641,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/safe-fetch.js",
+      "source_sha256": "eacb650299416c9dcd6894b6447404236f76ab50a87075c8ed94b19275cce61b",
+      "sha256": "eacb650299416c9dcd6894b6447404236f76ab50a87075c8ed94b19275cce61b",
+      "bytes": 23419,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/sender.js",
+      "source_sha256": "3e6eea63b32f23211a59fe824801ab877fa94049f72901773d7b25f3732ba80a",
+      "sha256": "3e6eea63b32f23211a59fe824801ab877fa94049f72901773d7b25f3732ba80a",
+      "bytes": 29106,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/server.js",
+      "source_sha256": "e299f52d3f5e4ab7565fdc7ae27118bdac4fb9ca9463882625ab1f9bba6a65e1",
+      "sha256": "e299f52d3f5e4ab7565fdc7ae27118bdac4fb9ca9463882625ab1f9bba6a65e1",
+      "bytes": 752,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/sessions.js",
+      "source_sha256": "5fd3f013d73a0cfcec036c8edd170f4b859e4bab7b49b779a661a234b9b32269",
+      "sha256": "5fd3f013d73a0cfcec036c8edd170f4b859e4bab7b49b779a661a234b9b32269",
+      "bytes": 24796,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/shared-memory-commands.js",
+      "source_sha256": "41ea966253aafc1e68eedcb8afc1b89980951dd967ae03c7084cb6fae89d13a9",
+      "sha256": "41ea966253aafc1e68eedcb8afc1b89980951dd967ae03c7084cb6fae89d13a9",
+      "bytes": 9532,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/shared-memory-store.js",
+      "source_sha256": "bd535f2a8d7602ad08eb4406bd169da29e08f2bbdd3a1edc9d2c2901a673f6f7",
+      "sha256": "bd535f2a8d7602ad08eb4406bd169da29e08f2bbdd3a1edc9d2c2901a673f6f7",
+      "bytes": 8631,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/shutdown.js",
+      "source_sha256": "83d543f3508893811fe164896675cd44e0898c6e1b73596a4191900a25883ecb",
+      "sha256": "83d543f3508893811fe164896675cd44e0898c6e1b73596a4191900a25883ecb",
+      "bytes": 875,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/skills/capabilities.js",
+      "source_sha256": "0012d526920b80ff13e64da478d77eb19704619212971bbaeeb855a22ebc3824",
+      "sha256": "0012d526920b80ff13e64da478d77eb19704619212971bbaeeb855a22ebc3824",
+      "bytes": 2731,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/skills/config.js",
+      "source_sha256": "bf255a39e7a36d31ce00e2c267b31a91770fa7e735a1c95474030a6a02eda223",
+      "sha256": "bf255a39e7a36d31ce00e2c267b31a91770fa7e735a1c95474030a6a02eda223",
+      "bytes": 2257,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/skills/errors.js",
+      "source_sha256": "de53b96817b25b026d575d804927dc5dcabecedf7d815d6e2ff781ee1277e7e1",
+      "sha256": "de53b96817b25b026d575d804927dc5dcabecedf7d815d6e2ff781ee1277e7e1",
+      "bytes": 1689,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/skills/manager.js",
+      "source_sha256": "6baf70b35f3f9fac91fabdb203bf550bfb8e1d50dbfb0daf40830f81c58e6e8b",
+      "sha256": "6baf70b35f3f9fac91fabdb203bf550bfb8e1d50dbfb0daf40830f81c58e6e8b",
+      "bytes": 24757,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/skills/manifest.js",
+      "source_sha256": "9754676b1fd86db15296d88a5ce312b0b03faa328e4f66f3e77c93d0a64720d0",
+      "sha256": "9754676b1fd86db15296d88a5ce312b0b03faa328e4f66f3e77c93d0a64720d0",
+      "bytes": 6423,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/skills/registry.js",
+      "source_sha256": "7f7f5e59738ca51bcf952e4c99e45ac8f89ebf3e40abdce80cbdbb75e9d4886d",
+      "sha256": "7f7f5e59738ca51bcf952e4c99e45ac8f89ebf3e40abdce80cbdbb75e9d4886d",
+      "bytes": 1706,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/sticker-manager.js",
+      "source_sha256": "b0b9646fb3a0c789c826945b96d05f17f23d601ff73833f81ce9a367fcf4e873",
+      "sha256": "b0b9646fb3a0c789c826945b96d05f17f23d601ff73833f81ce9a367fcf4e873",
+      "bytes": 16561,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/stickers.js",
+      "source_sha256": "b7fb975ed808c17a57ad08b668527df619e501cfd5c8196eae63115651cbe11b",
+      "sha256": "b7fb975ed808c17a57ad08b668527df619e501cfd5c8196eae63115651cbe11b",
+      "bytes": 12348,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/store.js",
+      "source_sha256": "7509f8fcb7d9a4e21ce99dc725e3c9a7dd7110ceb7d5298aed417863d05d3361",
+      "sha256": "7509f8fcb7d9a4e21ce99dc725e3c9a7dd7110ceb7d5298aed417863d05d3361",
+      "bytes": 15225,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/task-receipt-access.mjs",
+      "source_sha256": "1e1309cce80ed3e0a5b3f46f117d2a992becef717784675689f46f8dd48ecd82",
+      "sha256": "1e1309cce80ed3e0a5b3f46f117d2a992becef717784675689f46f8dd48ecd82",
+      "bytes": 870,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/task-receipts.mjs",
+      "source_sha256": "fa9cef8e8445ff0423dcad3a5ff3a14ccead53d9be4a0b73773de197a9ba71c6",
+      "sha256": "fa9cef8e8445ff0423dcad3a5ff3a14ccead53d9be4a0b73773de197a9ba71c6",
+      "bytes": 3479,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/telemetry.js",
+      "source_sha256": "a384a801b989312c9b801c19f976732978030487ea4df0855e87955e3785a574",
+      "sha256": "a384a801b989312c9b801c19f976732978030487ea4df0855e87955e3785a574",
+      "bytes": 5024,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/thinking.js",
+      "source_sha256": "4fa3bfc806baec0cda7061720631623822ff540f99f46235170ed9f44dcf0fb3",
+      "sha256": "4fa3bfc806baec0cda7061720631623822ff540f99f46235170ed9f44dcf0fb3",
+      "bytes": 16208,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/tier-slider.js",
+      "source_sha256": "44e0f0d1f397a22b6e4e8f63b2322c7be0dd2fdb7922f957d86a870f35fe47b1",
+      "sha256": "44e0f0d1f397a22b6e4e8f63b2322c7be0dd2fdb7922f957d86a870f35fe47b1",
+      "bytes": 2498,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/tool-registry.js",
+      "source_sha256": "65711f9a514aac9a911317d1a681d708cdcd42005bde970a7653c22e77a6e564",
+      "sha256": "65711f9a514aac9a911317d1a681d708cdcd42005bde970a7653c22e77a6e564",
+      "bytes": 10935,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/tools.js",
+      "source_sha256": "19514ab2dcb984b3db4dc3d1b73b4bb38f23ba6bc3a3ba4285a297e7c2e56ce2",
+      "sha256": "19514ab2dcb984b3db4dc3d1b73b4bb38f23ba6bc3a3ba4285a297e7c2e56ce2",
+      "bytes": 65155,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/util.js",
+      "source_sha256": "9ae958b4c0278426707a38c42213a68e8a6958281c82049d9d449697e14bf66e",
+      "sha256": "9ae958b4c0278426707a38c42213a68e8a6958281c82049d9d449697e14bf66e",
+      "bytes": 9500,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/video-reader.js",
+      "source_sha256": "e801215967fc057116c6356089d25c12b38a8b6d401988e4f8872ae53a5ab950",
+      "sha256": "e801215967fc057116c6356089d25c12b38a8b6d401988e4f8872ae53a5ab950",
+      "bytes": 17403,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/vision-scan.js",
+      "source_sha256": "67bbd6c4adbb3dd2f19a2ff07030f3461224157d50ee15609f247cf63615c150",
+      "sha256": "67bbd6c4adbb3dd2f19a2ff07030f3461224157d50ee15609f247cf63615c150",
+      "bytes": 7876,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/web-search.js",
+      "source_sha256": "f74914357db096e62fcbf73f68d3783cc81706b25c4a18d15955d19262d8d1a5",
+      "sha256": "f74914357db096e62fcbf73f68d3783cc81706b25c4a18d15955d19262d8d1a5",
+      "bytes": 29246,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/src/zip-install.js",
+      "source_sha256": "0c906a60e4a3469d5ed953901f571ebfc0657d4832a71d9bd756b6933318a5cb",
+      "sha256": "0c906a60e4a3469d5ed953901f571ebfc0657d4832a71d9bd756b6933318a5cb",
+      "bytes": 5851,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app.js",
+      "source_sha256": "7f2ec93f774401148127b08016a1c6b898e1f95378425dc8601f60bfd5c1f98e",
+      "sha256": "7f2ec93f774401148127b08016a1c6b898e1f95378425dc8601f60bfd5c1f98e",
+      "bytes": 1206,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/00-core.js",
+      "source_sha256": "aa19dad6daf8ea84d9b673c59c4b4a72b6bae520dba2bf30af32b55ae0b1bd83",
+      "sha256": "aa19dad6daf8ea84d9b673c59c4b4a72b6bae520dba2bf30af32b55ae0b1bd83",
+      "bytes": 40730,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/01-boot.js",
+      "source_sha256": "a9c8147469707b29e803cdc27eb81f93f035803087370f5791a7eccf0ca4a712",
+      "sha256": "a9c8147469707b29e803cdc27eb81f93f035803087370f5791a7eccf0ca4a712",
+      "bytes": 6820,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/02-sse-sessions.js",
+      "source_sha256": "41148ae53515756b913076b969fa23da749db1dc1ace7a7db6293c6e2a091f94",
+      "sha256": "41148ae53515756b913076b969fa23da749db1dc1ace7a7db6293c6e2a091f94",
+      "bytes": 34750,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/03-snowluma.js",
+      "source_sha256": "079d1b55bebc734645226d57b0ba8e66bf3be19863eda53ed7fefcc1be793e18",
+      "sha256": "079d1b55bebc734645226d57b0ba8e66bf3be19863eda53ed7fefcc1be793e18",
+      "bytes": 18967,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/04-archive-usage.js",
+      "source_sha256": "d804e53c265b54e788f17ae9c83d05a51fa562f1ef01c84c26859473bba512ca",
+      "sha256": "d804e53c265b54e788f17ae9c83d05a51fa562f1ef01c84c26859473bba512ca",
+      "bytes": 42736,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/05-memory-settings.js",
+      "source_sha256": "d16982925efc2b7e9085ed058a8e0c73955f5f9f58c22a5abc48351fdbbd5686",
+      "sha256": "d16982925efc2b7e9085ed058a8e0c73955f5f9f58c22a5abc48351fdbbd5686",
+      "bytes": 39856,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/06-settings-render.js",
+      "source_sha256": "5707538e863b43f1daf0ee86a565e88719996861f74f4dfb2d637bf12961b190",
+      "sha256": "5707538e863b43f1daf0ee86a565e88719996861f74f4dfb2d637bf12961b190",
+      "bytes": 99410,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/07-settings-events.js",
+      "source_sha256": "1c04377bde7c5af64431858f86250f2339f3284694b9e21305b4f44ae2c0764b",
+      "sha256": "1c04377bde7c5af64431858f86250f2339f3284694b9e21305b4f44ae2c0764b",
+      "bytes": 50888,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/08-modals.js",
+      "source_sha256": "a426a2a8bed425b9716477337ddd829ea47700338d2bcdcc936dd7aefb7aee99",
+      "sha256": "a426a2a8bed425b9716477337ddd829ea47700338d2bcdcc936dd7aefb7aee99",
+      "bytes": 80534,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/09-community.js",
+      "source_sha256": "15c827db229c992d8e4b0894071c6c8526fac8bc1d1d42be94575dba20864e00",
+      "sha256": "15c827db229c992d8e4b0894071c6c8526fac8bc1d1d42be94575dba20864e00",
+      "bytes": 62910,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/10-feedback.js",
+      "source_sha256": "7c9d2ceee7d908ae80cdb60af4ecd69754f1d5b315193579ee319c3c264c56f1",
+      "sha256": "7c9d2ceee7d908ae80cdb60af4ecd69754f1d5b315193579ee319c3c264c56f1",
+      "bytes": 46064,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/11-init.js",
+      "source_sha256": "cbfe8bcdf32d75964479959d1ff16d5dcd70c30d5ea9d54ac6e3869c79c396db",
+      "sha256": "cbfe8bcdf32d75964479959d1ff16d5dcd70c30d5ea9d54ac6e3869c79c396db",
+      "bytes": 2511,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/app/12-concept2-ui.js",
+      "source_sha256": "2bef86576c9fc8ce8c2e9e26bc75543bc407c9d643d1ac08b3ff3eaba8ee6794",
+      "sha256": "2bef86576c9fc8ce8c2e9e26bc75543bc407c9d643d1ac08b3ff3eaba8ee6794",
+      "bytes": 16903,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/captcha-sw.js",
+      "source_sha256": "1a8ed91827161574d0bd1b55a47343cd58476d4cf14e699320c90c1597bbf11c",
+      "sha256": "1a8ed91827161574d0bd1b55a47343cd58476d4cf14e699320c90c1597bbf11c",
+      "bytes": 2669,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/index.html",
+      "source_sha256": "b83ba39182ba62c931a9f67c255d65f9584acdfc3fef2ebae5e73376f0476299",
+      "sha256": "b83ba39182ba62c931a9f67c255d65f9584acdfc3fef2ebae5e73376f0476299",
+      "bytes": 10232,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/landing.html",
+      "source_sha256": "b4c5844f61160a6957119782cf7146a1f2bbe231842b667c2bb302b19a7ccfbf",
+      "sha256": "b4c5844f61160a6957119782cf7146a1f2bbe231842b667c2bb302b19a7ccfbf",
+      "bytes": 21739,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/persona-plaza/index.html",
+      "source_sha256": "48369611b2f89427442cd4fd718abf7ea991c43d3e4f8917c6521ea35af2729c",
+      "sha256": "48369611b2f89427442cd4fd718abf7ea991c43d3e4f8917c6521ea35af2729c",
+      "bytes": 10028,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/plugin-market/index.html",
+      "source_sha256": "6f948fe1c252a5bbacba054395eca54efed7435fc095b5a20d12e27f6b3128dd",
+      "sha256": "6f948fe1c252a5bbacba054395eca54efed7435fc095b5a20d12e27f6b3128dd",
+      "bytes": 17040,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/skill-market/index.html",
+      "source_sha256": "f2a4f36556534db57de10432a75a8bc690cc10b834680c262ebd7b017200e390",
+      "sha256": "f2a4f36556534db57de10432a75a8bc690cc10b834680c262ebd7b017200e390",
+      "bytes": 17499,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/style.css",
+      "source_sha256": "c9e65a25589c7ace4f9be55a17ee30c16a54c251632193e01577b54da6f5bcdf",
+      "sha256": "c9e65a25589c7ace4f9be55a17ee30c16a54c251632193e01577b54da6f5bcdf",
+      "bytes": 81453,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/vendor/price-match.js",
+      "source_sha256": "ead24090c97942d05982231d0be7cd78d1aacbad7739c3a78fe816467b6546a0",
+      "sha256": "ead24090c97942d05982231d0be7cd78d1aacbad7739c3a78fe816467b6546a0",
+      "bytes": 1579,
+      "transforms": []
+    },
+    {
+      "path": "qq-agent/ui/vendor/tier-slider.js",
+      "source_sha256": "732b6c15f1362838de6068a80f60a7365756507c24da82a342422c62b016f671",
+      "sha256": "732b6c15f1362838de6068a80f60a7365756507c24da82a342422c62b016f671",
+      "bytes": 2552,
+      "transforms": []
+    }
+  ],
+  "excluded": [
+    "runtime config",
+    "OAuth and API credentials",
+    "QQ accounts and chats",
+    "memories",
+    "images",
+    "jobs and logs",
+    "binaries",
+    "node_modules",
+    "personal custom role cards"
+  ],
+  "secret_scan": "known live secret values and credential signatures absent",
+  "production_modified": false,
+  "redacted_identifiers": true,
+  "pillow_version": "10.2.0"
+}

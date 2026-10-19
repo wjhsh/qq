@@ -1,0 +1,45 @@
+{
+  "api": {
+    "baseUrl": "http://127.0.0.1:8317/v1",
+    "apiKey": "",
+    "model": "YOUR_CHAT_MODEL",
+    "fallbackModels": []
+  },
+  "snowluma": {
+    "autoLaunch": false,
+    "httpUrl": "http://127.0.0.1:3000",
+    "wsUrl": "ws://127.0.0.1:3001",
+    "accessToken": "",
+    "httpAccessToken": ""
+  },
+  "server": {
+    "port": 3210,
+    "token": ""
+  },
+  "allow": {
+    "groups": [],
+    "private": []
+  },
+  "allowAllWhenEmpty": false,
+  "ownerConsole": {
+    "enabled": false,
+    "ownerIds": []
+  },
+  "personaUnified": false,
+  "personaByChat": {},
+  "customPersonas": [],
+  "naturalChat": {
+    "enabled": true
+  },
+  "roleIsolation": {
+    "enabled": true
+  },
+  "maxConcurrentRuns": 1,
+  "skills": {
+    "local-image": {
+      "enabled": true,
+      "provider": "chat"
+    }
+  }
+}
+

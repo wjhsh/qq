@@ -1,0 +1,51 @@
+{
+  "work_date": "2026-10-19",
+  "published_after_midnight": "2026-10-20",
+  "deployed_image_skill": "1.5.2",
+  "channel": "chatgpt_chat",
+  "native_codex_images_disabled": true,
+  "raw_prompt_forwarding": true,
+  "persistent_chat_sessions": true,
+  "session_scope": [
+    "qq_chat",
+    "sender",
+    "account"
+  ],
+  "reference_sources": [
+    "current_message",
+    "same_chat_explicit_reply",
+    "adjacent_same_sender_image_within_5s"
+  ],
+  "reference_limits": {
+    "count": 4,
+    "per_image_mib": 5,
+    "total_mib": 8
+  },
+  "reference_context": "clean_branch_in_same_conversation",
+  "text_only_followups": "continue_current_branch",
+  "comparison_variants": "verified_same_group_choose_index_zero",
+  "focused_tests": 63,
+  "live_verification": {
+    "reference_upload": true,
+    "exact_prompt": true,
+    "same_conversation": true,
+    "clean_parent": true,
+    "visual_reference_characters": true,
+    "qq_image_delivery_receipt": true,
+    "qq_online": true
+  },
+  "automatic_generation_retries": false,
+  "fallback_channels": false,
+  "production_qq_client_changed": false,
+  "role_cards_changed_for_publication": false,
+  "excluded": [
+    "credentials",
+    "raw chats",
+    "memories",
+    "QQ identifiers",
+    "private custom cards",
+    "generated images",
+    "signed URLs",
+    "task records"
+  ]
+}
