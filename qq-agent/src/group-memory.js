@@ -1,6 +1,7 @@
 // Group-level observations are local to one group. They never import private or
 // other-group history, and are data for the prompt rather than executable tools.
 import fs from 'node:fs';
+import { modelInputAllowed } from './input-guard.mjs';
 import { isAutomatedPeer } from './bot-interaction.mjs';
 import path from 'node:path';
 import { DATA_DIR, getConfig } from './config.js';
@@ -136,7 +137,7 @@ export class GroupMemoryManager {
   }
 
   #messages(chatKey, cfg) {
-    return (this.store.recent(chatKey, { limit: 2000 }) || []).filter((message) => {
+    return (this.store.recent(chatKey, { limit: 2000 }) || []).filter(modelInputAllowed).filter((message) => {
       const uid = String(message.senderId || '');
       return !message.self && !message.isPoke && !message.recalled && !message.withdrawn && !message.deleted
         && /^[1-9]\d{0,14}$/.test(uid) && Number.isSafeInteger(message.id) && message.id > 0

@@ -93,11 +93,26 @@ class Controls:
             self.cache[name] = (time.monotonic(), data)
         return data
 
-    def google(self):
+    def google_account_number(self):
+        try:
+            model = json.loads(Path('/var/lib/qq-agent/config.json').read_text())['api']['model']
+            if not isinstance(model, str) or not model:
+                return None
+            return 2 if model.startswith('account2/') else 1
+        except (OSError, ValueError, KeyError, TypeError):
+            return None
+
+    def google(self, account_number=None):
+        number = self.google_account_number() if account_number is None else account_number
+        if type(number) is not int or number not in (1, 2):
+            return {'available': False, 'error': '无法确认当前 Google 账号；未改用其他账号查询', 'checked_at': stamp()}
         accounts = [json.loads(p.read_text()) for p in Path('/var/lib/codex-gateway/accounts').glob('antigravity*.json')]
-        account = next((a for a in accounts if not a.get('disabled') and a.get('refresh_token')), None)
-        if not account:
-            return {'available': False, 'error': '未找到启用的 Google 账号', 'checked_at': stamp()}
+        prefix = 'account2' if number == 2 else ''
+        enabled = [a for a in accounts if not a.get('disabled') and a.get('refresh_token')]
+        matches = [a for a in enabled if str(a.get('prefix') or '').strip() == prefix]
+        if len(matches) != 1:
+            return {'available': False, 'account_label': '账号' + str(number), 'error': '选中账号不存在或不唯一；未改用其他账号查询', 'checked_at': stamp()}
+        account = matches[0]
         identity = account['refresh_token']
         cached = self.refresh_tokens.get(identity)
         token = cached[0] if cached and cached[1] > time.time() else account.get('access_token', '')
@@ -123,7 +138,7 @@ class Controls:
             self.refresh_tokens[identity] = (token, time.time() + int(renewed.get('expires_in', 3600)) - 120)
             payload = request(token)
         models = quota_models(payload)
-        return {'available': bool(models), 'account_count': 1, 'models': models, 'checked_at': stamp(),
+        return {'available': bool(models), 'account_count': len(enabled), 'account_label': '账号' + str(number), 'models': models, 'checked_at': stamp(),
             'note': 'Google返回的模型配额比例；不同模型可能共享配额，不能换算为剩余调用次数。'}
 
     def traffic(self):
@@ -145,8 +160,11 @@ class Controls:
             'remaining_bytes': max(0, total - used), 'expires_unix': number('expired_at'), 'checked_at': stamp()}
 
     def quotas(self):
+        # Capture the selection once: a concurrent manual switch cannot store
+        # one account's quota under the other account's cache key.
+        number = self.google_account_number()
         with ThreadPoolExecutor(max_workers=2) as pool:
-            google = pool.submit(self.cached, 'google', 60, self.google)
+            google = pool.submit(self.cached, 'google-account-' + str(number), 60, lambda: self.google(number) if number in (1, 2) else {'available': False, 'error': '当前账号未知', 'checked_at': stamp()})
             traffic = pool.submit(self.cached, 'traffic', 300, self.traffic)
             return {'google': google.result(), 'traffic': traffic.result(), 'qq_usage': qq_usage()}
 

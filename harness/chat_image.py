@@ -9,6 +9,7 @@ from pathlib import Path
 from datetime import datetime,timezone
 from chat_sessions import read_pointer,UUID
 import image_inputs
+import image_admission
 MAX_BYTES=10*1024*1024
 AGENT='QQ-Image-Bridge-Diagnostic/1.0'
 class ChatError(ValueError):
@@ -62,7 +63,7 @@ def message_error(value,message_id=None):
   if message.get('end_turn') is not True and message.get('status') not in ('finished_successfully','finished_error','failed'):continue
   content=message.get('content') or {}
   text=' '.join(p for p in (content.get('parts') or []) if isinstance(p,str))+' '+str(content.get('text') or '')
-  if re.search(r'violate.{0,100}(?:content|safety)\s+polic|content\s+polic(?:y|ies)|policy\s+violation|违反.{0,30}(?:政策|安全规则)|内容安全',text,re.I):
+  if re.search(r'violate.{0,100}(?:content|safety)\s+polic|violate.{0,100}guardrails?\s+around\s+(?:nudity|sexuality|erotic\s+content)|content\s+polic(?:y|ies)|policy\s+violation|违反.{0,30}(?:政策|安全规则)|内容安全',text,re.I):
    return ChatError('Chat内容安全检查拦截了本次生图，没有返回可发送的图片；不会自动重试。','blocked')
   return ChatError('Chat返回了生成错误，没有返回可发送的图片；不会自动重试。')
  return None
@@ -196,6 +197,7 @@ class ChatImageClient:
   return quota,data.get('default_model_slug') or 'auto'
  def generate(self,prompt,image_dir,session_file=None,input_images=None):
   if not isinstance(prompt,str) or not 1<=len(prompt.strip())<=2200:raise ChatError('生图描述无效。')
+  image_admission.require_image_prompt(prompt)
   if self.receipt.exists():raise ChatError('这项生图任务已有执行记录，不会重复提交。')
   with self.receipt.open('x') as receipt:receipt.write('{}')
   self.claimed_receipt=True
@@ -323,7 +325,7 @@ def main():
   emit({'type':'item.completed','item':{'type':'agent_message','text':'Chat模式已生成一张图片。'}})
   return 0
  except Exception as error:
-  message=str(error)[:800] if isinstance(error,ChatError) else 'Chat生图连接或处理失败（'+type(error).__name__+'），本次不重试。'
+  message=str(error)[:800] if isinstance(error,(ChatError,image_admission.ImageAdmissionError)) else 'Chat生图连接或处理失败（'+type(error).__name__+'），本次不重试。'
   if client and client.claimed_receipt:
    client.state['error']=message;client.state['error_code']=getattr(error,'code','unavailable');client.save('failed')
    emit({'type':'image.metadata','metadata':{k:client.state.get(k) for k in ('channel','transport','codex_executions','prepare_permit_received','chat_model','requirements','quota_before','quota_after','generation_submissions','session_reused','prompt_sha256','input_image_count','input_sha256')}})

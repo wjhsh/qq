@@ -1,0 +1,38 @@
+[Unit]
+Description=Private WorkBuddy channel for Pi
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=120
+StartLimitBurst=3
+[Service]
+Type=simple
+User=qq-workbuddy
+Group=qq-workbuddy
+WorkingDirectory=/var/lib/qq-workbuddy
+EnvironmentFile=/etc/qq-workbuddy/service.env
+Environment=PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -B /opt/codex-qq/workbuddy/guarded_gateway.py --host 127.0.0.1 --port 8788 --accounts-dir /var/lib/qq-workbuddy/accounts --usage-dir /var/lib/qq-workbuddy/usage
+Restart=on-failure
+RestartSec=15
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ReadWritePaths=/var/lib/qq-workbuddy
+InaccessiblePaths=-/etc/qq-harness -/etc/codex-gateway -/etc/codex-mihomo -/var/lib/qq-agent -/var/lib/qq-harness -/var/lib/codex-gateway -/var/lib/codex-mihomo
+MemoryHigh=96M
+MemoryMax=192M
+MemorySwapMax=64M
+CPUQuota=30%
+TasksMax=32
+LimitNOFILE=512
+[Install]
+WantedBy=multi-user.target

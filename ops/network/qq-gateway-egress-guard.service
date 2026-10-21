@@ -1,0 +1,16 @@
+[Unit]
+Description=Restrict model gateway egress to its local proxy
+Before=codex-gateway.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/python3 /opt/codex-qq/ops/gateway-egress-guard.py apply
+ExecStop=/usr/bin/python3 /opt/codex-qq/ops/gateway-egress-guard.py remove
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

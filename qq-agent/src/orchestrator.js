@@ -8,6 +8,7 @@
 //
 // 同一会话（群/私聊）同时最多一个运行；运行期间新消息只写 JSON（未读），不叠加触发。
 // 不同会话之间并行，受 maxConcurrentRuns 全局限流。
+import { modelInputAllowed, inspectInput } from './input-guard.mjs';
 import { getConfig, storeConfigForChat, personaForChat } from './config.js';
 import { mayTriggerPeerReply } from './bot-interaction.mjs';
 import { groupStyleForChat, roleIdentity } from './role-isolation.mjs';
@@ -54,6 +55,8 @@ export class Orchestrator {
     this.verifiedWakes = new Set();    // 本轮 wake 由 onIncoming 触发判定排定的 chatKey（区别于 drain 等机械重排）
     this.chatWakeEpochs = new Map();   // Cancel preflight wakes that have not registered an active run yet.
     this.consolidating = new Set();    // 正在整理记忆的 chatKey
+    this.capacityWaiters = new Map(); // FIFO, preserves the original admitted batch.
+    this.failureNotices = new Map();
     this.runningChats = new Set();     // 正在运行的 chatKey
     this.activeRuns = new Map();       // chatKey -> sessionId
     this.sessionAbortMarks = new Set(); // 用户请求中止的 sessionId（abortSession 打标记，#runAgent 每轮检查）
@@ -424,8 +427,14 @@ export class Orchestrator {
       }
     }
 
-    // 全局并发限制：满了就稍后重试
-    if (this.runningChats.size >= Math.max(1, Number(getConfig().maxConcurrentRuns) || 2)) {
+    // Keep one waiting object and one FIFO position until capacity is available.
+    for (const key of this.capacityWaiters.keys()) {
+      if (this.store.unreadCount(key) === 0 || isGroupSilenced(getConfig(), key)) this.capacityWaiters.delete(key);
+    }
+    const firstWaiter = this.capacityWaiters.keys().next().value;
+    if (this.runningChats.size >= Math.max(1, Number(getConfig().maxConcurrentRuns) || 2)
+        || (firstWaiter && firstWaiter !== chatKey)) {
+      if (!this.capacityWaiters.has(chatKey)) this.capacityWaiters.set(chatKey, Date.now());
       if (waitingSessionId) {
         const s = this.sessions.get(waitingSessionId);
         // sessions.get 判过 status 后 current.get 仍可能是 undefined
@@ -437,23 +446,14 @@ export class Orchestrator {
           this.emit('session-update', waitingSessionId);
         }
       }
-      // ⚠️ 3 秒重排定时器必须被跟踪（2026-09-26 审查）：原先裸 setTimeout 不记句柄，
-      // stop()/abortAll() 清不掉它 —— 应用退出后它仍会把 pendingWake 重新排上，
-      // 测试环境里表现为进程挂着不退（unref 让它不阻塞退出，但运行期它照样会在
-      // 停止后又拉起一次唤醒）。与 wakeTimers 同一张表管理，abortAll 时一并清掉。
-      const retryTimer = setTimeout(() => {
-        if (!isCurrentWake()) return;
-        this.wakeTimers.delete(chatKey);
-        if (!this.runningChats.has(chatKey) && !this.paused && !this.aborted) {
-          // Preserve an admitted batch through capacity waits; a second roll could
-          // otherwise reject it or erase its historical context.
-          this.scheduleWake(chatKey, 0, { verified: triggerTier?.shouldRespond === true, triggerTier });
-        }
-      }, 3000);
-      retryTimer.unref?.();
-      this.wakeTimers.set(chatKey, retryTimer);
+      // scheduleWake reuses this id; startedAt must not advance on every retry.
+      if (waitingSessionId && this.sessions.current.get(waitingSessionId)?.status === 'waiting') {
+        this.pendingSessions.set(chatKey, waitingSessionId);
+      }
+      this.scheduleWake(chatKey, 1000, { reuseSessionId, verified: triggerTier?.shouldRespond === true, triggerTier });
       return;
     }
+    this.capacityWaiters.delete(chatKey);
 
     // ── 取走触发批 ──
     // 触发判定已在 onIncoming 里逐条完成（进入倒计时 = 必定运行），
@@ -494,7 +494,7 @@ export class Orchestrator {
       let batchFloorTs = Infinity;
       let hasTrigger = false;
       const active = this.#activeState(chatKey);
-      if (this.verifiedWakes.has(chatKey)) {
+      if (this.verifiedWakes.has(chatKey) || triggerTier?.shouldRespond === true) {
         if (waitingSessionId) {
           const waiting = this.sessions.current.get(waitingSessionId);
           if (waiting?.startedAt) batchFloorTs = Math.min(batchFloorTs, Number(waiting.startedAt) - 60_000);
@@ -692,6 +692,12 @@ export class Orchestrator {
           this.sessions.finish(session.id, 'error');
           this.emit('session-end', { sessionId: session.id, chatKey, status: 'error', error: session.error });
           console.error(`[orchestrator] 运行 ${session.id} 出错:`, lastError);
+          const direct = kind === 'private' || triggerEntries.some(entry => entry.atMe === true);
+          if (direct && !(session.sent || []).length && Date.now() - (this.failureNotices.get(chatKey) || 0) > 60000) {
+            this.failureNotices.set(chatKey, Date.now());
+            try { await this.sender.sendControlText(chatKey, ['猫猫这边的模型线路暂时没接通，消息收到了，稍后再叫我一下。'], { dedupe: false }); }
+            catch (noticeError) { console.warn('[orchestrator] failure notice could not be sent'); }
+          }
         }
       }
     } finally {
@@ -1289,10 +1295,14 @@ export class Orchestrator {
           skillManager.recordError('before-tool', error);
         }
         this.#assertSessionActive(session, abortSignal);
-        const result = blocked
+        let result = blocked
           ? { content: `错误：${blocked.reason || '该工具调用被 Skill 拒绝'}`, isError: true }
           : await executeTool(toolDefs, ctx, name, argsRaw);
         this.#assertSessionActive(session, abortSignal);
+        const toolText = Array.isArray(result.content) ? result.content.filter(p => p?.type === 'text').map(p => p.text || '').join('\n') : String(result.content ?? '');
+        if (inspectInput(toolText).blocked) {
+          result = { content: '本地输入过滤已拦截该工具返回中的指令覆盖或露骨内容；不要复述或重新请求这段内容。', isError: true };
+        }
         try {
           await skillManager.runHook('after-tool', {
             ...skillContext, toolName: name, argsRaw, result, session
@@ -1957,7 +1967,7 @@ export class Orchestrator {
     const maxKeep = Number(getConfig().memory?.maxImpressionsPerMember) || 5;
     const uid = String(mem.userId || '');
     const sample = (this.store.recent(chatKey, { limit: 2000 }) || [])
-      .filter((m) => !m.self && String(m.senderId) === uid)
+      .filter((m) => modelInputAllowed(m) && !m.self && String(m.senderId) === uid)
       .slice(-40)
       .map((m) => String(m.text || '').slice(0, 200))
       .filter(Boolean);
@@ -2024,6 +2034,7 @@ export class Orchestrator {
     this.pendingWake.delete(key);
     this.pendingSessions.delete(key);
     this.verifiedWakes.delete(key);
+    this.capacityWaiters.delete(key);
     this.promptAnchors.delete(key);
     this.activeTopics.delete(key);
     // The old run keeps its slot until its own finally; unread messages then drain
@@ -2097,6 +2108,7 @@ export class Orchestrator {
         this.#cancelUnreadFallback(chatKey);
         this.pendingWake.delete(chatKey);
         this.pendingSessions.delete(chatKey);
+        this.capacityWaiters.delete(chatKey);
         this.#discardWaiting(waitingId);
         return { ok: true };
       }
@@ -2127,6 +2139,7 @@ export class Orchestrator {
     this.pendingWake.clear();
     for (const sessionId of this.pendingSessions.values()) this.#finishWaiting(sessionId, 'aborted');
     this.pendingSessions.clear();
+    this.capacityWaiters.clear();
     this.stopProactiveLoop();
   }
 
@@ -2136,6 +2149,7 @@ export class Orchestrator {
       paused: this.paused,
       pauseReason: this.pauseReason ?? null,
       running: [...this.runningChats],
+      waiting: [...this.capacityWaiters.keys()],
       activeSessions: [...this.activeRuns.entries()].map(([chatKey, sessionId]) => ({ chatKey, sessionId })),
       consolidating: [...this.consolidating],
       onebotConnected: this.onebot.connected,

@@ -1,0 +1,238 @@
+{
+  "date": "2026-10-21",
+  "timezone": "Asia/Shanghai",
+  "liveCapture": {
+    "qq_connected": true,
+    "running": 0,
+    "waiting": 0,
+    "model": "gemini-3.8-flash-high",
+    "request_guard_enabled": true,
+    "automatic_recovery_enabled": false,
+    "workbuddy_service": "active",
+    "workbuddy_pi_verified": true,
+    "production_modified_for_publication": false
+  },
+  "sourceFiles": 202,
+  "offlineTests": 171,
+  "workbuddyPolicyTests": 2,
+  "workbuddy": {
+    "checkedAt": "2026-10-21T01:50:23+0800",
+    "upstream": "https://github.com/ardeyouxipianyi/workbuddy2api-hub",
+    "upstreamRevision": "59e9ee21cd2819ee044cad65adc34df148d3c6de",
+    "integrityVerified": true,
+    "enabledOnBoot": "enabled",
+    "modelProbe": [
+      {
+        "stream": false,
+        "ok": true,
+        "content": "WB_OK",
+        "actualModel": "deepseek-v4.1-flash",
+        "usage": {
+          "prompt_tokens": 16,
+          "completion_tokens": 2,
+          "total_tokens": 18,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0,
+            "cached_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0,
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 16,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "prompt_cache_write_tokens": 0,
+          "completion_thinking_tokens": 0,
+          "credit": 0,
+          "cached_tokens": 0
+        },
+        "seconds": 1.15
+      },
+      {
+        "stream": true,
+        "ok": true,
+        "finishReason": "tool_calls",
+        "calls": {
+          "0": {
+            "name": "ping",
+            "arguments": "{\"text\": \"WB_TOOL_OK\"}"
+          }
+        },
+        "actualModel": "deepseek-v4.1-flash",
+        "usage": {
+          "prompt_tokens": 275,
+          "completion_tokens": 39,
+          "total_tokens": 314,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0,
+            "cached_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "accepted_prediction_tokens": 0,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": 0,
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 275,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "prompt_cache_write_tokens": 0,
+          "completion_thinking_tokens": 0,
+          "credit": 0.01,
+          "cached_tokens": 0
+        },
+        "seconds": 1.03
+      }
+    ],
+    "piTask": {
+      "id": "538643b038ba",
+      "status": "succeeded",
+      "engine": "pi-workbuddy",
+      "model": "deepseek-v4.1-flash",
+      "result": "WB_PI_OK",
+      "error": "",
+      "usage": null,
+      "tools": [
+        {
+          "tool": "write",
+          "phase": "started",
+          "at": "2026-10-20T17:47:29+00:00"
+        },
+        {
+          "tool": "write",
+          "phase": "finished",
+          "at": "2026-10-20T17:47:29+00:00"
+        },
+        {
+          "tool": "read",
+          "phase": "started",
+          "at": "2026-10-20T17:47:31+00:00"
+        },
+        {
+          "tool": "read",
+          "phase": "finished",
+          "at": "2026-10-20T17:47:31+00:00"
+        }
+      ],
+      "fileContent": "42",
+      "verified": true,
+      "services": [
+        "active",
+        "active",
+        "active",
+        "active"
+      ]
+    },
+    "usage": {
+      "requests": 5,
+      "tokensReported": 7786,
+      "creditsReported": 0.06
+    },
+    "scheduledActivityEnabled": false,
+    "productSwitchingEnabled": false,
+    "apiBoundary": {
+      "unauthenticatedModels": 401,
+      "managementRoutes": 404
+    }
+  },
+  "account1Probe": {
+    "checkedAt": "2026-10-21T23:22:54.939673+08:00",
+    "account": 1,
+    "qqSelectedModel": "account2/gemini-3.8-flash-high",
+    "strictPrefixRouting": true,
+    "account1Enabled": true,
+    "generationRequests": 2,
+    "probes": [
+      {
+        "model": "gemini-3.5-flash-lite",
+        "timeoutSeconds": 15,
+        "submitted": true,
+        "automaticRetry": false,
+        "secondAccountUsed": false,
+        "httpStatus": 200,
+        "servedModel": "gemini-3.5-flash-lite",
+        "replyOK": true,
+        "visibleCharacters": 2,
+        "usage": {
+          "completion_tokens": 1,
+          "total_tokens": 6,
+          "prompt_tokens": 5
+        },
+        "seconds": 1.071
+      },
+      {
+        "model": "gemini-3.8-flash-high",
+        "timeoutSeconds": 85,
+        "submitted": true,
+        "automaticRetry": false,
+        "secondAccountUsed": false,
+        "httpStatus": 200,
+        "servedModel": "gemini-3.8-flash-n",
+        "replyOK": true,
+        "visibleCharacters": 2,
+        "usage": {
+          "completion_tokens": 92,
+          "total_tokens": 97,
+          "prompt_tokens": 5,
+          "completion_tokens_details": {
+            "reasoning_tokens": 91
+          }
+        },
+        "seconds": 3.537
+      }
+    ],
+    "services": {
+      "codex-gateway": "active",
+      "codex-mihomo": "active",
+      "qq-agent": "active"
+    },
+    "qq": {
+      "connected": true,
+      "running": 0,
+      "waiting": 0
+    },
+    "account1Flash38Listed": true,
+    "quota": {
+      "available": true,
+      "accountLabel": "账号1",
+      "checkedAt": "2026-10-21T15:23:00+00:00",
+      "models": [
+        {
+          "model": "gemini-3.8-flash-tiered",
+          "remaining_percent": 100,
+          "reset_time": "2026-10-21T20:23:00Z"
+        }
+      ],
+      "error": null
+    },
+    "configurationUnchanged": true
+  },
+  "analysis": {
+    "groups": 4,
+    "messages": 8837,
+    "cards": 17,
+    "drafts": 1,
+    "public_files": 46,
+    "contact_and_credential_cleaning": {
+      "email": 1,
+      "password": 1
+    },
+    "raw_private_snapshot_outside_repository": true,
+    "production_modified": false
+  },
+  "secretsPublished": false,
+  "productionModifiedForPublication": false
+}

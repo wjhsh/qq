@@ -1,13 +1,71 @@
 // OpenAI 兼容 Chat Completions 客户端（非流式）。
 // 支持工具调用、usage 统计、可自选模型 —— 这是与 DSH 解耦后的"大脑"接口。
-import { getConfig } from './config.js';
+import { getConfig, updateConfig } from './config.js';
 import { resolveModelPrice, priceAt } from './model-prices.js';
 import { skillManager } from './skills/manager.js';
 import { gatewayCacheRequest } from './conversation-cache.mjs';
+import { createModelAvailability, modelAvailabilityKey } from './model-availability.mjs';
+import { createPreferredModelRecovery } from './preferred-model-recovery.mjs';
+import { googleRequestGuard, googleRequestGuardPolicy } from './google-request-guard.mjs';
 import {
   resolveThinkingRequest, buildThinkingParams, stripThinkingParams,
   looksLikeThinkingRejection, extractReasoning, extractReasoningTokens, THINKING_BODY_KEYS
 } from './thinking.js';
+
+const modelAvailability = createModelAvailability();
+let recoveryTimer = null;
+const bounded = (value, fallback, min, max) => Math.max(min, Math.min(max, Number(value) || fallback));
+function preferredRecoveryPlan() {
+  const cfg = getConfig(), policy = cfg.api?.preferredRecovery || {}, main = effectiveApi();
+  const preferredModel = String(policy.model || ''), fallbackModel = String(policy.fallbackModel || '');
+  const api = { ...main, model: preferredModel, thinkingMode: 'on',
+    thinkingEffort: policy.thinkingEffort || 'high',
+    timeoutMs: bounded(policy.probeTimeoutMs, 10000, 5000, 12000) };
+  const probeKey = modelAvailabilityKey(api);
+  return { enabled: policy.enabled === true && (!policy.endpointKey || policy.endpointKey === probeKey), activeModel: main.model, preferredModel, fallbackModel,
+    api, probeKey, identity: JSON.stringify([probeKey, policy]),
+    intervalMs: bounded(policy.intervalMs, 120000, 60000, 3600000),
+    cooldownMs: bounded(policy.cooldownMs, 300000, 120000, 3600000),
+    successThreshold: Math.floor(bounded(policy.successThreshold, 2, 2, 5)) };
+}
+const preferredModelRecovery = createPreferredModelRecovery({
+  getPlan: preferredRecoveryPlan, isAvailabilityFailure: mayFallbackModel,
+  async probe(plan, signal) {
+    const r = await chatCompletion({ overrides: plan.api, signal, temperature: 0,
+      skillContext: { thinkingMode: 'on', thinkingEffort: plan.api.thinkingEffort }, maxTokens: 128,
+      messages: [{ role: 'user', content: 'Health check only. Call health_ready with ok=true.' }],
+      tools: [{ type: 'function', function: { name: 'health_ready', description: 'Report readiness without performing an action.',
+        parameters: { type: 'object', properties: { ok: { type: 'boolean' } }, required: ['ok'], additionalProperties: false } } }],
+      toolChoice: { type: 'function', function: { name: 'health_ready' } } });
+    const call = r.message?.tool_calls?.find(c => c.function?.name === 'health_ready');
+    let args; try { args = JSON.parse(call?.function?.arguments || ''); } catch { /* fail closed */ }
+    if (r.model !== plan.preferredModel || args?.ok !== true) throw new Error('Invalid recovery probe response');
+  },
+  switchModel(plan, target) {
+    const current = preferredRecoveryPlan();
+    if (!current.enabled || current.identity !== plan.identity || current.activeModel !== plan.activeModel) return;
+    const cfg = getConfig(), policy = cfg.api.preferredRecovery, preferred = target === 'preferred';
+    const remaining = (cfg.api.fallbackModels || []).filter(fb => ![plan.preferredModel, plan.fallbackModel].includes(fb.model));
+    const fallback = { model: plan.fallbackModel, thinkingEffort: policy.fallbackThinkingEffort || 'medium' };
+    updateConfig({ api: { model: preferred ? plan.preferredModel : plan.fallbackModel,
+      thinkingMode: 'on', thinkingEffort: preferred ? policy.thinkingEffort || 'high' : fallback.thinkingEffort,
+      fallbackModels: preferred ? [fallback, ...remaining] : remaining } });
+    if (preferred) modelAvailability.succeeded(plan.probeKey);
+  },
+  // Never log request bodies, provider errors, endpoint URLs or credentials here.
+  report: event => console.info('[model-recovery]', JSON.stringify(event))
+});
+export function startPreferredModelRecovery() {
+  if (recoveryTimer) return;
+  preferredModelRecovery.resume();
+  const tick = () => preferredModelRecovery.tick().catch(() => console.warn('[model-recovery] controller_error'));
+  recoveryTimer = setInterval(tick, 15000); recoveryTimer.unref?.();
+  void tick();
+}
+export function stopPreferredModelRecovery() {
+  if (recoveryTimer) clearInterval(recoveryTimer);
+  recoveryTimer = null; preferredModelRecovery.stop();
+}
 
 function joinUrl(base, path) {
   return `${String(base).replace(/\/+$/, '')}${path}`;
@@ -135,17 +193,18 @@ function buildCandidateApis() {
   for (const fb of fallbacks) {
     const model = String(fb?.model ?? '').trim();
     if (!model) continue;
+    const fallbackEffort = ['off','low','medium','high','xhigh','max'].includes(fb.thinkingEffort) ? fb.thinkingEffort : null;
     const pid = String(fb?.provider ?? '').trim();
     if (pid) {
       const ep = resolveProviderEndpoint(pid);
       if (!ep) continue;   // 提供商不存在/无 baseUrl，跳过这个备选
       candidates.push({
         overrides: { ...main, ...ep, model, provider: pid },
-        label: `${model} @ ${pid}`
+        label: `${model} @ ${pid}`, fallbackEffort
       });
     } else {
       // 未指定 provider：沿用主模型的 baseUrl + Key，只换模型 id
-      candidates.push({ overrides: { ...main, model }, label: model });
+      candidates.push({ overrides: { ...main, model }, label: model, fallbackEffort });
     }
   }
   return candidates;
@@ -165,6 +224,7 @@ function buildCandidateApis() {
  *   - 主动中止（abort）
  */
 export function isRetryableError(error) {
+  if (String(error?.code || '').startsWith('GOOGLE_REQUEST_GUARD_')) return false;
   const msg = String(error?.message ?? error ?? '');
 
   // 主动中止（用户/系统取消）：重试没有意义
@@ -173,6 +233,9 @@ export function isRetryableError(error) {
   // 明确的客户端错误：重试也不会变好，只会白烧额度
   if (/HTTP\s*(401|400|403|404|405|409|413|422)/i.test(msg)) return false;
   if (/unauthorized|forbidden|invalid api.?key|incorrect api.?key/i.test(msg)) return false;
+
+  // An empty provider pool cannot recover by hammering the same pool.
+  if (/auth_unavailable|no auth available|MODEL_CAPACITY_EXHAUSTED|No capacity available|content.?policy|content_filter|prohibited_content|safety|moderation|verification_required|challenge_required|captcha/i.test(msg)) return false;
 
   // 明确的暂时性故障
   if (/HTTP\s*5\d\d/i.test(msg)) return true;                        // 5xx
@@ -208,44 +271,78 @@ export function isRetryableError(error) {
  *   额外带 _usedModel（实际成功的模型 id）与 _usedApi（实际使用的端点配置），
  *   调用方据此同步 session.model / session.vendor，保证成本看板的「渠道:模型」同源。
  */
-export async function chatCompletionWithRetry(args, retries = 2) {
+export function mayFallbackModel(error) {
+  if (String(error?.code || '').startsWith('GOOGLE_REQUEST_GUARD_')) return false;
+  const text = String(error?.message ?? error ?? '');
+  if (/aborted|中止|已取消|cancel|content.?policy|content_filter|prohibited_content|safety|moderation|verification_required|challenge_required|captcha|内容安全/i.test(text)) return false;
+  return isRetryableError(error) || /auth_unavailable|no auth available|MODEL_CAPACITY_EXHAUSTED|No capacity available/i.test(text);
+}
+
+export async function chatCompletionWithRetry(args, retries = null) {
+  retries = retries ?? Math.min(2, Math.max(0, Number(getConfig().api?.requestRetryAttempts ?? 2) || 0));
   const candidates = buildCandidateApis();
   let lastError = null;
+  const cooldownMs = Math.max(0, Math.min(600000, Number(getConfig().api?.availabilityCooldownMs ?? 120000) || 0));
+  let skippedCandidates = 0;
 
   for (let ci = 0; ci < candidates.length; ci++) {
-    const { overrides, label } = candidates[ci];
+    const { overrides, label, fallbackEffort } = candidates[ci];
+    const baseApi = overrides ?? effectiveApi();
+    const hasNextCandidate = ci < candidates.length - 1;
+    // Only skip an unavailable model when an explicit backup exists.
+    const availabilityKey = hasNextCandidate && cooldownMs > 0 ? modelAvailabilityKey(baseApi) : '';
+    if (availabilityKey && !modelAvailability.allow(availabilityKey)) {
+      skippedCandidates++;
+      continue;
+    }
+    // A healthy backup is no use if a stalled primary consumes several minutes.
+    const fallbackAfterMs = Math.max(5000, Math.min(60000, Number(getConfig().api?.fallbackAfterMs) || 20000));
+    const attemptApi = hasNextCandidate ? { ...baseApi, timeoutMs: Math.min(Number(baseApi.timeoutMs) || 180000, fallbackAfterMs) } : overrides;
+    const attemptContext = fallbackEffort ? { ...args?.skillContext, thinkingEffort: fallbackEffort, thinkingMode: fallbackEffort === 'off' ? 'off' : 'on' } : args?.skillContext;
     // 主模型失败且要切备选时，先提示一次（让用户在日志里看到降级发生）
     if (ci > 0) {
-      console.warn(`[llm] 主模型重试仍失败，切换到备选模型 ${ci}/${candidates.length - 1}：${label}`);
+      console.warn(`[llm] 当前模型不可用，切换到已配置的备用模型 ${ci}/${candidates.length - 1}：${label}`);
     }
-    for (let attempt = 0; attempt <= retries; attempt++) {
-      // 外部已中断（如调用方的 AbortSignal）就别再发起注定失败的请求 ——
-      // 曾经退避 sleep 期间不看中断，最多再白打一次 API（白花一份钱）
-      if (args?.signal?.aborted) throw args.signal.reason ?? new Error('aborted');
-      try {
-        const r = await chatCompletion({ ...args, overrides });
-        r._usedModel = r.model || (overrides?.model ?? getConfig().api?.model ?? '');
-        // 把"这次实际用的端点"一并带回去：备选模型可能来自**另一个 provider**，
-        // 调用方要据此同步 vendor，否则成本看板的「渠道：模型」聚合会串味。
-        r._usedApi = overrides ?? getConfig().api;
-        return r;
-      } catch (error) {
-        lastError = error;
-        if (attempt >= retries || !isRetryableError(error)) break;   // 换下一个候选模型
-        const wait = 1000 * Math.pow(2, attempt);   // 1s, 2s
-        console.warn(`[llm] 请求失败（${label}，第 ${attempt + 1} 次尝试），${wait}ms 后重试：${error?.message ?? error}`);
-        // 退避等待可被 signal 打断：中止时立刻抛出，不再等下一次注定失败的请求
-        const signal = args?.signal ?? null;
-        await new Promise((resolve, reject) => {
-          const t = setTimeout(() => { signal?.removeEventListener?.('abort', onAbort); resolve(); }, wait);
-          const onAbort = () => { clearTimeout(t); reject(signal.reason ?? new Error('aborted')); };
-          if (signal?.aborted) { clearTimeout(t); reject(signal.reason ?? new Error('aborted')); return; }
-          signal?.addEventListener?.('abort', onAbort, { once: true });
-        });
+    try {
+      for (let attempt = 0; attempt <= retries; attempt++) {
+        // 外部已中断（如调用方的 AbortSignal）就别再发起注定失败的请求 ——
+        // 曾经退避 sleep 期间不看中断，最多再白打一次 API（白花一份钱）
+        if (args?.signal?.aborted) throw args.signal.reason ?? new Error('aborted');
+        try {
+          const r = await chatCompletion({ ...args, overrides: attemptApi, skillContext: attemptContext });
+          r._usedModel = r.model || (overrides?.model ?? getConfig().api?.model ?? '');
+          // 把"这次实际用的端点"一并带回去：备选模型可能来自**另一个 provider**，
+          // 调用方要据此同步 vendor，否则成本看板的「渠道：模型」聚合会串味。
+          r._usedApi = attemptApi ?? getConfig().api;
+          modelAvailability.succeeded(availabilityKey);
+          r._availabilitySkippedCandidates = skippedCandidates;
+          return r;
+        } catch (error) {
+          lastError = error;
+          if (recoveryTimer) {
+            try { preferredModelRecovery.failed(modelAvailabilityKey(baseApi), error); }
+            catch { console.warn('[model-recovery] config_write_failed'); }
+          }
+          if ((hasNextCandidate && mayFallbackModel(error)) || attempt >= retries || !isRetryableError(error)) break;
+          const wait = 1000 * Math.pow(2, attempt);   // 1s, 2s
+          console.warn(`[llm] 请求失败（${label}，第 ${attempt + 1} 次尝试），${wait}ms 后重试：${error?.message ?? error}`);
+          // 退避等待可被 signal 打断：中止时立刻抛出，不再等下一次注定失败的请求
+          const signal = args?.signal ?? null;
+          await new Promise((resolve, reject) => {
+            const t = setTimeout(() => { signal?.removeEventListener?.('abort', onAbort); resolve(); }, wait);
+            const onAbort = () => { clearTimeout(t); reject(signal.reason ?? new Error('aborted')); };
+            if (signal?.aborted) { clearTimeout(t); reject(signal.reason ?? new Error('aborted')); return; }
+            signal?.addEventListener?.('abort', onAbort, { once: true });
+          });
+        }
       }
+      // Only availability failures may change models. Policy/verification errors,
+      // malformed choices and client errors must not be routed around.
+      if (availabilityKey && mayFallbackModel(lastError)) modelAvailability.failed(availabilityKey, cooldownMs);
+      if (!mayFallbackModel(lastError)) break;
+    } finally {
+      modelAvailability.release(availabilityKey);
     }
-    // 该候选的所有重试都失败了：只有错误可重试才值得试下一个备选；
-    // 4xx（密钥错/参数错）换模型通常也没用，但备选可能用不同提供商，仍继续尝试。
   }
   throw lastError ?? new Error('模型请求失败（主模型与全部备选均不可用）');
 }
@@ -372,14 +469,21 @@ export async function chatCompletion({ messages, tools = null, toolChoice = 'aut
   /** 发一次请求。返回 { ok, status, text, headers }，网络层错误直接抛。 */
   const post = async (body) => {
     const wire = gatewayCacheRequest(body, { api, scope: ctx.cacheScope, config: getConfig() });
-    const res = await fetch(joinUrl(api.baseUrl, '/chat/completions'), {
-      method: 'POST',
-      headers: { 'content-type': 'application/json', ...authHeaders(api.apiKey, api.baseUrl, api.model), ...wire.headers },
-      body: JSON.stringify(wire.body),
-      signal: controller.signal
+    // This boundary also covers direct chatCompletion calls from background jobs,
+    // parameter retries and recovery probes. Scope is checked against the actual
+    // resolved endpoint/key after any endpoint-pick skill has run.
+    const policy = googleRequestGuardPolicy(api, api.requestGuard ?? getConfig().api?.requestGuard);
+    return googleRequestGuard.run(api, { policy, signal: controller.signal, externalSignal: signal }, async () => {
+      const res = await fetch(joinUrl(api.baseUrl, '/chat/completions'), {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', ...authHeaders(api.apiKey, api.baseUrl, api.model), ...wire.headers },
+        body: JSON.stringify(wire.body),
+        signal: controller.signal
+      });
+      const text = await res.text();
+      return { ok: res.ok, status: res.status, text, contentType: res.headers.get('content-type') || '',
+        retryAfter: res.headers.get('retry-after') };
     });
-    const text = await res.text().catch(() => '');
-    return { ok: res.ok, status: res.status, text, contentType: res.headers.get('content-type') || '' };
   };
 
   const baseBody = buildBaseBody();
@@ -393,6 +497,10 @@ export async function chatCompletion({ messages, tools = null, toolChoice = 'aut
     res = await post(body);
   } catch (error) {
     clearTimeout(timer);
+    if (signal?.aborted) throw signal.reason ?? new Error('aborted');
+    // Local queue/circuit refusal is not an upstream/account failure and must not
+    // trigger request retries, fallback or account-pool rotation.
+    if (String(error?.code || '').startsWith('GOOGLE_REQUEST_GUARD_')) throw error;
     // 网络/超时失败也要回报账号池（只报 HTTP 失败的话，死端点永远不冷却，调度反复踩坑）
     if (poolAccountId) {
       reportPoolFeedback({ accountId: poolAccountId, ok: false, status: 0, error: String(error?.cause?.message ?? error?.message ?? error).slice(0, 300) });
@@ -424,6 +532,8 @@ export async function chatCompletion({ messages, tools = null, toolChoice = 'aut
         res = await post(retry.body);
       } catch (error) {
         clearTimeout(timer);
+        if (signal?.aborted) throw signal.reason ?? new Error('aborted');
+        if (String(error?.code || '').startsWith('GOOGLE_REQUEST_GUARD_')) throw error;
         // 降级重试的网络失败同样回报账号池
         if (poolAccountId) {
           reportPoolFeedback({ accountId: poolAccountId, ok: false, status: 0, error: String(error?.cause?.message ?? error?.message ?? error).slice(0, 300) });
@@ -441,7 +551,13 @@ export async function chatCompletion({ messages, tools = null, toolChoice = 'aut
     if (poolAccountId) {
       reportPoolFeedback({ accountId: poolAccountId, ok: false, status: res.status, error: res.text.slice(0, 300) });
     }
-    throw new Error(`模型 API HTTP ${res.status}：${res.text.slice(0, 500)}`);
+    const error = new Error(`模型 API HTTP ${res.status}：${res.text.slice(0, 500)}`);
+    if (res.requestGuardCooldownMs > 0) {
+      error.code = 'GOOGLE_REQUEST_GUARD_COOLDOWN';
+      error.retryAfterMs = res.requestGuardCooldownMs;
+      error.message += `；Google 网关已保护冷却约 ${Math.ceil(error.retryAfterMs / 1000)} 秒，本次不重试或切换账号。`;
+    }
+    throw error;
   }
 
   // ── "返回了无法解析的 JSON" 根因治理 ──
@@ -554,6 +670,8 @@ async function applyResultTransforms(result, ctx) {
  * 只询问一次、只重试一次：避免参数互斥时来回重试把配额烧穿。
  */
 async function withoutRejectedParams(body, errorText, ctx, status = 400) {
+  // A policy/verification response must never be converted into a parameter retry.
+  if (/content.?policy|content_filter|prohibited_content|safety|moderation|verification_required|challenge_required|captcha/i.test(String(errorText))) return null;
   // ── 内置思考模式（原 thinking-adapters 插件收编）：网关拒绝思考参数时摘掉重发 ──
   // 只在错误文本确实在抱怨思考字段时才建议重试，避免把普通 400（模型名写错、
   // Key 无效）也重试一遍，白白多花一次调用。

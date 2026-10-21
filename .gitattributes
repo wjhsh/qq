@@ -1,2 +1,5 @@
 * text=auto eol=lf
 
+# Keep whitespace from original, fenced chat messages in analysis snapshots.
+analysis/** whitespace=-blank-at-eol
+

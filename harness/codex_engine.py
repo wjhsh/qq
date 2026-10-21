@@ -8,13 +8,13 @@ MODEL='gpt-6.1-sol'
 def status():
     installed=Path(CLI).is_file()
     return {'installed':installed,'authenticated':installed and (AUTH/'auth.json').is_file(),
-        'model':MODEL,'engine':'codex','note':'使用服务器保存的Codex登录，计入该ChatGPT账号额度；与Google聊天额度分开。'}
+        'model':MODEL,'reasoning_effort':'high','engine':'codex','note':'使用服务器保存的Codex登录，计入该ChatGPT账号额度；与Google聊天额度分开。'}
 
 def arguments(image=False):
     # systemd already limits uid, writable paths, credentials, CPU and memory.
     args = [CLI,'-a','never','exec','--json','--ephemeral','--ignore-user-config','--ignore-rules',
         '--sandbox','danger-full-access','--skip-git-repo-check','--model',MODEL,
-        '-c','model_reasoning_effort="medium"']
+        '-c','model_reasoning_effort="high"']
     if image:args += ['-c','features.shell_tool=false','-c','features.multi_agent=false','-c','features.image_generation=true','-c','features.skip_host_skill_discovery=true']
     return args + ['-']
 

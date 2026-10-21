@@ -1,0 +1,19 @@
+{
+  "dns": {
+    "enable": true,
+    "listen": "127.0.0.1:1053",
+    "ipv6": false,
+    "enhanced-mode": "redir-host",
+    "respect-rules": true,
+    "prefer-h3": false,
+    "default-nameserver": ["223.5.5.5", "119.29.29.29"],
+    "proxy-server-nameserver": [
+      "https://dns.alidns.com/dns-query#DIRECT",
+      "https://doh.pub/dns-query#DIRECT"
+    ],
+    "nameserver": [
+      "https://1.1.1.1/dns-query#GOOGLE-OUT",
+      "https://8.8.8.8/dns-query#GOOGLE-OUT"
+    ]
+  }
+}

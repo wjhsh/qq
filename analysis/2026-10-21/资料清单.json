@@ -1,0 +1,133 @@
+{
+  "captured_at": "2026-10-21T23:52:57.820000+08:00",
+  "timezone": "Asia/Shanghai",
+  "source": "live_local_store",
+  "publication_authorized_by_owner": true,
+  "group_count": 4,
+  "message_count": 8837,
+  "saved_cards": 17,
+  "drafts": 1,
+  "private_chat_messages": 0,
+  "server_originals_modified": false,
+  "production_role_cards_modified": false,
+  "groups": [
+    {
+      "group": "G01",
+      "name": "G01",
+      "messages": 88,
+      "bot_messages": 5,
+      "withdrawn_messages": 2,
+      "from": "2026-10-18 23:08:26",
+      "to": "2026-10-18 23:18:31",
+      "active_card_id": "gemini-cat-mischief",
+      "active_card_name": "哈基米·小坏猫",
+      "role_scope": "gemini-cat-mischief:2aa0199f09d68b6e6ce9",
+      "mention_only": false,
+      "source_sha256": "476d29c705a7526103cc9be461bb16cbc5279bb8e66911200609cfdec35fecf8",
+      "full_file": "群聊/G01-G01-完整记录.md",
+      "parts": [
+        "群聊/分卷/G01-G01-01.md"
+      ],
+      "rules_file": "生效规则/G01-G01.md",
+      "memory_file": "群记忆/G01-G01.md"
+    },
+    {
+      "group": "G02",
+      "name": "安理蓝色大肥鱼交流群🐟",
+      "messages": 7089,
+      "bot_messages": 1956,
+      "withdrawn_messages": 60,
+      "from": "2026-10-16 21:10:11",
+      "to": "2026-10-21 23:38:32",
+      "active_card_id": "hajimi-normal",
+      "active_card_name": "普通群友",
+      "role_scope": "hajimi-normal:5373af8fc5e11aa72152",
+      "mention_only": false,
+      "source_sha256": "5bc3971decfa01dad77654258fd0166fc51559e191759e923f650cb63b617ba2",
+      "full_file": "群聊/G02-安理蓝色大肥鱼交流群🐟-完整记录.md",
+      "parts": [
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-01.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-02.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-03.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-04.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-05.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-06.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-07.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-08.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-09.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-10.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-11.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-12.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-13.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-14.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-15.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-16.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-17.md",
+        "群聊/分卷/G02-安理蓝色大肥鱼交流群🐟-18.md"
+      ],
+      "rules_file": "生效规则/G02-安理蓝色大肥鱼交流群🐟.md",
+      "memory_file": "群记忆/G02-安理蓝色大肥鱼交流群🐟.md"
+    },
+    {
+      "group": "G03",
+      "name": "相侵相碍一家人",
+      "messages": 1647,
+      "bot_messages": 317,
+      "withdrawn_messages": 5,
+      "from": "2026-10-16 18:10:15",
+      "to": "2026-10-21 23:16:25",
+      "active_card_id": "rp-tomori-penguin",
+      "active_card_name": "凑企鹅·高松燈",
+      "role_scope": "rp-tomori-penguin:e928ab4e8c1651dfb0a3",
+      "mention_only": true,
+      "source_sha256": "07919b38c56ac6d2f1287e66b179ee409d00512b0d4e23c43f68fd8f47262a39",
+      "full_file": "群聊/G03-相侵相碍一家人-完整记录.md",
+      "parts": [
+        "群聊/分卷/G03-相侵相碍一家人-01.md",
+        "群聊/分卷/G03-相侵相碍一家人-02.md",
+        "群聊/分卷/G03-相侵相碍一家人-03.md",
+        "群聊/分卷/G03-相侵相碍一家人-04.md",
+        "群聊/分卷/G03-相侵相碍一家人-05.md"
+      ],
+      "rules_file": "生效规则/G03-相侵相碍一家人.md",
+      "memory_file": "群记忆/G03-相侵相碍一家人.md"
+    },
+    {
+      "group": "G04",
+      "name": "㊗️阿潘のAI喵喵屋㊗️",
+      "messages": 13,
+      "bot_messages": 0,
+      "withdrawn_messages": 0,
+      "from": "2026-10-18 19:10:49",
+      "to": "2026-10-21 16:44:13",
+      "active_card_id": "gemini-cat-mischief",
+      "active_card_name": "哈基米·小坏猫",
+      "role_scope": "gemini-cat-mischief:2aa0199f09d68b6e6ce9",
+      "mention_only": false,
+      "source_sha256": "aa987ba36f7bfa535e5994b289150885ac23d3f5d81861b85636dac499d01995",
+      "full_file": "群聊/G04-㊗️阿潘のAI喵喵屋㊗️-完整记录.md",
+      "parts": [
+        "群聊/分卷/G04-㊗️阿潘のAI喵喵屋㊗️-01.md"
+      ],
+      "rules_file": "生效规则/G04-㊗️阿潘のAI喵喵屋㊗️.md",
+      "memory_file": "群记忆/G04-㊗️阿潘のAI喵喵屋㊗️.md"
+    }
+  ],
+  "redaction_policy": [
+    "stable_account_and_group_aliases",
+    "credential_and_contact_removal",
+    "no_media_download_urls_or_files",
+    "withdrawn_text_omitted"
+  ],
+  "redaction_matches_during_rendering": {
+    "email": 1,
+    "password": 1
+  },
+  "limitations": [
+    "Messages are only the locally retained records; not full QQ server history.",
+    "Core system prompt is rebuilt with current persona and group style; runtime skill sections and turn-dependent context are not recreated.",
+    "Current role selections cannot establish the role in untagged historical messages.",
+    "Media URLs and credentials are omitted; images themselves are not exported.",
+    "Private chat messages and per-private-chat memories are not exported."
+  ]
+}

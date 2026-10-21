@@ -6,5 +6,7 @@ The authenticated Chat image worker retains the protocol-reference notice and MI
 
 Pi, Codex CLI, the official QQ client and the OneBot transport runtime are deployment dependencies, not bundled binaries in this repository. Their own licenses and service terms remain applicable. Runtime authorization files are not included.
 
+The optional WorkBuddy channel uses [ardeyouxipianyi/workbuddy2api-hub](https://github.com/ardeyouxipianyi/workbuddy2api-hub), MIT licensed, pinned at `59e9ee21cd2819ee044cad65adc34df148d3c6de`. Its full source is not duplicated here. `tools/prepare-workbuddy.py` materializes the locked files, preserves the upstream `LICENSE`, applies the documented local refusal-handling change, and verifies all resulting hashes. The local API-only profile and patch are in `ops/workbuddy/`. Account credentials are excluded.
+
 The built-in role card source preserves its attribution and licensing notes. Administrator-authorized analysis snapshots include saved role texts and their existing source/license notes. Publication of those materials does not grant a new blanket license over third-party characters or components.
 

@@ -5,8 +5,9 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {groupMentionPolicy} from '../qq-agent/src/group-mention-policy.mjs';
 import {incomingPeerPolicy,isAutomatedPeer} from '../qq-agent/src/bot-interaction.mjs';
+import {createInputGuard} from '../qq-agent/src/input-guard.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
-const source=fs.readFileSync(process.env.APP_SOURCE || path.resolve(here,'../../work/huawei-deployment/mention-control-live/app-fixed.js'),'utf8').replace(/\r\n/g,'\n');
+const source=fs.readFileSync(process.env.APP_SOURCE || path.join(here,'../qq-agent/src/app.js'),'utf8').replace(/\r\n/g,'\n');
 const start=source.indexOf('  async function ingestMessage(kind, id, event) {');
 const stop=source.indexOf('\n  /**\n   * 指令禁言：',start);
 assert.ok(start>0&&stop>start);
@@ -14,12 +15,13 @@ const body=source.slice(start,stop);
 const self='10002';const group='20002';
 const text=(value)=>({type:'text',data:{text:value}});
 const at={type:'at',data:{qq:self}};
-function fixture(handleCommand=false){
+function fixture(handleCommand=false,onlyMentions=true){
   const calls={handlers:0,wakes:0,forwarded:0,stored:[],read:0,command:null};
   const cfg={allow:{groups:[group]},harnessControl:{mentionOnlyGroups:[group]},
     personaCommands:{enabled:true},modelCommands:{enabled:true},sharedMemory:{enabled:true},mobileControl:{enabled:true},ownerConsole:{enabled:true,ownerIds:['10001']}};
+  if(!onlyMentions)cfg.harnessControl.mentionOnlyGroups=[];
   const handler={handle:async()=>{calls.handlers++;return {handled:false};}};
-  const deps={incomingPeerPolicy,isAutomatedPeer,getConfig:()=>cfg,allowed:()=>true,isGloballyBlocked:()=>false,groupMentionPolicy,
+  const deps={inputGuard:createInputGuard(),sender:{sendControlText:async()=>{}},incomingPeerPolicy,isAutomatedPeer,getConfig:()=>cfg,allowed:()=>true,isGloballyBlocked:()=>false,groupMentionPolicy,
     onebot:{selfId:self},communityCommands:handler,naturalAdmin:handler,ownerPrivateRules:handler,personaWorkshop:handler,ownerLocalCommands:handler,
     ownerHarness:{handle:async(event)=>{calls.handlers++;if(handleCommand){calls.command=event;return {handled:true};}return {handled:false};}},
     personaCommands:handler,modelCommands:handler,sharedMemoryCommands:handler,mobileControls:handler,
@@ -45,4 +47,14 @@ test('actual ingest lets a real @ invoke deterministic slash commands',async()=>
 test('actual ingest wakes normal RP only after a real @',async()=>{
   const f=fixture();await f.run([at,text(' 你好')]);
   assert.equal(f.calls.wakes,1);assert.equal(f.calls.stored[0].atMe,true);
+});
+
+test('GPT commands require an original direct mention even in freely chatting groups',async()=>{
+  for(const command of ['/gPt 查一下慢的原因','/诊断 状态']){
+    const f=fixture(true,false);await f.run([text(command)]);
+    assert.equal(f.calls.handlers,0);assert.equal(f.calls.wakes,0);
+    const directed=fixture(true,false);await directed.run([at,text(command)]);
+    assert.deepEqual(directed.calls.command.segments,[text(command)]);
+    assert.equal(directed.calls.wakes,0);
+  }
 });

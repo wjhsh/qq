@@ -1,4 +1,5 @@
 import { resolveApiKey } from './llm.js';
+import { parseGoogleAccountModel } from './google-account-routing.mjs';
 
 const KNOWN_MODELS = {
   'gemini-3.8-flash-high': { name: 'Gemini 3.8 Flash High', aliases: ['Gemini', 'gemini', 'Flash', 'flash', '哈基米'] },
@@ -12,7 +13,8 @@ const KNOWN_MODELS = {
 
 export function modelEndpointIdentity(config) {
   // This identity is private process state; never include it in replies or logs.
-  return JSON.stringify([config.api?.baseUrl || '', config.api?.provider || '', resolveApiKey(config)]);
+  return JSON.stringify([config.api?.baseUrl || '', config.api?.provider || '', resolveApiKey(config),
+    parseGoogleAccountModel(config.api?.model).account]);
 }
 
 export function selectableModels(body) {
@@ -25,7 +27,15 @@ export function selectableModels(body) {
     // different request protocols and cannot be selected as its conversation model.
     if (/(?:^|[-_/:])(?:image|imagen\d*|embedding\w*|embed|tts|whisper|transcri\w*|rerank\w*|moderation)(?:$|[-_/:])/i.test(id)) return [];
     seen.add(id);
-    return [{ id, name: id, aliases: [], ...KNOWN_MODELS[id] }];
+    const route = parseGoogleAccountModel(id);
+    const known = KNOWN_MODELS[route.model];
+    return [{ id, name: known?.name || route.model,
+      aliases: known?.aliases || [], ...known, account: route.account, baseModel: route.model,
+      // Account-specific aliases must not silently pick another account.
+      ...(route.account === 2 ? {
+        name: `账号2 ${known?.name || route.model}`,
+        aliases: (known?.aliases || []).map(alias => `账号2 ${alias}`)
+      } : {}) }];
   }).sort((a, b) => a.id.localeCompare(b.id, 'en'));
 }
 
@@ -66,6 +76,9 @@ export function modelSelectionPatch(config, id, models, { reset = false } = {}) 
   return {
     api: {
       model: selected.id,
+      // Manual choices remain manual: do not re-enable background probes or
+      // let an earlier preferred-model policy overwrite the selected account.
+      preferredRecovery: { enabled: false },
       // Every ordinary request follows the selected model, including image inputs.
       visionModel: '', videoModel: '', fallbackModels: [],
       vision: selected.vision === false ? false : (defaults.defaultVision ?? config.api?.vision ?? true),

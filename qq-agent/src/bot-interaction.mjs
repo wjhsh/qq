@@ -1,4 +1,5 @@
 // Local account policy. Text, nicknames and model guesses never identify a bot.
+import { modelInputAllowed } from './input-guard.mjs';
 const validId = value => /^[1-9][0-9]{4,14}$/.test(String(value ?? ''));
 
 export function automatedPeers(config, chatKey) {
@@ -29,13 +30,13 @@ export function incomingPeerPolicy(config, chatKey, event, selfId = '') {
 }
 
 export function mayTriggerPeerReply(config, chatKey, entry) {
-  return !entry || entry.self === true || (!isAutomatedPeer(config, chatKey, entry.senderId)
-    && !(entry.peerDirected === true && entry.atMe !== true));
+  return !entry || (modelInputAllowed(entry) && (entry.self === true || (!isAutomatedPeer(config, chatKey, entry.senderId)
+    && !(entry.peerDirected === true && entry.atMe !== true))));
 }
 
 export function filterAutomatedHistory(config, chatKey, messages) {
-  return messages.filter(message => message.self === true
-    || !isAutomatedPeer(config, chatKey, message.senderId));
+  return messages.filter(message => modelInputAllowed(message) && (message.self === true
+    || !isAutomatedPeer(config, chatKey, message.senderId)));
 }
 
 export function assertPeerTargets(config, chatKey, { atUserId, replyToMessageId,

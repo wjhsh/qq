@@ -4,6 +4,7 @@ from unittest.mock import patch,MagicMock
 import chat_image,harness,codex_engine
 
 REFUSAL='We’re so sorry, but the image we created may violate our content policies. If you think we got it wrong, please retry or edit your prompt.'
+GUARDRAIL_REFUSAL='We’re so sorry, but the image we created may violate our guardrails around nudity, sexuality, or erotic content. If you think we got it wrong, please retry or edit your prompt.'
 def message(text=REFUSAL,role='assistant',is_error=True):
  return {'author':{'role':role},'content':{'content_type':'text','parts':[text]},'metadata':{'is_error':is_error},'status':'finished_successfully','end_turn':True}
 
@@ -11,6 +12,14 @@ class ChatPolicyResult(unittest.TestCase):
  def test_real_terminal_refusal_maps_to_blocked(self):
   self.assertEqual(chat_image.message_error({'message':message()}).code,'blocked')
   self.assertEqual(chat_image.response_error({'error':{'code':'content_policy_violation'}}).code,'blocked')
+
+ def test_new_guardrail_refusal_requires_actual_terminal_assistant_error(self):
+  self.assertEqual(chat_image.message_error({'message':message(GUARDRAIL_REFUSAL)}).code,'blocked')
+  for item in (message(GUARDRAIL_REFUSAL,role='user'),message(GUARDRAIL_REFUSAL,is_error=False),{**message(GUARDRAIL_REFUSAL),'end_turn':False,'status':'in_progress'}):
+   self.assertIsNone(chat_image.message_error({'message':item}))
+  conversation={'current_node':'good','mapping':{'good':{'parent':'user','message':message('done',is_error=False)},'user':{'parent':None,'message':message(GUARDRAIL_REFUSAL,role='user')},'abandoned':{'parent':'user','message':message(GUARDRAIL_REFUSAL)}}}
+  self.assertIsNone(chat_image.message_error(conversation))
+  self.assertEqual(chat_image.message_error({'message':message('Image generation failed while loading guardrails configuration. Please try again.')} ).code,'unavailable')
 
  def test_user_text_ordinary_discussion_and_inactive_branch_are_not_errors(self):
   for item in (message(role='user'),message(is_error=False),{'author':{'role':'assistant'},'content':{'parts':[REFUSAL]},'metadata':{'is_error':True},'status':'in_progress','end_turn':False}):
@@ -23,7 +32,7 @@ class ChatPolicyResult(unittest.TestCase):
  def test_nonpolicy_terminal_error_is_not_mislabeled_as_moderation(self):
   self.assertEqual(chat_image.message_error({'message':message('Image generation failed, please try again.')}).code,'unavailable')
 
- def check_flow(self,refusal_in_stream):
+ def check_flow(self,refusal_in_stream,refusal=REFUSAL):
   with tempfile.TemporaryDirectory() as d:
    root=Path(d);(root/'auth.json').write_text(json.dumps({'tokens':{'access_token':'test-only'}}));client=chat_image.ChatImageClient(root/'auth.json',root/'receipt.json');calls=[]
    cid='11111111-2222-3333-4444-555555555555';mid=None
@@ -35,9 +44,9 @@ class ChatPolicyResult(unittest.TestCase):
     if route.endswith('/f/conversation'):
      mid=payload['messages'][0]['id']
      event={'conversation_id':cid}
-     if refusal_in_stream:event['message']=message()
+     if refusal_in_stream:event['message']=message(refusal)
      return io.BytesIO(('data: '+json.dumps(event)+'\n\ndata: [DONE]\n').encode())
-    if route=='/backend-api/conversation/'+cid:return {'current_node':'error','mapping':{'error':{'message':message(),'parent':mid},mid:{'message':{'id':mid,'author':{'role':'user'}},'parent':None}}}
+    if route=='/backend-api/conversation/'+cid:return {'current_node':'error','mapping':{'error':{'message':message(refusal),'parent':mid},mid:{'message':{'id':mid,'author':{'role':'user'}},'parent':None}}}
     self.fail('Unexpected generation, download or fallback request: '+route)
    with patch.object(client,'quota',return_value=({},'auto')),patch.object(client,'request',side_effect=request),patch.object(chat_image,'proof',return_value='test'),patch.object(chat_image.time,'sleep') as sleep:
     with self.assertRaises(chat_image.ChatError) as error:client.generate('test',root/'images')
@@ -45,8 +54,12 @@ class ChatPolicyResult(unittest.TestCase):
    self.assertEqual(calls.count('/backend-api/f/conversation'),1);self.assertEqual(calls.count('/backend-api/conversation/'+cid),0 if refusal_in_stream else 1)
    sleep.assert_not_called();self.assertFalse((root/'images/chat-image.png').exists())
 
- def test_stream_refusal_stops_without_collection_wait_or_retry(self):self.check_flow(True)
- def test_conversation_refusal_stops_after_one_read_without_wait_or_retry(self):self.check_flow(False)
+ def test_stream_refusal_stops_without_collection_wait_or_retry(self):
+  for text in (REFUSAL,GUARDRAIL_REFUSAL):
+   with self.subTest(refusal=text):self.check_flow(True,text)
+ def test_conversation_refusal_stops_after_one_read_without_wait_or_retry(self):
+  for text in (REFUSAL,GUARDRAIL_REFUSAL):
+   with self.subTest(refusal=text):self.check_flow(False,text)
 
  def test_broker_preserves_blocked_code_from_worker(self):self.check_broker_code('blocked')
  def test_broker_preserves_pending_conversation_code_from_worker(self):self.check_broker_code('conversation_pending')

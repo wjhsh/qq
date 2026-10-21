@@ -1,10 +1,25 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash, randomBytes } from 'node:crypto';
 import { parseSilenceCommand, silenceState } from './chat-silence.mjs';
 import { guardianSummary } from './guardian-status.mjs';
 
 const HELP = '实用任务（仅主人私聊）：\n/任务 做一份……（提交任务，最多10分钟）\n/任务 列表\n/任务 状态 编号\n/任务 结果 编号\n/任务 取消 编号\n/任务 文件 编号 文件名（最多2MiB）\n/维护 状态\n/维护 重启 qq-agent（或 qq-cloud-transport、qq-onebot-bridge、codex-gateway、codex-mihomo）\nRP仍用原来的 /角色卡 指令。新任务可回执到提交位置；回执未登记时主动查询结果。';
 const ID = /^[a-f0-9]{12}$/;
+const GPT_HELP = 'GPT只读诊断（仅主人）：\n/GPT 问题（最多6000字）\n/GPT 帮助\n/GPT 状态 [编号]\n/GPT 列表\n/GPT 结果 编号\n/GPT 取消 编号\n也可用 /诊断；群内需真实@，结果仅私聊。\n使用服务器保存的Codex授权，计入该账号Codex额度；日常聊天仍用原模型。仅分析诊断快照及公开资料，不部署、不修改生产；不带群聊天记录和角色记忆。';
+const ACCOUNT_HELP = 'Google账号（仅主人，切换对所有QQ聊天生效）：\n/账号 列表\n/账号 当前\n/账号 切换 1（或2，保留当前基础模型）\n/模型 列表（按账号标识）\n账号1用原模型名，账号2用account2/模型名；只手动切换，不自动轮换，两个账号共用请求保护。';
+const isGptJob = (job) => job?.engine === 'codex' && job?.mode === 'diagnostics';
+const eventNumber = (value) => Number.isSafeInteger(value) ? String(value)
+  : typeof value === 'string' && /^-?\d{1,20}$/u.test(value) ? value : null;
+function gptRequestId({ chatKey, senderId, messageId, messageTime }) {
+  const id = eventNumber(messageId);
+  // Only host-provided event identity can deduplicate a task. Missing/invalid IDs
+  // get a new submission ID; message text is never used as a replay identity.
+  if (id === null) return randomBytes(16).toString('hex');
+  const stamp = eventNumber(messageTime);
+  return createHash('sha256').update(JSON.stringify(['qq-gpt-diagnostics-v1', chatKey, String(senderId), id, stamp]))
+    .digest('hex').slice(0, 32);
+}
 const QQ_HELP = '\nQQ客户端：\n/维护 QQ状态\n仅主人：/维护 QQ重启、/维护 QQ精简、/维护 QQ标准\n/维护 窗口 隐藏（或显示）\n/维护 桌面 开（或关）\n客户端重启限每3分钟一次；QQ离线时请用手机工作台。';
 const LABEL = { queued: '排队中', running: '执行中', succeeded: '已完成', failed: '失败', cancelled: '已取消', interrupted: '中断待检查' };
 const GROUP_HELP = '群内查询：\n画图：@我 /生图 Chat 一只猫（Chat聊天直连通道）\n/生图 GPT 一只猫（同为Chat聊天直连通道），或 /生图 Gemini 一只猫；Codex原生生图已关闭；验证/限流不自动重试\n/B站 帮助、/梗库 帮助\n/状态 或 /维护 状态\n/额度（Google模型配额和代理流量）\n/流量\n/线路 状态、/线路 列表\n/指令\n仅主人可修改：\n/闭嘴、/闭嘴 30分钟、/开口\n/线路 自动、/线路 切换 A（或C、V）\n/模型 列表、/模型 当前、/模型 切换 编号或名称\n/角色 列表、/角色 当前、/角色 切换 名称\n@我 切换成凑企鹅（咕咕嘎嘎／高松灯为同一角色）\n@我 记住：内容（仅本群）\n@我 共享给所有群：内容\n@我 接话概率调到30%\n@我 任务：明确的独立任务\n/群任务 列表、/群任务 结果 编号、/群任务 取消 编号\n/共享记忆 列表、/共享记忆 本群 内容、/共享记忆 全部群 内容\n/开发者 状态、/开发者 审计\n/开发者 自然管理 开或关、/开发者 判定 开或关、/开发者 RP 开或关\n/维护 重启 qq-agent（或qq-cloud-transport、qq-onebot-bridge、codex-gateway、codex-mihomo）\n自然管理只接受原始文字与真实@；角色切换仅影响本群。模型切换影响QQ全部聊天；线路切换影响共用API。';
@@ -24,7 +39,7 @@ export function formatQuotas(data, trafficOnly = false) {
   const rows = [];
   if (!trafficOnly) {
     const google = data.google;
-    rows.push('Google Antigravity 上游报告的剩余配额：');
+    rows.push('Google Antigravity ' + (['账号1', '账号2'].includes(google?.account_label) ? google.account_label + ' ' : '') + '上游报告的剩余配额：');
     if (google?.available) {
       for (const model of google.models) rows.push(`${model.model}：${model.remaining_percent == null ? '未知' : model.remaining_percent + '%'}${model.reset_time ? '，重置 ' + date(model.reset_time) : ''}`);
       rows.push('上游比例不等于累计用量；100%不代表没用或无限用。部分模型共享配额，不能换算调用次数。');
@@ -58,7 +73,7 @@ export function createHarnessClient({ fetchImpl = globalThis.fetch, readToken = 
 
 export function createOwnerHarness({ ownerConsole, getConfig = () => ({}), setGroupSilence, sendReply, sendFile, dataDir, onTaskSubmitted = null, request = createHarnessClient() }) {
   let pending = Promise.resolve();
-  async function run({ chatKey, senderId, raw, name, body }) {
+  async function run({ chatKey, senderId, raw, name, body, messageId, messageTime }) {
     const ctx = { chatKey, triggerEntries: [{ senderId: String(senderId), text: raw, ownerConsoleText: raw }] };
     const isGroup = /^group:[1-9]\d{0,14}$/u.test(chatKey);
     const authorized = () => {
@@ -74,8 +89,71 @@ export function createOwnerHarness({ ownerConsole, getConfig = () => ({}), setGr
       return ownerConsole.authorized({ ...ctx, chatKey: `private:${senderId}` }, { groupId });
     };
     if (!authorized()) return { handled: true };
-    const reply = async (text) => { if (authorized()) await sendReply(chatKey, text); };
+    const reply = async (text) => { if (authorized()) await sendReply(chatKey, text, authorized); };
     try {
+      if (name === 'GPT') {
+        const privateKey = `private:${senderId}`;
+        const privateContext = { ...ctx, chatKey: privateKey };
+        // Both the private owner grant and the original group grant remain required.
+        const allowed = () => authorized() && (isGroup || chatKey === privateKey)
+          && ownerConsole.authorized(privateContext)
+          && (!isGroup || ownerConsole.authorized(privateContext, { groupId: chatKey.slice(6) }));
+        if (!allowed()) return { handled: true };
+        const gptReply = async (text, confirmation = 'GPT查询结果已私聊发送。') => {
+          if (!allowed()) return;
+          await sendReply(privateKey, text, allowed);
+          if (isGroup && allowed()) await sendReply(chatKey, confirmation, allowed);
+        };
+        const gptRequest = async (route, payload) => {
+          if (!allowed()) throw new Error('管理权限已变更');
+          return request(route, payload);
+        };
+        let submitting = false;
+        try {
+          if (!body || body === '帮助') { await gptReply(GPT_HELP); return { handled: true }; }
+          if (body.length > 6000) throw new Error('GPT问题最多6000字');
+          const [action, ...rest] = body.split(/\s+/u);
+          if (action === '列表' && !rest.length) {
+            const jobs = await gptRequest('/jobs');
+            await gptReply(jobs.filter(isGptJob).map((job) => `${job.id} ${LABEL[job.status] || job.status}`).join('\n') || '暂无GPT诊断任务');
+          } else if (action === '状态' && !rest.length) {
+            const result = await gptRequest('/status');
+            await gptReply(`GPT诊断：${result.codex?.authenticated === true ? '授权已就绪' : '授权未就绪'}\n模型：${result.codex?.model || '未提供'}\n服务器排队：${result.queue ?? '未知'}，执行中：${result.running ?? '未知'}\n使用服务器Codex授权，计入该账号Codex额度。`);
+          } else if (['状态', '结果', '取消'].includes(action)) {
+            const [jobId] = rest;
+            if (rest.length !== 1 || !ID.test(jobId || '')) throw new Error('格式：/GPT 状态、结果或取消 编号');
+            let job = await gptRequest(`/jobs/${jobId}`);
+            if (job?.id !== jobId || !isGptJob(job)) throw new Error('编号不属于GPT只读诊断任务');
+            if (action === '取消') {
+              job = await gptRequest(`/jobs/${jobId}/cancel`, {});
+              if (job?.id !== jobId || !isGptJob(job)) throw new Error('任务响应类型不符');
+            }
+            await gptReply(`GPT诊断 ${job.id} ${LABEL[job.status] || job.status}`
+              + (action === '结果' ? `\n${String(job.result || job.error || '尚无结果').slice(0, 5500)}` : ''));
+          } else if (action === '列表') throw new Error('格式：/GPT 列表');
+          else {
+            submitting = true;
+            // Broker persists request_id, so real event replays remain idempotent
+            // across reconnects and process restarts without storing a new prompt ledger.
+            const requestId = gptRequestId({ chatKey, senderId, messageId, messageTime });
+            const job = await gptRequest('/jobs', { prompt: body, engine: 'codex', mode: 'diagnostics', request_id: requestId });
+            submitting = false;
+            if (!ID.test(job?.id || '') || !isGptJob(job)) throw new Error('提交响应异常，请先用 /GPT 列表 查询，勿重复提交');
+            if (!allowed()) return { handled: true };
+            let receipt = false;
+            try { receipt = onTaskSubmitted?.({ jobId: job.id, chatKey: privateKey, senderId,
+              includeResult: true, command: '/GPT', sourceChatKey: chatKey }) === true; } catch { /* Submission succeeded; never submit twice. */ }
+            await gptReply(`已提交GPT只读诊断 ${job.id}，${LABEL[job.status] || job.status}。\n使用服务器Codex授权，计入该账号Codex额度。\n${receipt ? '完成或失败后会私聊摘要。' : '自动回执未登记，任务已提交，请主动查询，无需重复。'}\n/GPT 结果 ${job.id}`,
+              'GPT诊断已提交，任务编号和结果仅私聊发送。');
+          }
+        } catch (error) {
+          try {
+            await gptReply(`GPT操作未完成：${String(error?.message || '诊断服务暂时不可用').slice(0, 250)}${submitting ? '\n提交未自动重试；结果可能未确认，请先用 /GPT 列表 查询，勿立即重复提交。' : ''}`,
+              'GPT操作结果已私聊发送。');
+          } catch { /* A private transport failure must never escape into a group error reply. */ }
+        }
+        return { handled: true };
+      }
       if (name === '闭嘴' || name === '开口') {
         const change = parseSilenceCommand(chatKey, name, body);
         const canCommit = () => authorized() && controlGroup(getConfig(), change.groupId)
@@ -88,7 +166,7 @@ export function createOwnerHarness({ ownerConsole, getConfig = () => ({}), setGr
           : `本群已静默，@也不回复；管理指令仍可用。${change.until ? '将于 ' + date(change.until) + ' 自动恢复。' : '发送 /开口 恢复。'}`);
         return { handled: true };
       }
-      if (name === '指令' || name === '帮助') { await reply((isGroup ? GROUP_HELP : GROUP_HELP + '\n\n' + HELP) + QQ_HELP); return { handled: true }; }
+      if (name === '指令' || name === '帮助') { await reply((isGroup ? GROUP_HELP : GROUP_HELP + '\n\n' + HELP) + QQ_HELP + '\n\n' + ACCOUNT_HELP); return { handled: true }; }
       if (name === '状态') { name = '维护'; body = '状态'; }
       if (name === '额度' || name === '流量' || (name === '维护' && body === '额度')) {
         const result = await request(name === '流量' ? '/quotas?source=traffic' : '/quotas');
@@ -108,7 +186,7 @@ export function createOwnerHarness({ ownerConsole, getConfig = () => ({}), setGr
           + '\n/线路 自动 恢复自动模式；切线会影响共用API的在途请求。');
         return { handled: true };
       }
-      if (!body || body === '帮助') { await reply((isGroup ? GROUP_HELP : HELP + '\n\n' + GROUP_HELP) + QQ_HELP); return { handled: true }; }
+      if (!body || body === '帮助') { await reply((isGroup ? GROUP_HELP : HELP + '\n\n' + GROUP_HELP) + QQ_HELP + '\n\n' + ACCOUNT_HELP); return { handled: true }; }
       const [action, ...rest] = body.split(/\s+/u);
       if (name === '维护') {
         if (action === 'QQ状态' && !rest.length) {
@@ -175,14 +253,15 @@ export function createOwnerHarness({ ownerConsole, getConfig = () => ({}), setGr
     }
     return { handled: true };
   }
-  return { handle({ chatKey, senderId, segments }) {
+  return { handle({ chatKey, senderId, segments, messageId, messageTime }) {
     if (!Array.isArray(segments) || !segments.length || !segments.every((s) => s?.type === 'text' && typeof s.data?.text === 'string')) return Promise.resolve({ handled: false });
     const raw = segments.map((s) => s.data.text).join('').trim();
-    const match = /^\/(任务|维护|额度|流量|线路|指令|状态|帮助|闭嘴|开口)(?=$|\s)([\s\S]*)$/u.exec(raw);
+    const match = /^\/(任务|维护|额度|流量|线路|指令|状态|帮助|闭嘴|开口|GPT|诊断)(?=$|\s)([\s\S]*)$/iu.exec(raw);
     if (!match) return Promise.resolve({ handled: false });
     const isControlGroup = chatKey.startsWith('group:') && controlGroup(getConfig(), chatKey.slice(6));
     if (['状态', '帮助'].includes(match[1]) && !isControlGroup) return Promise.resolve({ handled: false });
-    const task = pending.then(() => run({ chatKey, senderId, raw, name: match[1], body: match[2].trim() }));
+    const name = /^(gpt|诊断)$/iu.test(match[1]) ? 'GPT' : match[1];
+    const task = pending.then(() => run({ chatKey, senderId, raw, name, body: match[2].trim(), messageId, messageTime }));
     pending = task.catch(() => {});
     return task;
   } };

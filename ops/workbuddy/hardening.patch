@@ -1,0 +1,22 @@
+--- upstream/wb_proxy.py
++++ runtime/wb_proxy.py
+@@ -14170,18 +14170,7 @@
+                         break
+                     restricted_rotations += 1
+                     continue
+-                # Panel degrade.go: a content rejection in passthrough/append
+-                # mode is usually a system-prompt fingerprint false positive.
+-                # Switch to the minimal neutral prompt until next 00:00 CST
+-                # and retry this turn once; custom mode opted out.
+-                if (not degraded_retried
+-                        and prompt_mode_config().get("mode") in ("passthrough", "append")):
+-                    PROMPT_DEGRADE.trigger()
+-                    degraded_retried = True
+-                    upstream_body = build_upstream_body(payload)
+-                    tried.discard(account.uid)
+-                    log("upstream 403 (content review) -> degraded prompt retry")
+-                    continue
++                # Local policy: return content refusals unchanged; never rewrite and replay.
+                 log("upstream 403 for '%s' (content review), passing through" % model)
+                 if session_key and POOL:
+                     POOL.affinity.demote(session_key, account.uid)

@@ -16,6 +16,7 @@ import { createSharedMemoryCommandHandler } from './shared-memory-commands.js';
 import { GroupMemoryManager } from './group-memory.js';
 import { createMobileControlHandler } from './mobile-control-commands.js';
 import { createOwnerConsole } from './owner-console.js';
+import { createInputGuard } from './input-guard.mjs';
 import { createOwnerPrivateRules } from './owner-private-rules.js';
 import { createPersonaWorkshop, parsePersonaWorkshopCommand } from './persona-workshop.js';
 import { createOwnerLocalCommands } from './owner-local-commands.js';
@@ -41,9 +42,10 @@ import { listRoleCards, activeRoleCard, roleCardPatch } from './role-card-librar
 import { groupStyleForChat, groupStylePatch, roleIdentity } from './role-isolation.mjs';
 import { createModelCommandHandler } from './model-commands.js';
 import { createModelCatalog, modelEndpointIdentity, modelSelectionPatch } from './model-selection.js';
+import { followGoogleAccountModel } from './google-account-routing.mjs';
 import { ReminderStore } from './reminders.js';
 import { VideoReader } from './video-reader.js';
-import { cacheHitRate, chatCompletion, resolveApiKey } from './llm.js';
+import { cacheHitRate, chatCompletion, resolveApiKey, startPreferredModelRecovery, stopPreferredModelRecovery } from './llm.js';
 import { isPeakHour, priceAt, resolveModelPrice, modelLabel, splitModelLabel, UNKNOWN_VENDOR } from './model-prices.js';
 import { initPriceFeed } from './price-feed.js';
 import { startTelemetryLoop } from './telemetry.js';
@@ -965,7 +967,7 @@ export function createApp({ log = console.log } = {}) {
       emit('status', { configUpdated: true });
       return { ok: true };
     },
-    sendReply: (chatKey, text) => sender.sendControlText(chatKey, [text], { dedupe: false }),
+    sendReply: (chatKey, text, beforeSend) => sender.sendControlText(chatKey, [text], { dedupe: false, beforeSend }),
     sendFile: (chatKey, file, name, beforeSend) => sender.sendTaskFile(chatKey, file, name, { beforeSend }) });
 
   const naturalAdmin = createAdminRuntime({
@@ -976,7 +978,7 @@ export function createApp({ log = console.log } = {}) {
     completeJudge: (messages) => {
       const current = getConfig();
       return chatCompletion({ messages, temperature: 0, maxTokens: 500,
-        overrides: { ...current.api, apiKey: resolveApiKey(current), model: 'gemini-3.5-flash-lite', timeoutMs: 12000 },
+        overrides: { ...current.api, apiKey: resolveApiKey(current), model: followGoogleAccountModel('gemini-3.5-flash-lite', current.api.model), timeoutMs: 12000 },
         skillContext: { thinkingMode: 'off', thinkingEffort: 'off' }, signal: AbortSignal.timeout(12000) });
     },
     dispatchCommand: async (event) => {
@@ -994,6 +996,8 @@ export function createApp({ log = console.log } = {}) {
     },
     sendReply: (chatKey, text) => sender.sendControlText(chatKey, [text], { dedupe: false })
   });
+
+  const inputGuard = createInputGuard();
 
   async function queueMessage(kind, id, event) {
     const chatKey = `${kind}:${id}`;
@@ -1197,11 +1201,35 @@ export function createApp({ log = console.log } = {}) {
       if (kind === 'group' && (cfgNow.blocklist?.[id] || []).map(String).includes(senderId)) return;
     }
     const mentionPolicy = groupMentionPolicy(cfgNow, kind, id, segments, onebot.selfId);
+
+    const rejectInput = async (raw, verdict) => {
+      const entry = store.appendIncoming(`${kind}:${id}`, {
+        mid: event.message_id, ts: event.time ? Math.round(Number(event.time) * 1000) : Date.now(),
+        senderId, senderName, ...inputGuard.blockedRecord(raw, verdict.reason)
+      });
+      store.markEntryRead(`${kind}:${id}`, entry.id);
+      emit('chat-update', `${kind}:${id}`);
+      const explicitlyDirected = kind === 'private' || (segments || []).some(s => s?.type === 'at' && String(s.data?.qq) === String(onebot.selfId));
+      const reply = inputGuard.reply(`${kind}:${id}`, { directed: mentionPolicy.mayRespond && explicitlyDirected && !peerPolicy.directedElsewhere,
+        silenced: isGroupSilenced(cfgNow, `${kind}:${id}`) });
+      if (reply) await sender.sendControlText(`${kind}:${id}`, [reply], { dedupe: false });
+      log(`[input-guard] ${kind} message blocked (${verdict.reason})`);
+    };
+    // Admit original text before any classifier, command model or media work.
+    const originalInput = segments ? segments.filter(s => s?.type === 'text').map(s => s.data?.text || '').join('') : String(event.raw_message ?? event.message ?? '');
+    const originalVerdict = inputGuard.inspect(originalInput);
+    if (originalVerdict.blocked) { await rejectInput(originalInput, originalVerdict); return; }
+
     if (mentionPolicy.mayRespond && !peerPolicy.directedElsewhere) {
+      // GPT consumes subscription quota; require an actual direct @ in every
+      // group, including groups where ordinary RP can speak without a mention.
+      if (kind === 'group' && /^\/(?:GPT|诊断)(?=$|\s)/iu.test(originalInput.trim())
+          && !(segments || []).some(s => s?.type === 'at' && String(s.data?.qq) === String(onebot.selfId))) return;
       // Read-only community tools and owner library commands use original segments only.
       if ((await communityCommands.handle({ chatKey: `${kind}:${id}`, senderId, segments })).handled) return;
       // Host-only group management runs after trusted identity/block checks, before RP gating.
-      if ((await naturalAdmin.handle({ chatKey: `${kind}:${id}`, senderId, segments })).handled) return;
+      if ((await naturalAdmin.handle({ chatKey: `${kind}:${id}`, senderId, segments,
+        messageId: event.message_id, messageTime: event.time })).handled) return;
       // Only original all-text messages can be commands; never parse rendered quotes/media.
       // Keep the owner's actual control messages in their private history too.
       // Previously only the bot's command replies were stored, making later
@@ -1210,7 +1238,7 @@ export function createApp({ log = console.log } = {}) {
         ? segments.map((segment) => segment.data.text).join('') : '';
       if (kind === 'private' && id === senderId && getConfig().ownerConsole?.enabled === true
           && (getConfig().ownerConsole.ownerIds || []).map(String).includes(senderId)
-          && (/^\/(?:角色卡|角色|模型|私聊规则|管理群|群列表|群记录|我的发言|群风格|群特点|群友记忆|管理帮助|任务|维护|额度|流量|线路|指令|闭嘴|开口|帮助|状态|接话|安静|恢复|群记忆|共享记忆)(?=$|\s)/u.test(originalCommand.trim())
+          && (/^\/(?:角色卡|角色|模型|账号|私聊规则|管理群|群列表|群记录|我的发言|群风格|群特点|群友记忆|管理帮助|任务|维护|额度|流量|线路|指令|闭嘴|开口|帮助|状态|接话|安静|恢复|群记忆|共享记忆|GPT|诊断)(?=$|\s)/iu.test(originalCommand.trim())
             || originalCommand && parsePersonaWorkshopCommand(segments) !== null)
           && (event.message_id == null || !store.findByMid(`private:${id}`, event.message_id))) {
         const commandEntry = store.appendIncoming(`private:${id}`, {
@@ -1224,7 +1252,8 @@ export function createApp({ log = console.log } = {}) {
         if ((await ownerPrivateRules.handle({ chatKey: `${kind}:${id}`, senderId, segments: mentionPolicy.commandSegments, messageId: event.message_id })).handled) return;
         if ((await personaWorkshop.handle({ chatKey: `${kind}:${id}`, senderId, segments: mentionPolicy.commandSegments, messageId: event.message_id })).handled) return;
         if ((await ownerLocalCommands.handle({ chatKey: `${kind}:${id}`, senderId, segments: mentionPolicy.commandSegments })).handled) return;
-        if ((await ownerHarness.handle({ chatKey: `${kind}:${id}`, senderId, segments: mentionPolicy.commandSegments })).handled) return;
+        if ((await ownerHarness.handle({ chatKey: `${kind}:${id}`, senderId, segments: mentionPolicy.commandSegments,
+          messageId: event.message_id, messageTime: event.time })).handled) return;
       }
       if (cfgNow.personaCommands?.enabled === true) {
         const command = await personaCommands.handle({ chatKey: `${kind}:${id}`, senderId, segments: mentionPolicy.commandSegments });
@@ -1283,6 +1312,9 @@ export function createApp({ log = console.log } = {}) {
         log(`[ingest] 展开合并转发失败（保留占位符）: ${e?.message ?? e}`);
       }
     }
+
+    const expandedVerdict = inputGuard.inspect(text);
+    if (expandedVerdict.blocked) { await rejectInput(text, expandedVerdict); return; }
 
     if (!text && !media.length) return;
 
@@ -2001,6 +2033,7 @@ export function createApp({ log = console.log } = {}) {
     }
     await onebot.connect();
     taskReceipts.start();
+    if (!localOnly) startPreferredModelRecovery();
 
     // ── OneBot 端口就绪轮询（2026-09-19）────────────────────────────────────
     // WS 3001 只有「QQ 登录 → Hook 检出 → OneBot 实例拉起」后才监听。常见时序：
@@ -2075,6 +2108,7 @@ export function createApp({ log = console.log } = {}) {
   }
 
   async function stop() {
+    stopPreferredModelRecovery();
     taskReceipts.stop();
     biliReader.close();
     ownerPrivateRules.close?.();

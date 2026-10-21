@@ -24,6 +24,7 @@ import { registerOwnerTools } from './owner-tool-defs.js';
 import { registerCommunityTools } from './community-tools.mjs';
 import { roleIdentity } from './role-isolation.mjs';
 import { requireQqFace, searchQqFaces } from './qq-faces.js';
+import { requirePlainTextMessages } from './message-markup.mjs';
 
 // Host-only delivery receipt. It is never included in tool content/model input,
 // so a model-supplied argument or textual "sent" claim cannot forge delivery.
@@ -192,6 +193,7 @@ function registerAllTools() {
       try {
         const messages = normalizeMessageList(args.messages);
         if (!messages.length) return err('消息内容为空');
+        requirePlainTextMessages(messages);
         const result = await ctx.sender.sendTextBatch(ctx.chatKey, messages, {
           replyToMessageId: args.replyToMessageId ?? null,
           atUserId: args.atUserId ?? null

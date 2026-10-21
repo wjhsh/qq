@@ -27,7 +27,7 @@ class ImageJobsTest(unittest.TestCase):
   self.assertEqual(error.exception.code,'image_ambiguous_output')
  def test_collection_failure_preserves_model_explanation_and_turn_usage(self):
   broker=harness.Broker(self.root/'broker',execute=False)
-  with patch.object(codex_engine,'status',return_value={'authenticated':True}):item=broker.submit('cat',mode='image',engine='codex')
+  with patch.object(codex_engine,'status',return_value={'authenticated':True}):item=broker.submit('cat',mode='image',engine='chatgpt')
   job=broker.root/'jobs'/item['id'];job.mkdir();(job/'request.txt').write_text('image test')
   events=[{'type':'item.completed','item':{'type':'agent_message','text':'当前无法调用图片工具。'}},
    {'type':'turn.completed','usage':{'input_tokens':123,'cached_input_tokens':45,'output_tokens':67}}]
@@ -41,19 +41,21 @@ class ImageJobsTest(unittest.TestCase):
   image_jobs.prepare(self.job,'cat',self.auth);(self.images/'new.png').write_bytes(b'x'*100)
   with self.assertRaises(ValueError):image_jobs.collect(self.job,self.auth)
   self.assertFalse((self.job/'work/gpt-image.png').exists())
- def test_image_mode_disables_shell_and_subagents_and_has_its_own_deadline(self):
-  args='\n'.join(harness.job_command('a'*12,'codex','image'))
-  for key in ['features.shell_tool=false','features.multi_agent=false','RuntimeMaxSec=240','MemoryMax=512M']:self.assertIn(key,args)
+ def test_image_mode_uses_chat_worker_and_has_its_own_deadline(self):
+  args='\n'.join(harness.job_command('a'*12,'chatgpt','image'))
+  for key in ['chat_image.py','RuntimeMaxSec=240','MemoryMax=512M','BindReadOnlyPaths=']:self.assertIn(key,args)
+  self.assertNotIn('/codex/node_modules',args)
+  with self.assertRaises(ValueError):harness.job_command('a'*12,'codex','image')
   self.assertNotIn('features.shell_tool=false','\n'.join(codex_engine.arguments()))
- def test_image_submission_requires_codex_and_limits_description(self):
+ def test_image_submission_requires_chat_and_limits_description(self):
   broker=harness.Broker(self.root/'broker',execute=False)
   with self.assertRaises(ValueError):broker.submit('cat',mode='image',engine='pi')
   with patch.object(codex_engine,'status',return_value={'authenticated':True}):
    with self.assertRaises(ValueError):broker.submit('x'*2201,mode='image',engine='codex')
-   result=broker.submit('cat',mode='image',engine='codex');self.assertEqual(result['mode'],'image')
+   result=broker.submit('cat',mode='image',engine='chatgpt');self.assertEqual(result['mode'],'image')
  def test_only_collected_image_has_the_larger_artifact_limit(self):
   broker=harness.Broker(self.root/'broker',execute=False)
-  with patch.object(codex_engine,'status',return_value={'authenticated':True}):item=broker.submit('cat',mode='image',engine='codex')
+  with patch.object(codex_engine,'status',return_value={'authenticated':True}):item=broker.submit('cat',mode='image',engine='chatgpt')
   work=broker.root/'jobs'/item['id']/'work';work.mkdir(parents=True);item['status']='succeeded';broker.items[item['id']]=item
   for name in ['gpt-image.png','other.bin']:(work/name).write_bytes(b'x'*(2*1024*1024+1))
   self.assertTrue(broker.artifact(item['id'],'gpt-image.png')['base64'])

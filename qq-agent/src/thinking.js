@@ -1,3 +1,5 @@
+import { parseGoogleAccountModel } from './google-account-routing.mjs';
+
 // 思考/推理参数的内置实现（原 thinking-adapters 插件收编进核心）。
 //
 // 职责与插件时期完全一致，只是不再依赖 skillManager 能力缝：
@@ -153,7 +155,7 @@ export function resolveThinkingRequest(api = {}, context = {}) {
   // Opt in explicitly, and only for Gemini model ids, without changing detection
   // for existing local endpoints, remote Gemini adapters, or other model families.
   const explicitGeminiOpenAi = api.geminiThinkingTransport === 'reasoning_effort'
-    && /^gemini-/i.test(String(api.model || ''));
+    && /^gemini-/i.test(parseGoogleAccountModel(api.model).model);
   const det = explicitGeminiOpenAi
     ? { dialect: 'gemini-openai', label: DIALECT_LABELS['gemini-openai'], supports: ['effort'],
       reason: '显式 Gemini reasoning_effort 通道' + (effort === 'off' ? '；此通道不支持关闭思考，off 按 low 发送' : '') }

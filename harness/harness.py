@@ -19,9 +19,12 @@ from maintenance_jobs import Maintenance
 from qq_client_control import QQMaintenance
 from resource_policy import snapshot as resource_snapshot, admission_reason
 from task_diagnostics import classify_failure, progress_event
+import maintenance_context
 import codex_engine
 import image_jobs
 import image_inputs
+import image_admission
+import pi_channels
 from chat_sessions import ChatSessions
 from runtime_settings import RuntimeSettings
 
@@ -66,7 +69,7 @@ def command(args, timeout=12):
 
 def job_command(job_id, engine='pi', mode='task'):
     if engine=='codex' and mode=='image':raise ValueError('Codex原生生图已由主人关闭，请使用Chat生图。')
-    if engine not in ['pi','codex','chatgpt']:raise ValueError('Unknown engine')
+    if engine not in [*pi_channels.PI_ENGINES,'codex','chatgpt']:raise ValueError('Unknown engine')
     if not ID.fullmatch(job_id):
         raise ValueError('invalid job id')
     props = {
@@ -85,12 +88,14 @@ def job_command(job_id, engine='pi', mode='task'):
         'InaccessiblePaths': '-/etc/qq-harness -/etc/codex-gateway -/etc/codex-mihomo '
             '-/var/lib/codex-gateway -/var/lib/codex-mihomo -/var/lib/qq-agent '
             '-/opt/codex-qq/QQ-agent -/opt/codex-qq/cliproxy -/run/systemd/private -/run/dbus/system_bus_socket '
-            '-/var/lib/qq-harness/codex-auth -/opt/codex-qq/snowluma-trial -/etc/qq-guardian -/run/docker.sock -/var/run/docker.sock',
+            '-/var/lib/qq-workbuddy -/etc/qq-workbuddy -/var/lib/qq-harness/codex-auth -/opt/codex-qq/snowluma-trial -/etc/qq-guardian -/run/docker.sock -/var/run/docker.sock',
         'EnvironmentFile': '/etc/qq-harness/model.env',
         'Environment': 'HOME=/workspace/home PI_CODING_AGENT_DIR=/workspace/pi PI_OFFLINE=1 PI_TELEMETRY=0 '
             'NODE_OPTIONS=--max-old-space-size=256 HTTPS_PROXY=http://127.0.0.1:7890 HTTP_PROXY=http://127.0.0.1:7890 '
             'NO_PROXY=127.0.0.1,localhost',
     }
+    if engine in pi_channels.PI_ENGINES:
+        props['EnvironmentFile']=pi_channels.profile(engine,MODEL)['envFile']
     if engine=='codex':
         props.pop('EnvironmentFile',None)
         props['BindPaths']+=' '+str(codex_engine.AUTH)+':/workspace/codex'
@@ -109,7 +114,7 @@ def job_command(job_id, engine='pi', mode='task'):
     return args + [PI, '--mode', 'json', '--no-session', '--no-extensions', '--no-mcp',
         '--extension', '/opt/codex-qq/harness/pi-task-guard.mjs',
         '--no-skills', '--no-prompt-templates', '--no-themes', '--no-context-files', '--no-approve',
-        '--offline', '--tools', 'read,bash,edit,write,grep,find,ls', '--provider', 'cloud', '--model', MODEL,
+        '--offline', '--tools', 'read,bash,edit,write,grep,find,ls', '--provider', pi_channels.profile(engine,MODEL)['provider'], '--model', pi_channels.profile(engine,MODEL)['model'],
         '--thinking', 'off', '--append-system-prompt',
         '你是通过QQ接单的文件与编程助手。工作目录是/workspace/work。只在此目录保存交付文件。'
         '你没有服务器管理权限，不要索取或读取账号凭证、不要修改聊天角色或系统服务。'
@@ -152,11 +157,13 @@ class Broker:
     def submit(self, prompt, mode='task', request_id=None, engine='pi', image_session_key=None, input_images=None):
         if not isinstance(prompt, str) or not 1 <= len(prompt.strip()) <= 6000:
             raise ValueError('任务内容需为1至6000字')
-        if engine not in ['pi','codex','chatgpt']:raise ValueError('执行引擎无效')
+        if mode == 'image':
+            image_admission.require_image_prompt(prompt)
+        if engine not in [*pi_channels.PI_ENGINES,'codex','chatgpt']:raise ValueError('执行引擎无效')
         if engine=='codex' and mode=='image':raise ValueError('Codex原生生图已由主人关闭，请使用Chat生图。')
         if engine in ['codex','chatgpt'] and not codex_engine.status()['authenticated']:raise ValueError('服务器Chat授权尚未就绪')
         if engine=='chatgpt' and mode!='image':raise ValueError('Chat只支持独立生图任务')
-        if mode not in ['task','maintenance','settings','image']:raise ValueError('任务类型无效')
+        if mode not in ['task','maintenance','settings','diagnostics','image']:raise ValueError('任务类型无效')
         if mode=='image' and (engine not in ['codex','chatgpt'] or len(prompt.strip())>2200):raise ValueError('生图仅支持Chat/Codex和最多2200字描述')
         if request_id is not None and (not isinstance(request_id,str) or not re.fullmatch(r'[a-f0-9]{32}',request_id)):raise ValueError('请求编号无效')
         if image_session_key is not None and (engine!='chatgpt' or mode!='image' or not isinstance(image_session_key,str) or not re.fullmatch(r'[a-f0-9]{32}',image_session_key)):raise ValueError('生图会话标识无效')
@@ -174,7 +181,7 @@ class Broker:
             if shutil.disk_usage(self.root).free < 2 * 1024**3:
                 raise ValueError('服务器磁盘剩余不足2GiB，请先整理任务文件')
             item = {'id': secrets.token_hex(6), 'status': 'queued', 'prompt': prompt.strip(),
-                'created': now(), 'engine':engine, 'model': 'chatgpt-chat-image' if engine=='chatgpt' else codex_engine.MODEL if engine=='codex' else MODEL, 'result': '', 'files': [], 'mode': mode, 'request_id':request_id}
+                'created': now(), 'engine':engine, 'model': 'chatgpt-chat-image' if engine=='chatgpt' else codex_engine.MODEL if engine=='codex' else pi_channels.profile(engine,MODEL)['model'], 'result': '', 'files': [], 'mode': mode, 'request_id':request_id}
             if image_session_key:item['image_session_key']=image_session_key
             if inputs:
                 staging=self.root/'input-staging'/item['id'];staging.mkdir(parents=True,mode=0o700)
@@ -247,10 +254,12 @@ class Broker:
         for name in ('work', 'home', 'pi'):
             (job / name).mkdir(mode=0o700)
         prefix=self.maintenance.prepare(item['id'],job/'work') if item.get('mode')=='maintenance' else self.settings.prepare(item['id'],job/'work') if item.get('mode')=='settings' else ''
+        if item.get('mode') in ['diagnostics','maintenance']:
+            prefix=maintenance_context.prepare(job/'work',self.root)+prefix
         image_source=codex_engine.AUTH
         if item.get('engine')=='chatgpt':
             image_source=job/'chat-output';image_source.mkdir(mode=0o700)
-        request_text=image_jobs.prepare(job,item['prompt'],image_source) if item.get('mode')=='image' else ('你在华为云QQ项目的独立任务环境。只在/workspace/work保存交付文件。仅操作提供的源码副本和资料；不可直接访问生产配置、QQ凭证或系统管理。不要发消息或启动常驻程序。完成后中文说明改动与验证，缺少资料请直说并结束。\n' if item.get('engine')=='codex' else '')+prefix+item['prompt']
+        request_text=image_jobs.prepare(job,item['prompt'],image_source) if item.get('mode')=='image' else ('你在华为云QQ项目的独立任务环境。只在/workspace/work保存交付文件。可按任务研究公开资料、编程和生成文档；目录为空不代表必须停止。诊断与维护先阅读提供的维护说明和快照。不可直接访问生产配置、QQ凭证或系统管理；源码仅修改副本。不要发消息或启动常驻程序。受512MiB内存、128MiB/4000文件、10分钟限制，不安装大型环境。中文说明结果、依据和验证，缺少关键条件才指出具体缺项。\n' if item.get('engine')=='codex' else '')+prefix+item['prompt']
         if item.get('engine')=='chatgpt':
             request_text=item['prompt']
             self.chat_sessions.checkout(job,item.get('image_session_key'))
@@ -264,11 +273,8 @@ class Broker:
                 (self.root/'input-staging'/item['id']).rmdir()
             (job/'image-inputs.json').write_text(json.dumps(rows))
         (job / 'request.txt').write_text(request_text, encoding='utf-8')
-        (job / 'pi' / 'models.json').write_text(json.dumps({'providers': {'cloud': {
-            'baseUrl': 'http://127.0.0.1:8317/v1', 'api': 'openai-completions',
-            'apiKey': '${HARNESS_API_KEY}', 'models': [{'id': MODEL, 'name': 'Cloud Gemini',
-            'reasoning': False, 'input': ['text'], 'contextWindow': 131072, 'maxTokens': 8192,
-            'cost': {'input': 0, 'output': 0, 'cacheRead': 0, 'cacheWrite': 0}}]}}}), encoding='utf-8')
+        if item.get('engine','pi') in pi_channels.PI_ENGINES:
+            (job / 'pi' / 'models.json').write_text(json.dumps(pi_channels.models(item.get('engine','pi'),MODEL)),encoding='utf-8')
         (job / 'pi' / 'settings.json').write_text(json.dumps({'quietStartup': True, 'retry': {'enabled': False}}))
         shutil.chown(job, user='qq-harness', group='qq-harness')
         for path in job.rglob('*'):
@@ -482,7 +488,7 @@ class Broker:
             waiting=sum(x['status']=='queued' and bool(x.get('waiting_reason')) for x in self.items.values())
         return {'services': rows, 'memory_available': memory.get('MemAvailable', '').strip(),
             'disk_free_gib': round(disk.free / 2**30, 2), 'queue': queued, 'running':running,'waiting_resources':waiting,'resources':resources,'model': MODEL,
-            'codex':codex_engine.status(),'time': now()}
+            'codex':codex_engine.status(),'workbuddy':{'model':pi_channels.WORKBUDDY_MODEL,'configured':Path('/etc/qq-harness/workbuddy.env').exists()},'time': now()}
 
     def restart(self, service):
         requested=service

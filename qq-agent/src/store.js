@@ -83,7 +83,7 @@ export class ChatStore {
   }
 
   /** 追加一条收到的消息（未读）。返回写入的条目。 */
-  appendIncoming(chatKey, { mid, ts, senderId, senderName, text, reply = null, media = [], directImageMedia = null, isPoke = false, atMe = null, atNames = [], ownerConsoleText = null, directText = null, peerDirected = false }) {
+  appendIncoming(chatKey, { mid, ts, senderId, senderName, text, reply = null, media = [], directImageMedia = null, isPoke = false, atMe = null, atNames = [], ownerConsoleText = null, directText = null, peerDirected = false, modelExcluded = false, inputGuard = null }) {
     const st = this.#state(chatKey);
     const entry = {
       id: st.nextLocalId++,
@@ -97,6 +97,7 @@ export class ChatStore {
       // Flattened quotes, forwards, speech and media cannot authorize admin writes.
       ...(typeof ownerConsoleText === 'string' ? { ownerConsoleText: ownerConsoleText.slice(0, 12000) } : {}),
       self: false,
+      ...(modelExcluded === true ? { modelExcluded: true, inputGuard } : {}),
       ...(peerDirected === true ? { peerDirected: true } : {}),
       read: false,
       reply: reply || null,
