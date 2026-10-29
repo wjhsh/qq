@@ -4,7 +4,7 @@ import {modelInputAllowed} from './input-guard.mjs';
 
 export const SOCIAL_FEEDBACK_SCHEMA={type:'object',additionalProperties:false,properties:{
   event:{type:'string',enum:['welcome','play','comfort','repair','correction','stop']},
-  messageId:{type:['string','integer'],description:'本次触发消息的#编号'},
+  messageId:{type:['string','integer'],description:'本次触发消息#后的平台消息编号，不是本地序号；通常不含#'},
   quote:{type:'string',minLength:2,maxLength:100,description:'对方实际输入的连续短原文；不用引用、图片描述或系统标记'}
 },required:['event','messageId','quote']};
 const DIRECT_STOP=/^(?:请)?(?:别再回复我了|不要再回复我了|别说了|不要再说了|别戳我了|不要再戳我了|闭嘴|安静|停聊)[。！!\s]*$/u;
@@ -35,13 +35,13 @@ export class SocialRuntime{
     try{return this._admit(chatKey,entry,store);}catch{this.failed=true;this.onError('社交状态写入失败，功能已停用；原文件保留');return{allow:false,reason:'state_error'};}
   }
   _admit(chatKey,entry,store){
-    if(!this.enabled()||!entry)return{allow:true,reason:'disabled'};
+    if(!socialPolicy(this.getConfig())||!entry)return{allow:true,reason:'disabled'};
     if(!modelInputAllowed(entry))return{allow:false,reason:'excluded'};
     const direct=this.directed(chatKey,entry,store);
     if(!direct&&Array.isArray(entry.atUserIds)&&entry.atUserIds.length)return{allow:false,reason:'addressed_elsewhere'};
     const peer=isAutomatedPeer(this.getConfig(),chatKey,entry.senderId)||entry.automatedPeer===true;
     if(peer){
-      if(!permitsDirectPeer(this.getConfig(),chatKey,entry))return{allow:false,reason:'peer_not_direct'};
+      if(this.failed||!permitsDirectPeer(this.getConfig(),chatKey,entry))return{allow:false,reason:'peer_not_direct'};
       const key=JSON.stringify(this.scope(chatKey)),last=this.peerDeliveries.get(key);
       if(last!=null&&this.now()-last<300000)return{allow:false,reason:'peer_cooldown'};
       return{allow:true,reason:'bounded_peer'};
@@ -52,7 +52,7 @@ export class SocialRuntime{
       state?.apply(this.scope(chatKey),String(entry.senderId),{event:'stop',id:'stop-'+String(entry.id)});
       return{allow:false,reason:'explicit_stop'};
     }
-    if(!state)return{allow:true,reason:'state_unavailable'};
+    if(!state)return{allow:direct,reason:'state_unavailable'};
     if(!direct&&state.snapshot(this.scope(chatKey),String(entry.senderId)).inBoundary)return{allow:false,reason:'boundary'};
     return{allow:true,reason:direct?'direct':'ambient'};
   }
@@ -69,7 +69,8 @@ export class SocialRuntime{
   feedback(ctx,args){
     if(!this.enabled()||!args||ctx.socialFeedbackUsed)return false;
     if(ctx.signal?.aborted||ctx.communityRoleScope!==this.scope(ctx.chatKey).roleScope)return false;
-    const e=ctx.triggerEntries.find(e=>String(e.mid??'')===String(args.messageId));
+    const messageId=String(args.messageId??'').trim().replace(/^#/,'');
+    const e=ctx.triggerEntries.find(e=>e.mid!=null&&String(e.mid)===messageId);
     if(!e||!uid(e.senderId)||e.self||!modelInputAllowed(e)||isAutomatedPeer(this.getConfig(),ctx.chatKey,e.senderId)||e.automatedPeer===true)return false;
     if(!this.directed(ctx.chatKey,e,ctx.store)||typeof e.directText!=='string'||typeof args.quote!=='string'
       ||args.quote.length<2||args.quote.length>100||!e.directText.includes(args.quote))return false;

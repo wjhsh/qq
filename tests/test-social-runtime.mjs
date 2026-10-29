@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {SocialRuntime} from '../qq-agent/src/social-runtime.mjs';
-import {incomingPeerPolicy,mayTriggerPeerReply,filterAutomatedHistory} from '../qq-agent/src/bot-interaction.mjs';
+import {incomingPeerPolicy,mayTriggerPeerReply,filterAutomatedHistory,assertPeerTargets} from '../qq-agent/src/bot-interaction.mjs';
 const chat='group:12345',entry={id:1,mid:11,senderId:'23456',atMe:true,directText:'好猫，给你小鱼干',text:'好猫，给你小鱼干'};
 function fixture(){let time=0;const cfg={socialBehavior:{enabled:true,allowDirectPeers:true},botInteraction:{enabled:true,userIds:['34567']}};
   const runtime=new SocialRuntime({getConfig:()=>cfg,roleIdentity:()=>({scope:'cat:v1'}),now:()=>time});
@@ -45,4 +45,19 @@ test('feature off restores original policy and hides all state hints',()=>{
   const f=fixture();f.cfg.socialBehavior.enabled=false;assert.equal(f.runtime.hint(chat,[entry]),'');
   assert.equal(f.runtime.admit(chat,{...entry,atMe:false,atUserIds:['45678']}).allow,true);
   assert.equal(incomingPeerPolicy(f.cfg,chat,{sender:{user_id:'34567'},message:[]},'77777').ignore,true);
+});
+test('state failure preserves structural stops and addressing; ambient and peers do not fail open',()=>{
+  const f=fixture();f.runtime.failed=true;
+  assert.equal(f.runtime.admit(chat,{...entry,atMe:false}).allow,false);
+  assert.equal(f.runtime.admit(chat,{...entry,atMe:false,atUserIds:['45678']}).reason,'addressed_elsewhere');
+  assert.equal(f.runtime.admit(chat,{...entry,senderId:'34567'}).allow,false);
+  assert.equal(f.runtime.admit(chat,{...entry,directText:'别说了'}).reason,'explicit_stop');
+  assert.equal(f.runtime.admit(chat,entry).allow,true);
+});
+test('transport-confirmed bot reply targets are blocked without a configured bot ID',()=>{
+  const f=fixture();assert.throws(()=>assertPeerTargets(f.cfg,chat,{replyToMessageId:12,store:{findByMid:()=>({senderId:'99999',automatedPeer:true})}}),e=>e.name==='AutomatedPeerError');
+});
+test('feedback uses platform ID, allows an optional #, and never falls back to a colliding local index',()=>{
+  const f=fixture();assert.equal(f.runtime.feedback(f.ctx,{event:'play',messageId:1,quote:'好猫'}),false);
+  assert.equal(f.runtime.feedback(f.ctx,{event:'play',messageId:'#11',quote:'好猫'}),true);
 });

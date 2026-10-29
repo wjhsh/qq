@@ -56,8 +56,11 @@ export function assertPeerTargets(config, chatKey, { atUserId, replyToMessageId,
   }
   const privateChat = /^private:([1-9][0-9]*)$/.exec(String(chatKey));
   if (privateChat) ids.push(privateChat[1]);
-  const replyPeer = replies.some(mid => mid != null
-    && isAutomatedPeer(config, chatKey, store?.findByMid?.(chatKey, mid)?.senderId));
+  const replyPeer = replies.some(mid => {
+    if(mid==null)return false;
+    const entry=store?.findByMid?.(chatKey,mid);
+    return entry?.automatedPeer===true||isAutomatedPeer(config,chatKey,entry?.senderId);
+  });
   if (replyPeer || ids.some(id => isAutomatedPeer(config, chatKey, id))) {
     const error = new Error('已设置不与机器人互聊：不要回复、@或拍已标记的机器人；可以回应真人的问题。');
     error.name = 'AutomatedPeerError';
