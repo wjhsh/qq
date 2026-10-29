@@ -62,3 +62,62 @@ test('full orchestrator with local fake upstream ends after one successful face 
   assert.equal(requests,1);assert.ok(prompt[0].content.includes('猫耳和尾巴'));assert.ok(prompt[0].content.includes('当前互动节奏'));
   const latest=sessions.get(sessions.listSummaries()[0].id);assert.equal(latest.status,'done');assert.match(latest.finishReason,/交付/);sessions.flushIndexCache();
 });
+
+test('waiting ownership uses the current unread batch, excluding the new stop itself',()=>{
+  config();const chat='group:12345',store=new ChatStore();
+  const orchestrator=new Orchestrator({store,memory:new MemoryStore(),sessions:{get:()=>({trigger:[{senderId:'99999',atMe:true}]})},sender:{},onebot:{selfId:'77777'}});
+  orchestrator.social=runtime();orchestrator.pendingSessions.set(chat,'waiting');let cancelled=0;orchestrator.preparePersonaSwitch=()=>cancelled++;
+  const add=(senderId,text,atMe)=>store.appendIncoming(chat,{senderId,mid:Math.random()*1000|0,text,directText:text,atMe});
+  add('23456','帮我看看',true);add('45678','路过',false);
+  orchestrator.onIncoming(chat,add('45678','别说了',true));assert.equal(cancelled,0);
+  orchestrator.onIncoming(chat,add('23456','别说了',true));assert.equal(cancelled,1);
+  assert.deepEqual(store.peekUnread(chat,100).map(e=>e.senderId),['45678']);
+  add('23456','新任务',true);
+  const third=add('56789','帮我也看看',true);
+  orchestrator.onIncoming(chat,add('23456','别说了',true));assert.equal(cancelled,1);
+  store.markEntryRead(chat,third.id);
+});
+
+test('running ownership survives an ambient tail; another human cannot cancel a multi-owner batch',()=>{
+  config();const chat='group:12345',store=new ChatStore(),trigger=[{senderId:'23456',atMe:true},{senderId:'45678',atMe:false}];
+  const orchestrator=new Orchestrator({store,memory:new MemoryStore(),sessions:{get:()=>({trigger})},sender:{},onebot:{selfId:'77777'}});
+  orchestrator.social=runtime();orchestrator.activeRuns.set(chat,'running');let cancelled=0;orchestrator.preparePersonaSwitch=()=>cancelled++;
+  const stop=senderId=>store.appendIncoming(chat,{senderId,mid:1,text:'别说了',directText:'别说了',atMe:true});
+  orchestrator.onIncoming(chat,stop('45678'));assert.equal(cancelled,0);
+  orchestrator.onIncoming(chat,stop('23456'));assert.equal(cancelled,1);
+  trigger[1].atMe=true;orchestrator.onIncoming(chat,stop('23456'));assert.equal(cancelled,1);
+});
+
+test('real poke ingress preserves target addressing and permits only a direct return poke',async()=>{
+  config();const chat='group:12345',store=new ChatStore(),social=runtime(),entries=[];
+  const source=fs.readFileSync(new URL('../qq-agent/src/app.js',import.meta.url),'utf8').replace(/\r\n/g,'\n');
+  const start=source.indexOf('  async function ingestPoke(event) {'),end=source.indexOf('\n  async function handleOneBotEvent',start);
+  assert.ok(start>0&&end>start);
+  const deps={getConfig,allowed:()=>true,groupMentionPolicy:()=>({onlyMentions:false}),onebot:{selfId:'77777'},
+    incomingPeerPolicy:()=>({ignore:false}),isAutomatedPeer:()=>false,isGloballyBlocked:()=>false,resolveAtName:async(_g,id)=>id,
+    store,emit:()=>{},orchestrator:{onIncoming:(_chat,e)=>entries.push(e)}};
+  const ingest=new Function(...Object.keys(deps),source.slice(start,end)+'\nreturn ingestPoke;')(...Object.values(deps));
+  await ingest({group_id:'12345',user_id:'23456',target_id:'77777'});
+  await ingest({group_id:'12345',user_id:'23456',target_id:'45678'});
+  const [direct,other]=entries;assert.equal(direct.atMe,true);assert.deepEqual(direct.atUserIds,['77777']);
+  assert.equal(direct.directText,undefined);assert.equal(other.atMe,false);assert.deepEqual(other.atUserIds,['45678']);
+  assert.equal(social.admit(chat,direct,store).allow,true);assert.equal(social.admit(chat,other,store).reason,'addressed_elsewhere');
+  let sent=0;const ctx={chatKey:chat,kind:'group',social,triggerEntries:[direct],session:{sent:[]},sender:{poke:async()=>sent++},store};
+  assert.notEqual((await executeTool(buildToolDefs(),ctx,'send_poke','{"targetUserId":"23456"}')).isError,true);assert.equal(sent,1);
+  ctx.triggerEntries=[other];assert.equal((await executeTool(buildToolDefs(),ctx,'send_poke','{"targetUserId":"45678"}')).isError,true);assert.equal(sent,1);
+});
+
+test('owner stop aborts a real in-flight upstream request without sending a reply',{timeout:6000},async t=>{
+  let arrived;const received=new Promise(resolve=>arrived=resolve);
+  const server=http.createServer(async(req,res)=>{for await(const chunk of req){}arrived();});
+  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>{server.closeAllConnections();server.close();});
+  config({api:{baseUrl:'http://127.0.0.1:'+server.address().port+'/v1',apiKey:'fixture-only',model:'offline-test',timeoutMs:3000}});
+  const chat='group:12345',store=new ChatStore(),sessions=new SessionRegistry();let sent=0;
+  const orchestrator=new Orchestrator({store,memory:new MemoryStore(),sessions,sender:{sendText:async()=>sent++},onebot:{selfId:'77777'}});orchestrator.social=runtime();
+  store.appendIncoming(chat,{mid:789,senderId:'23456',atMe:true,directText:'帮我看看',text:'帮我看看'});
+  const running=orchestrator.wake(chat);await received;
+  const id=orchestrator.activeRuns.get(chat),signal=orchestrator.sessionAbortControllers.get(id).signal;
+  const stop=store.appendIncoming(chat,{mid:790,senderId:'23456',atMe:true,directText:'别说了',text:'别说了'});
+  orchestrator.onIncoming(chat,stop);assert.equal(signal.aborted,true);
+  await running;assert.equal(sent,0);assert.equal(orchestrator.activeRuns.has(chat),false);sessions.flushIndexCache();
+});

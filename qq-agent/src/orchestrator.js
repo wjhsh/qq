@@ -9,6 +9,7 @@
 // 同一会话（群/私聊）同时最多一个运行；运行期间新消息只写 JSON（未读），不叠加触发。
 // 不同会话之间并行，受 maxConcurrentRuns 全局限流。
 import { modelInputAllowed, inspectInput } from './input-guard.mjs';
+import { socialRunOwner } from './social-runtime.mjs';
 import { getConfig, storeConfigForChat, personaForChat } from './config.js';
 import { mayTriggerPeerReply } from './bot-interaction.mjs';
 import { groupStyleForChat, roleIdentity } from './role-isolation.mjs';
@@ -178,9 +179,19 @@ export class Orchestrator {
     const socialAdmission=this.social?.admit(chatKey,entry,this.store);
     if(socialAdmission?.allow===false){
       if(socialAdmission.reason==='explicit_stop'){
-        const id=this.activeRuns.get(chatKey)||this.pendingSessions.get(chatKey),run=id?this.sessions.get(id):null;
-        // A person can stop their own current interaction, not another user's task.
-        if(run?.trigger?.at(-1)?.senderId===entry?.senderId)this.preparePersonaSwitch(chatKey);
+        const id=this.activeRuns.get(chatKey);
+        const unread=this.store.peekUnread(chatKey,this.store.unreadCount(chatKey))||[];
+        // Waiting snapshots are abbreviated and stale. The stop itself is not
+        // evidence that its sender owns the already pending interaction.
+        const entries=id?this.sessions.get(id)?.trigger
+          :unread.filter(e=>e.id!==entry?.id);
+        const owner=socialRunOwner(this.social,chatKey,entries,this.store);
+        if(owner!==null&&owner===String(entry?.senderId)){
+          // Consume this person's cancelled requests, not other people's input.
+          // Otherwise the next message would wake the very task just stopped.
+          for(const e of unread)if(String(e.senderId)===owner)this.store.markEntryRead(chatKey,e.id);
+          this.preparePersonaSwitch(chatKey);
+        }
       }
       if(entry)this.store.markEntryRead(chatKey,entry.id);return;
     }

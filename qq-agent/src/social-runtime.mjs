@@ -15,6 +15,20 @@ export function permitsDirectPeer(config,chatKey,entry){
   return socialPolicy(config)&&config.socialBehavior.allowDirectPeers===true&&group(chatKey)&&entry?.atMe===true;
 }
 
+// A single addressed human owns the batch; ambiguous group activity owns none.
+export function socialRunOwner(runtime,chatKey,entries,store){
+  if(!Array.isArray(entries))return null;
+  const direct=new Set(),people=new Set(),cfg=runtime?.getConfig?.();
+  for(const e of entries){
+    if(!e||e.self||!uid(e.senderId)||!modelInputAllowed(e)
+      ||e.automatedPeer===true||isAutomatedPeer(cfg,chatKey,e.senderId))continue;
+    const id=String(e.senderId);people.add(id);
+    if(runtime?.directed(chatKey,e,store))direct.add(id);
+  }
+  if(direct.size)return direct.size===1?[...direct][0]:null;
+  return people.size===1?[...people][0]:null;
+}
+
 // Hosts supply structural addressing. The model decides ambiguous social intent
 // in its normal reply turn; no extra classifier and no emotion keyword guessing.
 export class SocialRuntime{

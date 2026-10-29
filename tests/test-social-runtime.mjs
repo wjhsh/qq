@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SocialRuntime} from '../qq-agent/src/social-runtime.mjs';
+import {SocialRuntime,socialRunOwner} from '../qq-agent/src/social-runtime.mjs';
 import {incomingPeerPolicy,mayTriggerPeerReply,filterAutomatedHistory,assertPeerTargets} from '../qq-agent/src/bot-interaction.mjs';
 const chat='group:12345',entry={id:1,mid:11,senderId:'23456',atMe:true,directText:'好猫，给你小鱼干',text:'好猫，给你小鱼干'};
 function fixture(){let time=0;const cfg={socialBehavior:{enabled:true,allowDirectPeers:true},botInteraction:{enabled:true,userIds:['34567']}};
@@ -60,4 +60,16 @@ test('transport-confirmed bot reply targets are blocked without a configured bot
 test('feedback uses platform ID, allows an optional #, and never falls back to a colliding local index',()=>{
   const f=fixture();assert.equal(f.runtime.feedback(f.ctx,{event:'play',messageId:1,quote:'好猫'}),false);
   assert.equal(f.runtime.feedback(f.ctx,{event:'play',messageId:'#11',quote:'好猫'}),true);
+});
+
+test('run ownership follows a single addressed human, never tail position or bot/excluded messages',()=>{
+  const {runtime}=fixture(),a={...entry},b={...entry,senderId:'45678',atMe:false};
+  assert.equal(socialRunOwner(runtime,chat,[a,b]),'23456');
+  assert.equal(socialRunOwner(runtime,chat,[a,{...b,atMe:true}]),null);
+  assert.equal(socialRunOwner(runtime,chat,[{...a,atMe:false},b]),null);
+  assert.equal(socialRunOwner(runtime,chat,[b,b]),'45678');
+  assert.equal(socialRunOwner(runtime,chat,[b,{...a,senderId:'34567'}, {...a,self:true},{...a,modelExcluded:true},{...a,senderId:undefined}]),'45678');
+  assert.equal(socialRunOwner(runtime,chat,[a,b],{findByMid:()=>({self:true})}),null);
+  assert.equal(socialRunOwner(runtime,'private:12345',[a]),'23456');
+  assert.equal(socialRunOwner(runtime,chat,undefined),null);
 });

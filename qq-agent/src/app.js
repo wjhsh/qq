@@ -1502,7 +1502,9 @@ export function createApp({ log = console.log } = {}) {
       senderName: operatorName,
       text,
       media: [],
-      isPoke: true
+      isPoke: true,
+      atMe: String(targetId) === String(selfId),
+      atUserIds: targetId ? [String(targetId)] : []
     });
     emit('chat-update', `${isGroup ? 'group' : 'private'}:${id}`);
     orchestrator.onIncoming(`${isGroup ? 'group' : 'private'}:${id}`, entry);

@@ -53,3 +53,38 @@ test('corrupt persisted values fail closed without overwriting original file',t=
   Object.values(corrupt.scopes)[0].relations[U].p='not-a-number';const text=JSON.stringify(corrupt);fs.writeFileSync(f.filePath,text);
   assert.throws(()=>new SocialState({filePath:f.filePath}),/Invalid persisted/);assert.equal(fs.readFileSync(f.filePath,'utf8'),text);
 });
+
+test('duplicate evidence neither refreshes event age nor activity, including after reload',t=>{
+  const f=fixture(t);f.state.apply(S,U,{event:'correction',id:'once'});
+  const bytes=fs.readFileSync(f.filePath,'utf8'),activity=f.state.data.scopes[`${S.chatKey}::${S.roleScope}`].lastSeen;
+  f.advance(1800001);assert.equal(f.state.apply(S,U,{event:'correction',id:'once'}).recentEvent,null);
+  assert.equal(fs.readFileSync(f.filePath,'utf8'),bytes);
+  assert.equal(f.state.data.scopes[`${S.chatKey}::${S.roleScope}`].lastSeen,activity);
+  assert.equal(new SocialState({filePath:f.filePath,now:f.now}).snapshot(S,U).recentEvent,null);
+});
+
+test('rate-limited evidence is remembered but cannot refresh or later replay an old emotion',t=>{
+  const f=fixture(t);
+  for(let i=0;i<4;i++){if(i)f.advance(300001);f.state.apply(S,U,{event:'play',id:'p'+i});}
+  f.advance(1800001);assert.equal(f.state.apply(S,U,{event:'comfort',id:'limited'}).recentEvent,null);
+  f.advance(3600001);
+  const before=f.state.snapshot(S,U);
+  assert.deepEqual(f.state.apply(S,U,{event:'comfort',id:'limited'}),before);
+  assert.equal(new SocialState({filePath:f.filePath,now:f.now}).snapshot(S,U).recentEvent,null);
+});
+
+test('version-one event age migrates once; malformed timestamps and missing replay protection fail closed',t=>{
+  const f=fixture(t);f.state.apply(S,U,{event:'correction',id:'old'});
+  const data=JSON.parse(fs.readFileSync(f.filePath)),key=`${S.chatKey}::${S.roleScope}`;
+  delete data.scopes[key].relations[U].eventAt;
+  fs.writeFileSync(f.filePath,JSON.stringify(data));
+  const migrated=new SocialState({filePath:f.filePath,now:f.now});
+  f.advance(1800001);assert.equal(migrated.apply(S,U,{event:'comfort',id:'comfort'}).recentEvent,'comfort');
+  const legacy=new SocialState({filePath:f.filePath,now:f.now});
+  f.advance(1800001);assert.equal(legacy.apply(S,U,{event:'comfort',id:'comfort'}).recentEvent,null);
+  for(const mutate of [r=>r.eventAt='bad',r=>delete r.seen,r=>delete r.positiveAt]){
+    const bad=structuredClone(data);mutate(bad.scopes[key].relations[U]);const bytes=JSON.stringify(bad);fs.writeFileSync(f.filePath,bytes);
+    assert.throws(()=>new SocialState({filePath:f.filePath,now:f.now}),/Invalid persisted/);
+    assert.equal(fs.readFileSync(f.filePath,'utf8'),bytes);
+  }
+});
