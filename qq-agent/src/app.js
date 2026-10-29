@@ -1,6 +1,8 @@
 // 总装：OneBot 事件接入 → 存储 → 编排器；HTTP API + SSE 给 UI。
 // Electron 主进程与 headless 服务器都从这里启动。
 import http from 'node:http';
+import { SocialRuntime } from './social-runtime.mjs';
+import { GeminiVoice } from './gemini-voice.mjs';
 import net from 'node:net';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -934,6 +936,8 @@ export function createApp({ log = console.log } = {}) {
     sendReply: (chatKey, text) => sender.sendControlText(chatKey, [text], { dedupe: false }) });
 
   const biliReader = new BiliHttpReader();
+  orchestrator.social = new SocialRuntime({getConfig,roleIdentity,filePath:path.join(DATA_DIR,'social-state.json'),onError:log});
+  orchestrator.voice = new GeminiVoice({getConfig});
   const memeLibrary = new MemeLibrary({ filePath: path.join(DATA_DIR, 'meme-library.json') });
   const communityAccess = createCommunityAccess({ getConfig, ownerConsole, groupAllowed: controlGroup });
   orchestrator.biliReader = biliReader;
@@ -1359,6 +1363,8 @@ export function createApp({ log = console.log } = {}) {
       media,
       atMe,
       atNames,
+      atUserIds: (segments||[]).filter(s=>s?.type==='at').map(s=>s.data?.qq),
+      automatedPeer: peerPolicy.knownPeer===true,
       peerDirected: peerPolicy.directedElsewhere
     });
     emit('chat-update', `${kind}:${id}`);

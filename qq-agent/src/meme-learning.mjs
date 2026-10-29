@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {parseBvid} from './bili-reader.mjs';
-import {biliView,sourceText,validateCandidates} from './bili-view.mjs';
+import {biliView,sourceRecords,validateCandidates} from './bili-view.mjs';
 
 // Low frequency, source-backed learning. It cannot change persona, memory or permissions.
 export function createMemeLearning({filePath,getConfig,roleIdentity,access,biliReader,memeLibrary,extractCandidates,now=Date.now}) {
@@ -44,14 +44,15 @@ export function createMemeLearning({filePath,getConfig,roleIdentity,access,biliR
       }
       const info=biliView(await biliReader.read(bvid,'info'),'info');
       if(!allowed())return{saved:0,reason:'会话权限或角色已改变'};
-      const comments=biliView(await biliReader.read(bvid,'comments'),'comments');
-      const evidence=sourceText(info,comments);
-      if(!allowed()||!evidence)return{saved:0,reason:'没有可整理的文字或会话已改变'};
+      let comments={comments:[]},commentsUnavailable=false;
+      try{comments=biliView(await biliReader.read(bvid,'comments'),'comments');}catch{commentsUnavailable=true;}
+      const evidence=sourceRecords(info,comments);
+      if(!allowed()||!evidence.length)return{saved:0,reason:'没有可整理的文字或会话已改变'};
       const candidates=validateCandidates(await extractCandidates(evidence),evidence);
       if(!allowed())return{saved:0,reason:'会话权限或角色已改变，未保存'};
-      const scope={chatKey:event.chatKey,roleId:role.id};
+      const scope={chatKey:event.chatKey,roleId:role.id,roleVersion:role.scope};
       const entries=memeLibrary.addMany(candidates.map(c=>({...c,bvid,automatic:true})),scope);
-      return{saved:entries.length,items:entries.map(({id,title,meaning,usage,sourceUrl})=>({id,title,meaning,usage,sourceUrl})),note:'仅本群当前角色；网友表达素材，含义是候选解读，不代表事实。可 /梗库 禁用 编号'};
+      return{saved:entries.length,commentsUnavailable,items:entries.map(({id,title,meaning,usage,sourceUrl})=>({id,title,meaning,usage,sourceUrl})),note:'仅保存待审核候选；主人 /梗库 收藏 编号 后才供聊天召回。评论不可用时仅依据已有文字，不代表完整视频互动。'};
     } finally {busy=false;}
   }};
 }

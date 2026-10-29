@@ -316,6 +316,9 @@ export const DEFAULT_CONFIG = {
   // Local bot identities are independent of the community blocklist sync.
   naturalChat: { enabled: true },
   botInteraction: { enabled: false, userIds: [], byGroup: {} },
+  // Enable only after offline replay review. No role card is replaced.
+  socialBehavior: { enabled: false, allowDirectPeers: false },
+  voice: { provider:'edge', enabled: false, model: 'gemini-3.8-flash-lite-tts', voice: 'Kore', apiKeyEnv: 'GEMINI_TTS_API_KEY' },
   // 全局屏蔽名单（"上云"）：[QQ号, ...]
   // 与 blocklist 的区别：blocklist 是按群单独屏蔽；globalBlocklist 对**所有群**生效——
   // 一旦某人被加进来，他在任何群里的消息都会被丢弃（含私聊）。

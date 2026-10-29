@@ -1,0 +1,83 @@
+{
+  "qq_model": "account2/gemini-3.8-flash-high",
+  "bot_policy_enabled": true,
+  "social_enabled": false,
+  "voice_configured": false,
+  "google_catalog": [
+    "gemini-3.8-flash-high",
+    "gemini-3.1-flash-lite",
+    "gemini-3-flash",
+    "gemini-3.5-flash-lite",
+    "account2/gemini-3.1-flash-lite",
+    "account2/gemini-3.5-flash-lite",
+    "gemini-3.1-flash-image",
+    "account2/gemini-3.8-flash-high",
+    "account2/gemini-3-flash",
+    "account2/gemini-3.1-flash-image"
+  ],
+  "tts_in_proxy_catalog": false,
+  "source_checks": [
+    {
+      "file": "bot-interaction.mjs",
+      "sha256": "5e875d53c06560800f2bde14376ff8f2f1586885b6708d1c4b81fbfcf9efffd5",
+      "same_original_working_copy": true
+    },
+    {
+      "file": "natural-chat.mjs",
+      "sha256": "7e50cfd4ba33147a4071266f14941e6c61708b5716653b47d0d05f3661ac9a79",
+      "same_original_working_copy": true
+    },
+    {
+      "file": "prompt.js",
+      "sha256": "d94791359e1f32c65322569643d5060c3d7299a13441afea47109f8bc33b0a83",
+      "same_original_working_copy": true
+    },
+    {
+      "file": "meme-library.mjs",
+      "sha256": "b6b054cb4ce34a2ca3492295d3e768c9f0a8e1b2327b897cf7506a4f1298a68d",
+      "same_original_working_copy": true
+    },
+    {
+      "file": "meme-learning.mjs",
+      "sha256": "6246677547df09abaa8adca450460e059701bdf94f921f0c59d4577dd42eeb5a",
+      "same_original_working_copy": true
+    },
+    {
+      "file": "bili-view.mjs",
+      "sha256": "d8c77f601d410a729b965577eab236863c1979e5a26e093c96338aa7b8d0efb3",
+      "same_original_working_copy": true
+    },
+    {
+      "file": "meme-extractor.mjs",
+      "sha256": "a79ef9d22380bf423103f0ae105c2e20a57cb4f38753ec95e74457420a0b3ee4",
+      "same_original_working_copy": true
+    },
+    {
+      "file": "role-isolation.mjs",
+      "sha256": "c5d4831448e64130950f638106114226845a644bb79945b0391cbd3ee4474a03",
+      "same_original_working_copy": true
+    }
+  ],
+  "workbuddy_catalog": [
+    "hy4-preview",
+    "hy3",
+    "deepseek-v4.1-flash",
+    "glm-5.3",
+    "glm-5.3-flash",
+    "glm-5.2",
+    "glm-5.1",
+    "glm-5v-turbo",
+    "minimax-m3",
+    "kimi-k3-1",
+    "kimi-k2.8-preview",
+    "kimi-k2.7",
+    "kimi-k2.6",
+    "deepseek-v4-pro",
+    "step-5-preview",
+    "space-bunny",
+    "minimax-m3.1-flash",
+    "kimi-k3.1-pro",
+    "mimo-v2.6-pro"
+  ],
+  "google_tts_auth": "No key found in checked voice config or probe process environment; no successful TTS request. Not an exhaustive credential search."
+}

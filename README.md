@@ -1,5 +1,7 @@
 # 哈基米 Agent
 
+本轮更新：[2026-10-30 社交进化交付](reports/social-evolution-20261030/README.md)。已批准部署社交状态、接话与停止约束、梗库审核与版本修正；核心210项离线检查通过，另有10项部署事务演练。语音当前保持Edge，Gemini适配待授权。见[部署与验收记录](reports/social-evolution-20261030/deployment.md)。
+
 新增研究：[中文互联网幽默与社交机制研究（2026-10-29）](research/chinese-humor/2026-10-29/README.md)，含90个分级案例、36项来源与轻量实现建议。本次仅更新研究资料，不自动应用线上角色或配置。
 
 QQ Agent 与 Pi 任务服务的源码维护仓库。当前发布以 2026-10-21 的实际服务器源码为基线，包含双 Google 账号手动路由、请求保护、只读诊断与 WorkBuddy → Pi 接入。
@@ -21,7 +23,7 @@ QQ Agent 与 Pi 任务服务的源码维护仓库。当前发布以 2026-10-21 �
 - `ops/`：已有巡检、手机私网控制台等配套源码。
 - `tests/`：QQ 触发、原文提示词、图生图与隔离回归。
 - `reports/`：脱敏运行基线、改动与验证记录。
-- `tools/check.py`：171 项离线回归，包含发布配置及 Pi 渠道隔离检查。
+- `tools/check.py`：210 项离线回归，包含社交、语音、发布配置及 Pi 渠道隔离检查。
 
 ## 当前模型与维护入口
 
@@ -48,6 +50,9 @@ QQ Agent 与 Pi 任务服务的源码维护仓库。当前发布以 2026-10-21 �
 需要 Node.js 20+、Python 3.10+ 和 Pillow。
 
 ```sh
+cd qq-agent
+npm ci --omit=dev --ignore-scripts
+cd ..
 python -m pip install -r requirements-dev.txt
 python tools/check.py
 ```

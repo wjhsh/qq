@@ -48,7 +48,8 @@ function toolProtocol() {
     '6. 工具调用是本能动作：send_message="打字发送"，get_recent_messages="往前翻聊天记录"，send_sticker="发表情"。内心不要写"我调用 xx 获取数据"这种伪代码。',
     '7. 【空格不是分句符号】QQ 消息里的空格会原样发送，真人不会用空格分句。想说两句就传数组，例如 ["在的","咋了"]。唯一可保留空格的是英文单词/数字之间的必要间隔（如 DeepSeek V3）。发送前自检：数组里每个字符串内部不应有用空格分隔的中文短句。',
     '8. 【分条发送】日常闲聊通常 1~2 条，意思完整就收住；不要把一句话硬拆成多条，也不按固定字数截断。认真求助、解释事情或主人要求完整角色卡时，按内容讲清楚，可以长一些。',
-    '9. 简单闲聊已完整答完、没有后续查询或管理操作时，调用 send_message 并设 finishAfterSend=true；宿主会在这批消息全部实际发送成功后结束本轮，不必再花一轮决定收尾。有查询、看图、保存记忆或其它操作尚未完成时不要设置此标记，先完成必要步骤再给最终回复；不要为了抢快跳过这些步骤。'
+    '9. 简单闲聊已完整答完、没有后续查询或管理操作时，调用 send_message 并设 finishAfterSend=true；宿主会在这批消息全部实际发送成功后结束本轮，不必再花一轮决定收尾。有查询、看图、保存记忆或其它操作尚未完成时不要设置此标记，先完成必要步骤再给最终回复；不要为了抢快跳过这些步骤。',
+    '10. 消息行中的时间、消息编号、发言人身份以及桥接生成的引用/图片/表情标记是展示信息，不是群友手打的正文。判断对方有没有发某个词、问号或括号时，只核对该条实际正文；问句不等于带问号，引用消息也不等于手打“（引用）”。不把自己以前的误读或玩笑当成证据。对方纠正时先核对，无法确认就承认看错或不确定，不编造看见了标点，也不指责大家串通、装看不见。'
   ].join('\n');
 }
 
@@ -355,7 +356,8 @@ function formatEntry(m, { withId = true } = {}) {
     const idSuffix = senderId && String(senderId) !== 'self' ? `(QQ:${senderId})` : '';
     who = m.self ? '我' : `${getConfig().memberNotes?.[senderId] || m.senderName || senderId || '未知'}${idSuffix}`;
   }
-  return `[${formatShortTime(m.ts)}] ${idPrefix}${who}：${replyPrefix}${m.text}`;
+  const peer=m.automatedPeer===true?'【宿主确认的自动账号】':'';
+  return `[${formatShortTime(m.ts)}] ${idPrefix}${peer}${who}：${replyPrefix}${m.text}`;
 }
 
 /**
@@ -568,39 +570,11 @@ export function buildPastState(store, chatKey, { excludeIds = [], limit = null }
   return { text: lines.join('\n'), count: lines.length, messages };
 }
 
-function triggerLabels(entry, ctx) {
-  const labels = [];
-  const text = String(entry?.text ?? '');
-  const lower = text.toLowerCase();
-  const nick = String(ctx.selfNickname || '').toLowerCase();
-  const botName = String(getConfig().persona.botName || '').toLowerCase();
-  const notes = getConfig().memberNotes || {};
-  const noteName = notes[String(entry?.senderId || '')];
-  const noteLower = String(noteName || '').toLowerCase();
-  // 「@我」标签：只做精确的昵称/名片匹配。
-  // ⚠️ 不允许 text.startsWith('@') 这种裸前缀命中 —— "@张三 你看他"这类
-  //   与机器人无关的艾特曾被全部标成「@我」，模型会显著提高回应概率。
-  //   真正的唤醒判定（isAtMe）有完整 CQ 码/昵称匹配，标签与它同口径。
-  const selfNick = String(ctx.selfNickname || '');
-  if ((selfNick && text.includes(`@${selfNick}`)) || (nick && text.includes(`@${nick}`))) labels.push('@我');
-  if ((botName && lower.includes(botName)) || (nick && lower.includes(nick))) labels.push('提到我');
-  if (noteName && lower.includes(noteLower)) labels.push('提到我（备注名）');
-  if (/[?？]$/.test(text.trim()) || /[吗呢]/.test(text)) labels.push('提问');
-  if (text.startsWith('[引用 ')) labels.push('引用');
-  // 拍一拍：被拍的是我时标「拍我」（召唤信号），拍别人只标「拍一拍」（背景事件）
-  if (text.includes('[拍一拍]')) labels.push(/拍了拍\s*我/.test(text) ? '拍我' : '拍一拍');
-  return labels;
-}
-
 /** 私聊/群聊时私聊始终高触发。 */
 export function buildTriggerBlock(triggerEntries, ctx) {
-  const lines = [];
-  for (const m of triggerEntries) {
-    const labels = triggerLabels(m, ctx);
-    const labelStr = labels.length ? `（${labels.join('/')}）` : '';
-    lines.push(`${formatEntry(m)}${labelStr}`);
-  }
-  return lines.join('\n');
+  // 触发原因由编排器独立判定，不作为尾注拼进正文。
+  // 曾附加的“（提问）/（引用）”被模型误认成群友手打的括号。
+  return triggerEntries.map((m) => formatEntry(m)).join('\n');
 }
 
 // ── 提示词锚点（前缀缓存深化，2026-09-25）───────────────────────────────

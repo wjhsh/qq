@@ -1,14 +1,14 @@
 import {extractAdminText} from './natural-admin.mjs';
 import {parseBvid} from './bili-reader.mjs';
-import {biliView,sourceText,validateCandidates,formatBili} from './bili-view.mjs';
-const HELP='B站只读工具：\n/B站 状态\n/B站 搜索 关键词\n/B站 读取 BV号\n/B站 评论 BV号\n梗库（仅当前会话、当前角色）：\n/梗库 列表\n/梗库 查看 m-编号\n主人可用：\n/梗库 添加 标题 | 含义 | 用法\n/梗库 采集 BV号\n/梗库 学习 主题（自动整理并启用）\n/梗库 收藏 m-编号\n/梗库 禁用 m-编号\n采集只进入候选区；收藏后才供聊天检索。这里的收藏不操作B站收藏夹。';
+import {biliView,sourceRecords,validateCandidates,formatBili} from './bili-view.mjs';
+const HELP='B站只读工具：\n/B站 状态\n/B站 搜索 关键词\n/B站 读取 BV号\n/B站 评论 BV号\n梗库（仅当前会话、当前角色）：\n/梗库 列表\n/梗库 查看 m-编号\n主人可用：\n/梗库 添加 标题 | 含义 | 用法\n/梗库 采集 BV号\n/梗库 学习 主题（整理成待审核候选）\n/梗库 收藏 m-编号\n/梗库 禁用 m-编号\n采集只进入候选区；收藏后才供聊天检索。这里的收藏不操作B站收藏夹。';
 export function createCommunityCommands({getConfig,getSelfId,access,roleIdentity,biliReader,memeLibrary,memeLearning,extractCandidates,sendReply}){
   let queued=0,tail=Promise.resolve();
   async function run(event,match){
     const category=match[1].toLowerCase()==='b站'?'bili':'meme',body=match[2]?.trim()||'帮助';
     const search=category==='bili'||/^(采集|学习)\s/.test(body);
     if(!access.canRead(event,{search}))return{handled:true};
-    const role=roleIdentity(getConfig(),event.chatKey),scope={chatKey:event.chatKey,roleId:role.id};
+    const role=roleIdentity(getConfig(),event.chatKey),scope={chatKey:event.chatKey,roleId:role.id,roleVersion:role.scope};
     const allowed=()=>access.canRead(event,{search})&&roleIdentity(getConfig(),event.chatKey).scope===role.scope;
     const manage=()=>allowed()&&access.canManage(event);
     const reply=async text=>{if(allowed())await sendReply(event.chatKey,text,allowed);};
@@ -27,7 +27,7 @@ export function createCommunityCommands({getConfig,getSelfId,access,roleIdentity
       }else if(/^学习\s+/.test(body)){
         if(!manage())return{handled:true};
         const data=await memeLearning.learn(event,{query:body.slice(3).trim()},role.scope);
-        await reply(data.saved?'已积累到本群当前角色：\n'+data.items.map(e=>e.id+' '+e.title+'\n'+e.sourceUrl).join('\n')+'\n网友表达素材，可用 /梗库 禁用 编号 移除。':data.reason||'没有提炼到有来源的表达素材。');
+        await reply(data.saved?'已保存本群当前角色的待审核候选：\n'+data.items.map(e=>e.id+' '+e.title+'\n'+e.sourceUrl).join('\n')+'\n主人确认后用 /梗库 收藏 编号 启用。':data.reason||'没有提炼到有来源的表达素材。');
       }else if(body==='列表'){
         const entries=memeLibrary.list(scope,access.canManage(event)?{}:{status:'approved'}).slice(0,20);
         await reply(entries.map(e=>`${e.id} [${{pending:'候选',approved:'已收藏',disabled:'禁用'}[e.status]}] ${e.title}`).join('\n')||'当前会话、当前角色暂无素材。');
@@ -50,10 +50,10 @@ export function createCommunityCommands({getConfig,getSelfId,access,roleIdentity
           const bvid=parseBvid(body.slice(3));
           const info=biliView(await biliReader.read(bvid),'info');
           if(!manage())return{handled:true};
-          const comments=biliView(await biliReader.read(bvid,'comments'),'comments');
-          const evidence=sourceText(info,comments);
+          let comments={comments:[]};try{comments=biliView(await biliReader.read(bvid,'comments'),'comments');}catch{/* Lower evidence level remains in source records. */}
+          const evidence=sourceRecords(info,comments);
           if(!manage())return{handled:true};
-          if(!evidence)throw Error('该视频没有可用于提取的文字');
+          if(!evidence.length)throw Error('该视频没有可用于提取的文字');
           const extracted=validateCandidates(await extractCandidates(evidence),evidence);
           if(!manage())return{handled:true};
           const entries=memeLibrary.addMany(extracted.map(c=>({...c,bvid})),scope);

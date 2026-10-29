@@ -3,6 +3,8 @@ import { createHash } from 'node:crypto';
 import { access } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getConfig } from '../../src/config.js';
+import { registerVoiceTool } from '../../src/gemini-voice.mjs';
 
 const SKILL_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEPLOY_DIR = path.resolve(SKILL_DIR, '../../..');
@@ -31,7 +33,8 @@ function voiceError(code) {
 
 function validateRequest(args) {
   if (!args || typeof args !== 'object' || Array.isArray(args)
-      || Object.keys(args).some((key) => key !== 'text' && key !== 'voice')) {
+      || Object.keys(args).some((key) => !['text','voice','finishAfterSend'].includes(key))
+      || (args.finishAfterSend!==undefined&&typeof args.finishAfterSend!=='boolean')) {
     return { error: '只接受text和voice两个参数。' };
   }
   if (typeof args.text !== 'string' || !args.text.trim()) {
@@ -165,5 +168,6 @@ export function createVoiceTool({ synthesize = synthesizeSpeech } = {}) {
 }
 
 export function setup(api) {
-  api.registerTool(createVoiceTool());
+  if(getConfig().voice?.provider==='gemini')registerVoiceTool(api.registerTool,{getConfig});
+  else api.registerTool(createVoiceTool());
 }
