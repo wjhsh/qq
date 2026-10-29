@@ -1,0 +1,74 @@
+{
+  "files": [
+    {
+      "file": "meme-learning.mjs",
+      "server_sha256": "6246677547df09abaa8adca450460e059701bdf94f921f0c59d4577dd42eeb5a",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/meme-learning.mjs",
+      "published_baseline_same_text": true
+    },
+    {
+      "file": "meme-library.mjs",
+      "server_sha256": "b6b054cb4ce34a2ca3492295d3e768c9f0a8e1b2327b897cf7506a4f1298a68d",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/meme-library.mjs",
+      "published_baseline_same_text": true
+    },
+    {
+      "file": "bili-reader.mjs",
+      "server_sha256": "35472a4c754a942b2e4f1f4026cf8526904ebe4c905e3c79a66565ef6d5e5c0e",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/bili-reader.mjs",
+      "published_baseline_same_text": true
+    },
+    {
+      "file": "bili-view.mjs",
+      "server_sha256": "d8c77f601d410a729b965577eab236863c1979e5a26e093c96338aa7b8d0efb3",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/bili-view.mjs",
+      "published_baseline_same_text": true
+    },
+    {
+      "file": "meme-extractor.mjs",
+      "server_sha256": "a79ef9d22380bf423103f0ae105c2e20a57cb4f38753ec95e74457420a0b3ee4",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/meme-extractor.mjs",
+      "published_baseline_same_text": true
+    },
+    {
+      "file": "natural-chat.mjs",
+      "server_sha256": "7e50cfd4ba33147a4071266f14941e6c61708b5716653b47d0d05f3661ac9a79",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/natural-chat.mjs",
+      "published_baseline_same_text": false
+    },
+    {
+      "file": "group-memory.js",
+      "server_sha256": "47723d75d8a06b91394d54c3ca974488a21b1373b9da3b20f28cf27b95f26b56",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/group-memory.js",
+      "published_baseline_same_text": true
+    },
+    {
+      "file": "memory.js",
+      "server_sha256": "39bc94c663f38058b7e02e9a0053b65db407098fe1a65044e10facc28612d412",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/memory.js",
+      "published_baseline_same_text": true
+    },
+    {
+      "file": "community-access.mjs",
+      "server_sha256": "ac9cd33b465444c57f885b5ff80d07d54464a62719416ddfbb497dfc3908ff17",
+      "matches_working_copy": true,
+      "repository_path": "qq-agent/src/community-access.mjs",
+      "published_baseline_same_text": true
+    }
+  ],
+  "auto_learning_enabled": true,
+  "auto_learning_group_count": 1,
+  "meme_entries": 0,
+  "read_only": true,
+  "checked_on": "2026-10-29",
+  "published_baseline": "83f9e4f48d600fdc397817b66c2f319ee2060416",
+  "scope_note": "Nine selected modules only; source and runtime observations are point-in-time, not full service audit."
+}

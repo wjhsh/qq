@@ -1,0 +1,28 @@
+{
+  "cases": 90,
+  "sources": 36,
+  "verdicts": {
+    "mixed": 26,
+    "negative": 22,
+    "positive_hypothesis": 23,
+    "baseline": 4,
+    "mechanism_reference": 14,
+    "boundary_reference": 1
+  },
+  "evidence": {
+    "project_chat_text": 74,
+    "ai_subtitle_text": 4,
+    "paper_example": 2,
+    "dataset_readme_example": 1,
+    "design_example": 3,
+    "dataset_entry": 5,
+    "dataset_preview": 1
+  },
+  "project_groups": {
+    "G02": 69,
+    "G03": 5
+  },
+  "case_sha256": "72bd9accd9b32d53225ddf318df140d14ee77a06612f51c18e21dce72d975c2a",
+  "digest_format": "UTF-8 with LF newlines",
+  "production_modified": false
+}

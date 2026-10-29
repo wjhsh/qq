@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hajimi humor research case",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "source_id",
+    "evidence_type",
+    "source_url",
+    "locator",
+    "excerpt",
+    "excerpt_mode",
+    "context",
+    "mechanism",
+    "analysis",
+    "verdict",
+    "intensity",
+    "relationship",
+    "use_when",
+    "observed_followup",
+    "next_or_stop",
+    "uncertainty",
+    "training_eligible"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^H[0-9]{3}$"
+    },
+    "intensity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "evidence_type": {
+      "enum": [
+        "project_chat_text",
+        "ai_subtitle_text",
+        "paper_example",
+        "dataset_readme_example",
+        "design_example",
+        "dataset_entry",
+        "dataset_preview"
+      ]
+    },
+    "excerpt_mode": {
+      "enum": [
+        "verbatim",
+        "verbatim_prefix",
+        "paraphrase"
+      ]
+    },
+    "training_eligible": {
+      "const": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "excerpt": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string"
+    },
+    "mechanism": {
+      "type": "string"
+    },
+    "analysis": {
+      "type": "string"
+    },
+    "verdict": {
+      "type": "string"
+    },
+    "relationship": {
+      "type": "string"
+    },
+    "use_when": {
+      "type": "string"
+    },
+    "observed_followup": {
+      "type": "string"
+    },
+    "next_or_stop": {
+      "type": "string"
+    },
+    "uncertainty": {
+      "type": "string"
+    },
+    "locator": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}
