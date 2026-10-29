@@ -1,0 +1,12 @@
+{
+  "socialBehavior": { "enabled": true, "allowDirectPeers": false },
+  "botInteraction": { "enabled": true, "userIds": [], "byGroup": {} },
+  "voice": {
+    "provider": "gemini",
+    "enabled": false,
+    "model": "gemini-3.8-flash-lite-tts",
+    "voice": "Kore",
+    "apiKeyEnv": "GEMINI_TTS_API_KEY",
+    "allowSpontaneous": false
+  }
+}

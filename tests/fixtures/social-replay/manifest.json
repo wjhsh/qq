@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "date": "2026-10-30",
+  "development_cases": 24,
+  "holdout_cases": 12,
+  "split": "Holdout windows are outside the 90 research-case neighborhoods (40 messages), and 100 messages apart. This is not a guarantee of topic independence.",
+  "holdout_use": "Created after initial prototype, before model replay; excluded from tuning prompts. Freeze code before unsealing. Do not retune on this holdout.",
+  "files": {
+    "development.json": "f3fb4a1dd825a397377ea06ddde6bbbd7b874e2f99fe74339bc452061ba8be8c",
+    "holdout.json": "8b76649b7188bcae65413c7ad3b5e93beb8702a02d7573bf1684002f2c7f4516"
+  }
+}

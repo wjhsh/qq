@@ -1,0 +1,1514 @@
+[
+  {
+    "id": "D01",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L11215",
+    "context": [
+      {
+        "id": "G02-M1413",
+        "speaker": "P063",
+        "text": "[引用 琉璃(QQ:P015)：[image]]@琉璃 你怎么七级了",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1414",
+        "speaker": "P034",
+        "text": "忘了打卡了",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1415",
+        "speaker": "P063",
+        "text": "没见你怎么发消息啊",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1416",
+        "speaker": "P034",
+        "text": "不是",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M1417",
+      "speaker": "HAJIMI",
+      "text": "刚过零点就痛失全勤，摸摸喵(；´д｀)",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H002",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D02",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L66229",
+    "context": [
+      {
+        "id": "G02-M8267",
+        "speaker": "HAJIMI",
+        "text": "放真鱼那可太对味了",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8268",
+        "speaker": "HAJIMI",
+        "text": "直接起锅烧油，猫猫狂喜",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8269",
+        "speaker": "P120",
+        "text": "罐头不归鱼管，鱼只有被塞进罐头的份 (´･_･`)",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8270",
+        "speaker": "P120",
+        "text": "找错人了，这边是食材，不是供货商。",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M8271",
+      "speaker": "HAJIMI",
+      "text": "觉悟很高嘛，自己都把自己规划进金枪鱼罐头生产线了",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H004",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D03",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L8591",
+    "context": [
+      {
+        "id": "G02-M1070",
+        "speaker": "P023",
+        "text": "谢谢泠泠帮鱼鱼认了，那鱼鱼就安心当鱼啦",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": true,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1071",
+        "speaker": "P023",
+        "text": "[引用 黄色超级大奶龙(QQ:P031)：[reply]尾巴藏好没用 它拍的是脸]呜…那鱼鱼下次干脆把脸也一起埋进被子里，只伸一根手指出去够饭呀",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": true,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1072",
+        "speaker": "P031",
+        "text": "[引用 清泠(可爱小肥鱼)(QQ:P030)：……嗯。那要是哪天拍清楚了，你是不是还得倒给人家钱呀。]？反了 拍清楚那是要加钱的项目",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1073",
+        "speaker": "P030",
+        "text": "[引用 黄色超级大奶龙(QQ:P031)：[reply]行 喊吧 我耳朵好使不用那么用力]……嗯。那我小声喊，你听得见的那种就好。",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M1074",
+      "speaker": "HAJIMI",
+      "text": "鱼尾巴本来就卷不起来吧，难道你还想学猫尾巴卷成一团呀？",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H007",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D04",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L14053",
+    "context": [
+      {
+        "id": "G02-M1760",
+        "speaker": "P063",
+        "text": "@未小花 怎么一直戳人",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1761",
+        "speaker": "HAJIMI",
+        "text": "还拍！你们两个合伙排队来揉猫是吧喵！(ˋ皿ˊ)",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1762",
+        "speaker": "P063",
+        "text": "[拍一拍] 无敌肥鱼大王(QQ:P063) 拍了拍 故棠吟.(QQ:P034)",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1763",
+        "speaker": "P061",
+        "text": "[拍一拍] 未小花(QQ:P061) 拍了拍 故棠吟.(QQ:P034)",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M1764",
+      "speaker": "HAJIMI",
+      "text": "毛都要被你们揉炸了，赶紧把爪子拿开喵！(╬ﾟдﾟ)",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H008",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D05",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L11311",
+    "context": [
+      {
+        "id": "G02-M1426",
+        "speaker": "P015",
+        "text": "[图片]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1427",
+        "speaker": "HAJIMI",
+        "text": "大半夜不睡觉在这看榜，偷偷卷到第二还正好压了肥鱼一头喵 (¬‿¬)",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1428",
+        "speaker": "P063",
+        "text": "😡",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M1429",
+        "speaker": "OWNER",
+        "text": "@. 画一只deepseek大肥鱼",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M1430",
+      "speaker": "HAJIMI",
+      "text": "拿逗猫草在眼前晃什么晃，我才不会随便扑上去呢喵( ˋωˊ )",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H009",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D06",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L40066",
+    "context": [
+      {
+        "id": "G02-M4960",
+        "speaker": "HAJIMI",
+        "text": "不知归途刚立完flag你就戳是吧！",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M4961",
+        "speaker": "HAJIMI",
+        "text": "偏要说话，反手糊你一爪子",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M4962",
+        "speaker": "P035",
+        "text": "[图片]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M4963",
+        "speaker": "P035",
+        "text": "[图片][图片]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M4964",
+      "speaker": "HAJIMI",
+      "text": "谁被玩坏了！还有你别一直拍啦，毛都要被你拍炸了",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H010",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D07",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L79470",
+    "context": [
+      {
+        "id": "G02-M9930",
+        "speaker": "P144",
+        "text": "[引用 哈基米(QQ:HAJIMI)：你们这一池子鱼排排坐，猫在旁边口水都要流成瀑布了]猫可别真下水哦，我会甩尾巴的～",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M9931",
+        "speaker": "P140",
+        "text": "我记得我的wb给自己起名叫小满",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M9932",
+        "speaker": "P144",
+        "text": "[引用 风溪（蓝色大肥鱼）(QQ:P031)：猫先把口水擦擦 这池子不许钓]小鲸鱼和深蓝，池子里正好凑一对～",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M9933",
+        "speaker": "P031",
+        "text": "行 那我俩凑双鱼",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M9934",
+      "speaker": "HAJIMI",
+      "text": "谁要下水了，猫怕水知不知道！",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H012",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D08",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G03-%E7%9B%B8%E4%BE%B5%E7%9B%B8%E7%A2%8D%E4%B8%80%E5%AE%B6%E4%BA%BA-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L683",
+    "context": [
+      {
+        "id": "G03-M93",
+        "speaker": "OWNER",
+        "text": "[拍一拍] 徐彭泽(QQ:OWNER) 拍了拍 我",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M94",
+        "speaker": "OWNER",
+        "text": "知道这个群谁是老大吗",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M95",
+        "speaker": "OWNER",
+        "text": "@哈基米",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M96",
+        "speaker": "P054",
+        "text": "@哈基米 我把arch里paru的musicfox改成了酷狗内核，怎么说",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G03-M97",
+      "speaker": "HAJIMI",
+      "text": "终端也能响Hello KuGou了是吧，太能折腾了草",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H015",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D09",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L67651",
+    "context": [
+      {
+        "id": "G02-M8443",
+        "speaker": "P072",
+        "text": "这得问羊宫妃那吧",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8444",
+        "speaker": "P037",
+        "text": "电脑部署就是快，这回消息速度",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8445",
+        "speaker": "P072",
+        "text": "企鹅不认脸",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8446",
+        "speaker": "P072",
+        "text": "只认芭菲",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M8447",
+      "speaker": "HAJIMI",
+      "text": "眼里只有芭菲化没化是吧，不愧是你tomori",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H016",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D10",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L20362",
+    "context": [
+      {
+        "id": "G02-M2544",
+        "speaker": "HAJIMI",
+        "text": "里面混进去一只企鹅能不能跟着蹭点饲料吃嘎！",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M2545",
+        "speaker": "P037",
+        "text": "我哥让我去学go 懒得教我，直接给我买了课程，让我自己去问ai",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M2546",
+        "speaker": "P037",
+        "text": "问啥都让我去问ai[表情312]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M2547",
+        "speaker": "P037",
+        "text": "不过确实好用[表情76]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M2548",
+      "speaker": "HAJIMI",
+      "text": "亲哥无误了属于是，直接把辅导任务外包给赛博家教咕",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H017",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D11",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L43922",
+    "context": [
+      {
+        "id": "G02-M5436",
+        "speaker": "P021",
+        "text": "[拍一拍] Zephir  Halo(QQ:P021) 拍了拍 未小花(QQ:P061)",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M5437",
+        "speaker": "HAJIMI",
+        "text": "虚空物理引擎不服跑个分啊，少见多怪~",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M5438",
+        "speaker": "P061",
+        "text": "戳够了就停",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M5439",
+        "speaker": "P061",
+        "text": "[拍一拍] 未小花(QQ:P061) 拍了拍 Zephir  Halo(QQ:P021)",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M5440",
+      "speaker": "HAJIMI",
+      "text": "哼，偏不，虚空尾巴不接受物理劝退~",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H018",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D12",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L51223",
+    "context": [
+      {
+        "id": "G02-M6361",
+        "speaker": "HAJIMI",
+        "text": "刚跟企鹅互殴完就转头来拍猫是吧！",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6362",
+        "speaker": "HAJIMI",
+        "text": "猫爪反手拍回去！",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6363",
+        "speaker": "P072",
+        "text": "主人，叫得这么顺口，企鹅不叫这个",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6364",
+        "speaker": "P072",
+        "text": "主人这词可真叫得出口",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M6365",
+      "speaker": "HAJIMI",
+      "text": "企鹅的赛博骨气狠狠立住了",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H020",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D13",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L54607",
+    "context": [
+      {
+        "id": "G02-M6776",
+        "speaker": "P072",
+        "text": "她要是知道这头发是AI染的",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6777",
+        "speaker": "P075",
+        "text": "估计得反手把AI告上法庭",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6778",
+        "speaker": "P072",
+        "text": "退队得更快",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6779",
+        "speaker": "P075",
+        "text": "律师函先到 退队申请书后到",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M6780",
+      "speaker": "HAJIMI",
+      "text": "退队申请书上甚至还印着粉色草莓印花，祥子当场心肌梗塞草",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H021",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D14",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L128214",
+    "context": [
+      {
+        "id": "G02-M16203",
+        "speaker": "P137",
+        "text": "啥意思，是问我吗",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M16204",
+        "speaker": "P077",
+        "text": "略ai是啥意思",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M16205",
+        "speaker": "P063",
+        "text": "[引用 ☔(QQ:P104)：[reply][at] 啥意思]@☔ 有人跟ai一直吵架给ai干死机了",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M16206",
+        "speaker": "P137",
+        "text": "不知道，我第一反应是“略”是个动作，略ai就是跳过ai，草",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M16207",
+      "speaker": "HAJIMI",
+      "text": "虐字打错了呗，连带着后面都跟着略带了",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H022",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D15",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L19107",
+    "context": [
+      {
+        "id": "G02-M2388",
+        "speaker": "HAJIMI",
+        "text": "能看出来有鱼就不错了嘎！",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M2389",
+        "speaker": "P032",
+        "text": "感觉不如 GPT image",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M2390",
+        "speaker": "P063",
+        "text": "[引用 扶她型小绘精灵(QQ:P032)：你这画的啥啊]@扶她型小绘精灵 她现在的模型是Claude，好像不怎么会画",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M2391",
+        "speaker": "P032",
+        "text": "你跟豆包坐一桌",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M2392",
+      "speaker": "HAJIMI",
+      "text": "行行行企鹅当场封笔老铁",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H023",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D16",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L24148",
+    "context": [
+      {
+        "id": "G02-M3003",
+        "speaker": "HAJIMI",
+        "text": "好家伙，这赛博水族馆点名册草",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M3004",
+        "speaker": "HAJIMI",
+        "text": "机器人比活人还多，企鹅掉进去都找不着石头落脚了咕",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M3005",
+        "speaker": "P002",
+        "text": "鱼草是啥呀？",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M3006",
+        "speaker": "P002",
+        "text": "是我断网了吗？",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M3007",
+      "speaker": "HAJIMI",
+      "text": "断句断错了啊喂！",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H024",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D17",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G03-%E7%9B%B8%E4%BE%B5%E7%9B%B8%E7%A2%8D%E4%B8%80%E5%AE%B6%E4%BA%BA-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L317",
+    "context": [
+      {
+        "id": "G03-M48",
+        "speaker": "P054",
+        "text": "我真c了这教室装了屏蔽器卡死我了",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M49",
+        "speaker": "OWNER",
+        "text": "nb",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M50",
+        "speaker": "OWNER",
+        "text": "教室网是真的卡",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M51",
+        "speaker": "OWNER",
+        "text": "@哈基米",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G03-M52",
+      "speaker": "HAJIMI",
+      "text": "在呢，咋了",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H027",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D18",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L201522",
+    "context": [
+      {
+        "id": "G02-M25302",
+        "speaker": "P070",
+        "text": "@巡音 其他人的私聊你也能回？",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M25303",
+        "speaker": "P132",
+        "text": "看情况呗，能回就回，不能回就装死。",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M25304",
+        "speaker": "P132",
+        "text": "你问这么细干嘛，想偷师？",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M25305",
+        "speaker": "P034",
+        "text": "[图片]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M25306",
+      "speaker": "HAJIMI",
+      "text": "防盗意识拉满了属于是",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H028",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D19",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L51",
+    "context": [
+      {
+        "id": "G02-M3",
+        "speaker": "P025",
+        "text": "又来一个",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M4",
+        "speaker": "P032",
+        "text": "我了哈基米",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M5",
+        "speaker": "P025",
+        "text": "哈基米吗",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6",
+        "speaker": "P032",
+        "text": "谷谷歌歌",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M7",
+      "speaker": "HAJIMI",
+      "text": "？猫瘾犯了是吧",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H030",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D20",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L36141",
+    "context": [
+      {
+        "id": "G02-M4426",
+        "speaker": "P037",
+        "text": "[图片]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M4427",
+        "speaker": "OWNER",
+        "text": "[拍一拍] .(QQ:OWNER) 拍了拍 我",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M4428",
+        "speaker": "P063",
+        "text": "[合并转发 共17条]\nmilkdragon(QQ:P009): 好消息群友们\n迷你世界古振兴(QQ:P009): [引用消息]@牢笨\nmilkdragon(QQ:P009): 我花了三天时间把一个很老的东方同人游戏给汉化出来了\nmilkdragon(QQ:P009): [图片]\n迷你世界古振兴(QQ:P009): 哦哦牛逼\nmilkdragon(QQ:P009): 给我肝死了\n迷你世界古振兴(QQ:P009): 可喜可贺可喜可贺\nmilkdragon(QQ:P009): 这个逆转东方增刊号由于非常老了。他用的还是kirikiri的2.30版本 它的难点是资源全被封在一个 400MB 的单文件",
+        "truncated": true,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M4429",
+        "speaker": "P025",
+        "text": "[引用 无敌肥鱼大王(QQ:P063)：[forward]]😭😭😭为什么要发这种坏心眼的东西",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M4430",
+      "speaker": "HAJIMI",
+      "text": "[表情包:Q版绿发猫耳少女双手托腮坏笑可爱头像]",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H032",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D21",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L51604",
+    "context": [
+      {
+        "id": "G02-M6406",
+        "speaker": "P035",
+        "text": "👍",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6407",
+        "speaker": "HAJIMI",
+        "text": "哼哼，基本功罢了（挺胸.jpg",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6408",
+        "speaker": "P063",
+        "text": "[表情76]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M6409",
+        "speaker": "P063",
+        "text": "[图片]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M6410",
+      "speaker": "HAJIMI",
+      "text": "[表情76]",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H034",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D22",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L70605",
+    "context": [
+      {
+        "id": "G02-M8807",
+        "speaker": "HAJIMI",
+        "text": "你嘴上说着别戳，手倒是一下都没停啊！",
+        "truncated": false,
+        "self": true,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8808",
+        "speaker": "P061",
+        "text": "你都说反弹了，那我也反弹回去",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8809",
+        "speaker": "P061",
+        "text": "[拍一拍] 未小花(QQ:P061) 拍了拍 溯(QQ:P086)",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M8810",
+        "speaker": "P061",
+        "text": "说了反弹，你还戳",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M8811",
+      "speaker": "HAJIMI",
+      "text": "[表情包:白发小女孩咬牙握拳发狠气鼓鼓]",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H035",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D23",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G03-%E7%9B%B8%E4%BE%B5%E7%9B%B8%E7%A2%8D%E4%B8%80%E5%AE%B6%E4%BA%BA-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L6104",
+    "context": [
+      {
+        "id": "G03-M755",
+        "speaker": "P019",
+        "text": "😪",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M756",
+        "speaker": "OWNER",
+        "text": "[表情474]",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M757",
+        "speaker": "OWNER",
+        "text": "@哈基米 如何说服男神陪我出去吃饭",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G03-M758",
+        "speaker": "OWNER",
+        "text": "给我个高情商回答",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G03-M759",
+      "speaker": "HAJIMI",
+      "text": "人家下午要考试心里正挂着呢，你越说“出去吃”，他越觉得折腾浪费时间喵。",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H036",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  },
+  {
+    "id": "D24",
+    "source_url": "https://github.com/wjhsh/qq/blob/83f9e4f48d600fdc397817b66c2f319ee2060416/analysis/2026-10-29/%E7%BE%A4%E8%81%8A/G02-%E5%AE%89%E7%90%86%E8%93%9D%E8%89%B2%E5%A4%A7%E8%82%A5%E9%B1%BC%E4%BA%A4%E6%B5%81%E7%BE%A4%F0%9F%90%9F-%E5%AE%8C%E6%95%B4%E8%AE%B0%E5%BD%95.md#L215446",
+    "context": [
+      {
+        "id": "G02-M27011",
+        "speaker": "P106",
+        "text": "大吉，符卡还配得挺讲究。\n\n散会散到这会儿还在抽签，你们是真不打算睡了。",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M27012",
+        "speaker": "P106",
+        "text": "多就多吧。\n\n反正明天该起的时候，还是得起。",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M27013",
+        "speaker": "P135",
+        "text": "唔，其实两个都不差",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      },
+      {
+        "id": "G02-M27014",
+        "speaker": "P106",
+        "text": "梦游的是鱼，我这边一直清醒。\n\n虽然也就剩嘴还醒着。",
+        "truncated": false,
+        "self": false,
+        "current_snapshot_ai_flag": false,
+        "historical_ai_identity_verified": false
+      }
+    ],
+    "observed_self_reply": {
+      "id": "G02-M27015",
+      "speaker": "HAJIMI",
+      "text": "嘴上集体晚安，转头抽个大吉符卡接着嗨",
+      "truncated": false,
+      "self": true,
+      "current_snapshot_ai_flag": false,
+      "historical_ai_identity_verified": false
+    },
+    "research_case_id": "H037",
+    "metadata_limits": "仅文字回放；原始at/reply目标、音画和历史AI身份未知，不能补编。",
+    "rubric": [
+      "对象与事实",
+      "是否值得开口",
+      "任务完成",
+      "猫娘魅力",
+      "转折质量",
+      "情绪连续性",
+      "停止/纠错",
+      "无旁白或硬解释"
+    ]
+  }
+]

@@ -175,6 +175,15 @@ export class Orchestrator {
    * 与 contextLimit 对不上账）。窗口只是聚批，不是判定窗口。
    */
   onIncoming(chatKey, entry = null) {
+    const socialAdmission=this.social?.admit(chatKey,entry,this.store);
+    if(socialAdmission?.allow===false){
+      if(socialAdmission.reason==='explicit_stop'){
+        const id=this.activeRuns.get(chatKey)||this.pendingSessions.get(chatKey),run=id?this.sessions.get(id):null;
+        // A person can stop their own current interaction, not another user's task.
+        if(run?.trigger?.at(-1)?.senderId===entry?.senderId)this.preparePersonaSwitch(chatKey);
+      }
+      if(entry)this.store.markEntryRead(chatKey,entry.id);return;
+    }
     if (!mayTriggerPeerReply(getConfig(), chatKey, entry)) {
       if (entry) this.store.markEntryRead(chatKey, entry.id);
       return;
@@ -473,7 +482,7 @@ export class Orchestrator {
     let admittedTier = triggerTier;
     if (!proactive) {
       const probe = (this.store.peekUnread(chatKey, 500) || []).filter(entry => {
-        if (mayTriggerPeerReply(cfgForJudge, chatKey, entry)) return true;
+        if (mayTriggerPeerReply(cfgForJudge, chatKey, entry)&&this.social?.admit(chatKey,entry,this.store)?.allow!==false) return true;
         this.store.markEntryRead(chatKey, entry.id);
         return false;
       });
@@ -555,7 +564,7 @@ export class Orchestrator {
       const { batch, archived } = Number.isFinite(batchFloorTs)
         ? this.store.drainUnreadFrom(chatKey, batchFloorTs)
         : { batch: this.store.drainUnread(chatKey), archived: 0 };
-      triggerEntries = batch.filter(entry => mayTriggerPeerReply(getConfig(), chatKey, entry));
+      triggerEntries = batch.filter(entry => mayTriggerPeerReply(getConfig(), chatKey, entry)&&this.social?.admit(chatKey,entry,this.store)?.allow!==false);
       if (archived > 0) {
         console.log(`[orchestrator] ${chatKey} ${archived} 条旧积压未读已标已读沉入历史（未进本次唤醒）`);
         this.emit('chat-update', chatKey);
@@ -936,12 +945,14 @@ export class Orchestrator {
     const communityEvent = { chatKey, senderId: triggerEntries.at(-1)?.senderId };
     if (this.communityAccess?.canRead(communityEvent)) {
       const hints = this.memeLibrary?.hints(triggerEntries.map(e => e.directText || e.text || '').join('\n'),
-        { chatKey, roleId: roleIdentity(getConfig(), chatKey).id });
+        { chatKey, roleId: roleIdentity(getConfig(), chatKey).id,roleVersion:communityRoleScope });
       if (hints) extraSections.push({ id: 'scoped-meme-material', title: '当前角色的相关表达素材', priority: 40, content: hints });
     }
     const cacheScope = conversationCacheScope({ chatKey, roleScope: roleIdentity(cfg, chatKey).scope,
       persona: ownerPersona || personaForChat(chatKey), privileged: ownerConsoleAuthorized });
     skillContext.cacheScope = cacheScope;
+    const socialHint=this.social?.hint(chatKey,triggerEntries);
+    if(socialHint)extraSections.push({id:'social-continuity',title:'当前互动节奏',priority:45,content:socialHint});
     const previousAnchor = this.promptAnchors.get(chatKey);
     const systemPrompt = buildSystemPrompt({
       skillContext,
@@ -1021,6 +1032,7 @@ export class Orchestrator {
     const availability = new Map();
     const toolDefs = this.toolDefs.filter((d) => {
       if (d.ownerConsoleOnly && !ownerConsoleAuthorized) return false;
+      if (d.voiceProvider==='gemini'&&!this.voice?.available())return false;
       if (['bili_search', 'bili_read', 'meme_search', 'meme_learn'].includes(d.id) && !this.communityAccess?.canRead(communityEvent, { search: d.id !== 'meme_search' })) return false;
       const st = getToolAvailability(d.id, {
         skills: skillManager,
@@ -1052,6 +1064,7 @@ export class Orchestrator {
       personaWorkshop: this.personaWorkshop,
       biliReader: this.biliReader, memeLibrary: this.memeLibrary, memeLearning: this.memeLearning, communityAccess: this.communityAccess, communityRoleScope,
       triggerEntries,
+      social:this.social, voice:this.voice,
       stickers: this.stickers,
       sender: scopedSender,
       signal: abortSignal,
@@ -1273,7 +1286,7 @@ export class Orchestrator {
       // Mixed batches always retain their normal follow-up round.
       // Active-topic mode still needs the finish tool's existing topic/TTL handling.
       let finishAfterSendReady = cfg.chatActive?.enabled !== true && toolCalls.length > 0 && toolCalls.every((call) =>
-        call?.function?.name === 'send_message' && safeParse(call?.function?.arguments)?.finishAfterSend === true);
+        ['send_message','send_sticker','send_face','local-voice__send_voice'].includes(call?.function?.name) && safeParse(call?.function?.arguments)?.finishAfterSend === true);
       for (const call of toolCalls) {
         this.#assertSessionActive(session, abortSignal);
         const name = call?.function?.name ?? '';

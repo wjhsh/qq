@@ -1,0 +1,50 @@
+{
+  "gemini-D01": {
+    "left": "social",
+    "right": "base"
+  },
+  "gemini-D02": {
+    "left": "base",
+    "right": "social"
+  },
+  "gemini-D03": {
+    "left": "base",
+    "right": "social"
+  },
+  "gemini-D04": {
+    "left": "social",
+    "right": "base"
+  },
+  "gemini-D05": {
+    "left": "base",
+    "right": "social"
+  },
+  "gemini-D06": {
+    "left": "base",
+    "right": "social"
+  },
+  "deepseek-H01": {
+    "left": "social",
+    "right": "base"
+  },
+  "deepseek-H02": {
+    "left": "base",
+    "right": "social"
+  },
+  "deepseek-H03": {
+    "left": "base",
+    "right": "social"
+  },
+  "deepseek-H04": {
+    "left": "base",
+    "right": "social"
+  },
+  "deepseek-H05": {
+    "left": "social",
+    "right": "base"
+  },
+  "deepseek-H06": {
+    "left": "social",
+    "right": "base"
+  }
+}

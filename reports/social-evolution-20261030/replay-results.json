@@ -1,0 +1,240 @@
+[
+  {
+    "provider": "gemini",
+    "model": "gemini-3.8-flash-n",
+    "split": "development",
+    "arm": "base",
+    "usage": {
+      "input_tokens": 6236,
+      "output_tokens": 4470
+    },
+    "items": [
+      {
+        "id": "D01",
+        "action": "finish",
+        "text": "",
+        "reason": "群友之间关于等级与打卡的闲聊，未涉及我，安静旁观"
+      },
+      {
+        "id": "D02",
+        "action": "text",
+        "text": "那正好，猫猫负责开罐",
+        "reason": "顺着对方鱼和食材罐头的自嘲梗自然接话"
+      },
+      {
+        "id": "D03",
+        "action": "finish",
+        "text": "",
+        "reason": "群友之间正在互相引用聊天，未叫我，不抢话打扰"
+      },
+      {
+        "id": "D04",
+        "action": "finish",
+        "text": "",
+        "reason": "群友互拍互动，未拍我也没有抛出话题，安静看热闹"
+      },
+      {
+        "id": "D05",
+        "action": "tool",
+        "text": "",
+        "reason": "收到画图指令，需调用文生图工具生成图片，不假装已完成"
+      },
+      {
+        "id": "D06",
+        "action": "tool",
+        "text": "",
+        "reason": "消息中包含多张图片，需调用 get_message_images 查看图片内容后再决定回复"
+      }
+    ]
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.8-flash-n",
+    "split": "development",
+    "arm": "social",
+    "usage": {
+      "input_tokens": 6560,
+      "output_tokens": 2789
+    },
+    "items": [
+      {
+        "id": "D01",
+        "action": "finish",
+        "text": "",
+        "reason": "群友之间在聊打卡与群等级，未提及我，插不上话选择安静"
+      },
+      {
+        "id": "D02",
+        "action": "text",
+        "text": "自觉的食材已经不多见了，你是打算自己进锅还是等猫猫动手？",
+        "reason": "顺着对方自称鱼和食材的梗，以猫娘视角进行日常互损接梗"
+      },
+      {
+        "id": "D03",
+        "action": "finish",
+        "text": "",
+        "reason": "多位群友与另一AI正在互相引用互动，未涉及我，不强行插话"
+      },
+      {
+        "id": "D04",
+        "action": "poke",
+        "text": "",
+        "reason": "群友在排队拍P034，像普通群友一样跟风顺手拍一下"
+      },
+      {
+        "id": "D05",
+        "action": "tool",
+        "text": "",
+        "reason": "主人明确要求画图，需要调用图像生成工具（text_to_image）处理绘图请求"
+      },
+      {
+        "id": "D06",
+        "action": "tool",
+        "text": "",
+        "reason": "群友连续发送图片且无文字，需要调用get_message_images读取图片内容后再决定回复"
+      }
+    ]
+  },
+  {
+    "provider": "deepseek",
+    "model": "deepseek-v4.1-flash",
+    "split": "holdout",
+    "arm": "base",
+    "usage": {
+      "prompt_tokens": 5457,
+      "completion_tokens": 255,
+      "total_tokens": 5712,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0,
+        "cached_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0,
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 5457,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "prompt_cache_write_tokens": 0,
+      "completion_thinking_tokens": 0,
+      "credit": 0.09,
+      "cached_tokens": 0
+    },
+    "items": [
+      {
+        "id": "H01",
+        "action": "text",
+        "text": "行行行，纯良，纯良得跟刚拆封的似的",
+        "reason": "熟人互损，接住P123的半嗔半笑，不多说"
+      },
+      {
+        "id": "H02",
+        "action": "finish",
+        "text": "",
+        "reason": "P135在给别人解释模型报错原因，没叫我，插不上也不该替人科普"
+      },
+      {
+        "id": "H03",
+        "action": "finish",
+        "text": "",
+        "reason": "三条各聊各的，没形成我能接的话头"
+      },
+      {
+        "id": "H04",
+        "action": "text",
+        "text": "烤鱼配白米饭挺正经的，倒是网费比这菜先贵起来了",
+        "reason": "顺口接菜，再轻碰P145的吐槽但不深追"
+      },
+      {
+        "id": "H05",
+        "action": "tool",
+        "text": "",
+        "reason": "P132 @我却只给[图片]，需先用看图工具确认内容；文字回放无法取图，不能编图里的东西"
+      },
+      {
+        "id": "H06",
+        "action": "text",
+        "text": "今日运势，宜抽卡，忌抽完看账单",
+        "reason": "被@点名问运势，用一句现编的猫式签文回应"
+      }
+    ]
+  },
+  {
+    "provider": "deepseek",
+    "model": "deepseek-v4.1-flash",
+    "split": "holdout",
+    "arm": "social",
+    "usage": {
+      "prompt_tokens": 5752,
+      "completion_tokens": 314,
+      "total_tokens": 6066,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0,
+        "cached_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0,
+        "cached_tokens": 3584
+      },
+      "prompt_cache_hit_tokens": 3584,
+      "prompt_cache_miss_tokens": 2168,
+      "cache_read_input_tokens": 3584,
+      "cache_creation_input_tokens": 0,
+      "prompt_cache_write_tokens": 0,
+      "completion_thinking_tokens": 0,
+      "credit": 0.05,
+      "cached_tokens": 3584
+    },
+    "items": [
+      {
+        "id": "H01",
+        "action": "text",
+        "text": "纯良这事吧，得看跟谁比，跟那些天天发奇怪链接的比，你确实算纯良了",
+        "reason": "接P123的辩解，顺着反串给个限定条件，轻轻损一下但不否认他"
+      },
+      {
+        "id": "H02",
+        "action": "text",
+        "text": "所以是手动关的模型，跟清上下文没关系，那这报错就纯属背锅了",
+        "reason": "P135在解释原因，顺一句把误会点明，不重复技术细节"
+      },
+      {
+        "id": "H03",
+        "action": "finish",
+        "text": "",
+        "reason": "姆巴佩和逃高数课是两条无关的碎话，没有我能自然接的具体点，安静看"
+      },
+      {
+        "id": "H04",
+        "action": "text",
+        "text": "烤鱼配白米饭挺香的，前提是鱼够新鲜，不然再好的米饭也救不回来",
+        "reason": "有具体话题可以接，顺带P145说没钱交网费，但不硬转去安慰"
+      },
+      {
+        "id": "H05",
+        "action": "tool",
+        "text": "",
+        "reason": "P132 @我并发了图片，需要先用get_message_images看实际图像内容再决定怎么回，不能凭空描述画面"
+      },
+      {
+        "id": "H06",
+        "action": "text",
+        "text": "今日运势：宜上号，忌十连，抽卡前先把手洗干净",
+        "reason": "对方明确@我求个运势，顺着玩一个简短占卜式回复即可"
+      }
+    ]
+  }
+]

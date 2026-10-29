@@ -21,22 +21,27 @@ export function incomingPeerPolicy(config, chatKey, event, selfId = '') {
   const senderId = String(sender.user_id ?? event?.user_id ?? '');
   const transportBot = sender.is_bot === true || sender.is_robot === true
     || event?.is_bot === true || event?.is_robot === true;
-  const ignore = transportBot || isAutomatedPeer(config, chatKey, senderId);
+  const knownPeer = transportBot || isAutomatedPeer(config, chatKey, senderId);
   const at = (Array.isArray(event?.message) ? event.message : [])
     .filter(segment => segment?.type === 'at').map(segment => String(segment.data?.qq ?? ''));
   const calledUs = Boolean(selfId) && at.includes(String(selfId));
+  const limitedPeer = config?.socialBehavior?.enabled === true && config.socialBehavior.allowDirectPeers === true
+    && String(chatKey).startsWith('group:') && calledUs;
+  const ignore = knownPeer && !limitedPeer;
   const directedElsewhere = !calledUs && at.some(id => isAutomatedPeer(config, chatKey, id));
-  return { ignore, directedElsewhere };
+  return { ignore, directedElsewhere, knownPeer };
 }
 
 export function mayTriggerPeerReply(config, chatKey, entry) {
+  const limitedPeer = config?.socialBehavior?.enabled === true && config.socialBehavior.allowDirectPeers === true
+    && String(chatKey).startsWith('group:') && entry?.atMe === true;
   return !entry || (modelInputAllowed(entry) && (entry.self === true || (!isAutomatedPeer(config, chatKey, entry.senderId)
-    && !(entry.peerDirected === true && entry.atMe !== true))));
+    && entry.automatedPeer !== true && !(entry.peerDirected === true && entry.atMe !== true)) || limitedPeer));
 }
 
 export function filterAutomatedHistory(config, chatKey, messages) {
   return messages.filter(message => modelInputAllowed(message) && (message.self === true
-    || !isAutomatedPeer(config, chatKey, message.senderId)));
+    || (!isAutomatedPeer(config, chatKey, message.senderId) && message.automatedPeer !== true)));
 }
 
 export function assertPeerTargets(config, chatKey, { atUserId, replyToMessageId,

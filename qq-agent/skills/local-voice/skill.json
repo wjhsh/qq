@@ -1,10 +1,10 @@
 {
   "id": "local-voice",
   "name": "语音短句",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "apiVersion": 1,
   "category": "media",
-  "description": "把简短文字合成为中文 QQ 语音，支持晓晓和云希两种声音。",
+  "description": "沿用同一语音入口，可配置Edge或Gemini TTS后端；Gemini需独立配置可用凭证。",
   "enabledByDefault": true,
   "permissions": ["web_fetch"],
   "settings": {},
@@ -15,7 +15,7 @@
         "id": "voice-use",
         "title": "语音",
         "priority": 50,
-        "content": "用户想听你说话、要求语音，或适合用一句短语音回应时，可调用 local-voice__send_voice。语音内容最多200字，简短自然即可。发送成功后不要再发相同文字，也不用汇报‘已发送’。工具失败时不要假装发出了语音，也不要自动反复重试。"
+        "content": "使用本次实际提供的local-voice__send_voice说一句短语音，字数和音色以其参数为准。Gemini默认仅接受明确语音要求，保持text原文，不自行扩写。发送成功后可finishAfterSend收尾，不重复发同文或汇报‘已发送’；失败不假装成功，也不自动重试。"
       }
     ]
   }

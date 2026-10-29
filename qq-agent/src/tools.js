@@ -7,6 +7,7 @@
 // 重构说明：所有工具通过 registerTool() 注册到 tool-registry.js，
 // 支持在设置页按卡片勾选启用/禁用。
 import { getConfig } from './config.js';
+import { SOCIAL_FEEDBACK_SCHEMA } from './social-runtime.mjs';
 import { filterRoleHistory } from './role-isolation.mjs';
 import { filterAutomatedHistory } from './bot-interaction.mjs';
 import { normalizeMessageList, unquoteJsonString } from './util.js';
@@ -156,7 +157,12 @@ export function buildToolDefs() {
   registerAllTools();
   // 加载插件工具（如果还没加载）
   loadPluginTools();
-  return listTools();
+  return listTools().map(def=>{
+    const extra={};
+    if(getConfig().socialBehavior?.enabled&&['send_message','send_sticker','send_face','finish'].includes(def.id))extra.socialFeedback=SOCIAL_FEEDBACK_SCHEMA;
+    if(['send_sticker','send_face','local-voice__send_voice'].includes(def.id))extra.finishAfterSend={type:'boolean',description:'本次已完整回应且没有待办时结束；仅实际发送成功后生效'};
+    return Object.keys(extra).length?{...def,parameters:{...def.parameters,properties:{...def.parameters.properties,...extra}}}:def;
+  });
 }
 
 /** 加载插件工具（幂等） */
@@ -1312,7 +1318,27 @@ export async function executeTool(defs, ctx, name, argsJson) {
     return { content: `错误：工具 ${name} 的参数不是合法 JSON：${String(raw).slice(0, 200)}`, isError: true };
   }
   try {
-    return await def.execute(ctx, args ?? {});
+    if(def.id==='send_poke'&&ctx.social?.enabled()&&ctx.pokeDelivered)return{isError:true,content:'本轮已拍过一次，适时收尾。'};
+    if(def.id==='send_poke'&&ctx.social?.enabled()&&ctx.kind==='group'){
+      const target=String(args?.targetUserId??'');
+      const inContact=ctx.triggerEntries?.some(e=>String(e.senderId)===target&&ctx.social.directed(ctx.chatKey,e,ctx.store));
+      const asked=ctx.triggerEntries?.some(e=>e.atMe===true&&e.atUserIds?.map(String).includes(target)&&typeof e.directText==='string'&&/(?:拍|戳)/u.test(e.directText));
+      if(!inContact&&!asked)return{isError:true,content:'目标没有在本轮与你直接互动，也没有明确请你去拍；不要跟风拍第三人。'};
+    }
+    const sentBefore=ctx.session?.sent?.length||0;
+    const result=await def.execute(ctx, args ?? {});
+    if(result?.isError!==true&&['send_message','send_sticker','send_face','finish'].includes(def.id)&&args?.socialFeedback){
+      try{ctx.social?.feedback(ctx,args.socialFeedback);}catch{ctx.session.socialFeedbackRejected=true;}
+    }
+    if(result?.isError!==true){
+      if(def.id==='send_poke')ctx.pokeDelivered=true;
+      if((ctx.session?.sent?.length||0)>sentBefore||def.id==='send_poke')ctx.social?.delivered(ctx.chatKey,ctx.triggerEntries);
+      if(args?.finishAfterSend===true&&['send_sticker','send_face','local-voice__send_voice'].includes(def.id)){
+        let receipt;try{receipt=JSON.parse(Array.isArray(result.content)?result.content.find(p=>p.type==='text')?.text||'{}':String(result.content||'{}'));}catch{/* no valid receipt */}
+        if(receipt?.sent===true&&/^-?[1-9]\d*$/.test(String(receipt.messageId??'')))result[FINISH_AFTER_SEND_RECEIPT]=true;
+      }
+    }
+    return result;
   } catch (error) {
     return { content: `错误：${error?.message ?? error}`, isError: true };
   }

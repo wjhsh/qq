@@ -1,0 +1,42 @@
+{
+  "before_replay": {
+    "social-state.mjs": "a5adad8a1f85ef6ef170636e83cf9bbe357f18c7e2c162c323ebaecf64ca9584",
+    "social-runtime.mjs": "f6b2215215cd205c39197cd27f4ca7771d7a688630c56cb4dc60454b4769c13d",
+    "meme-library.mjs": "eff62dadfdd9d440c195ef14e8e053ea6fe7018aac44da70a06a3485ceea736b",
+    "meme-learning.mjs": "c7e5e05f5c0507e11bdbfe9e13a119da9ca5d6af0a09e7a7d89c594fd354e210",
+    "meme-extractor.mjs": "4a01d698f0c5144c408fce0f9ad211b71521e5205e1874ca83cfd330a24d7e14",
+    "bili-view.mjs": "8655214ae90cc6bfa90874fa13d9cb314406694e0fab3570efe67748b37df053",
+    "gemini-voice.mjs": "955b021b5b8a626712c9177e7b54090234b5dfab27254a0d4251731b62d2f581",
+    "tools.js": "d9e23ce7836816fb49e2eec4bcb57c2f422b8cebc585933ed35fc1a248c9a080",
+    "orchestrator.js": "c27b78bdc94b2bc582c56124ab9acb260ffdc96d4a0d77cebaa66a2abedfbd7c"
+  },
+  "after_development_guard": {
+    "social-state.mjs": "a5adad8a1f85ef6ef170636e83cf9bbe357f18c7e2c162c323ebaecf64ca9584",
+    "social-runtime.mjs": "f6b2215215cd205c39197cd27f4ca7771d7a688630c56cb4dc60454b4769c13d",
+    "meme-library.mjs": "eff62dadfdd9d440c195ef14e8e053ea6fe7018aac44da70a06a3485ceea736b",
+    "meme-learning.mjs": "c7e5e05f5c0507e11bdbfe9e13a119da9ca5d6af0a09e7a7d89c594fd354e210",
+    "meme-extractor.mjs": "4a01d698f0c5144c408fce0f9ad211b71521e5205e1874ca83cfd330a24d7e14",
+    "bili-view.mjs": "8655214ae90cc6bfa90874fa13d9cb314406694e0fab3570efe67748b37df053",
+    "gemini-voice.mjs": "955b021b5b8a626712c9177e7b54090234b5dfab27254a0d4251731b62d2f581",
+    "tools.js": "14891183e1717bfadf95d73c6a64d265470bc5b3b7c1085a19d0d5ad2a577dbe",
+    "orchestrator.js": "c27b78bdc94b2bc582c56124ab9acb260ffdc96d4a0d77cebaa66a2abedfbd7c"
+  },
+  "changed_modules": [
+    "tools.js"
+  ],
+  "reason": "After Gemini development D04 proposed joining third-person pokes, added host addressing gate; no holdout-driven prompt tuning. Semantic replay prompts unchanged.",
+  "holdout_evaluated": 6,
+  "holdout_remaining_unscored": 6,
+  "final_delivery": {
+    "social-state.mjs": "a5adad8a1f85ef6ef170636e83cf9bbe357f18c7e2c162c323ebaecf64ca9584",
+    "social-runtime.mjs": "f6b2215215cd205c39197cd27f4ca7771d7a688630c56cb4dc60454b4769c13d",
+    "meme-library.mjs": "eff62dadfdd9d440c195ef14e8e053ea6fe7018aac44da70a06a3485ceea736b",
+    "meme-learning.mjs": "c7e5e05f5c0507e11bdbfe9e13a119da9ca5d6af0a09e7a7d89c594fd354e210",
+    "meme-extractor.mjs": "4a01d698f0c5144c408fce0f9ad211b71521e5205e1874ca83cfd330a24d7e14",
+    "bili-view.mjs": "8655214ae90cc6bfa90874fa13d9cb314406694e0fab3570efe67748b37df053",
+    "gemini-voice.mjs": "718e5498410317e9ff6065cc4f1dfba696c51172e5474d8414ccdaf964590b5d",
+    "tools.js": "a74f9a96b79988fcc20cd51324976c6b6ea979cef931bddcb35753a57bb73708",
+    "orchestrator.js": "5dd131aadfdde0cf7b0593cd7e7a18935c0f5497febe2280bc47ef0e802ba5ec"
+  },
+  "integration_followup": "Reused existing local-voice plugin entry for Gemini; added speech-proxy and Edge compatibility tests. No holdout-driven prompt tuning."
+}
