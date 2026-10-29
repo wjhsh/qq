@@ -21,3 +21,4 @@ jobs:
         working-directory: qq-agent
       - run: python tools/check.py
       - run: node tools/social-replay.mjs
+      - run: python -B ops/deployment/test-deploy-transaction.py
