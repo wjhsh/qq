@@ -57,7 +57,10 @@ export class SocialState {
         for (const k of ['p','a','c']) if (Math.abs(uVal[k])>1) throw Error('Invalid persisted affect');
         for (const k of ['fam','w']) if (uVal[k]<0||uVal[k]>1) throw Error('Invalid persisted relationship');
         if(uVal.lastEvent!==undefined&&!EVENTS.has(uVal.lastEvent))throw Error('Invalid persisted appraisal');
-        rels[uk] = Object.fromEntries(['p','a','c','fam','w','bound','t','seen','positiveAt','lastEvent'].map(k=>[k,uVal[k]]));
+        if(uVal.eventAt!==undefined&&!Number.isFinite(uVal.eventAt))throw Error('Invalid persisted appraisal time');
+        rels[uk] = Object.fromEntries(['p','a','c','fam','w','bound','t','seen','positiveAt','lastEvent','eventAt'].map(k=>[k,uVal[k]]));
+        // Migrate once: activity/decay time must never keep an old event recent.
+        if(uVal.eventAt===undefined&&uVal.lastEvent!==undefined)rels[uk].eventAt=uVal.t;
       }
       if (Object.keys(rels).length>this.maxRelations || !Number.isFinite(sVal.lastSeen)) throw Error('Oversized persisted scope');
       safeScopes[sk] = { relations: rels, lastSeen: sVal.lastSeen || 0 };
@@ -136,7 +139,8 @@ export class SocialState {
       confidence: clamp(0.2+decay(u.c-0.2, dt, HALF_MOOD), -1, 1),
       familiarity: clamp(decay(u.fam, dt, HALF_REL), 0, 1),
       warmth: clamp(0.5+decay(u.w-0.5, dt, HALF_REL), 0, 1),
-      inBoundary: (u.bound || 0) > now, recentEvent:dt<1800000?(u.lastEvent||null):null
+      inBoundary: (u.bound || 0) > now,
+      recentEvent:Number.isFinite(u.eventAt)&&now-u.eventAt<1800000?(u.lastEvent||null):null
     };
   }
 
@@ -145,6 +149,9 @@ export class SocialState {
     this._checkKey(id);
     const now = this.now();
     if (!Number.isFinite(now) || (at !== null && (!Number.isFinite(at)||Math.abs(at-now)>60000))) throw Error('Invalid event time');
+    const sk=this._scopeKey(scope);this._checkKey(userId);
+    if (!/^[1-9]\d{0,14}$/.test(userId)) throw Error('Invalid user ID');
+    if(this.data.scopes[sk]?.relations[userId]?.seen.includes(id))return this.snapshot(scope,userId);
     const previous=structuredClone(this.data);
     try {
     const { u } = this._getOrCreate(scope, userId, now);
@@ -158,7 +165,7 @@ export class SocialState {
     const positive=['welcome','play','comfort','success'].includes(event);
     if(positive && (isBound||u.positiveAt.length>=4||u.positiveAt.some(t=>now-t<300000))){this._save();return this.snapshot(scope,userId);}
     if(positive)u.positiveAt.push(now);
-    u.lastEvent=event;
+    u.lastEvent=event;u.eventAt=now;
     if (event === 'welcome') {
       if (!isBound) {
         u.p = clamp(u.p + 0.15, -1, 1); u.a = clamp(u.a + 0.1, -1, 1);
