@@ -2,7 +2,12 @@
   "frozen_before_worker_code_and_generation": true,
   "purpose": "New constructed multi-turn cases. Old exposed research/development motifs are explicitly in development only; holdout is synthetic not real or statistically representative.",
   "sha256": {
+    "development": "5709c594c2d5ad18e8d84b107c0b66e1350751267ffc15e3708bb03f7285cd1c",
+    "holdout": "8935829f9c5563518db435c52a8a3f06461db0d0b74f6e10799d722eee7213f8"
+  },
+  "original_windows_worktree_sha256": {
     "development": "34119b43bbcc25f04dbad1a1e0dc364ad540ccf3d717b9040d1501bc28f53162",
     "holdout": "f7f76964cda2b00e695edc6bac3f31b2c4ed54dcf0990d44b44a4455b3fad119"
-  }
+  },
+  "hash_normalization": "UTF-8 bytes with CRLF normalized to LF. Original worktree digests retained; no scenario JSON values changed."
 }

@@ -15,7 +15,7 @@ class Protocol(unittest.TestCase):
   directory=ROOT/'tests/fixtures/social-expression';manifest=json.loads((directory/'manifest.json').read_text(encoding='utf-8'))
   groups=[]
   for split in ['development','holdout']:
-   raw=(directory/(split+'.json')).read_bytes();self.assertEqual(hashlib.sha256(raw).hexdigest(),manifest['sha256'][split])
+   raw=(directory/(split+'.json')).read_bytes();self.assertEqual(hashlib.sha256(raw.replace(b'\r\n',b'\n')).hexdigest(),manifest['sha256'][split])
    rows=json.loads(raw);self.assertTrue(all(len(row['turns'])==3 for row in rows));groups.append({r['id'] for r in rows})
   self.assertFalse(groups[0]&groups[1])
 if __name__=='__main__':unittest.main()
