@@ -1,0 +1,17 @@
+{
+  "installed_package": "@xzxzzx/bilibili-mcp",
+  "version": "1.14.3",
+  "license": "Apache-2.0",
+  "scope": "Server copy including pre-existing modifications; not a claim about pristine npm source.",
+  "before_sha256": {
+    "video-api.js": "183723c02347360da0e0e8ea0fba13c5da219e86e0c5a9aee6fa3756d22a140a",
+    "http.js": "483ef713933ddcc33a9e58a4c78537de533637cb4fd3ee82ee677ec86ad46cc3",
+    "wbi.js": "053613f00185a1aad1f4cf24898375f24237536a8017d78813076af2ae863b09"
+  },
+  "after_sha256": {
+    "video-api.js": "83aefff7352dfbac068aa9e1e2bcbb166e6ae4355b35e24b5bb8bfe5596cbacd",
+    "http.js": "1b9cc84900ed3b9e2ef059fb1a841a972e65b58a25c09a918bf5eeb8e7acc4b7",
+    "wbi.js": "6e5238a9ddd06b86f4ff8897ecfb7b410bcea1c62df98faab4b00ccb9501efe3"
+  },
+  "repair_revision": "e56c1e698a"
+}

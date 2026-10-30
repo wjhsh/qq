@@ -1,0 +1,22 @@
+[
+  {
+    "provider": "gemini",
+    "completed": true,
+    "finished_all_batches": true,
+    "plan_failures": 0,
+    "baseline_revision": "8829a7b",
+    "distinct_api_responses": 12,
+    "new_api_calls": 0,
+    "saved_responses_reused": 12
+  },
+  {
+    "provider": "deepseek",
+    "completed": false,
+    "finished_all_batches": true,
+    "plan_failures": 4,
+    "baseline_revision": "8829a7b",
+    "distinct_api_responses": 12,
+    "new_api_calls": 0,
+    "saved_responses_reused": 12
+  }
+]

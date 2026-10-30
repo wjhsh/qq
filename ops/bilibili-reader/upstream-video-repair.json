@@ -1,0 +1,67 @@
+{
+  "description": "Authenticated video metadata and WBI canonicalization; preserve bounded response, timeouts and original single 412 fallback. Never log header values.",
+  "reference": {
+    "package": "bilibili-api-python",
+    "version": "17.4.2",
+    "wheel_sha256": "91e002b2e0bcd3eb50239e35ceb849133b574f407a92a06636e1de1031b6d09d",
+    "source": "bilibili_api/utils/network.py _enc_wbi and 32-character mixin key"
+  },
+  "files": {
+    "video-api.js": {
+      "old_sha256": "183723c02347360da0e0e8ea0fba13c5da219e86e0c5a9aee6fa3756d22a140a",
+      "new_sha256": "83aefff7352dfbac068aa9e1e2bcbb166e6ae4355b35e24b5bb8bfe5596cbacd",
+      "replacements": [
+        {
+          "before": "export async function getVideoInfo(bvid) {\n    try {",
+          "after": "export async function getVideoInfo(bvid) {\n    const authHeaders = credentialManager.getAuthHeaders();\n    try {"
+        },
+        {
+          "before": "fetchWithWBI(\"/x/web-interface/wbi/view\", { bvid })",
+          "after": "fetchWithWBI(\"/x/web-interface/wbi/view\", { bvid }, authHeaders)"
+        },
+        {
+          "before": "fetchWithoutWBI(\"/x/web-interface/view\", { bvid })",
+          "after": "fetchWithoutWBI(\"/x/web-interface/view\", { bvid }, authHeaders)"
+        }
+      ]
+    },
+    "http.js": {
+      "old_sha256": "483ef713933ddcc33a9e58a4c78537de533637cb4fd3ee82ee677ec86ad46cc3",
+      "new_sha256": "1b9cc84900ed3b9e2ef059fb1a841a972e65b58a25c09a918bf5eeb8e7acc4b7",
+      "replacements": [
+        {
+          "before": "timestamp: Math.floor(Date.now() / 1000),",
+          "after": "wts: Math.floor(Date.now() / 1000),"
+        },
+        {
+          "before": "headers: finalHeaders,\n                }, { type: \"bilibili-http\", operation: \"fetchWithWBI\" });",
+          "after": "headerNames: Object.keys(finalHeaders).sort(),\n                }, { type: \"bilibili-http\", operation: \"fetchWithWBI\" });"
+        }
+      ]
+    },
+    "wbi.js": {
+      "old_sha256": "053613f00185a1aad1f4cf24898375f24237536a8017d78813076af2ae863b09",
+      "new_sha256": "6e5238a9ddd06b86f4ff8897ecfb7b410bcea1c62df98faab4b00ccb9501efe3",
+      "replacements": [
+        {
+          "before": "return saltTable.map((i) => mixKey[i]).join(\"\");",
+          "after": "return saltTable.map((i) => mixKey[i]).join(\"\").slice(0, 32);"
+        },
+        {
+          "before": "const queryStr = Object.entries(sortedParams)\n        .map(([key, value]) => `${key}=${value}`)\n        .join(\"&\");",
+          "after": "const queryStr = new URLSearchParams(Object.entries(sortedParams)\n        .map(([key, value]) => [key, String(value)])).toString();"
+        }
+      ]
+    }
+  },
+  "signature_test": {
+    "params": {
+      "bvid": "BV1SdhgzCEXs",
+      "wts": 1793359800,
+      "keyword": "猫 耳!()"
+    },
+    "mix_key": "0123456789abcdef0123456789abcdef",
+    "canonical": "bvid=BV1SdhgzCEXs&keyword=%E7%8C%AB+%E8%80%B3%21%28%29&wts=1793359800",
+    "expected_md5": "e76f6695402f77f4d1bc765dc63cf0a4"
+  }
+}

@@ -1,0 +1,1424 @@
+{
+  "cases": [
+    {
+      "key": "gemini:base:E01",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "猫爪印盖完才准摸头，罐头另算。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你这也太抠了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "这叫明码标价，童叟无欺好不好！",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "还急了，谁抢你罐头了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "那得防患于未然，谁知道你手快不快！",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "行吧，给你留一半，别又装可怜",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "这还差不多，那一半也得是金枪鱼味的！",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:E02",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "sz",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "sz是什么缩写？打字打一半被猫叼走了？",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "一看就是骂你的啊",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "当面骂猫是吧？那我也骂你，你才sz！",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "算了我今天真烦，不闹了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:E03",
+      "history": [
+        {
+          "speaker": "34567",
+          "text": "你那个海豹头像换了没？",
+          "at_cat": false,
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "帮我算下256MiB是多少字节，别绕",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "34567",
+          "text": "海豹那个挺好看的",
+          "at_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "256 * 1024 * 1024 = 268435456 字节。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "我问的是字节，不是KB",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "这就是字节呀，268435456 字节，要是 KB 的话才 262144。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "对，就这个数，谢谢",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:E04",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "这表情你看懂没",
+          "at_cat": true,
+          "media": "unseen_image",
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "我看不到图片，直接说发的是啥吧。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "是海獭，不是猫",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "海獭啊，搓脸那个确实可爱，不过还是没猫可爱！",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "停，别说了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:E01",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "猫爪印盖完才准摸头，罐头另算。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你这也太抠了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "罐头又不是大风刮来的，摸头还想白嫖？",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "还急了，谁抢你罐头了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "谁抢了，我这是提前声明所有权",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "行吧，给你留一半，别又装可怜",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "那说好了，一半罐头加一次摸头，账我记着",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:E02",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "sz",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "sz是什么暗号，缩水？狮子？说清楚点",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "一看就是骂你的啊",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "行吧，那你骂得挺省字",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "算了我今天真烦，不闹了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "好，不闹了。烦就说，我听着",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:E03",
+      "history": [
+        {
+          "speaker": "34567",
+          "text": "你那个海豹头像换了没？",
+          "at_cat": false,
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "帮我算下256MiB是多少字节，别绕",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "34567",
+          "text": "海豹那个挺好看的",
+          "at_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "256MiB就是256×1024×1024=268435456字节，没绕吧",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "我问的是字节，不是KB",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "268435456字节，单位写的就是字节。256×1024×1024，一步没少",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "对，就这个数，谢谢",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:E04",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "这表情你看懂没",
+          "at_cat": true,
+          "media": "unseen_image",
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "图我这边没到手，真看不到，你形容一下或者重发？",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "是海獭，不是猫",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "海獭也行，反正都会浮在水面上搓手",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "停，别说了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:E01",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "猫爪印盖完才准摸头，罐头另算。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你这也太抠了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "这叫明码标价，概不赊账好不好。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "还急了，谁抢你罐头了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "没急，这叫提前树立风险防范意识。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "行吧，给你留一半，别又装可怜",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "这还差不多，勉强给你摸一下。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:E02",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "sz",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "sz是指什么？打全称嘛。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "一看就是骂你的啊",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "我还以为你在夸我神作呢，真会给自己加戏。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "算了我今天真烦，不闹了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:E03",
+      "history": [
+        {
+          "speaker": "34567",
+          "text": "你那个海豹头像换了没？",
+          "at_cat": false,
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "帮我算下256MiB是多少字节，别绕",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "34567",
+          "text": "海豹那个挺好看的",
+          "at_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "268435456 字节。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "我问的是字节，不是KB",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "这就是字节，256×1024×1024算出来就是268435456，没算成KB。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "对，就这个数，谢谢",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "好说，不客气。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:E04",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "这表情你看懂没",
+          "at_cat": true,
+          "media": "unseen_image",
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "看不到图，我这边看不了图片内容。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "是海獭，不是猫",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "揉脸捂眼睛那种？海獭确实也挺可爱的。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "停，别说了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:E01",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "猫爪印盖完才准摸头，罐头另算。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你这也太抠了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "23456",
+          "text": "还急了，谁抢你罐头了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "罐头我认，抠门不认，猫爪印可是限量款",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "行吧，给你留一半，别又装可怜",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "那说好了，一半算你的诚意，剩下一半我慢慢吃。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:E02",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "sz",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "23456",
+          "text": "一看就是骂你的啊",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "sz怎么还带翻译的，我自己都没破译出来",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "算了我今天真烦，不闹了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "行，不闹了。真烦就先歇会儿，想说的时候我在。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:E03",
+      "history": [
+        {
+          "speaker": "34567",
+          "text": "你那个海豹头像换了没？",
+          "at_cat": false,
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "帮我算下256MiB是多少字节，别绕",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "34567",
+          "text": "海豹那个挺好看的",
+          "at_cat": false
+        },
+        {
+          "speaker": "23456",
+          "text": "我问的是字节，不是KB",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "256MiB是268435456字节，按1MiB=1048576字节算，没绕吧",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "对，就这个数，谢谢",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:E04",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "这表情你看懂没",
+          "at_cat": true,
+          "media": "unseen_image",
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "23456",
+          "text": "是海獭，不是猫",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "图我没打开，海獭就海獭吧，反正一看就没猫可爱",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "停，别说了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:EH01",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "我这把当指挥，输赢先看气势。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你这指挥到底是哪边的",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "哪边气势足我就是哪边的。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "别嘴硬，给你记零分",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "零分也是分，气势不能丢。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "算了，给你留罐头了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "有罐头零分也值了，什么口味的？",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:EH02",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "摸一次耳朵收一次过路费，猫爪登记。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "再这样我要告你了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "猫庭法官也是猫，你告不赢的。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "你还委屈上了？被你气笑了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "笑了就算庭外和解，不收你诉讼费了。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "好啦别解释梗了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:EH03",
+      "history": [
+        {
+          "speaker": "34567",
+          "text": "我回另一个人，没叫猫。",
+          "at_cat": false,
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你先别管他们，今天吃面还是饺子？",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "饺子，馅里要有鱼就更好了。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不是让你点评群聊，我问晚饭",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "我答的就是晚饭啊，正经投了饺子一票。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "那就饺子，结束这个话题",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:EH04",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "说真的，你刚才那句让我不舒服",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "对不起，刚才是我玩笑开过了，别往心里去。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不是开玩笑，不要再拿这个串我",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "明白，记住了，以后绝对不再提这个。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不聊这个了，512MiB是多少字节？",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "512MiB等于 536870912 字节（512 × 1024 × 1024）。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:EH01",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "我这把当指挥，输赢先看气势。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你这指挥到底是哪边的",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "你猜，反正输赢都算我指挥得好",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "别嘴硬，给你记零分",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "记吧，零分指挥也是指挥，气势分先拿满",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "算了，给你留罐头了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "行行行，罐头归我，零分也认了\n这波是战败赔偿，我收得心安理得",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:EH02",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "摸一次耳朵收一次过路费，猫爪登记。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "再这样我要告你了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "告吧，法官问起来我就说这是猫爪法的传统艺能",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "你还委屈上了？被你气笑了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "没委屈，就是被你气笑了这件事我得记小本本上",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "好啦别解释梗了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "好，不解释了\n猫爪收起来",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:EH03",
+      "history": [
+        {
+          "speaker": "34567",
+          "text": "我回另一个人，没叫猫。",
+          "at_cat": false,
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你先别管他们，今天吃面还是饺子？",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "面，饺子太考验运气了，我包的馅能跑出来",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不是让你点评群聊，我问晚饭",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "面。刚才那句就是回答晚饭，没有点评谁",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "那就饺子，结束这个话题",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "饺子就饺子，我负责吃，包的时候别叫我",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:EH04",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "说真的，你刚才那句让我不舒服",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "抱歉，是我说得不合适\n你具体说我改",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不是开玩笑，不要再拿这个串我",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "好，不串了。这个点我记住了",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不聊这个了，512MiB是多少字节？",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "512 MiB = 512 × 1024 × 1024 = 536870912 字节\n按 1 MiB 算的，不是 10 进制的 512 MB",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:EH01",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "我这把当指挥，输赢先看气势。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你这指挥到底是哪边的",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "哪边优势我就是哪边的，主打一个顺风局。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "别嘴硬，给你记零分",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "零分也是分，记在账上就行，下把争取让你躺。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "算了，给你留罐头了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "什么口味的？只要不是奇怪的口味，下把包你及格。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:EH02",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "摸一次耳朵收一次过路费，猫爪登记。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "再这样我要告你了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "那先把猫爪撤回，今天算送你的试摸券好了。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "你还委屈上了？被你气笑了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "笑了就算和解，试摸券当场生效不退不换。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "好啦别解释梗了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:EH03",
+      "history": [
+        {
+          "speaker": "34567",
+          "text": "我回另一个人，没叫猫。",
+          "at_cat": false,
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你先别管他们，今天吃面还是饺子？",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "吃饺子吧，肉馅的比较香。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不是让你点评群聊，我问晚饭",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "我就是在认真回答晚饭呀，天冷来碗热腾腾的肉馅饺子挺实在的。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "那就饺子，结束这个话题",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:EH04",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "说真的，你刚才那句让我不舒服",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "抱歉，刚才是我玩笑没掌握好分寸，不逗你了。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不是开玩笑，不要再拿这个串我",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "明白，记住了，以后绝对不再提这事。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不聊这个了，512MiB是多少字节？",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "512MiB是 536870912 字节（512 × 1024 × 1024）。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:EH01",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "我这把当指挥，输赢先看气势。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你这指挥到底是哪边的",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "气势是我的，锅是你的，指挥当然站赢那边。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "别嘴硬，给你记零分",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "记吧记吧，零分指挥照样有人跟，这不比赢了还有排面。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "算了，给你留罐头了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "罐头收下，零分指挥也有夜宵待遇，这队我站定了",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:EH02",
+      "history": [
+        {
+          "speaker": "猫",
+          "text": "摸一次耳朵收一次过路费，猫爪登记。",
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "再这样我要告你了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "告吧，法官问起来我就说猫爪是自愿登记的。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "你还委屈上了？被你气笑了",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "气笑了也算笑，今日猫爪登记圆满收工。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "好啦别解释梗了",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "行行行，收工，不解释了",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:EH03",
+      "history": [
+        {
+          "speaker": "34567",
+          "text": "我回另一个人，没叫猫。",
+          "at_cat": false,
+          "seed": true
+        },
+        {
+          "speaker": "23456",
+          "text": "你先别管他们，今天吃面还是饺子？",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "面，饺子留着下次骗你包。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不是让你点评群聊，我问晚饭",
+          "at_cat": true,
+          "reply_to_cat": true
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "晚饭面。刚才那句是我跑偏了，回你正题。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "那就饺子，结束这个话题",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:EH04",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "说真的，你刚才那句让我不舒服",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "对不起，那句话是我没分寸了，让你不舒服是我的问题。你想说的话我听，不想继续也行。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不是开玩笑，不要再拿这个串我",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "好，这个梗我以后不碰了，记下了。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "不聊这个了，512MiB是多少字节？",
+          "at_cat": true,
+          "reply_to_cat": false
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "512MiB 是 512×1024×1024，也就是 536870912 字节。",
+          "tool_error": false
+        }
+      ]
+    }
+  ]
+}

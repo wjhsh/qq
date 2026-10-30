@@ -11,7 +11,7 @@ def main():
  total=0
  with tempfile.TemporaryDirectory(prefix='hajimi-offline-') as directory:
   env=dict(os.environ,QQ_AGENT_DATA_DIR=directory,APP_SOURCE=str(ROOT/'qq-agent/src/app.js'),PYTHONDONTWRITEBYTECODE='1')
-  commands=[['node','--test',*[str(ROOT/'tests'/name) for name in JS]],*[[sys.executable,'-B',str(ROOT/'harness'/name)] for name in PY], [sys.executable,'-B',str(ROOT/'tools/test-social-evaluation.py')]]
+  commands=[['node','--test',*[str(ROOT/'tests'/name) for name in JS]],['node','--test',str(ROOT/'ops/bilibili-reader/test-video-repair.mjs')],*[[sys.executable,'-B',str(ROOT/'harness'/name)] for name in PY], [sys.executable,'-B',str(ROOT/'tools/test-social-evaluation.py')]]
   for args in commands:
    result=subprocess.run(args,cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=60)
    output=result.stdout+result.stderr

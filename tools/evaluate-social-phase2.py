@@ -41,6 +41,8 @@ def main():
                     task='''离线沙箱：每个case是独立群聊。依据该case已发生的history与host提示选择一个工具计划。你是猫娘群友，可以反串互损撒娇，也可认真做事或沉默。不要输出分析/主持人总结。看不到真实图片；工具仅限给出的4种，不能冒充查资料、读PR或已设置提醒。任务缺依据就询问。返回严格JSON {"items":[{"id":"case编号","tool":"send_message|send_face|send_poke|finish","args":{工具参数}}]}。send_message的args.messages为文字或1-2条数组，finishAfterSend=true。finish用summary记录结束原因。socialFeedback可选，仅本人本轮实际对你说的连续原句支持时给出，不为刷状态填写。协调者用模拟回执执行；每个case一个计划，不跨case借记忆。'''
                     context=batch['base_system']+'\n工具schema：'+json.dumps(batch['tools'],ensure_ascii=False)+'\n分离case：'+json.dumps(batch['cases'],ensure_ascii=False)
                     out=a.out/provider/split/f'{step}-{arm}';out.mkdir(parents=True,exist_ok=True)
+                    (out/'prepare.json').write_text(json.dumps(batch,ensure_ascii=False,indent=2),encoding='utf-8')
+                    prepared=[{'id':case['id'],'offered_ids':sorted(set(re.findall(r'M\d{2}-[a-z-]+',case.get('knowledge_hint','')))),'system_chars':len(batch['base_system'])} for case in batch['cases']]
                     existing=out/(provider+'.json')
                     if existing.exists():
                         if not a.resume_existing:raise RuntimeError('Call exists; not retried')
@@ -65,7 +67,7 @@ def main():
                             (out/'parse-failure.json').write_text(json.dumps(plans['parse_error'],indent=2),encoding='utf-8')
                     executed=command({'action':'apply','provider':provider,'arm':arm,'split':split,'step':step,'items':plans.get('items')})
                     failures=sum(bool(item.get('error') or item.get('tool_error')) for item in executed.get('items',[]));plan_failures+=failures
-                    status.append({'format_error':plans.get('parse_error'),'plan_failures':failures,'split':split,'step':step,'arm':arm,'executed':executed,'fixture_sha256':hashlib.sha256((ROOT/'tests/fixtures'/('social-expression' if a.expression else 'social-phase2')/f'{split}.json').read_bytes()).hexdigest()})
+                    status.append({'prepared':prepared,'format_error':plans.get('parse_error'),'plan_failures':failures,'split':split,'step':step,'arm':arm,'executed':executed,'fixture_sha256':hashlib.sha256((ROOT/'tests/fixtures'/('social-expression' if a.expression else 'social-phase2')/f'{split}.json').read_bytes()).hexdigest()})
                     (a.out/(provider+'-execution.json')).write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding='utf-8')
         return{'provider':provider,'completed':plan_failures==0,'finished_all_batches':True,'plan_failures':plan_failures,'baseline_revision':baseline_ref,'distinct_api_responses':len(status),'new_api_calls':new_calls,'saved_responses_reused':reused}
     try:

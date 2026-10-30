@@ -100,8 +100,9 @@ test('retrieval parent text never becomes feedback quote or a saved memory',()=>
  assert.equal(session.socialFeedbackStats.reasons.invalid_quote,1);
 });
 test('knowledge metadata distinguishes absent focus, no match and disabled without raw text',()=>{
- const cfg=config();const runtime=new SocialRuntime({getConfig:()=>cfg,roleIdentity:()=>({id:'hajimi-normal',scope})});
+ const cfg=config({socialBehavior:{phase2:{knowledgeContext:'linked-v1'}}});const runtime=new SocialRuntime({getConfig:()=>cfg,roleIdentity:()=>({id:'hajimi-normal',scope})});
  const session={};assert.equal(runtime.knowledgeHint(chat,[{senderId:owner,directText:'abc',text:'abc'}],null,session),'');assert.equal(session.socialKnowledge.reason,'no_owner');
+ assert.equal(session.socialKnowledge.mode,'linked-v1');
  runtime.knowledgeHint(chat,[{senderId:owner,atMe:true,directText:'qwerty',text:'qwerty'}],null,session);assert.equal(session.socialKnowledge.reason,'no_match');
  cfg.socialBehavior.phase2.humorKnowledge=false;runtime.knowledgeHint(chat,[],null,session);assert.equal(session.socialKnowledge.reason,'disabled');
  assert.equal(JSON.stringify(session).includes('qwerty'),false);

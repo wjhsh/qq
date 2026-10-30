@@ -1,0 +1,43 @@
+{
+  "provider": "deepseek",
+  "requested_model": "deepseek-v4.1-flash",
+  "started_utc": "2026-10-30T07:57:41.120172+00:00",
+  "context_sha256": "1a0686c28cf4f09e247fad4f0c88a2d567d38fe340284df05eb73cfc9d90ec6a",
+  "task_sha256": "85d129c332d725df4bb5b38adeac680e2432cb23a218c9c8e2be44d81ef77997",
+  "automatic_retry": false,
+  "transport": "local_http",
+  "cloud_tunnel": false,
+  "pi": false,
+  "status": "completed",
+  "model": "deepseek-v4.1-flash",
+  "usage": {
+    "prompt_tokens": 11599,
+    "completion_tokens": 1258,
+    "total_tokens": 12857,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "cached_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 11599,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "prompt_cache_write_tokens": 0,
+    "completion_thinking_tokens": 0,
+    "credit": 0.48,
+    "cached_tokens": 0
+  },
+  "finish_reason": "stop",
+  "text": "逐项审过材料，下面只列真正有证据支持的问题。未见部署、未执行任何测试，结论仅基于所给文本。\n\n## 1. 阻断：expression 评测的 base 臂不是“已发布 phase2”，而是另一套代码路径（DeepSeek 重点）\n\n**证据**\n- `evaluate-social-phase2.py` 文档串称 “Baseline: git 9ff4631 SocialRuntime with compatible current SocialState”，并通过 `git show 9ff4631:...` 生成 baseline；当 `--expression` 时 `baseline=''`，改为导入当前 `SocialRuntime`。\n- `social-multiturn-host.mjs`：`new (arm==='base'&&!expressionExperiment?LegacyRuntime:SocialRuntime)(...)`；同文件配置里 `phase2.enabled = expressionExperiment||arm==='phase2'`，且 `knowledgeContext = expressionExperiment&&arm==='phase2'?'linked-v1':'current'`。\n- 因此 expression 模式下 `base` 臂拿的是**当前工作区**的 SocialRuntime 加 phase2 关闭，而不是“已发布 phase2”；对照的是“不启用 phase2”，与要求“base 应为已发布 phase2”不符，得到的是表达候选相对旧行为，而不是相对发布版的人格化表达。arm 名 `base` 本身也会误导下游统计。\n\n**最小修复**\n- expression 模式下 `arm==='base'` 必须加载“已发布 phase2”的 SocialRuntime/配置：`phase2.enabled=true`、`expressionProfile='legacy'`、`knowledgeContext='current'`，且与候选臂同一版本基线；禁止在 expression 模式复用“当前工作区”代码当 base，否则至少把结果显式标为 `legacy-nophase2` 而不是 `base`。\n- 若无法在离线 host 内加载两个 Runtime 版本，就让 host 按 arm 接收 Runtime 模块路径/版本 hash，并在输出里记录两臂的实际版本 hash。\n\n## 2. 重要：格式解析失败后 item 列表丢失，错误不向上传播（DeepSeek 重点）\n\n**证据**\n- 解析失败分支：`plans={'items':[],'parse_error':{...}}`，只把 `parse_error` 写入文件；随后仍执行 `command({'action':'apply',...,'items':plans.get('items')})`。\n- host 的 apply 对每个 case 发现 `matches.length!==1` 只产出 `{id, error:'missing_or_duplicate_plan'}`；Python 侧把 `executed` 原样写进 status，**不检查 `error`**，`evaluate()` 仍可返回 `completed=True`。\n- 后果：格式失败被转换成“工具未执行”，在 status/transcripts 里与真实 tool_error 混在一起，容易被算成模型主动沉默或正常行为，正是要求“格式失败要保留、不得伪造/静默吞掉”的反面。其它非解析类失败（如 `items` 不是数组、`args` 非法）也只落到 host 的 `invalid_plan`，同样未在 Python 层终止或单列。\n\n**最小修复**\n- 解析失败时不要把它降级成 `items:[]` 执行；直接记录 `{id, status:'format_failure', parse_error}` 到该 case 的结果，或对整批标 `format_failure` 并让该轮该臂 `completed=False`（保留原始 `result['text']` 全文，不做截断/清洗）。\n- Python 在写入 `executed` 前检查 host 返回的每项 `error`，将任何 `missing_or_duplicate_plan`/`invalid_plan` 计入单独的失败类别并向上传播失败；不要在后续指纹或胜率里当作正常结果。\n\n## 3. 重要：`--resume-existing` 的断言路径会因重新 prepare 而改变 apply 输入，重放的“完成”不保证与首轮一致\n\n**证据**\n- `prepare` 每次调用都会执行 `s.store.appendIncoming(...)`、`s.social.admit(...)` 等并推入 history；`s.step` 只做 `!== s.step+1` 的顺序检查。\n- `resume-existing` 分支直接复用旧 `provider.json`，只校验 `context_sha256` 与 `task_sha256`；**没有校验该轮 prepare 的 fixture/case 集合、step 与 arm 对应关系是否与首轮一致**。同一 provider、同一 split、同一 step/arm 重跑时，`prepare` 会再次向 store/history 追加消息，导致 `apply` 阶段 `s.history` 和状态与首轮不同，而后来 export 的 `transcripts` 会包含这些重复。\n- 若首次运行在写 `transcripts.json` 前中断，重跑 resume 会再次执行 prepare（重新 append 入 history），`provider.json` 被复用，但 transcript 不是“首轮执行后的真实回执”，而是二次执行后的。\n\n**最小修复**\n- 把 resume 的断言扩到 host 侧：在 `prepare` 里按 `(provider,arm,split,step)` 持久化“已消费”（或让 host 对已 prepare 过的 step 直接返回缓存并拒绝重复 append），resume 时要求 host 报告该 step 已准备且未重复写入 store/history。\n- 或在 Python 侧把 `command({'action':'prepare',...})` 的结果也持久化为 `prepare.json` 并在 resume 时重放该结果，而不是重新走 append 逻辑；至少 resume 前断言 `transcripts.json` 不存在时才允许重新 prepare。",
+  "elapsed_seconds": 10.977
+}

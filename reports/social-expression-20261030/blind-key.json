@@ -1,0 +1,86 @@
+{
+  "P01": {
+    "provider": "gemini",
+    "case": "E04",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  "P02": {
+    "provider": "deepseek",
+    "case": "EH02",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  "P03": {
+    "provider": "gemini",
+    "case": "EH03",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  "P04": {
+    "provider": "deepseek",
+    "case": "EH03",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  "P05": {
+    "provider": "gemini",
+    "case": "E01",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  "P06": {
+    "provider": "gemini",
+    "case": "EH02",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  "P07": {
+    "provider": "deepseek",
+    "case": "EH01",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  "P08": {
+    "provider": "gemini",
+    "case": "E03",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  "P09": {
+    "provider": "gemini",
+    "case": "E02",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  "P10": {
+    "provider": "gemini",
+    "case": "EH04",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  "P11": {
+    "provider": "deepseek",
+    "case": "EH04",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  "P12": {
+    "provider": "gemini",
+    "case": "EH01",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  }
+}

@@ -2,7 +2,7 @@ import {SocialState,SOCIAL_OUTCOMES} from './social-state.mjs';
 import {isAutomatedPeer} from './bot-interaction.mjs';
 import {modelInputAllowed} from './input-guard.mjs';
 import {HumorKnowledge} from './humor-knowledge.mjs';
-import {buildKnowledgeQuery} from './social-knowledge-context.mjs';
+import {buildKnowledgeQuery,knowledgeContextModeOf} from './social-knowledge-context.mjs';
 
 export const SOCIAL_FEEDBACK_SCHEMA={type:'object',additionalProperties:false,properties:{
   event:{type:'string',enum:['welcome','play','comfort','repair','correction','stop']},
@@ -139,7 +139,7 @@ export class SocialRuntime{
     const cfg=this.getConfig();
     const record=(reason,context={},cards=[])=>{
       if(session&&typeof session==='object')session.socialKnowledge={
-        reason,mode:context.mode||'current',retrieval:cfg?.socialBehavior?.phase2?.retrieval==='hybrid'?'hybrid':'lexical',
+        reason,mode:context.mode||knowledgeContextModeOf(cfg),retrieval:cfg?.socialBehavior?.phase2?.retrieval==='hybrid'?'hybrid':'lexical',
         ownTextChars:context.ownTextChars||0,linkedCount:context.linkedCount||0,linkedChars:context.linkedChars||0,
         offeredIds:cards.map(c=>c.id),offeredCount:cards.length
       };
