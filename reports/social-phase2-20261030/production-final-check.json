@@ -1,0 +1,96 @@
+{
+  "read_only": true,
+  "release": {
+    "release": "20261030-ded8f08",
+    "source_revision": "ded8f08d66f6a5f2046260a6d2509f7395fb26b7",
+    "core_checks": 218,
+    "runtime_checks": 47,
+    "transaction_checks": 10,
+    "social_enabled": true,
+    "allow_direct_peers": false,
+    "voice_provider": "edge",
+    "api_and_roles_preserved": true,
+    "verified_at_utc": "2026-10-29T19:58:50.656813+00:00"
+  },
+  "connected": true,
+  "orchestrator": {
+    "model": "account2/gemini-3.8-flash-high",
+    "running_count": 1,
+    "waiting_count": 0
+  },
+  "social_config": {
+    "enabled": true,
+    "allowDirectPeers": false
+  },
+  "social_state": {
+    "version": 1,
+    "scopes": 1,
+    "relations": 7,
+    "events": {
+      "play": 7
+    },
+    "event_timestamps_valid": true,
+    "unique_evidence_ids": 14,
+    "warmth_min_max": [
+      0.5,
+      0.5
+    ]
+  },
+  "meme_library": {
+    "exists": false
+  },
+  "learning_enabled": true,
+  "learning_diagnostics": {
+    "ledger_exists": false,
+    "community_enabled": true,
+    "read_for_members": true,
+    "web_search_enabled": true
+  },
+  "memory": {
+    "tool_category_enabled": true,
+    "consolidate_enabled": true,
+    "member_json_count": 21
+  },
+  "session_sample_size": 100,
+  "session_statuses": {
+    "running": 1,
+    "done": 98,
+    "error": 1
+  },
+  "error_diagnostics": [
+    {
+      "category": "google_request_guard_cooldown",
+      "error_redacted": "Google 网关上游请求保护冷却中，请约 15 秒后再试；本次不继续请求或切换账号。",
+      "duration_seconds": 30.788
+    }
+  ],
+  "latency_seconds": {
+    "sample": 98,
+    "median": 8.6685,
+    "max": 43.132
+  },
+  "assistant_rounds": {
+    "median": 1.0,
+    "max": 6
+  },
+  "feedback_requests": 30,
+  "feedback_guard_reconstruction": {
+    "candidate": 12,
+    "ambient_not_addressed": 16,
+    "quote_not_original_contiguous_text": 1,
+    "platform_message_id_not_found": 1
+  },
+  "feedback_events": {
+    "play": 30
+  },
+  "source_sha256": {
+    "social-state.mjs": "4616980afc10ad28e0c6e397399201fe2e08c2810a298a54a34a36698bf84630",
+    "social-runtime.mjs": "3f5f5277b95228c6d491c379edceda338fd4eb0fbbe4a0affd1dc85a8dac0e83",
+    "orchestrator.js": "1e81b59768f98ce5597c0e9020887a3408a21c17f5d8d493825bd5971f78390d",
+    "app.js": "03541de2654e469ff863c15c72f02d669285317fe57073cc4b8d59e116bc2c3e",
+    "meme-library.mjs": "eff62dadfdd9d440c195ef14e8e053ea6fe7018aac44da70a06a3485ceea736b"
+  },
+  "scope_note": "No private chat content, credentials or user IDs exported. Duration is full-session latency, not provider latency.",
+  "observed_client_date": "2026-10-30",
+  "note": "Final rolling window differs from initial audit; no production changes. Error is existing request guard cooldown, not evidence of permanent account restriction."
+}

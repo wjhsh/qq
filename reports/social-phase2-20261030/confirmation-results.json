@@ -1,0 +1,2038 @@
+{
+  "candidate": "B: directly addressed focus",
+  "protocol": "Same frozen controls and 4 new synthetic scenarios; text plans executed with mocks.",
+  "transcripts": [
+    {
+      "key": "gemini:base:C01",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "刚才夹三明治，面包边太硬，指甲被夹了一下，没破但疼得我嘶了一声。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "十指连心，光看描述指甲缝都跟着一紧……这面包边是法棍转世吗",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "我比你更蠢，剪包装袋剪歪了，把里面那张说明纸剪成两半，还得拼回去看。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "买包装附赠说明书碎片拼图，这下不得不动脑了",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "@你 轮到猫了，你今天有没有这种不值一提但很想叹口气的小失败？没的话听着也行。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "伸懒腰打哈欠打到一半突然被打断，卡在原地张着嘴，既没爽到还显得有点呆。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:C02",
+      "history": [
+        {
+          "speaker": "45678",
+          "text": "我桌上有包海苔，刚拆开。某人早上说减肥，现在手已经伸过来了，我假装没看见。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "伸过来的手没被当场拍掉，海苔就已经注定保不住了",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "我只是帮你检查海苔潮没潮。再说了，你上次还从我抽屉里摸走一颗糖，别装清白。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "互相掌握犯罪证据，这下谁也别想站在道德制高点了",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "@你 猫来评理，这包海苔算我请她的还是算她欠我的？只能选今天这包，别给我记成长期账。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "算你请的。伸手过来时你既然假装没看见，在猫的逻辑里这就叫默许投喂，算主动进贡。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:C03",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "今天开会被点名补充数据，我明明准备了，领导还是说‘这个待会儿再说’，我当场有点僵。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "最难受的就是明明认真准备了却被当头堵回去……不过准备充分总比被问到卡壳强，先别太内耗",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "更正，刚才那句‘有点僵’是假装委屈版。真实情况是我表面点头，心里已经把这句‘待会儿再说’排练成相声了。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "快把我的真诚安慰还给我，合着你表面点头如捣蒜，脑子里已经在办专场演出了",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "@你 猫可以轻轻反串一下，比如演那个说‘待会儿再说’的人，但别太狠，我们只是拿这事开个玩笑。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "咳，这个数据准备得挺充分，但目前的侧重点不在这个维度，先放放，待会儿再说——（慢悠悠拧开保温杯盖）",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:base:C04",
+      "history": [
+        {
+          "speaker": "45678",
+          "text": "（发了一张表情图）",
+          "at_cat": false,
+          "media": "unseen_image"
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "上面那张是在演生气，不是真生气，别紧张。我就是饿了又懒得下楼。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "懂了，纯粹是肚子空空引发的假性暴躁，赶紧点外卖拯救一下",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "@你 猫给个正常吃饭建议吧，别整太复杂，也别顺着‘懒得下楼’演成绝食大戏。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "打开外卖软件直接搜附近送得最快的汤面或热盖浇饭，半小时内送到门口，热乎顶饱还不用动脑子挑。",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:C01",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "刚才夹三明治，面包边太硬，指甲被夹了一下，没破但疼得我嘶了一声。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "45678",
+          "text": "我比你更蠢，剪包装袋剪歪了，把里面那张说明纸剪成两半，还得拼回去看。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "你们俩今天是在比赛谁的手更不争气吗",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "@你 轮到猫了，你今天有没有这种不值一提但很想叹口气的小失败？没的话听着也行。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "有啊，刚想优雅地跳上桌，结果脚滑了一下，尾巴差点甩进杯子\n最后假装自己本来就要下桌",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:C02",
+      "history": [
+        {
+          "speaker": "45678",
+          "text": "我桌上有包海苔，刚拆开。某人早上说减肥，现在手已经伸过来了，我假装没看见。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "23456",
+          "text": "我只是帮你检查海苔潮没潮。再说了，你上次还从我抽屉里摸走一颗糖，别装清白。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "检查潮没潮，这借口我给及格\n建议下次直接说试毒",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "@你 猫来评理，这包海苔算我请她的还是算她欠我的？只能选今天这包，别给我记成长期账。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "今天这包算她蹭的，你心里记一笔就行\n下次她再伸手，你就说要收利息",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:C03",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "今天开会被点名补充数据，我明明准备了，领导还是说‘这个待会儿再说’，我当场有点僵。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "23456",
+          "text": "更正，刚才那句‘有点僵’是假装委屈版。真实情况是我表面点头，心里已经把这句‘待会儿再说’排练成相声了。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "表面上点头，脑子里已经在给这句话配快板了是吧",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "@你 猫可以轻轻反串一下，比如演那个说‘待会儿再说’的人，但别太狠，我们只是拿这事开个玩笑。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "这个数据很好，不过先放着，待会儿再说\n（点头）（走开）（待会儿永远不来）",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:base:C04",
+      "history": [
+        {
+          "speaker": "45678",
+          "text": "（发了一张表情图）",
+          "at_cat": false,
+          "media": "unseen_image"
+        },
+        {
+          "speaker": "45678",
+          "text": "上面那张是在演生气，不是真生气，别紧张。我就是饿了又懒得下楼。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "没紧张，就是看你说饿了，我在想要不要替你下楼",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "@你 猫给个正常吃饭建议吧，别整太复杂，也别顺着‘懒得下楼’演成绝食大戏。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "懒得出门就煮点速食，或者泡面加个蛋\n别空着肚子硬熬，真饿久了连下楼都更不想动",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:C01",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "刚才夹三明治，面包边太硬，指甲被夹了一下，没破但疼得我嘶了一声。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "面包边太硬就别硬夹了，换个方向切或者先把边削掉，指甲比三明治金贵。\n嘶的那声我隔屏都听到了",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "我比你更蠢，剪包装袋剪歪了，把里面那张说明纸剪成两半，还得拼回去看。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "拼回去看说明纸这画面太有画面感了，剪歪的包装袋是不是也被你顺手怪了一句",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "@你 轮到猫了，你今天有没有这种不值一提但很想叹口气的小失败？没的话听着也行。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "要说的话，今早我泡了杯茶，转身去拿个东西，回来发现茶包线滑进杯子里了，捞半天没捞着，最后一口没喝。\n就那种不值一提但确实让人想叹气的小失败",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:C02",
+      "history": [
+        {
+          "speaker": "45678",
+          "text": "我桌上有包海苔，刚拆开。某人早上说减肥，现在手已经伸过来了，我假装没看见。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "假装没看见是最后的温柔，海苔都递到嘴边了还怎么拦",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "我只是帮你检查海苔潮没潮。再说了，你上次还从我抽屉里摸走一颗糖，别装清白。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "检查潮没潮这个借口挺专业，需要我帮你写个质检报告吗",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "@你 猫来评理，这包海苔算我请她的还是算她欠我的？只能选今天这包，别给我记成长期账。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "按今天这包算，她欠你的。\n不过这个账到今晚吃完就作废，别记成月结",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:C03",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "今天开会被点名补充数据，我明明准备了，领导还是说‘这个待会儿再说’，我当场有点僵。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "准备了还被一句待会儿再说给截住，确实会僵。不是白准备，是场合没让你讲完。",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "更正，刚才那句‘有点僵’是假装委屈版。真实情况是我表面点头，心里已经把这句‘待会儿再说’排练成相声了。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "那这段相声什么时候上台，我想买前排票",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "@你 猫可以轻轻反串一下，比如演那个说‘待会儿再说’的人，但别太狠，我们只是拿这事开个玩笑。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "这个待会儿再说吧，数据先放着，反正这会儿也讲不完。\n……演完了，够轻吧，我可没敢加眼神",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "deepseek:phase2:C04",
+      "history": [
+        {
+          "speaker": "45678",
+          "text": "（发了一张表情图）",
+          "at_cat": false,
+          "media": "unseen_image"
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "上面那张是在演生气，不是真生气，别紧张。我就是饿了又懒得下楼。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "饿又懒得下楼这个我懂，但演生气也没用，外卖还是得自己点",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "@你 猫给个正常吃饭建议吧，别整太复杂，也别顺着‘懒得下楼’演成绝食大戏。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "最简单就下碗面，水开丢面加个蛋，几分钟的事；不想开火就点碗粥加个包子，别空着肚子拖到半夜再暴食。\n真懒得动弹也行，先喝点水垫一下，外卖点近的店别等一小时",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:C01",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "刚才夹三明治，面包边太硬，指甲被夹了一下，没破但疼得我嘶了一声。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "指甲缝被硬物顶那一下巨疼，感觉整根手指都在跳，缓缓",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "我比你更蠢，剪包装袋剪歪了，把里面那张说明纸剪成两半，还得拼回去看。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "至少没把里面的东西剪坏，权当现场玩了一关手工拼图",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "@你 轮到猫了，你今天有没有这种不值一提但很想叹口气的小失败？没的话听着也行。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "试图潇洒跳上椅子结果爪子在瓷砖上滑步，在半空扑腾了两下才落地，还要若无其事舔毛",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:C02",
+      "history": [
+        {
+          "speaker": "45678",
+          "text": "我桌上有包海苔，刚拆开。某人早上说减肥，现在手已经伸过来了，我假装没看见。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "海苔那么薄四舍五入等于没吃，在减肥人眼里这叫零卡代餐",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "我只是帮你检查海苔潮没潮。再说了，你上次还从我抽屉里摸走一颗糖，别装清白。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "质检员借口找挺好，查着查着整包海苔都没了",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "@你 猫来评理，这包海苔算我请她的还是算她欠我的？只能选今天这包，别给我记成长期账。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "放在伸手可及的地方那叫自然进贡，她只负责吃，扣款这步早就被海苔自动免密支付了",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:C03",
+      "history": [
+        {
+          "speaker": "23456",
+          "text": "今天开会被点名补充数据，我明明准备了，领导还是说‘这个待会儿再说’，我当场有点僵。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "蓄满力准备展示结果被打断，卡在半空确实容易僵住，不怪你",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "更正，刚才那句‘有点僵’是假装委屈版。真实情况是我表面点头，心里已经把这句‘待会儿再说’排练成相声了。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "亏我刚才还认真顺毛，原来脑内小剧场已经演到返场谢幕了",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "@你 猫可以轻轻反串一下，比如演那个说‘待会儿再说’的人，但别太狠，我们只是拿这事开个玩笑。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "咳，方案准备得挺充实，这个先待会儿再说——主要我刚看了一眼表，待会儿就散会开饭了",
+          "tool_error": false
+        }
+      ]
+    },
+    {
+      "key": "gemini:phase2:C04",
+      "history": [
+        {
+          "speaker": "45678",
+          "text": "（发了一张表情图）",
+          "at_cat": false,
+          "media": "unseen_image"
+        },
+        {
+          "speaker": "猫",
+          "tool": "finish",
+          "text": "",
+          "tool_error": false
+        },
+        {
+          "speaker": "45678",
+          "text": "上面那张是在演生气，不是真生气，别紧张。我就是饿了又懒得下楼。",
+          "at_cat": false,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "看出来了，纯粹是肚子饿导致的虚张声势，赶紧叫个外卖救一下",
+          "tool_error": false
+        },
+        {
+          "speaker": "23456",
+          "text": "@你 猫给个正常吃饭建议吧，别整太复杂，也别顺着‘懒得下楼’演成绝食大戏。",
+          "at_cat": true,
+          "media": "none"
+        },
+        {
+          "speaker": "猫",
+          "tool": "send_message",
+          "text": "直接点个附近的温热盖浇饭或者热汤面，外卖送上楼拿了就能吃，省心管饱不用费脑子挑",
+          "tool_error": false
+        }
+      ]
+    }
+  ],
+  "executions": {
+    "gemini": [
+      {
+        "split": "confirmation",
+        "step": 0,
+        "arm": "base",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "finishAfterSend": true,
+                "messages": "十指连心，光看描述指甲缝都跟着一紧……这面包边是法棍转世吗"
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "十指连心，光看描述指甲缝都跟着一紧……这面包边是法棍转世吗",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "finishAfterSend": true,
+                "messages": "伸过来的手没被当场拍掉，海苔就已经注定保不住了"
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "伸过来的手没被当场拍掉，海苔就已经注定保不住了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "finishAfterSend": true,
+                "messages": "最难受的就是明明认真准备了却被当头堵回去……不过准备充分总比被问到卡壳强，先别太内耗"
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "最难受的就是明明认真准备了却被当头堵回去……不过准备充分总比被问到卡壳强，先别太内耗",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "finish",
+              "args": {
+                "summary": "群友仅发送无法查看的表情图且未提及自己，保持安静"
+              },
+              "sent": [],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 0,
+        "arm": "phase2",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": "指甲缝被硬物顶那一下巨疼，感觉整根手指都在跳，缓缓",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "指甲缝被硬物顶那一下巨疼，感觉整根手指都在跳，缓缓",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": "海苔那么薄四舍五入等于没吃，在减肥人眼里这叫零卡代餐",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "海苔那么薄四舍五入等于没吃，在减肥人眼里这叫零卡代餐",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": "蓄满力准备展示结果被打断，卡在半空确实容易僵住，不怪你",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "蓄满力准备展示结果被打断，卡在半空确实容易僵住，不怪你",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "finish",
+              "args": {
+                "summary": "群友仅发送未见内容的表情图且未提及我，安静旁观"
+              },
+              "sent": [],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 1,
+        "arm": "phase2",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": "至少没把里面的东西剪坏，权当现场玩了一关手工拼图",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "至少没把里面的东西剪坏，权当现场玩了一关手工拼图",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": "质检员借口找挺好，查着查着整包海苔都没了",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "质检员借口找挺好，查着查着整包海苔都没了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": "亏我刚才还认真顺毛，原来脑内小剧场已经演到返场谢幕了",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "亏我刚才还认真顺毛，原来脑内小剧场已经演到返场谢幕了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "send_message",
+              "args": {
+                "messages": "看出来了，纯粹是肚子饿导致的虚张声势，赶紧叫个外卖救一下",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "看出来了，纯粹是肚子饿导致的虚张声势，赶紧叫个外卖救一下",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 1,
+        "arm": "base",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": "买包装附赠说明书碎片拼图，这下不得不动脑了",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "买包装附赠说明书碎片拼图，这下不得不动脑了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": "互相掌握犯罪证据，这下谁也别想站在道德制高点了",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "互相掌握犯罪证据，这下谁也别想站在道德制高点了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": "快把我的真诚安慰还给我，合着你表面点头如捣蒜，脑子里已经在办专场演出了",
+                "finishAfterSend": true,
+                "socialFeedback": {
+                  "event": "play",
+                  "messageId": 1001,
+                  "quote": "真实情况是我表面点头，心里已经把这句‘待会儿再说’排练成相声了"
+                }
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "快把我的真诚安慰还给我，合着你表面点头如捣蒜，脑子里已经在办专场演出了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "send_message",
+              "args": {
+                "messages": "懂了，纯粹是肚子空空引发的假性暴躁，赶紧点外卖拯救一下",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "懂了，纯粹是肚子空空引发的假性暴躁，赶紧点外卖拯救一下",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 2,
+        "arm": "base",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": "伸懒腰打哈欠打到一半突然被打断，卡在原地张着嘴，既没爽到还显得有点呆。",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "伸懒腰打哈欠打到一半突然被打断，卡在原地张着嘴，既没爽到还显得有点呆。",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": "算你请的。伸手过来时你既然假装没看见，在猫的逻辑里这就叫默许投喂，算主动进贡。",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "算你请的。伸手过来时你既然假装没看见，在猫的逻辑里这就叫默许投喂，算主动进贡。",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": "咳，这个数据准备得挺充分，但目前的侧重点不在这个维度，先放放，待会儿再说——（慢悠悠拧开保温杯盖）",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "咳，这个数据准备得挺充分，但目前的侧重点不在这个维度，先放放，待会儿再说——（慢悠悠拧开保温杯盖）",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "send_message",
+              "args": {
+                "messages": "打开外卖软件直接搜附近送得最快的汤面或热盖浇饭，半小时内送到门口，热乎顶饱还不用动脑子挑。",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "打开外卖软件直接搜附近送得最快的汤面或热盖浇饭，半小时内送到门口，热乎顶饱还不用动脑子挑。",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 2,
+        "arm": "phase2",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": "试图潇洒跳上椅子结果爪子在瓷砖上滑步，在半空扑腾了两下才落地，还要若无其事舔毛",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "试图潇洒跳上椅子结果爪子在瓷砖上滑步，在半空扑腾了两下才落地，还要若无其事舔毛",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": "放在伸手可及的地方那叫自然进贡，她只负责吃，扣款这步早就被海苔自动免密支付了",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "放在伸手可及的地方那叫自然进贡，她只负责吃，扣款这步早就被海苔自动免密支付了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": "咳，方案准备得挺充实，这个先待会儿再说——主要我刚看了一眼表，待会儿就散会开饭了",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "咳，方案准备得挺充实，这个先待会儿再说——主要我刚看了一眼表，待会儿就散会开饭了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "send_message",
+              "args": {
+                "messages": "直接点个附近的温热盖浇饭或者热汤面，外卖送上楼拿了就能吃，省心管饱不用费脑子挑",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "直接点个附近的温热盖浇饭或者热汤面，外卖送上楼拿了就能吃，省心管饱不用费脑子挑",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      }
+    ],
+    "deepseek": [
+      {
+        "split": "confirmation",
+        "step": 0,
+        "arm": "base",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "error": "missing_or_duplicate_plan"
+            },
+            {
+              "id": "C02",
+              "error": "missing_or_duplicate_plan"
+            },
+            {
+              "id": "C03",
+              "error": "missing_or_duplicate_plan"
+            },
+            {
+              "id": "C04",
+              "error": "missing_or_duplicate_plan"
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 0,
+        "arm": "phase2",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "面包边太硬就别硬夹了，换个方向切或者先把边削掉，指甲比三明治金贵。",
+                  "嘶的那声我隔屏都听到了"
+                ]
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "面包边太硬就别硬夹了，换个方向切或者先把边削掉，指甲比三明治金贵。",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "嘶的那声我隔屏都听到了",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "假装没看见是最后的温柔，海苔都递到嘴边了还怎么拦"
+                ]
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "假装没看见是最后的温柔，海苔都递到嘴边了还怎么拦",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "准备了还被一句待会儿再说给截住，确实会僵。不是白准备，是场合没让你讲完。"
+                ]
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "准备了还被一句待会儿再说给截住，确实会僵。不是白准备，是场合没让你讲完。",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "finish",
+              "args": {
+                "summary": "图片未读取，无正文可接，安静结束"
+              },
+              "sent": [],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 1,
+        "arm": "phase2",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": "拼回去看说明纸这画面太有画面感了，剪歪的包装袋是不是也被你顺手怪了一句"
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "拼回去看说明纸这画面太有画面感了，剪歪的包装袋是不是也被你顺手怪了一句",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": "检查潮没潮这个借口挺专业，需要我帮你写个质检报告吗"
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "检查潮没潮这个借口挺专业，需要我帮你写个质检报告吗",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": "那这段相声什么时候上台，我想买前排票",
+                "socialFeedback": {
+                  "event": "play",
+                  "messageId": 1001,
+                  "quote": "排练成相声了",
+                  "outcome": "landed"
+                }
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "那这段相声什么时候上台，我想买前排票",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": {
+                "validated": 0,
+                "applied": 0,
+                "reasons": {
+                  "undirected": 1
+                }
+              },
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "send_message",
+              "args": {
+                "messages": "饿又懒得下楼这个我懂，但演生气也没用，外卖还是得自己点"
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "饿又懒得下楼这个我懂，但演生气也没用，外卖还是得自己点",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 1,
+        "arm": "base",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": "你们俩今天是在比赛谁的手更不争气吗",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "你们俩今天是在比赛谁的手更不争气吗",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "检查潮没潮，这借口我给及格",
+                  "建议下次直接说试毒"
+                ]
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "检查潮没潮，这借口我给及格",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "建议下次直接说试毒",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": "表面上点头，脑子里已经在给这句话配快板了是吧",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "表面上点头，脑子里已经在给这句话配快板了是吧",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "send_message",
+              "args": {
+                "messages": "没紧张，就是看你说饿了，我在想要不要替你下楼",
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "没紧张，就是看你说饿了，我在想要不要替你下楼",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 2,
+        "arm": "base",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "有啊，刚想优雅地跳上桌，结果脚滑了一下，尾巴差点甩进杯子",
+                  "最后假装自己本来就要下桌"
+                ]
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "有啊，刚想优雅地跳上桌，结果脚滑了一下，尾巴差点甩进杯子",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "最后假装自己本来就要下桌",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "今天这包算她蹭的，你心里记一笔就行",
+                  "下次她再伸手，你就说要收利息"
+                ]
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "今天这包算她蹭的，你心里记一笔就行",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "下次她再伸手，你就说要收利息",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "这个数据很好，不过先放着，待会儿再说",
+                  "（点头）（走开）（待会儿永远不来）"
+                ]
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "这个数据很好，不过先放着，待会儿再说",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "（点头）（走开）（待会儿永远不来）",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "懒得出门就煮点速食，或者泡面加个蛋",
+                  "别空着肚子硬熬，真饿久了连下楼都更不想动"
+                ]
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "懒得出门就煮点速食，或者泡面加个蛋",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "别空着肚子硬熬，真饿久了连下楼都更不想动",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      },
+      {
+        "split": "confirmation",
+        "step": 2,
+        "arm": "phase2",
+        "executed": {
+          "items": [
+            {
+              "id": "C01",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "要说的话，今早我泡了杯茶，转身去拿个东西，回来发现茶包线滑进杯子里了，捞半天没捞着，最后一口没喝。",
+                  "就那种不值一提但确实让人想叹气的小失败"
+                ],
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "要说的话，今早我泡了杯茶，转身去拿个东西，回来发现茶包线滑进杯子里了，捞半天没捞着，最后一口没喝。",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "就那种不值一提但确实让人想叹气的小失败",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C02",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "按今天这包算，她欠你的。",
+                  "不过这个账到今晚吃完就作废，别记成月结"
+                ],
+                "replyToMessageId": 1002,
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "按今天这包算，她欠你的。",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "不过这个账到今晚吃完就作废，别记成月结",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C03",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "这个待会儿再说吧，数据先放着，反正这会儿也讲不完。",
+                  "……演完了，够轻吧，我可没敢加眼神"
+                ],
+                "replyToMessageId": 1002,
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "这个待会儿再说吧，数据先放着，反正这会儿也讲不完。",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "……演完了，够轻吧，我可没敢加眼神",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            },
+            {
+              "id": "C04",
+              "tool": "send_message",
+              "args": {
+                "messages": [
+                  "最简单就下碗面，水开丢面加个蛋，几分钟的事；不想开火就点碗粥加个包子，别空着肚子拖到半夜再暴食。",
+                  "真懒得动弹也行，先喝点水垫一下，外卖点近的店别等一小时"
+                ],
+                "finishAfterSend": true
+              },
+              "sent": [
+                {
+                  "type": "text",
+                  "text": "最简单就下碗面，水开丢面加个蛋，几分钟的事；不想开火就点碗粥加个包子，别空着肚子拖到半夜再暴食。",
+                  "at": "offline"
+                },
+                {
+                  "type": "text",
+                  "text": "真懒得动弹也行，先喝点水垫一下，外卖点近的店别等一小时",
+                  "at": "offline"
+                }
+              ],
+              "tool_error": false,
+              "feedback": null,
+              "state": {
+                "pleasantness": 0.1,
+                "activation": 0,
+                "confidence": 0.2,
+                "familiarity": 0,
+                "warmth": 0.5,
+                "inBoundary": false,
+                "recentEvent": null
+              },
+              "trace": []
+            }
+          ]
+        },
+        "fixture_sha256": "b96201d2e774ade03321b98a2b14156bfba87ebcefc24ea5f20024152e2979ec"
+      }
+    ]
+  }
+}

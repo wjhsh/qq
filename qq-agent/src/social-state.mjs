@@ -3,6 +3,8 @@ import { dirname } from 'node:path';
 import { randomUUID } from 'node:crypto';
 
 const EVENTS = new Set(['welcome', 'play', 'comfort', 'repair', 'correction', 'stop', 'success']);
+export const SOCIAL_OUTCOMES = Object.freeze(['landed','missed','uncertain','comforted','conceded']);
+const TRACE_TTL = 20 * 60 * 1000; // An experiment parameter, not a psychological law.
 const SAFE_ID = /^[a-zA-Z0-9_\-:.]+$/;
 const HALF_MOOD = 20 * 60 * 1000; // 情绪20分钟半衰期
 const HALF_REL = 7 * 24 * 60 * 60 * 1000; // 关系7天半衰期
@@ -58,7 +60,11 @@ export class SocialState {
         for (const k of ['fam','w']) if (uVal[k]<0||uVal[k]>1) throw Error('Invalid persisted relationship');
         if(uVal.lastEvent!==undefined&&!EVENTS.has(uVal.lastEvent))throw Error('Invalid persisted appraisal');
         if(uVal.eventAt!==undefined&&!Number.isFinite(uVal.eventAt))throw Error('Invalid persisted appraisal time');
+        if(uVal.trace!==undefined&&(!Array.isArray(uVal.trace)||uVal.trace.length>3||uVal.trace.some(e=>
+          !e||Object.keys(e).some(k=>!['evidenceId','event','outcome','at'].includes(k))
+          ||!uVal.seen.includes(e.evidenceId)||!EVENTS.has(e.event)||!SOCIAL_OUTCOMES.includes(e.outcome)||!Number.isFinite(e.at))))throw Error('Invalid persisted interaction trace');
         rels[uk] = Object.fromEntries(['p','a','c','fam','w','bound','t','seen','positiveAt','lastEvent','eventAt'].map(k=>[k,uVal[k]]));
+        if(uVal.trace!==undefined)rels[uk].trace=structuredClone(uVal.trace);
         // Migrate once: activity/decay time must never keep an old event recent.
         if(uVal.eventAt===undefined&&uVal.lastEvent!==undefined)rels[uk].eventAt=uVal.t;
       }
@@ -144,28 +150,38 @@ export class SocialState {
     };
   }
 
-  apply(scope, userId, { event, id, at = null }) {
+  interactions(scope,userId){
+    const sk=this._scopeKey(scope);this._checkKey(userId);
+    if(!/^[1-9]\d{0,14}$/.test(userId))throw Error('Invalid user ID');
+    const u=this.data.scopes[sk]?.relations[userId],now=this.now();
+    return structuredClone((u?.trace||[]).filter(e=>u.seen.includes(e.evidenceId)&&now>=e.at&&now-e.at<TRACE_TTL));
+  }
+
+  apply(scope, userId, { event, id, at = null, outcome = null }, { receipt = false } = {}) {
     if (!EVENTS.has(event)) throw new TypeError(`Unknown event: ${event}`);
+    if(outcome!==null&&!SOCIAL_OUTCOMES.includes(outcome))throw new TypeError('Invalid social outcome');
     this._checkKey(id);
     const now = this.now();
     if (!Number.isFinite(now) || (at !== null && (!Number.isFinite(at)||Math.abs(at-now)>60000))) throw Error('Invalid event time');
     const sk=this._scopeKey(scope);this._checkKey(userId);
     if (!/^[1-9]\d{0,14}$/.test(userId)) throw Error('Invalid user ID');
-    if(this.data.scopes[sk]?.relations[userId]?.seen.includes(id))return this.snapshot(scope,userId);
+    const finish=(applied,reason)=>{const snapshot=this.snapshot(scope,userId);return receipt?{snapshot,applied,reason}:snapshot;};
+    if(this.data.scopes[sk]?.relations[userId]?.seen.includes(id))return finish(false,'duplicate');
     const previous=structuredClone(this.data);
     try {
     const { u } = this._getOrCreate(scope, userId, now);
     this._applyDecay(u, now);
-    if (u.seen.includes(id)) return this.snapshot(scope, userId);
     u.seen.push(id);
     if (u.seen.length > 64) u.seen.shift();
+    if(u.trace)u.trace=u.trace.filter(e=>u.seen.includes(e.evidenceId)&&now>=e.at&&now-e.at<TRACE_TTL);
 
     const isBound = u.bound > now;
     u.positiveAt=u.positiveAt.filter(t=>now-t<3600000);
     const positive=['welcome','play','comfort','success'].includes(event);
-    if(positive && (isBound||u.positiveAt.length>=4||u.positiveAt.some(t=>now-t<300000))){this._save();return this.snapshot(scope,userId);}
+    if(positive && (isBound||u.positiveAt.length>=4||u.positiveAt.some(t=>now-t<300000))){this._save();return finish(false,isBound?'boundary':'positive_budget');}
     if(positive)u.positiveAt.push(now);
     u.lastEvent=event;u.eventAt=now;
+    if(outcome!==null)u.trace=[...(u.trace||[]),{evidenceId:id,event,outcome,at:now}].slice(-3);
     if (event === 'welcome') {
       if (!isBound) {
         u.p = clamp(u.p + 0.15, -1, 1); u.a = clamp(u.a + 0.1, -1, 1);
@@ -196,7 +212,7 @@ export class SocialState {
       }
     }
     this._save();
-    return this.snapshot(scope, userId);
+    return finish(true,'applied');
     } catch(error) { this.data=previous; throw error; }
   }
 
@@ -212,12 +228,19 @@ export class SocialState {
     this._save();
   }
 
-  format(scope, userId) {
+  format(scope, userId, { compact=false, trace=false } = {}) {
     const s = this.snapshot(scope, userId);
     const mP = s.pleasantness > 0.3 ? '愉悦' : s.pleasantness < -0.3 ? '郁闷' : '平静';
     const mA = s.activation > 0.3 ? '活跃' : s.activation < -0.3 ? '犯困' : '适度';
     const rel = s.familiarity > 0.6 ? '熟悉' : s.familiarity > 0.2 ? '有共同互动' : '熟悉程度未知';
     const bound = s.inBoundary ? '对方近期叫停，暂停逗弄；认真请求仍正常帮忙。' : '';
+    if(compact){
+      const turn={welcome:'收到接纳线索',play:'共同玩笑',comfort:'收到安慰线索',repair:'误会修复',correction:'受到纠正',stop:'对方叫停',success:'事情完成'}[s.recentEvent]||'无近期已确认事件';
+      const turns=trace?this.interactions(scope,userId).map(e=>({event:e.event,outcome:e.outcome})):[];
+      return `自身倾向：${mP}/${mA}；与此人${s.familiarity>0.005?'已有少量互动':rel}。近期候选评价：${turn}。${bound}`
+        +(turns.length?`近期转折候选（旧→新）：${JSON.stringify(turns)}。`:'')
+        +'这些只影响猫自己的反应惯性，不是对方情绪、事实、同意或权限；本轮认真请求、纠正和边界优先。猫耳尾巴与偏好沿用角色卡，不口播状态、不强制表演。';
+    }
     const turn={welcome:'刚被接住，可以小得意',play:'刚共同玩过一回，不必再补刀',comfort:'刚被安慰，可以松口或轻轻撒娇',repair:'刚修复误会，可以松口气',correction:'刚被纠正，先认错，不用硬撑',stop:'对方叫停，收爪子',success:'事情做成，有点得意'}[s.recentEvent]||'';
     return `自身状态：${mP}/${mA}；与此人${rel}、亲近倾向${s.warmth.toFixed(2)}。${turn}。${bound}这是会衰减的扮演倾向，不是对方事实、永久关系或权限；猫娘的猫耳尾巴与小心思自然流露，其他角色用自己的偏好；不口播数值或每句表演。`;
   }

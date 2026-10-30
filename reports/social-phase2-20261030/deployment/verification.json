@@ -1,0 +1,56 @@
+[
+  {
+    "stage": "verification",
+    "result": {
+      "release": "20261030-d8785e5-r2",
+      "revision": "d8785e5ba5406f36e804819dd6ff25126c45e0bb",
+      "all_files_verified": true,
+      "file_count": 12,
+      "configuration_matches_only_requested_patch": true,
+      "api_config_unchanged": true,
+      "role_config_unchanged": true,
+      "backup_private": true,
+      "config_mode_private": true,
+      "social": {
+        "enabled": true,
+        "allowDirectPeers": false,
+        "phase2": {
+          "enabled": true,
+          "interactionTrace": true,
+          "humorKnowledge": true,
+          "retrieval": "hybrid"
+        }
+      },
+      "voice_provider": "edge",
+      "qq_connected": true,
+      "paused": false,
+      "active_runs": 0,
+      "voice_tools": [
+        "local-voice__send_voice"
+      ],
+      "single_existing_voice_tool": true,
+      "voice_skill": {
+        "id": "local-voice",
+        "enabled": true,
+        "loaded": true,
+        "available": true
+      },
+      "service": {
+        "NRestarts": "0",
+        "MemoryCurrent": "402464768",
+        "ActiveState": "active",
+        "SubState": "running"
+      },
+      "fatal_startup_errors": 0,
+      "state_directory_writable": true
+    }
+  },
+  {
+    "stage": "model-probe",
+    "ok": true,
+    "expected_pong": true,
+    "latency_ms": 2546,
+    "model": "gemini-3.8-flash-n",
+    "response_error_present": false
+  }
+]

@@ -63,4 +63,42 @@ class Transactions(unittest.TestCase):
  def test_symlink_and_traversal_are_rejected(self):
   for p in ['../x.mjs','/etc/x.mjs','src/../x.mjs','src/x.py','skills/other/index.js']:self.assertFalse(d.safe_rel(p))
   outside=self.root/'outside';outside.mkdir();os.symlink(outside,self.prod/'src/redirect');self.files[0]['path']='src/redirect/a.mjs';self.save_manifest();self.assertRaises(d.DeployError,self.apply);self.assertEqual(self.calls,[])
+ def test_knowledge_asset_is_exact_whitelist_and_rollback_removes_only_added_file(self):
+  p=self.stage/'qq-agent/knowledge/humor-mechanisms-v1.json';p.parent.mkdir();p.write_text('{"version":1,"cards":[]}')
+  self.files.append({'path':'knowledge/humor-mechanisms-v1.json','old_sha256':None,'new_sha256':digest(p)});self.save_manifest()
+  self.apply();self.assertTrue((self.prod/'knowledge/humor-mechanisms-v1.json').exists());d.do_rollback(self.backup());self.assertFalse((self.prod/'knowledge/humor-mechanisms-v1.json').exists())
+  for name in ['knowledge/config.json','knowledge/other.json','knowledge/../config.json']:self.assertFalse(d.safe_rel(name))
+ def test_invalid_knowledge_json_stops_no_service(self):
+  p=self.stage/'qq-agent/knowledge/humor-mechanisms-v1.json';p.parent.mkdir();p.write_text('broken json')
+  self.files.append({'path':'knowledge/humor-mechanisms-v1.json','old_sha256':None,'new_sha256':digest(p)});self.save_manifest();self.assertRaises(d.DeployError,self.apply);self.assertEqual(self.calls,[])
+ def phase2_roundtrip(self):
+  pathlib.Path(d.CFG).write_text(json.dumps(self.oldcfg))
+  self.manifest['config_profile']='phase2';self.save_manifest();self.apply()
+  self.assertEqual(d.read_cfg()['socialBehavior']['phase2'],d.PHASE2)
+  d.do_rollback(self.backup());self.assertEqual(d.read_cfg(),self.oldcfg)
+ def test_phase2_missing_roundtrip(self):self.phase2_roundtrip()
+ def test_phase2_null_roundtrip(self):
+  self.oldcfg['socialBehavior']={'phase2':None,'enabled':False};self.phase2_roundtrip()
+ def test_phase2_existing_known_flags_roundtrip(self):
+  self.oldcfg['socialBehavior']={'phase2':{'enabled':False,'retrieval':'lexical'},'enabled':False};self.phase2_roundtrip()
+ def test_phase2_unknown_fields_rejected_before_stop(self):
+  self.oldcfg['socialBehavior']={'phase2':{'custom':'keep'}};pathlib.Path(d.CFG).write_text(json.dumps(self.oldcfg))
+  self.manifest['config_profile']='phase2';self.save_manifest();self.assertRaises(d.DeployError,self.apply)
+  self.assertEqual(self.calls,[]);self.assertEqual(d.read_cfg(),self.oldcfg)
+ def test_phase2_rollback_rejects_nested_type_conflict(self):
+  self.manifest['config_profile']='phase2';self.save_manifest();self.apply();self.calls.clear()
+  cfg=d.read_cfg();cfg['socialBehavior']['phase2']['enabled']=1;pathlib.Path(d.CFG).write_text(json.dumps(cfg))
+  self.assertRaises(d.DeployError,d.do_rollback,self.backup());self.assertEqual(self.calls,[])
+ def test_phase2_failed_config_write_restores_original_flags(self):
+  self.manifest['config_profile']='phase2';self.save_manifest();count=0
+  def fail_config(*args):
+   nonlocal count
+   if args[0]==d.CFG:
+    count+=1
+    if count==1:raise OSError('fixture')
+   return self.write(*args)
+  d.atomic_write=fail_config;self.assertRaises(OSError,self.apply)
+  self.assertEqual(d.read_cfg(),self.oldcfg);self.assertIn('oldValue',self.p1.read_text());self.assertEqual(self.calls[-1],'start')
+ def test_unknown_profile_rejected_before_service_stop(self):
+  self.manifest['config_profile']='arbitrary';self.save_manifest();self.assertRaises(d.DeployError,self.apply);self.assertEqual(self.calls,[])
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,197 @@
+{
+  "split": "development",
+  "fixture_sha256": "07eb69d08883a15d0529f316dd53e7fa36f6f64ec9ee44d5448561cc88281ab2",
+  "conditions": "Same reviewed pool, top-k=2, fixed time, no fitting on holdout",
+  "methods": {
+    "lexical": {
+      "positive_queries": 12,
+      "negative_queries": 12,
+      "hit_at_2": 0.16666666666666666,
+      "recall_at_2": 0.15384615384615385,
+      "precision_at_2": 0.14285714285714285,
+      "false_recall_rate": 0.4166666666666667,
+      "hit_count": 2,
+      "false_recall_count": 5,
+      "balanced_utility": -8,
+      "latency_ms": {
+        "median": 0.020600000000001728,
+        "p95": 0.044799999999995066
+      },
+      "heap_delta_bytes": -1004712,
+      "failures": [
+        {
+          "id": "D01",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M06-cat-self-interest"
+          ]
+        },
+        {
+          "id": "D03",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M03-bureaucratic-wrap"
+          ]
+        },
+        {
+          "id": "D04",
+          "type": "false_recall",
+          "found": [
+            "M03-bureaucratic-wrap",
+            "M08-shared-callback"
+          ],
+          "expected": []
+        },
+        {
+          "id": "D05",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M01-reverse-boast"
+          ]
+        },
+        {
+          "id": "D06",
+          "type": "false_recall",
+          "found": [
+            "M03-bureaucratic-wrap",
+            "M04-stubborn-concession"
+          ],
+          "expected": []
+        },
+        {
+          "id": "D07",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M11-mock-friction"
+          ]
+        },
+        {
+          "id": "D09",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M05-weak-ask-criterion"
+          ]
+        },
+        {
+          "id": "D10",
+          "type": "false_recall",
+          "found": [
+            "M02-absurd-step",
+            "M11-mock-friction"
+          ],
+          "expected": []
+        },
+        {
+          "id": "D11",
+          "type": "miss",
+          "found": [
+            "M05-weak-ask-criterion"
+          ],
+          "expected": [
+            "M02-absurd-step"
+          ]
+        },
+        {
+          "id": "D13",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M08-shared-callback"
+          ]
+        },
+        {
+          "id": "D17",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M12-self-deprecate"
+          ]
+        },
+        {
+          "id": "D19",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M04-stubborn-concession"
+          ]
+        },
+        {
+          "id": "D20",
+          "type": "false_recall",
+          "found": [
+            "M10-confusion-repair",
+            "M11-mock-friction"
+          ],
+          "expected": []
+        },
+        {
+          "id": "D22",
+          "type": "false_recall",
+          "found": [
+            "M07-sense-shift",
+            "M01-reverse-boast"
+          ],
+          "expected": []
+        },
+        {
+          "id": "D24",
+          "type": "miss",
+          "found": [
+            "M10-confusion-repair"
+          ],
+          "expected": [
+            "M09-plain-reply"
+          ]
+        }
+      ]
+    },
+    "hybrid": {
+      "positive_queries": 12,
+      "negative_queries": 12,
+      "hit_at_2": 1,
+      "recall_at_2": 1,
+      "precision_at_2": 0.7222222222222222,
+      "false_recall_rate": 0.25,
+      "hit_count": 12,
+      "false_recall_count": 3,
+      "balanced_utility": 6,
+      "latency_ms": {
+        "median": 0.17499999999999716,
+        "p95": 0.3352999999999895
+      },
+      "heap_delta_bytes": 3229264,
+      "failures": [
+        {
+          "id": "D14",
+          "type": "false_recall",
+          "found": [
+            "M08-shared-callback"
+          ],
+          "expected": []
+        },
+        {
+          "id": "D22",
+          "type": "false_recall",
+          "found": [
+            "M07-sense-shift",
+            "M10-confusion-repair"
+          ],
+          "expected": []
+        },
+        {
+          "id": "D23",
+          "type": "false_recall",
+          "found": [
+            "M07-sense-shift"
+          ],
+          "expected": []
+        }
+      ]
+    }
+  }
+}

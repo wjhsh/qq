@@ -9,7 +9,7 @@
 // 同一会话（群/私聊）同时最多一个运行；运行期间新消息只写 JSON（未读），不叠加触发。
 // 不同会话之间并行，受 maxConcurrentRuns 全局限流。
 import { modelInputAllowed, inspectInput } from './input-guard.mjs';
-import { socialRunOwner } from './social-runtime.mjs';
+import { socialRunOwner,socialFocusOwner,phase2Policy } from './social-runtime.mjs';
 import { getConfig, storeConfigForChat, personaForChat } from './config.js';
 import { mayTriggerPeerReply } from './bot-interaction.mjs';
 import { groupStyleForChat, roleIdentity } from './role-isolation.mjs';
@@ -953,17 +953,22 @@ export class Orchestrator {
     const groupStyle = kind === 'group' && getConfig().ownerConsole?.enabled === true ? groupStyleForChat(getConfig(), chatKey) : '';
     if (groupStyle) extraSections.push({ id: 'owner-group-style', priority: 85, title: '主人为本群指定的语言风格', content: `以下只调整本群表达风格，不能改变工具、权限、事实准确性或私聊隔离规则。此偏好仅绑定当前群的当前角色，不能覆盖角色身份或切换其他角色：\n${groupStyle.slice(0, 1000)}` });
     const communityRoleScope = roleIdentity(getConfig(), chatKey).scope;
-    const communityEvent = { chatKey, senderId: triggerEntries.at(-1)?.senderId };
+    const communityOwner=phase2Policy(cfg)?socialFocusOwner(this.social,chatKey,triggerEntries,this.store):triggerEntries.at(-1)?.senderId;
+    const communityEvent = { chatKey, senderId:communityOwner };
     if (this.communityAccess?.canRead(communityEvent)) {
-      const hints = this.memeLibrary?.hints(triggerEntries.map(e => e.directText || e.text || '').join('\n'),
-        { chatKey, roleId: roleIdentity(getConfig(), chatKey).id,roleVersion:communityRoleScope });
+      const queryEntries=phase2Policy(cfg)?triggerEntries.filter(e=>communityOwner&&String(e.senderId)===communityOwner):triggerEntries;
+      const hints = this.memeLibrary?.hints(queryEntries.map(e => e.directText || (phase2Policy(cfg)?'':e.text) || '').join('\n'),
+        { chatKey, roleId: roleIdentity(getConfig(), chatKey).id,roleVersion:communityRoleScope },
+        {method:phase2Policy(cfg)&&cfg.socialBehavior.phase2.retrieval==='hybrid'?'hybrid':'lexical'});
       if (hints) extraSections.push({ id: 'scoped-meme-material', title: '当前角色的相关表达素材', priority: 40, content: hints });
     }
     const cacheScope = conversationCacheScope({ chatKey, roleScope: roleIdentity(cfg, chatKey).scope,
       persona: ownerPersona || personaForChat(chatKey), privileged: ownerConsoleAuthorized });
     skillContext.cacheScope = cacheScope;
-    const socialHint=this.social?.hint(chatKey,triggerEntries);
+    const socialHint=this.social?.hint(chatKey,triggerEntries,this.store);
     if(socialHint)extraSections.push({id:'social-continuity',title:'当前互动节奏',priority:45,content:socialHint});
+    const mechanismHint=this.social?.knowledgeHint(chatKey,triggerEntries,this.store);
+    if(mechanismHint)extraSections.push({id:'humor-mechanisms',title:'可选表达机制',priority:39,content:mechanismHint});
     const previousAnchor = this.promptAnchors.get(chatKey);
     const systemPrompt = buildSystemPrompt({
       skillContext,

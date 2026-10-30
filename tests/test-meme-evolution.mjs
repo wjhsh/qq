@@ -59,3 +59,13 @@ test('comments failure saves subtitle-only pending candidates; role changes duri
   const out=await make().learn({chatKey:S.chatKey,senderId:'23456'},{bvid:BV},version);assert.equal(out.saved,1);assert.equal(out.commentsUnavailable,true);assert.equal(library.list(S)[0].status,'pending');
   const learner=make();const promise=learner.learn({chatKey:S.chatKey},{bvid:BV},version);version='cat:two';assert.equal((await promise).saved,0);
 });
+
+test('hybrid scoped recall keeps review, expiry, version and cue provenance boundaries',t=>{
+  const{library}=fixture(t);const item={...ITEM,cues:['金枪鱼配额','摸头申请'],stance:'共同虚构，不形成债务'};
+  const e=library.add(item,S);assert.equal(library.search('金枪鱼配额',S,{method:'hybrid'}).length,0);
+  library.mark(e.id,'approved',S);assert.equal(library.search('金枪鱼配额',S,{method:'hybrid'})[0].id,e.id);
+  for(const context of [{...S,chatKey:'group:99999'},{...S,roleVersion:'cat:two'},{...S,chatKey:'private:12345'}])assert.equal(library.search('金枪鱼配额',context,{method:'hybrid'}).length,0);
+  assert.throws(()=>library.add({...item,cues:['x'.repeat(21)]},S));
+  const data={candidates:[{...ITEM,cues:['金枪鱼配额'],stance:'演出'}]};assert.equal(validateCandidates(data,ITEM.evidence).length,1);
+  assert.throws(()=>validateCandidates({candidates:[{...ITEM,cues:['x'.repeat(21)]}]},ITEM.evidence));
+});

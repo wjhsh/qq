@@ -1,0 +1,9 @@
+{
+  "round1_context_sha256": "bd0999234fe5980f468021f5015d10b666cfcf6accf8e8d44186d070ef1d0728",
+  "round2_context_sha256": "5cde0db7cc9f020b278142e37aa71a98118c8dfc2ddb4d34730518857a1248f7",
+  "gpt_independent_proposal_sha256": "659162f98a9616fce383be2eadd693de8cf9cdca870303d8f5c670fb9b8de837",
+  "gpt_proposal_excluded_from_round1_context": true,
+  "same_round_context_task_for_workers": true,
+  "transport": "local process -> upstream; no SSH/Pi/QQ task relay",
+  "round3_context_sha256": "49727e225c450303e8706f83044b837924ae4e564c742ef893ebd5d8c8134f28"
+}

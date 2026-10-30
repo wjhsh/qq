@@ -1,0 +1,21 @@
+{
+  "base_revision": "9ff4631a38edaa13f6059cf390cb50852b71949e",
+  "conditions": [
+    "baseline_runtime",
+    "phase2"
+  ],
+  "ranking_top_k": 2,
+  "selected_retrieval": "hybrid",
+  "decision": "Development benchmark favored hybrid, threshold frozen. Holdout not inspected or scored yet.",
+  "files": {
+    "qq-agent/src/social-state.mjs": "3c88ec1b6b7e5276de4d42021e2f1551c85ee43031664185e3e6716f71decfc0",
+    "qq-agent/src/social-runtime.mjs": "aff4f0905cc21293d51473000455b29839982e3f162b70bd5c15fef5f50d41b0",
+    "qq-agent/src/humor-knowledge.mjs": "e41394a72b1fd8edd9287474631787fc754b9ee531ff405ba0472d820b48353d",
+    "qq-agent/src/humor-retrieval.mjs": "2ada30548f27708189c3d640b7a2590228b3c93668418fff01694e490b41cff9",
+    "qq-agent/knowledge/humor-mechanisms-v1.json": "85a46019248b43ad8e5841c4ea7c32854c10aa5a2286b0e2bf85314294e2921e",
+    "tests/fixtures/social-phase2/development.json": "5bdd4d33ef9d82d9de261cd47cf58869d975017229fad3b1c99b0d9f85cfd0a8",
+    "tests/fixtures/social-phase2/holdout.json": "53f91113679642ee930dd16700820cccd565541ce6f5703dcb606cc87a9904ec",
+    "tests/fixtures/retrieval-bench/development.json": "0c8632a11db2134032a7cad620f0ec91f2fae021c8dc1a566c5971dbaf27e526",
+    "tests/fixtures/retrieval-bench/holdout.json": "5920c6c062f73b306258dbe9321481c073de64b3998b6322393df0d778a0212d"
+  }
+}

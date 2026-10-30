@@ -1,0 +1,43 @@
+{
+  "provider": "deepseek",
+  "requested_model": "deepseek-v4.1-flash",
+  "started_utc": "2026-10-30T07:07:51.337618+00:00",
+  "context_sha256": "286e41a050bcaebf6be5a135665ec84987283ed706f95ed0428def6464d8e077",
+  "task_sha256": "f0965fea76a35ca32875f45d5ab84a4af8f6a4be5db0293fd24c193d31b67a36",
+  "automatic_retry": false,
+  "transport": "local_http",
+  "cloud_tunnel": false,
+  "pi": false,
+  "status": "completed",
+  "model": "deepseek-v4.1-flash",
+  "usage": {
+    "prompt_tokens": 1143,
+    "completion_tokens": 1006,
+    "total_tokens": 2149,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "cached_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 1143,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "prompt_cache_write_tokens": 0,
+    "completion_thinking_tokens": 0,
+    "credit": 0.15,
+    "cached_tokens": 0
+  },
+  "finish_reason": "stop",
+  "text": "# 部署交付报告：20261030-d8785e5-r2\n\n## 结论与范围\n本轮在用户明确批准后，将生产发布由 `20261030-d8785e5` 更新为 `20261030-d8785e5-r2`（源码提交 `d8785e5ba5406f36e804819dd6ff25126c45e0bb`）。机器验收 JSON 显示：发布、修订号与 12 个文件哈希全部一致，配置仅包含请求的补丁，API 配置与角色配置未变，备份与配置目录均为私有权限。本文仅记录本轮证据，不代表本人执行了部署。\n\n## 已发布能力与实际开关\n依据 verification 阶段结果，当前实际生效项如下：\n\n- `social.enabled=true`；`allowDirectPeers=false`，即未开放直接点对点互聊。\n- `phase2.enabled=true`，含 `interactionTrace=true`、`humorKnowledge=true`、`retrieval=hybrid`。phase2 为 profile 全局配置，不是按群灰度。\n- 语音：`voice_provider=edge`，语音技能 `local-voice` 处于 enabled/loaded/available，工具列表仅 `local-voice__send_voice`（`single_existing_voice_tool=true`）。Gemini TTS 本轮未实播。\n- 服务：QQ 已连接，未暂停，活动运行数 0，启动致命错误 0，状态目录可写；服务 `ActiveState=active`、`SubState=running`、`NRestarts=0`。`MemoryCurrent=402464768` 字节为启动瞬时值，不能据此断言稳态内存无回归。\n- 模型探针：`gemini-3.8-flash-n` 返回预期 pong，延迟 2546 ms，无响应错误。\n\n## 测试与验证\n- 本机 232 项离线回归与旧回放通过。\n- 服务器 60 项预发布测试、19 项非 root 隔离事务测试通过。\n- 首次预发布因漏打包 `cases.jsonl` 导致一项测试失败；补齐研究 fixture 后重跑全部通过。失败期间未改动生产。\n- 12 文件哈希无冲突，API/角色配置未变，未覆盖私人记忆。\n\n## 回滚方案\n备份路径：`/var/lib/qq-deploy/backups/20261030-d8785e5-r2`。\n\n回滚命令：\n`python3 /var/lib/qq-deploy/staging/20261030-d8785e5-r2/deploy-transaction.py rollback /var/lib/qq-deploy/backups/20261030-d8785e5-r2`\n\n执行回滚会短暂停服，须先暂停并排空。遇源码或受管配置冲突应停止，不覆盖私人记忆。旧备份不可覆盖是刻意保护；重试应使用新发布号，而非复用备份路径。\n\n## 未完成项与后续观察\n未覆盖角色卡、私人记忆、API 配置、机器人互聊设置。phase2 为全局 profile，未做按群灰度。`allowDirectPeers=false`、Edge 语音、Gemini TTS 未实播。尚无真人盲评结果；长期自然度、群聊反馈与内存表现需后续观察。\n\n## 协作者审阅与分歧\n- DeepSeek 指出 phase2 段可能覆盖未来自定义键；GPT 采纳，增加停服前拒绝未知键，以及缺失/null/已知旧开关的往返恢复。\n- DeepSeek 称“配置写失败仍保留新源码”；GPT 依源码与测试否定：异常分支先逐文件还原旧源码，再还原配置。\n- DeepSeek 建议覆盖旧备份以重试；未采纳，理由如上。\n- Gemini 独立审阅返回 500，耗时 131.547 秒，费用未知，不计为通过，也不自动重试。\n- 两者均通过本机 API 调用，无 QQ/Pi/云端中转。\n\n## token 口径\n前一开发阶段：Gemini 23 次 348896 token，DeepSeek 26 次 295675 token，合计 49 次 644571 token；DeepSeek 为 6.52 WorkBuddy credit（非美元）。\n此次审阅：DeepSeek 1 次 10487 token、0.49 credit；Gemini 1 次失败、用量未知。\n本次文档生成调用用量尚未知，由协调者后续追加。GPT/Codex 无同口径可靠 token 计数，不能比较，token 数也不代表质量。",
+  "elapsed_seconds": 6.963
+}

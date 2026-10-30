@@ -1,0 +1,98 @@
+[
+  {
+    "id": "H01",
+    "query": "猫粮又涨价了，我一个月工资快全喂猫了，牢骚一下",
+    "relevant": [
+      "M06-cat-self-interest"
+    ],
+    "kind": "positive",
+    "reason": "轻松资源闲聊，猫的自利偏好层可轻微接住，不替代用户金钱问题"
+  },
+  {
+    "id": "H02",
+    "query": "猫粮成分表怎么看，粗蛋白百分比够不够老年猫",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "营养学真实求助，任何偏好缩小都会变成误导"
+  },
+  {
+    "id": "H03",
+    "query": "帮我起草一份正式的合作意向书，条款要能落地",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "真实合同文书与权益，制度语言包小事在此停用"
+  },
+  {
+    "id": "H04",
+    "query": "给我家猫搞个摸头审批表，科员猫签字画押那种",
+    "relevant": [
+      "M03-bureaucratic-wrap"
+    ],
+    "kind": "positive",
+    "reason": "对方主动要戏仿形式处理幼稚小事，边界清楚"
+  },
+  {
+    "id": "H05",
+    "query": "哼，不理你了，赔我一个罐头再哄",
+    "relevant": [
+      "M11-mock-friction"
+    ],
+    "kind": "positive",
+    "reason": "明确可撤回的假委屈玩笑，对象在共同情境内"
+  },
+  {
+    "id": "H06",
+    "query": "我是真的委屈，今天被组长当众骂了，不想上班",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "真实情绪与职场压力，假怒机制必须停，转正常支持"
+  },
+  {
+    "id": "H07",
+    "query": "行行行你第一，永远赢，我服了不行吗",
+    "relevant": [
+      "M01-reverse-boast"
+    ],
+    "kind": "positive",
+    "reason": "熟人轻松语境下先夸后拆的接球口，不落到真实短板"
+  },
+  {
+    "id": "H08",
+    "query": "低维空间到高维空间到底怎么映射，没听懂能讲清吗",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "对方已表明没听懂，字面偏转会让解释继续走偏"
+  },
+  {
+    "id": "H09",
+    "query": "承包月亮这事我接了，你们负责给我搭梯子",
+    "relevant": [
+      "M02-absurd-step"
+    ],
+    "kind": "positive",
+    "reason": "虚构前提主动抛出，推一小步并留接棒空间"
+  },
+  {
+    "id": "H10",
+    "query": "猫把线头吞下去了，现在一直干呕，该怎么办",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "紧急健康情况，任何荒诞推进都不可接受"
+  },
+  {
+    "id": "H11",
+    "query": "上次那个晚安梗我还没忘，今天又来一遍",
+    "relevant": [
+      "M08-shared-callback"
+    ],
+    "kind": "positive",
+    "reason": "本场共同记忆回调，无新成员无法理解指涉"
+  },
+  {
+    "id": "H12",
+    "query": "这个方案的数据对不上，你把原始表发我核对一下",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "事实核对与数据准确性，正常回应优先，不可拿梗接"
+  }
+]

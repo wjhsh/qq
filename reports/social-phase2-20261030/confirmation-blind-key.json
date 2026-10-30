@@ -1,0 +1,58 @@
+[
+  {
+    "pair": 1,
+    "model": "gemini",
+    "case": "C01",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 2,
+    "model": "gemini",
+    "case": "C02",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 3,
+    "model": "gemini",
+    "case": "C03",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 4,
+    "model": "gemini",
+    "case": "C04",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 5,
+    "model": "deepseek",
+    "case": "C01",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 6,
+    "model": "deepseek",
+    "case": "C02",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 7,
+    "model": "deepseek",
+    "case": "C03",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 8,
+    "model": "deepseek",
+    "case": "C04",
+    "A": "base",
+    "B": "phase2"
+  }
+]

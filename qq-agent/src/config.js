@@ -317,7 +317,8 @@ export const DEFAULT_CONFIG = {
   naturalChat: { enabled: true },
   botInteraction: { enabled: false, userIds: [], byGroup: {} },
   // Enable only after offline replay review. No role card is replaced.
-  socialBehavior: { enabled: false, allowDirectPeers: false },
+  socialBehavior: { enabled: false, allowDirectPeers: false,
+    phase2: { enabled:false, interactionTrace:false, humorKnowledge:false, retrieval:'lexical' } },
   voice: { provider:'edge', enabled: false, model: 'gemini-3.8-flash-lite-tts', voice: 'Kore', apiKeyEnv: 'GEMINI_TTS_API_KEY' },
   // 全局屏蔽名单（"上云"）：[QQ号, ...]
   // 与 blocklist 的区别：blocklist 是按群单独屏蔽；globalBlocklist 对**所有群**生效——

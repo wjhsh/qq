@@ -1,0 +1,12 @@
+{
+  "socialBehavior": {
+    "enabled": true,
+    "allowDirectPeers": false,
+    "phase2": {
+      "enabled": true,
+      "interactionTrace": true,
+      "humorKnowledge": true,
+      "retrieval": "hybrid"
+    }
+  }
+}

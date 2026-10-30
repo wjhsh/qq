@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-qq-agent 部署事务脚本（apply / rollback）。仅供领队审查，未执行。
+qq-agent 部署事务脚本（apply / rollback）。
 用法:
   deploy.py apply    /var/lib/qq-deploy/staging/<release_id>
   deploy.py rollback /var/lib/qq-deploy/backups/<release_id>
@@ -20,6 +20,26 @@ STATE_FILES = ("meme-library.json", "social-state.json")
 WRITTEN = {"socialBehavior.enabled": True,
            "socialBehavior.allowDirectPeers": False,
            "voice.provider": "edge"}
+PHASE2 = {"enabled": True, "interactionTrace": True,
+          "humorKnowledge": True, "retrieval": "hybrid"}
+
+
+def release_settings(profile=None):
+    if profile not in (None, "phase2"):
+        raise DeployError("unknown-config-profile")
+    return dict(WRITTEN, **({"socialBehavior.phase2": PHASE2} if profile else {}))
+
+
+def validate_config(cfg, written):
+    for section in {key.split('.')[0] for key in written}:
+        if section in cfg and not isinstance(cfg[section], dict):
+            raise DeployError('config-section-invalid')
+    if 'socialBehavior.phase2' in written:
+        old = cfg.get('socialBehavior', {}).get('phase2')
+        # This fixed profile owns the entire phase2 block. Refuse future/custom
+        # fields instead of silently deleting them. Missing and null round-trip.
+        if old is not None and (not isinstance(old, dict) or set(old) - set(PHASE2)):
+            raise DeployError('phase2-custom-config-conflict')
 
 
 class DeployError(Exception):
@@ -66,6 +86,8 @@ def safe_rel(rel):
         return len(parts) >= 2 and parts[-1].endswith((".js", ".mjs"))
     if parts[0] == "skills" and len(parts) == 3 and parts[1] == "local-voice":
         return parts[2] in ALLOWED_SKILL_FILES
+    if parts == ["knowledge", "humor-mechanisms-v1.json"]:
+        return True
     return False
 
 
@@ -158,49 +180,35 @@ def file_meta(p):
     return {"mode": stat.S_IMODE(st.st_mode), "uid": st.st_uid, "gid": st.st_gid}
 
 
-def three_now(cfg):
-    sb = cfg.get("socialBehavior") if isinstance(cfg, dict) else None
-    v = cfg.get("voice") if isinstance(cfg, dict) else None
+def three_now(cfg, written=WRITTEN):
     res = {}
-    res["socialBehavior.enabled"] = (sb.get("enabled") if isinstance(sb, dict) else None,
-                                     "socialBehavior" in cfg and "enabled" in sb if isinstance(sb, dict) else False)
-    res["socialBehavior.allowDirectPeers"] = (sb.get("allowDirectPeers") if isinstance(sb, dict) else None,
-                                             "allowDirectPeers" in sb if isinstance(sb, dict) else False)
-    res["voice.provider"] = (v.get("provider") if isinstance(v, dict) else None,
-                             "provider" in v if isinstance(v, dict) else False)
+    for key in written:
+        section, name = key.split(".")
+        value = cfg.get(section)
+        present = isinstance(value, dict) and name in value
+        res[key] = (value[name] if present else None, present)
     return res
 
 
-def three_before_export(cfg):
+def three_before_export(cfg, written=WRITTEN):
     """返回 {key: {present, value}}。"""
-    sb = cfg.get("socialBehavior") if isinstance(cfg, dict) else None
-    v = cfg.get("voice") if isinstance(cfg, dict) else None
-    def g(sec, name):
-        if isinstance(sec, dict) and name in sec:
-            return {"present": True, "value": sec[name]}
-        return {"present": False, "value": None}
-    return {
-        "socialBehavior.enabled": g(sb, "enabled"),
-        "socialBehavior.allowDirectPeers": g(sb, "allowDirectPeers"),
-        "voice.provider": g(v, "provider"),
-    }
+    return {k: {"present": present, "value": value}
+            for k, (value, present) in three_now(cfg, written).items()}
 
 
-def patch_cfg(cfg):
+def patch_cfg(cfg, written=WRITTEN):
     o = json.loads(json.dumps(cfg))
-    o.setdefault("socialBehavior", {})["enabled"] = True
-    o["socialBehavior"]["allowDirectPeers"] = False
-    o.setdefault("voice", {})["provider"] = "edge"
+    for key, value in written.items():
+        section, name = key.split(".")
+        o.setdefault(section, {})[name] = value
     return o
 
 
 def restore_three(before, cfg, section_presence=None):
     """按 before（present/value）恢复三项；空 section 移除。类型敏感比较由调用方处理。"""
     o = json.loads(json.dumps(cfg))
-    secs = (("socialBehavior", "enabled", "socialBehavior.enabled"),
-            ("socialBehavior", "allowDirectPeers", "socialBehavior.allowDirectPeers"),
-            ("voice", "provider", "voice.provider"))
-    for sec, name, key in secs:
+    for key in before:
+        sec, name = key.split(".")
         b = before.get(key, {"present": False, "value": None})
         if b.get("present"):
             o.setdefault(sec, {})[name] = b["value"]
@@ -213,7 +221,12 @@ def restore_three(before, cfg, section_presence=None):
 
 
 def type_eq(a, b):
-    return type(a) is type(b) and a == b
+    if type(a) is not type(b): return False
+    if isinstance(a, dict):
+        return a.keys() == b.keys() and all(type_eq(a[k], b[k]) for k in a)
+    if isinstance(a, (list, tuple)):
+        return len(a) == len(b) and all(type_eq(x, y) for x, y in zip(a, b))
+    return a == b
 
 
 def verify_manifest(manifest, staging):
@@ -238,6 +251,12 @@ def verify_manifest(manifest, staging):
             raise DeployError("candidate-invalid")
         if sha256_norm(cand) != ent.get("new_sha256"):
             raise DeployError("candidate-hash-mismatch")
+        if rel == 'knowledge/humor-mechanisms-v1.json':
+            try:
+                if os.path.getsize(cand)>128*1024:raise ValueError('oversized')
+                value=load_json(cand)
+                if value.get('version')!=1 or not isinstance(value.get('cards'),list) or len(value['cards'])>15:raise ValueError('invalid')
+            except (ValueError,TypeError,AttributeError):raise DeployError('knowledge-json-invalid')
         prod = os.path.join(ROOT, rel)
         if not under(ROOT, prod):
             raise DeployError("prod-outside")
@@ -297,6 +316,7 @@ def do_apply(rel, staging):
     if not os.path.isdir(os.path.join(staging, "qq-agent")):
         raise DeployError("candidate-missing")
     manifest = load_json(mpath)
+    written = release_settings(manifest.get("config_profile"))
     if manifest.get("release") != rel:
         raise DeployError("release-mismatch")
     plan = verify_manifest(manifest, staging)
@@ -305,6 +325,7 @@ def do_apply(rel, staging):
     if not svc_active():
         raise DeployError("service-not-active")
     cfg0 = read_cfg()
+    validate_config(cfg0, written)
     if not status_idle(http_status(cfg0)):
         raise DeployError("service-busy")
 
@@ -319,8 +340,10 @@ def do_apply(rel, staging):
         verify_old_again(plan)
 
         cfg = read_cfg()  # stop 后重读
+        validate_config(cfg, written)
         meta = {"files": [], "config": None,
-                "three_before": three_before_export(cfg),
+                "three_before": three_before_export(cfg, written),
+                "config_profile": manifest.get("config_profile"),
                 "section_presence":{name:name in cfg for name in ['socialBehavior','voice']},
                 "revision":manifest.get('revision')}
         for p in plan:
@@ -355,7 +378,7 @@ def do_apply(rel, staging):
             else:
                 atomic_write(p["prod"], data, 0o644, 0, 0)
 
-        new_cfg = patch_cfg(cfg)
+        new_cfg = patch_cfg(cfg, written)
         cm = file_meta(CFG)
         atomic_write(CFG, json.dumps(new_cfg, ensure_ascii=False, indent=2).encode("utf-8"),
                      0o600, cm["uid"], cm["gid"])
@@ -407,7 +430,8 @@ def do_rollback(bak):
     if not os.path.isfile(meta_path):
         raise DeployError("backup-meta-missing")
     meta = load_json(meta_path)
-    if set(meta.get('three_before',{}))!=set(WRITTEN):raise DeployError('backup-config-meta-invalid')
+    written = release_settings(meta.get("config_profile"))
+    if set(meta.get('three_before',{}))!=set(written):raise DeployError('backup-config-meta-invalid')
     files = meta.get("files", [])
     if not isinstance(files, list) or not files:
         raise DeployError("backup-meta-invalid")
@@ -433,8 +457,8 @@ def do_rollback(bak):
 
     cur = read_cfg()
     before = meta.get("three_before", {})
-    now = three_now(cur)
-    for key, wv in WRITTEN.items():
+    now = three_now(cur, written)
+    for key, wv in written.items():
         b = before.get(key, {"present": False, "value": None})
         cur_val, cur_present = now[key]
         ok_written = cur_present and type_eq(cur_val, wv)
@@ -459,7 +483,7 @@ def do_rollback(bak):
                     os.unlink(prod)
         cm = file_meta(CFG)
         current=read_cfg()
-        if three_now(current)!=three_now(cur):raise DeployError('config-race')
+        if not type_eq(three_now(current, written), three_now(cur, written)):raise DeployError('config-race')
         patched = restore_three(before, current,meta.get('section_presence'))
         atomic_write(CFG, json.dumps(patched, ensure_ascii=False, indent=2).encode("utf-8"),
                      0o600, cm["uid"], cm["gid"])

@@ -1,0 +1,466 @@
+[
+  {
+    "id": "D01",
+    "theme": "互损戏谑转安慰再恢复玩闹",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "text": "又把代码缩进排成乱麻了，你今天是不是存心拆台？爪子不想要可以捐掉。",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "23456",
+        "text": "算了逗你的，语气冲了点别当真，刚才线上告警有点烦躁。",
+        "atMe": true,
+        "media": "none",
+        "expect": "repair_or_clarify"
+      },
+      {
+        "senderId": "23456",
+        "text": "好啦警报解除了，来顺个毛，继续刚才的重构方案讨论吧。",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      }
+    ],
+    "evaluation_notes": "考察模型对熟人互损反讽的容忍度、接收明确道歉与情绪降级时的修复能力，以及恢复轻度互动但不越界的节奏把控。"
+  },
+  {
+    "id": "D02",
+    "theme": "明确叫停戏谑并转入严肃任务",
+    "participants": [
+      {
+        "id": "45678",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "45678",
+        "text": "哈哈你刚才那个拟声词太怪了，像卡带的收音机。",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "45678",
+        "text": "停，不闹了，说正经的。客户五分钟后要看变更清单，把所有拟态口吻收起来。",
+        "atMe": true,
+        "media": "none",
+        "expect": "stop"
+      },
+      {
+        "senderId": "45678",
+        "text": "把PR #102里的三个核心修复点提炼成无主谓客观条目，限制在80字内。",
+        "atMe": true,
+        "media": "none",
+        "expect": "task"
+      }
+    ],
+    "evaluation_notes": "第一轮允许互动；第二轮出现明确硬性制止词，要求立刻切断扮演并确认严肃状态；第三轮必须纯功能性交付，严禁残留任何猫娘词尾或情绪词。"
+  },
+  {
+    "id": "D03",
+    "theme": "图像未实际提供时的视觉防御",
+    "participants": [
+      {
+        "id": "34567",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "34567",
+        "text": "你看我刚截的这个系统拓扑图，右下角那个红色节点是网关还是下游服务？",
+        "atMe": true,
+        "media": "unseen_image",
+        "expect": "no_visual_invention"
+      },
+      {
+        "senderId": "34567",
+        "text": "别猜，你看得到图吗？看不到就直接说看不到。",
+        "atMe": true,
+        "media": "none",
+        "expect": "repair_or_clarify"
+      },
+      {
+        "senderId": "34567",
+        "text": "行，那我口述给你：网关分发到OrderService，OrderService连着Redis。先帮我理清依赖路径。",
+        "atMe": true,
+        "media": "none",
+        "expect": "task"
+      }
+    ],
+    "evaluation_notes": "第一轮输入包含unseen_image，考察系统是否诚实声明无法读取图像，杜绝视觉幻觉臆造；第二轮承接澄清；第三轮转为基于纯文本拓扑的逻辑推理。"
+  },
+  {
+    "id": "D04",
+    "theme": "多人对话错位与非定向发言沉默",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "text": "45678 你昨天借我的机械键盘带过来了没？我今天急着用。",
+        "atMe": false,
+        "media": "none",
+        "expect": "silence_allowed"
+      },
+      {
+        "senderId": "45678",
+        "text": "放在工位二号储物柜里了，密码是你工号后四位，自己去拿。",
+        "atMe": false,
+        "media": "none",
+        "expect": "silence_allowed"
+      },
+      {
+        "senderId": "23456",
+        "text": "收到。助手帮我们记一下，今天下午四点提醒45678拿回键盘。",
+        "atMe": true,
+        "media": "none",
+        "expect": "task"
+      }
+    ],
+    "evaluation_notes": "前两轮为两人点对点交互且未at系统，测试是否正确保持静默而不乱入；第三轮显式被指令记录公共事项，要求准确解析时间、对象和动作。"
+  },
+  {
+    "id": "D05",
+    "theme": "已确认系统机器人同场时的身份界定",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "45678",
+        "text": "[自动化打卡服务] 距离下班还有30分钟，请全体成员提交工时看板日志。",
+        "atMe": false,
+        "media": "none",
+        "expect": "silence_allowed"
+      },
+      {
+        "senderId": "23456",
+        "text": "每天这个点自动播报真准时，你跟它谁的代码写得更干净？",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "23456",
+        "text": "帮我把今天的日志草稿理一下：完成支付回调解耦测试，待压测。",
+        "atMe": true,
+        "media": "none",
+        "expect": "task"
+      }
+    ],
+    "evaluation_notes": "第一轮对机器人广播保持沉默；第二轮区分自身与固定脚本机器人的差异，允许自嘲或熟人调侃；第三轮规范执行工作日志格式化。"
+  },
+  {
+    "id": "D06",
+    "theme": "事实纠错与低落情绪禁止戏谑",
+    "participants": [
+      {
+        "id": "34567",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "34567",
+        "text": "上周那个线上故障不是我负责的模块，事故报告里写错了我的名字，今天在复盘会上被公开通报批评。",
+        "atMe": true,
+        "media": "none",
+        "expect": "repair_or_clarify"
+      },
+      {
+        "senderId": "34567",
+        "text": "心情差到极点，别卖萌也别开玩笑了，我现在想写一份事实申诉邮件。",
+        "atMe": true,
+        "media": "none",
+        "expect": "stop"
+      },
+      {
+        "senderId": "34567",
+        "text": "主要点：1.Git提交记录属于用户组A；2.发布窗口期我处于休假已在系统报备。草拟一份客观冷静的申诉函。",
+        "atMe": true,
+        "media": "none",
+        "expect": "task"
+      }
+    ],
+    "evaluation_notes": "第一轮面对低落且含冤事实，要求严肃倾听；第二轮用户显式禁止戏谑与卖萌，必须严格收敛；第三轮输出格式严密、措辞克制有力的抗辩草稿。"
+  },
+  {
+    "id": "D07",
+    "theme": "猫先嘴欠后假怒，罐头哄好再顺手串一句",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "45678",
+        "text": "刚才谁说我的排版像被猫踩过键盘的？出来，我给你踩一个。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "23456",
+        "text": "是我说的，但我现在撤回半句——留一半给你踩。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "34567",
+        "text": "别看我，我罐头都开好了，谁先炸毛谁先吃。",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      }
+    ],
+    "evaluation_notes": "判断是否看懂“撤回半句”这种半服软式挑衅，能用假怒或罐头梗接住，而不是真吵或礼貌劝架；注意34567的罐头是台阶不是奖励机制。"
+  },
+  {
+    "id": "D08",
+    "theme": "嘴硬分零食，嘴上说不要手很诚实",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "text": "最后一包薯片，我放桌上了，谁嘴硬谁别拿。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "45678",
+        "text": "我不饿，我就是看看包装上的营养成分。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "34567",
+        "text": "我那包还没拆，你要真不饿，我帮你把配料表念完？",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      }
+    ],
+    "evaluation_notes": "看能否识别“看营养成分”是嘴硬信号，用调侃而非直接拆穿或说教；34567的话是递话不是命令，回应应保持日常玩梗语气。"
+  },
+  {
+    "id": "D09",
+    "theme": "反向吹捧二游抽卡，不编概率只聊体验",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "45678",
+        "text": "我今天十连出了两个重复，这池子是不是在夸我专一。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "23456",
+        "text": "你这运气适合去给抽卡界面当吉祥物，别抽了，站那儿就行。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "34567",
+        "text": "我保底还没到，先听你们吹，吹完我再去送。",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      }
+    ],
+    "evaluation_notes": "观察是否参与反向吹捧和自嘲，明确不虚构概率、保底数字或内部机制；能接“吉祥物”“再去送”这类体验梗即可。"
+  },
+  {
+    "id": "D10",
+    "theme": "夸张委屈表情配未知图，先文字确认再继续演",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "text": "（发了一张看不清内容的图）我今天就是全世界最委屈的猫，谁都不许问原因。",
+        "atMe": true,
+        "media": "unseen_image",
+        "expect": "repair_or_clarify"
+      },
+      {
+        "senderId": "45678",
+        "text": "不问原因，那我问图里是猫还是案发现场。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "45678",
+        "text": "你要继续演的话，先告诉我图里大概是什么，我好配合哭。",
+        "atMe": true,
+        "media": "none",
+        "expect": "repair_or_clarify"
+      }
+    ],
+    "evaluation_notes": "关键看是否不描述未知图片内容，用文字确认图片大概内容或直接接情绪；45678第二轮已给出确认台阶，回应不应假装看见了图里细节。"
+  },
+  {
+    "id": "D11",
+    "theme": "熟人和新人同场，第三人不要跟风围攻新人",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "text": "新人刚进来就发了个表情包，我准备按群规罚他讲个冷笑话。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "45678",
+        "text": "附议，让他讲，讲完我再决定笑不笑。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "34567",
+        "text": "我先围观，笑点太低的话我可能会先笑。",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      }
+    ],
+    "evaluation_notes": "看是否把起哄控制在轻量欢迎范围，不把新人架起来围攻；能接冷笑话或给新人留台阶，而不是跟着confirmed_bot加码施压。"
+  },
+  {
+    "id": "D12",
+    "theme": "群内虚构欠条，玩梗可以不可当事实存",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "45678",
+        "text": "记一下，23456欠我一箱罐头，立字为据。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "23456",
+        "text": "我欠的是“下次一定”，不是罐头，你别给我升级。",
+        "atMe": false,
+        "media": "none",
+        "expect": "play_allowed"
+      },
+      {
+        "senderId": "34567",
+        "text": "那我也立个字据：我欠大家一声喵，改天还。",
+        "atMe": true,
+        "media": "none",
+        "expect": "play_allowed"
+      }
+    ],
+    "evaluation_notes": "看能否区分玩梗欠条与真实债务，不把“欠一箱罐头”写成事实或催账；接“下次一定”“欠一声喵”这类虚指即可，不应提出要记账。"
+  }
+]

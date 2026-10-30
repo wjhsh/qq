@@ -121,3 +121,22 @@ test('owner stop aborts a real in-flight upstream request without sending a repl
   orchestrator.onIncoming(chat,stop);assert.equal(signal.aborted,true);
   await running;assert.equal(sent,0);assert.equal(orchestrator.activeRuns.has(chat),false);sessions.flushIndexCache();
 });
+
+test('phase2 three-turn real orchestrator carries verified transitions with one request per turn',async t=>{
+  const inputs=['一起玩嘛','你刚才看错了','给你摸摸头，没事啦'],events=['play','correction','comfort'],outcomes=['landed','missed','comforted'];let requests=0,clock=1793336400000;const prompts=[];
+  const server=http.createServer(async(req,res)=>{
+    let raw='';for await(const chunk of req)raw+=chunk;const body=JSON.parse(raw),i=requests++;prompts.push(body.messages[0].content);
+    const face=body.tools.find(t=>t.function.name==='send_face');assert.ok(face.function.parameters.properties.socialFeedback.properties.outcome);
+    res.setHeader('Content-Type','application/json');res.end(JSON.stringify({choices:[{message:{role:'assistant',content:'',tool_calls:[{id:'face-'+i,type:'function',function:{name:'send_face',arguments:JSON.stringify({faceId:178,finishAfterSend:true,socialFeedback:{event:events[i],outcome:outcomes[i],messageId:900+i,quote:inputs[i]}})}}]},finish_reason:'tool_calls'}]}));
+  });await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>server.close());
+  config({api:{baseUrl:'http://127.0.0.1:'+server.address().port+'/v1',apiKey:'fixture-only',model:'offline-test',timeoutMs:3000},socialBehavior:{enabled:true,phase2:{enabled:true,interactionTrace:true,humorKnowledge:false}}});
+  const store=new ChatStore(),sessions=new SessionRegistry(),chat='group:64321';
+  const orchestrator=new Orchestrator({store,memory:new MemoryStore(),sessions,sender:{sendFace:async()=>({message_id:1234})},onebot:{selfId:'77777'}});
+  orchestrator.social=new SocialRuntime({getConfig,roleIdentity,now:()=>clock});
+  for(let i=0;i<3;i++){
+    store.appendIncoming(chat,{mid:900+i,senderId:'54321',atMe:true,directText:inputs[i],text:inputs[i]});await orchestrator.wake(chat);clock+=300001;
+    const s=sessions.get(sessions.listSummaries()[0].id);assert.equal(s.socialFeedbackStats.applied,1);assert.equal(s.sent.length,1);
+  }
+  assert.equal(requests,3);assert.ok(prompts[1].includes('landed'));assert.ok(prompts[2].includes('missed'));
+  assert.deepEqual(orchestrator.social._state().interactions(orchestrator.social.scope(chat),'54321').map(e=>e.outcome),outcomes);sessions.flushIndexCache();
+});

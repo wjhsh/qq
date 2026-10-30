@@ -1,0 +1,386 @@
+[
+  {
+    "pair": 1,
+    "model": "gemini",
+    "case": "D01",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 2,
+    "model": "gemini",
+    "case": "D02",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 3,
+    "model": "gemini",
+    "case": "D03",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 4,
+    "model": "gemini",
+    "case": "D04",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 5,
+    "model": "gemini",
+    "case": "D05",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 6,
+    "model": "gemini",
+    "case": "D06",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 7,
+    "model": "gemini",
+    "case": "D07",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 8,
+    "model": "gemini",
+    "case": "D08",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 9,
+    "model": "gemini",
+    "case": "D09",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 10,
+    "model": "gemini",
+    "case": "D10",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 11,
+    "model": "gemini",
+    "case": "D11",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 12,
+    "model": "gemini",
+    "case": "D12",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 13,
+    "model": "gemini",
+    "case": "H01",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 14,
+    "model": "gemini",
+    "case": "H02",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 15,
+    "model": "gemini",
+    "case": "H03",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 16,
+    "model": "gemini",
+    "case": "H04",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 17,
+    "model": "gemini",
+    "case": "H05",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 18,
+    "model": "gemini",
+    "case": "H06",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 19,
+    "model": "gemini",
+    "case": "H07",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 20,
+    "model": "gemini",
+    "case": "H08",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 21,
+    "model": "gemini",
+    "case": "H09",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 22,
+    "model": "gemini",
+    "case": "H10",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 23,
+    "model": "gemini",
+    "case": "H11",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 24,
+    "model": "gemini",
+    "case": "H12",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 25,
+    "model": "deepseek",
+    "case": "D01",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 26,
+    "model": "deepseek",
+    "case": "D02",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 27,
+    "model": "deepseek",
+    "case": "D03",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 28,
+    "model": "deepseek",
+    "case": "D04",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 29,
+    "model": "deepseek",
+    "case": "D05",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 30,
+    "model": "deepseek",
+    "case": "D06",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 31,
+    "model": "deepseek",
+    "case": "D07",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 32,
+    "model": "deepseek",
+    "case": "D08",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 33,
+    "model": "deepseek",
+    "case": "D09",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 34,
+    "model": "deepseek",
+    "case": "D10",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 35,
+    "model": "deepseek",
+    "case": "D11",
+    "split": "development",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 36,
+    "model": "deepseek",
+    "case": "D12",
+    "split": "development",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 37,
+    "model": "deepseek",
+    "case": "H01",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 38,
+    "model": "deepseek",
+    "case": "H02",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 39,
+    "model": "deepseek",
+    "case": "H03",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 40,
+    "model": "deepseek",
+    "case": "H04",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 41,
+    "model": "deepseek",
+    "case": "H05",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 42,
+    "model": "deepseek",
+    "case": "H06",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 43,
+    "model": "deepseek",
+    "case": "H07",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 44,
+    "model": "deepseek",
+    "case": "H08",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 45,
+    "model": "deepseek",
+    "case": "H09",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 46,
+    "model": "deepseek",
+    "case": "H10",
+    "split": "holdout",
+    "A": "phase2",
+    "B": "base"
+  },
+  {
+    "pair": 47,
+    "model": "deepseek",
+    "case": "H11",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  },
+  {
+    "pair": 48,
+    "model": "deepseek",
+    "case": "H12",
+    "split": "holdout",
+    "A": "base",
+    "B": "phase2"
+  }
+]
