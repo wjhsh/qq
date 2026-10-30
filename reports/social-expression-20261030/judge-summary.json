@@ -1,0 +1,18 @@
+{
+  "gemini": {
+    "preferences": {
+      "base": 6,
+      "phase2": 4,
+      "tie": 2
+    },
+    "caution": "Subjective model ratings; not human scores, ground truth or statistical efficacy."
+  },
+  "deepseek": {
+    "preferences": {
+      "phase2": 7,
+      "base": 3,
+      "tie": 2
+    },
+    "caution": "Subjective model ratings; not human scores, ground truth or statistical efficacy."
+  }
+}

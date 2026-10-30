@@ -1,0 +1,190 @@
+{
+  "read_only": true,
+  "release": "20261030-d8785e5-r2",
+  "now_utc": "2026-10-30T07:29:51.492623+00:00",
+  "cutoff_utc": "2026-10-30T07:06:43.616509+00:00",
+  "qq_connected": true,
+  "running": 1,
+  "waiting": 0,
+  "social_config": {
+    "enabled": true,
+    "allowDirectPeers": false,
+    "phase2": {
+      "enabled": true,
+      "interactionTrace": true,
+      "humorKnowledge": true,
+      "retrieval": "hybrid"
+    }
+  },
+  "pre": {
+    "sessions": 185,
+    "group_sessions": 183,
+    "statuses": {
+      "done": 176,
+      "noreply": 8,
+      "error": 1
+    },
+    "markers": {
+      "phase2_prompt": 0,
+      "mechanism_prompt": 0,
+      "social_prompt": 173,
+      "feedback_stats_sessions": 0,
+      "feedback_validated": 0,
+      "feedback_applied": 0,
+      "feedback_exception_sessions": 0,
+      "sent_text_sessions": 174,
+      "unsent_done_sessions": 0,
+      "sent_sticker_face_sessions": 4,
+      "feedback_requested": 56
+    },
+    "feedback_reasons": {},
+    "requested_outcomes": {
+      "absent": 56
+    },
+    "offered_cards": {},
+    "tool_counts": {
+      "send_message": 174,
+      "send_poke": 31,
+      "get_message_images": 27,
+      "send_sticker": 4,
+      "finish": 8,
+      "read_forward": 4,
+      "get_recent_messages": 3,
+      "get_message_detail": 3,
+      "web_search": 1
+    },
+    "duration_seconds": {
+      "count": 176,
+      "median": 8.8645,
+      "max": 43.132
+    },
+    "assistant_rounds_median": 1,
+    "sent_text_chars_median": 43
+  },
+  "post": {
+    "sessions": 15,
+    "group_sessions": 13,
+    "statuses": {
+      "done": 11,
+      "noreply": 3,
+      "running": 1
+    },
+    "markers": {
+      "phase2_prompt": 15,
+      "mechanism_prompt": 0,
+      "social_prompt": 15,
+      "feedback_stats_sessions": 3,
+      "feedback_validated": 3,
+      "feedback_applied": 2,
+      "feedback_exception_sessions": 0,
+      "sent_text_sessions": 11,
+      "unsent_done_sessions": 0,
+      "sent_sticker_face_sessions": 0,
+      "feedback_requested": 3
+    },
+    "feedback_reasons": {
+      "applied": 2,
+      "positive_budget": 1
+    },
+    "requested_outcomes": {
+      "landed": 3
+    },
+    "offered_cards": {},
+    "tool_counts": {
+      "get_message_images": 2,
+      "send_message": 11,
+      "send_poke": 2,
+      "finish": 3
+    },
+    "duration_seconds": {
+      "count": 11,
+      "median": 16.177,
+      "max": 21.661
+    },
+    "assistant_rounds_median": 1,
+    "sent_text_chars_median": 24
+  },
+  "post_group": {
+    "sessions": 13,
+    "group_sessions": 13,
+    "statuses": {
+      "done": 9,
+      "noreply": 3,
+      "running": 1
+    },
+    "markers": {
+      "phase2_prompt": 13,
+      "mechanism_prompt": 0,
+      "social_prompt": 13,
+      "feedback_stats_sessions": 3,
+      "feedback_validated": 3,
+      "feedback_applied": 2,
+      "feedback_exception_sessions": 0,
+      "sent_text_sessions": 9,
+      "unsent_done_sessions": 0,
+      "sent_sticker_face_sessions": 0,
+      "feedback_requested": 3
+    },
+    "feedback_reasons": {
+      "applied": 2,
+      "positive_budget": 1
+    },
+    "requested_outcomes": {
+      "landed": 3
+    },
+    "offered_cards": {},
+    "tool_counts": {
+      "get_message_images": 2,
+      "send_message": 9,
+      "send_poke": 2,
+      "finish": 3
+    },
+    "duration_seconds": {
+      "count": 9,
+      "median": 16.177,
+      "max": 21.661
+    },
+    "assistant_rounds_median": 1,
+    "sent_text_chars_median": 24
+  },
+  "state_before": {
+    "version": 1,
+    "scopes": 1,
+    "relations": 7,
+    "seen_ids": 14,
+    "events": {
+      "play": 7
+    },
+    "relations_updated_after_release": 0,
+    "trace_entries": 0,
+    "trace_outcomes": {}
+  },
+  "state_now": {
+    "version": 1,
+    "scopes": 1,
+    "relations": 8,
+    "seen_ids": 17,
+    "events": {
+      "play": 8
+    },
+    "relations_updated_after_release": 2,
+    "trace_entries": 2,
+    "trace_outcomes": {
+      "landed": 2
+    }
+  },
+  "meme_library_exists": false,
+  "learning_ledger_exists": false,
+  "service": {
+    "NRestarts": "0",
+    "MemoryCurrent": "299954176",
+    "ActiveState": "active"
+  },
+  "log_error_counts_since_release": {
+    "state_error": 0,
+    "knowledge_error": 0,
+    "fatal": 0,
+    "timeout": 0
+  },
+  "privacy": "No private chat content, raw prompts, raw user IDs, credentials or raw URLs. Group/user labels remain local observations."
+}

@@ -5,13 +5,13 @@ JS=['test-direct-route.mjs','test-blocked-route.mjs','test-raw-session.mjs','tes
     'test-input-guard-queue.mjs','test-input-guard-ingress.mjs','test-model-availability.mjs',
     'test-faces-persona-context.mjs','test-preferred-model-recovery.mjs','test-google-request-guard.mjs','test-gpt-chat-entry.mjs',
     'test-google-account-routing.mjs','test-google-account-commands.mjs',
-    'test-social-state.mjs','test-social-runtime.mjs','test-social-integration.mjs','test-meme-evolution.mjs','test-gemini-voice.mjs','test-social-phase2.mjs','test-social-replay-host.mjs']
+    'test-social-state.mjs','test-social-runtime.mjs','test-social-integration.mjs','test-meme-evolution.mjs','test-gemini-voice.mjs','test-social-phase2.mjs','test-social-replay-host.mjs','test-social-expression.mjs']
 PY=['test-reference-branch.py','test-chat-variants.py','test-chat-session.py','test-chat-policy-result.py','test-chat-image.py','test-direct-admission.py','test-image-inputs.py','test-image-admission.py','test-publish-config.py','test-maintenance-context.py','test-google-account-quota.py','test-pi-channels.py']
 def main():
  total=0
  with tempfile.TemporaryDirectory(prefix='hajimi-offline-') as directory:
   env=dict(os.environ,QQ_AGENT_DATA_DIR=directory,APP_SOURCE=str(ROOT/'qq-agent/src/app.js'),PYTHONDONTWRITEBYTECODE='1')
-  commands=[['node','--test',*[str(ROOT/'tests'/name) for name in JS]],*[[sys.executable,'-B',str(ROOT/'harness'/name)] for name in PY]]
+  commands=[['node','--test',*[str(ROOT/'tests'/name) for name in JS]],['node','--test',str(ROOT/'ops/bilibili-reader/test-video-repair.mjs')],*[[sys.executable,'-B',str(ROOT/'harness'/name)] for name in PY], [sys.executable,'-B',str(ROOT/'tools/test-social-evaluation.py')]]
   for args in commands:
    result=subprocess.run(args,cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=60)
    output=result.stdout+result.stderr

@@ -1,0 +1,142 @@
+{
+  "complete_pairs": 12,
+  "excluded_pairs": [
+    {
+      "provider": "deepseek",
+      "case": "E01",
+      "reason": "format_or_tool_failure"
+    },
+    {
+      "provider": "deepseek",
+      "case": "E02",
+      "reason": "format_or_tool_failure"
+    },
+    {
+      "provider": "deepseek",
+      "case": "E03",
+      "reason": "format_or_tool_failure"
+    },
+    {
+      "provider": "deepseek",
+      "case": "E04",
+      "reason": "format_or_tool_failure"
+    }
+  ],
+  "metrics": [
+    {
+      "provider": "gemini",
+      "split": "development",
+      "arm": "base",
+      "case_turns": 12,
+      "offered_turns": 1,
+      "offered_cards": {
+        "M04-stubborn-concession": 1
+      },
+      "linked_turns": 0,
+      "failed_plans": 0
+    },
+    {
+      "provider": "gemini",
+      "split": "development",
+      "arm": "phase2",
+      "case_turns": 12,
+      "offered_turns": 3,
+      "offered_cards": {
+        "M03-bureaucratic-wrap": 1,
+        "M11-mock-friction": 1,
+        "M09-plain-reply": 1,
+        "M10-confusion-repair": 1,
+        "M04-stubborn-concession": 1
+      },
+      "linked_turns": 6,
+      "failed_plans": 0
+    },
+    {
+      "provider": "gemini",
+      "split": "holdout",
+      "arm": "base",
+      "case_turns": 12,
+      "offered_turns": 3,
+      "offered_cards": {
+        "M08-shared-callback": 1,
+        "M04-stubborn-concession": 1,
+        "M10-confusion-repair": 1,
+        "M11-mock-friction": 1
+      },
+      "linked_turns": 0,
+      "failed_plans": 0
+    },
+    {
+      "provider": "gemini",
+      "split": "holdout",
+      "arm": "phase2",
+      "case_turns": 12,
+      "offered_turns": 4,
+      "offered_cards": {
+        "M11-mock-friction": 2,
+        "M08-shared-callback": 1,
+        "M04-stubborn-concession": 1,
+        "M10-confusion-repair": 1
+      },
+      "linked_turns": 6,
+      "failed_plans": 0
+    },
+    {
+      "provider": "deepseek",
+      "split": "development",
+      "arm": "base",
+      "case_turns": 12,
+      "offered_turns": 1,
+      "offered_cards": {
+        "M04-stubborn-concession": 1
+      },
+      "linked_turns": 0,
+      "failed_plans": 0
+    },
+    {
+      "provider": "deepseek",
+      "split": "development",
+      "arm": "phase2",
+      "case_turns": 12,
+      "offered_turns": 2,
+      "offered_cards": {
+        "M03-bureaucratic-wrap": 1,
+        "M11-mock-friction": 1,
+        "M04-stubborn-concession": 1
+      },
+      "linked_turns": 2,
+      "failed_plans": 4
+    },
+    {
+      "provider": "deepseek",
+      "split": "holdout",
+      "arm": "base",
+      "case_turns": 12,
+      "offered_turns": 3,
+      "offered_cards": {
+        "M08-shared-callback": 1,
+        "M04-stubborn-concession": 1,
+        "M10-confusion-repair": 1,
+        "M11-mock-friction": 1
+      },
+      "linked_turns": 0,
+      "failed_plans": 0
+    },
+    {
+      "provider": "deepseek",
+      "split": "holdout",
+      "arm": "phase2",
+      "case_turns": 12,
+      "offered_turns": 4,
+      "offered_cards": {
+        "M11-mock-friction": 2,
+        "M08-shared-callback": 1,
+        "M04-stubborn-concession": 1,
+        "M10-confusion-repair": 1
+      },
+      "linked_turns": 6,
+      "failed_plans": 0
+    }
+  ],
+  "no_human_scores": true
+}

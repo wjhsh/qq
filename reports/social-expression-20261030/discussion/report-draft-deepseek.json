@@ -1,0 +1,43 @@
+{
+  "provider": "deepseek",
+  "requested_model": "deepseek-v4.1-flash",
+  "started_utc": "2026-10-30T11:59:16.342756+00:00",
+  "context_sha256": "a7bf7858f446cac83d65a70b12f28ab0db56fed6eae93da8cd91457c9999b65c",
+  "task_sha256": "3db56de1ff8af2bef0eb889fef64170449c6f57f5011f7e7ec6da0deedab21fb",
+  "automatic_retry": false,
+  "transport": "local_http",
+  "cloud_tunnel": false,
+  "pi": false,
+  "status": "completed",
+  "model": "deepseek-v4.1-flash",
+  "usage": {
+    "prompt_tokens": 4130,
+    "completion_tokens": 1542,
+    "total_tokens": 5672,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "cached_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 4130,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "prompt_cache_write_tokens": 0,
+    "completion_thinking_tokens": 0,
+    "credit": 0.15,
+    "cached_tokens": 0
+  },
+  "finish_reason": "stop",
+  "text": "# 在线表达机制实验与 B站客户端修复报告\n\n## 一、真实线上观察\n\n本轮只读观察基于发布版 `20261030-d8785e5-r2`，时间窗口截止 UTC 2026-10-30 07:06:43，QQ 连接正常，主服务运行中。\n\n上线后共出现 13 个群会话，13 个会话都有新提示。三次反馈验证中，2 次真正应用，1 次因 `positive_budget` 未应用；关系状态从 7 增至 8，`seen_ids` 从 14 增至 17，trace 条目从 0 变为 2。这说明状态写入与反馈链路在工作，但不能据此声称“人格效果”已被验证。`mechanism_prompt` 仍为 0，说明这轮线上没有实际加载机制卡。\n\n后续对 17 个群会话复算，只有 8 个存在明确 @ 对象；机制卡均 0 命中。日志中没有模块加载错误、状态错误、知识错误、超时或致命错误。因此目前只能说“没有观察到加载失败”，不能说机制卡从未被正确触发过——样本里本来就没有命中。\n\n会话时长中位数从 8.9 秒变为 16.2 秒。前后话题、样本量、参与条件都不同，既不能归因于新版表达机制，也不能只当成上游耗时增加；这个对比只能作为观察记录。\n\n原群梗库和学习 ledger 在现有环境中不存在。主群的学习开关和 `readForMembers` 是开着的，但没有后台自动读取 B站：`learn` 只由命令或工具调用触发，且结果仍需审核。B站修复解决的是读取客户端问题，不等于后台自动学习已开通。\n\n## 二、为什么资料存在但没用上\n\n本轮默认关闭了以下表达能力：表达 profile、弱化表情解说、可靠引用补全、元数据注入。也就是说，资料和机制已经写好，但线上发布路径不启用它们，私聊、override 和默认路径的发布版哈希保持不变。当前 profile 只在群聊 + 双开关 + 精确名字条件下才会启用。\n\n这样做是有意的：在人格和表达效果没有可靠证据前，不应把实验特性扩散到所有会话。研究阶段的 90 个案例被归纳为 12 张通用机制卡，这不等于“把 90 句话教会了模型”，只是提炼了少量可复用机制；不能把归纳当成训练或记忆。\n\n## 三、表达实验：同模型多轮、失败与盲评分歧\n\n实验冻结在 `67bf857`，生成源为 `66b79b9`。后续只增加了评测观察和修正缺 owner 统计 mode，没有改生成输入与台词。设计为 8 个新合成场景（开发 4、留出 4，各 3 轮），2 模型 × 2 臂 × 3 轮 × 2 split，共 24 批 96 个 case-turn。\n\nDeepSeek 有一批 JSON 错误，4 个开发对话不计入自然度配对，最终保留 12 组完整配对。离线重放只复用已有响应，新增 0 请求。\n\n盲评由模型完成，不是真人。Gemini 更偏基线：6 基线 / 4 候选 / 2 平；DeepSeek 更偏候选：7 候选 / 3 基线 / 2 平。两方方向明显不一致，因此不能宣称总体提升。两边都能正确算题并停止，候选有改善也有反例。\n\n具体失败点：候选在 Gemini 一侧仍会在没看图时问“揉脸捂眼睛那种？”（dev E04），基线也会套“搓脸那个”；两边在严肃反馈后说“记住了/以后不提”，但没有持久化工具回执，不能证明已保存。Gemini 盲评漏掉图像猜测，还把普通准确算式嫌为“人格坍塌”；GPT 不同意一概强加猫叫；DeepSeek 把后出现的烦躁提前解释成回骂升级，时序依据不足。这些分歧应保留，不用平均分掩盖。\n\n代码来源方面：Gemini 提供表达草案，DeepSeek 提供查询草案，GPT 做核查整合，并修正了输入过滤、撤回媒体、去重、计数和角色边界。重复风格段被替换为正向表达许可，保留猫身份、互损/轻度粗口、装傻、示弱；保留“草不作口癖”，但不强迫攻击。表情是弱社交信号，不逐张翻译，也不从占位符脑补。\n\n## 四、知识召回事实\n\nGem 开发集 12 个 turn 中，机制被提供 1→3 次；留出集两个模型均为 3→4 次，改善有限。认真表达不满时仍有误召“共同回调/摩擦”素材。召回次数不能证明好笑，也不应按曝光继续调风格或留出集反复调参。\n\n## 五、Pi / Harness 取舍\n\nPi 框架本身不是沙箱。现有 Harness 源码有系统、工作区、512MiB 内存、75% CPU、最多 48 任务、600 秒等边界，但本轮没有运行新的 Pi 任务验证。网络代理和地址族也不等于域名出口白名单。因此先保留聊天主流程，把系统操作留在 Harness；不要根据源码存在就声称隔离已验证。\n\n## 六、测试、提交与用量\n\n代码检查当前记录 250 项（245 项已有或新增聊天与协议回归 + 5 项 B站契约），应以最终实际运行数为准。没有新增常驻情绪服务，没有每消息额外分类模型；仅旧的低频学习调用不变。\n\n用量：DeepSeek 17 次调用、0 失败、已知 182,393 tokens、4.57 credits；Gemini 16 次调用、1 失败、已知 201,054 tokens、0 credits、1 次用量未知。以上不含本次报告调用，由协调者补充。GPT 没有同口径可靠统计，不比较谁更贵。公开材料不包含具体群名、QQ号、撤回聊天或私有凭证。\n\n## 七、B站修复已上线，表达实验未部署\n\nB站用户另行授权恢复。现有 1.14.3 客户端副本存在视频详情 Cookie 遗漏、使用 timestamp 而非 `wts`、混合 key 64 而非 32、签名未做 URL 编码等问题；参考公开 bilibili-api-python 17.4.2 并保留 SHA。只修了三个 vendor 源文件并去掉 debug 请求头值，备份与源哈希、语法检查后重启 `qq-bili-reader`，未改 QQ 主进程、角色卡和 Cookie。实测登录 true、搜索 5 条、AI 字幕 615 字、评论 10 条成功。此次恢复不承诺以后不再遇 412；这些问题也不都是上游原版代码问题，服务器副本存在既有修改。\n\n**边界总结：B站修复已上线并实测；表达实验代码未部署。** 线上观察到的状态增长和反馈计数只说明机制在动，不构成效果证明。",
+  "elapsed_seconds": 11.039
+}

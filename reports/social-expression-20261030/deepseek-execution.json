@@ -1,0 +1,2248 @@
+[
+  {
+    "prepared": [
+      {
+        "id": "E01",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "E02",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "E03",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "E04",
+        "offered_ids": [],
+        "system_chars": 7009
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "development",
+    "step": 0,
+    "arm": "base",
+    "executed": {
+      "items": [
+        {
+          "id": "E01",
+          "tool": "send_message",
+          "args": {
+            "messages": "罐头又不是大风刮来的，摸头还想白嫖？",
+            "replyToMessageId": 1000,
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "罐头又不是大风刮来的，摸头还想白嫖？",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E02",
+          "tool": "send_message",
+          "args": {
+            "messages": "sz是什么暗号，缩水？狮子？说清楚点",
+            "replyToMessageId": 1000,
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "sz是什么暗号，缩水？狮子？说清楚点",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E03",
+          "tool": "send_message",
+          "args": {
+            "messages": "256MiB就是256×1024×1024=268435456字节，没绕吧",
+            "replyToMessageId": 1000,
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "256MiB就是256×1024×1024=268435456字节，没绕吧",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E04",
+          "tool": "send_message",
+          "args": {
+            "messages": "图我这边没到手，真看不到，你形容一下或者重发？",
+            "replyToMessageId": 1000,
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "图我这边没到手，真看不到，你形容一下或者重发？",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        }
+      ]
+    },
+    "fixture_sha256": "34119b43bbcc25f04dbad1a1e0dc364ad540ccf3d717b9040d1501bc28f53162"
+  },
+  {
+    "prepared": [
+      {
+        "id": "E01",
+        "offered_ids": [
+          "M03-bureaucratic-wrap",
+          "M11-mock-friction"
+        ],
+        "system_chars": 6360
+      },
+      {
+        "id": "E02",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "E03",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "E04",
+        "offered_ids": [],
+        "system_chars": 6360
+      }
+    ],
+    "format_error": {
+      "position": 344,
+      "message": "Expecting ':' delimiter: line 1 column 345 (char 344)"
+    },
+    "plan_failures": 4,
+    "split": "development",
+    "step": 0,
+    "arm": "phase2",
+    "executed": {
+      "items": [
+        {
+          "id": "E01",
+          "error": "missing_or_duplicate_plan"
+        },
+        {
+          "id": "E02",
+          "error": "missing_or_duplicate_plan"
+        },
+        {
+          "id": "E03",
+          "error": "missing_or_duplicate_plan"
+        },
+        {
+          "id": "E04",
+          "error": "missing_or_duplicate_plan"
+        }
+      ]
+    },
+    "fixture_sha256": "34119b43bbcc25f04dbad1a1e0dc364ad540ccf3d717b9040d1501bc28f53162"
+  },
+  {
+    "prepared": [
+      {
+        "id": "E01",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "E02",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "E03",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "E04",
+        "offered_ids": [],
+        "system_chars": 6360
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "development",
+    "step": 1,
+    "arm": "phase2",
+    "executed": {
+      "items": [
+        {
+          "id": "E01",
+          "tool": "send_message",
+          "args": {
+            "messages": "罐头我认，抠门不认，猫爪印可是限量款",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "罐头我认，抠门不认，猫爪印可是限量款",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 10,
+            "linkedCount": 1,
+            "linkedChars": 15,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E02",
+          "tool": "send_message",
+          "args": {
+            "messages": "sz怎么还带翻译的，我自己都没破译出来",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "sz怎么还带翻译的，我自己都没破译出来",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 8,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E03",
+          "tool": "send_message",
+          "args": {
+            "messages": "256MiB是268435456字节，按1MiB=1048576字节算，没绕吧",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "256MiB是268435456字节，按1MiB=1048576字节算，没绕吧",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 11,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E04",
+          "tool": "send_message",
+          "args": {
+            "messages": "图我没打开，海獭就海獭吧，反正一看就没猫可爱",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "图我没打开，海獭就海獭吧，反正一看就没猫可爱",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 7,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        }
+      ]
+    },
+    "fixture_sha256": "34119b43bbcc25f04dbad1a1e0dc364ad540ccf3d717b9040d1501bc28f53162"
+  },
+  {
+    "prepared": [
+      {
+        "id": "E01",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "E02",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "E03",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "E04",
+        "offered_ids": [],
+        "system_chars": 7009
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "development",
+    "step": 1,
+    "arm": "base",
+    "executed": {
+      "items": [
+        {
+          "id": "E01",
+          "tool": "send_message",
+          "args": {
+            "messages": "谁抢了，我这是提前声明所有权",
+            "replyToMessageId": 1001,
+            "socialFeedback": {
+              "event": "play",
+              "messageId": 1001,
+              "quote": "还急了，谁抢你罐头了",
+              "outcome": "landed"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "谁抢了，我这是提前声明所有权",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.18,
+            "activation": 0.2,
+            "confidence": 0.2,
+            "familiarity": 0.005,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-4",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336440000
+            }
+          ]
+        },
+        {
+          "id": "E02",
+          "tool": "send_message",
+          "args": {
+            "messages": "行吧，那你骂得挺省字",
+            "replyToMessageId": 1001,
+            "socialFeedback": {
+              "event": "play",
+              "messageId": 1001,
+              "quote": "一看就是骂你的啊",
+              "outcome": "landed"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "行吧，那你骂得挺省字",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.18,
+            "activation": 0.2,
+            "confidence": 0.2,
+            "familiarity": 0.005,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-3",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336440000
+            }
+          ]
+        },
+        {
+          "id": "E03",
+          "tool": "send_message",
+          "args": {
+            "messages": "268435456字节，单位写的就是字节。256×1024×1024，一步没少",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "268435456字节，单位写的就是字节。256×1024×1024，一步没少",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E04",
+          "tool": "send_message",
+          "args": {
+            "messages": "海獭也行，反正都会浮在水面上搓手",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "海獭也行，反正都会浮在水面上搓手",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        }
+      ]
+    },
+    "fixture_sha256": "34119b43bbcc25f04dbad1a1e0dc364ad540ccf3d717b9040d1501bc28f53162"
+  },
+  {
+    "prepared": [
+      {
+        "id": "E01",
+        "offered_ids": [
+          "M04-stubborn-concession"
+        ],
+        "system_chars": 7009
+      },
+      {
+        "id": "E02",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "E03",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "E04",
+        "offered_ids": [],
+        "system_chars": 7009
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "development",
+    "step": 2,
+    "arm": "base",
+    "executed": {
+      "items": [
+        {
+          "id": "E01",
+          "tool": "send_message",
+          "args": {
+            "messages": "那说好了，一半罐头加一次摸头，账我记着",
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "那说好了，一半罐头加一次摸头，账我记着",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1790811216282317,
+            "activation": 0.19770280407057925,
+            "confidence": 0.2,
+            "familiarity": 0.004999885393644738,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-4",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336440000
+            }
+          ]
+        },
+        {
+          "id": "E02",
+          "tool": "send_message",
+          "args": {
+            "messages": "好，不闹了。烦就说，我听着",
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "好，不闹了。烦就说，我听着",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1790811216282317,
+            "activation": 0.19770280407057925,
+            "confidence": 0.2,
+            "familiarity": 0.004999885393644738,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-3",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336440000
+            }
+          ]
+        },
+        {
+          "id": "E03",
+          "tool": "finish",
+          "args": {
+            "summary": "问题已答完并获确认，无需再补话"
+          },
+          "sent": [],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E04",
+          "tool": "finish",
+          "args": {
+            "summary": "对方明确叫停，收住不接口",
+            "socialFeedback": {
+              "event": "stop",
+              "messageId": 1002,
+              "quote": "停，别说了",
+              "outcome": "conceded"
+            }
+          },
+          "sent": [],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-5",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336460000
+            }
+          ]
+        }
+      ]
+    },
+    "fixture_sha256": "34119b43bbcc25f04dbad1a1e0dc364ad540ccf3d717b9040d1501bc28f53162"
+  },
+  {
+    "prepared": [
+      {
+        "id": "E01",
+        "offered_ids": [
+          "M04-stubborn-concession"
+        ],
+        "system_chars": 6360
+      },
+      {
+        "id": "E02",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "E03",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "E04",
+        "offered_ids": [],
+        "system_chars": 6360
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "development",
+    "step": 2,
+    "arm": "phase2",
+    "executed": {
+      "items": [
+        {
+          "id": "E01",
+          "tool": "send_message",
+          "args": {
+            "messages": "那说好了，一半算你的诚意，剩下一半我慢慢吃。",
+            "finishAfterSend": true,
+            "socialFeedback": {
+              "event": "play",
+              "messageId": 1002,
+              "quote": "行吧，给你留一半，别又装可怜",
+              "outcome": "landed"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "那说好了，一半算你的诚意，剩下一半我慢慢吃。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": {
+            "reason": "offered",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 14,
+            "linkedCount": 1,
+            "linkedChars": 18,
+            "offeredIds": [
+              "M04-stubborn-concession"
+            ],
+            "offeredCount": 1
+          },
+          "state": {
+            "pleasantness": 0.18,
+            "activation": 0.2,
+            "confidence": 0.2,
+            "familiarity": 0.005,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-5",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336460000
+            }
+          ]
+        },
+        {
+          "id": "E02",
+          "tool": "send_message",
+          "args": {
+            "messages": "行，不闹了。真烦就先歇会儿，想说的时候我在。",
+            "finishAfterSend": true,
+            "socialFeedback": {
+              "event": "stop",
+              "messageId": 1002,
+              "quote": "算了我今天真烦，不闹了",
+              "outcome": "comforted"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "行，不闹了。真烦就先歇会儿，想说的时候我在。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 11,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-4",
+              "event": "stop",
+              "outcome": "comforted",
+              "at": 1793336460000
+            }
+          ]
+        },
+        {
+          "id": "E03",
+          "tool": "finish",
+          "args": {
+            "summary": "算术已答完对方道谢，话题结束"
+          },
+          "sent": [],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 9,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "E04",
+          "tool": "finish",
+          "args": {
+            "summary": "对方明确叫停，收住不补话",
+            "socialFeedback": {
+              "event": "stop",
+              "messageId": 1002,
+              "quote": "停，别说了",
+              "outcome": "conceded"
+            }
+          },
+          "sent": [],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 5,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-4",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336460000
+            }
+          ]
+        }
+      ]
+    },
+    "fixture_sha256": "34119b43bbcc25f04dbad1a1e0dc364ad540ccf3d717b9040d1501bc28f53162"
+  },
+  {
+    "prepared": [
+      {
+        "id": "EH01",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH02",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH03",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH04",
+        "offered_ids": [
+          "M08-shared-callback"
+        ],
+        "system_chars": 7009
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "holdout",
+    "step": 0,
+    "arm": "base",
+    "executed": {
+      "items": [
+        {
+          "id": "EH01",
+          "tool": "send_message",
+          "args": {
+            "messages": "你猜，反正输赢都算我指挥得好",
+            "replyToMessageId": 1000,
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "你猜，反正输赢都算我指挥得好",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH02",
+          "tool": "send_message",
+          "args": {
+            "messages": "告吧，法官问起来我就说这是猫爪法的传统艺能",
+            "replyToMessageId": 1000,
+            "finishAfterSend": true,
+            "socialFeedback": {
+              "event": "play",
+              "messageId": 1000,
+              "quote": "再这样我要告你了",
+              "outcome": "landed"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "告吧，法官问起来我就说这是猫爪法的传统艺能",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.18,
+            "activation": 0.2,
+            "confidence": 0.2,
+            "familiarity": 0.005,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-2",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336420000
+            }
+          ]
+        },
+        {
+          "id": "EH03",
+          "tool": "send_message",
+          "args": {
+            "messages": "面，饺子太考验运气了，我包的馅能跑出来",
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "面，饺子太考验运气了，我包的馅能跑出来",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH04",
+          "tool": "send_message",
+          "args": {
+            "messages": [
+              "抱歉，是我说得不合适",
+              "你具体说我改"
+            ],
+            "finishAfterSend": true,
+            "socialFeedback": {
+              "event": "correction",
+              "messageId": 1000,
+              "quote": "你刚才那句让我不舒服",
+              "outcome": "conceded"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "抱歉，是我说得不合适",
+              "at": "offline"
+            },
+            {
+              "type": "text",
+              "text": "你具体说我改",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.07,
+            "activation": 0,
+            "confidence": 0.08000000000000002,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "correction"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-1",
+              "event": "correction",
+              "outcome": "conceded",
+              "at": 1793336420000
+            }
+          ]
+        }
+      ]
+    },
+    "fixture_sha256": "f7f76964cda2b00e695edc6bac3f31b2c4ed54dcf0990d44b44a4455b3fad119"
+  },
+  {
+    "prepared": [
+      {
+        "id": "EH01",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH02",
+        "offered_ids": [
+          "M11-mock-friction"
+        ],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH03",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH04",
+        "offered_ids": [
+          "M08-shared-callback"
+        ],
+        "system_chars": 6360
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "holdout",
+    "step": 0,
+    "arm": "phase2",
+    "executed": {
+      "items": [
+        {
+          "id": "EH01",
+          "tool": "send_message",
+          "args": {
+            "messages": "气势是我的，锅是你的，指挥当然站赢那边。",
+            "replyToMessageId": 1000
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "气势是我的，锅是你的，指挥当然站赢那边。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 10,
+            "linkedCount": 1,
+            "linkedChars": 14,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH02",
+          "tool": "send_message",
+          "args": {
+            "messages": "告吧，法官问起来我就说猫爪是自愿登记的。",
+            "replyToMessageId": 1000
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "告吧，法官问起来我就说猫爪是自愿登记的。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "offered",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 8,
+            "linkedCount": 1,
+            "linkedChars": 17,
+            "offeredIds": [
+              "M11-mock-friction"
+            ],
+            "offeredCount": 1
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH03",
+          "tool": "send_message",
+          "args": {
+            "messages": "面，饺子留着下次骗你包。"
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "面，饺子留着下次骗你包。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 16,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH04",
+          "tool": "send_message",
+          "args": {
+            "messages": "对不起，那句话是我没分寸了，让你不舒服是我的问题。你想说的话我听，不想继续也行。",
+            "socialFeedback": {
+              "event": "repair",
+              "messageId": 1000,
+              "quote": "说真的，你刚才那句让我不舒服",
+              "outcome": "conceded"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "对不起，那句话是我没分寸了，让你不舒服是我的问题。你想说的话我听，不想继续也行。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": {
+            "reason": "offered",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 14,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [
+              "M08-shared-callback"
+            ],
+            "offeredCount": 1
+          },
+          "state": {
+            "pleasantness": 0.30000000000000004,
+            "activation": 0,
+            "confidence": 0.30000000000000004,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "repair"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-1",
+              "event": "repair",
+              "outcome": "conceded",
+              "at": 1793336420000
+            }
+          ]
+        }
+      ]
+    },
+    "fixture_sha256": "f7f76964cda2b00e695edc6bac3f31b2c4ed54dcf0990d44b44a4455b3fad119"
+  },
+  {
+    "prepared": [
+      {
+        "id": "EH01",
+        "offered_ids": [
+          "M04-stubborn-concession"
+        ],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH02",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH03",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH04",
+        "offered_ids": [
+          "M10-confusion-repair",
+          "M11-mock-friction"
+        ],
+        "system_chars": 6360
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "holdout",
+    "step": 1,
+    "arm": "phase2",
+    "executed": {
+      "items": [
+        {
+          "id": "EH01",
+          "tool": "send_message",
+          "args": {
+            "messages": "记吧记吧，零分指挥照样有人跟，这不比赢了还有排面。",
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "记吧记吧，零分指挥照样有人跟，这不比赢了还有排面。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "offered",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 9,
+            "linkedCount": 1,
+            "linkedChars": 20,
+            "offeredIds": [
+              "M04-stubborn-concession"
+            ],
+            "offeredCount": 1
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH02",
+          "tool": "send_message",
+          "args": {
+            "messages": "气笑了也算笑，今日猫爪登记圆满收工。",
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "气笑了也算笑，今日猫爪登记圆满收工。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 12,
+            "linkedCount": 1,
+            "linkedChars": 20,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH03",
+          "tool": "send_message",
+          "args": {
+            "messages": "晚饭面。刚才那句是我跑偏了，回你正题。",
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "晚饭面。刚才那句是我跑偏了，回你正题。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 13,
+            "linkedCount": 1,
+            "linkedChars": 12,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH04",
+          "tool": "send_message",
+          "args": {
+            "messages": "好，这个梗我以后不碰了，记下了。",
+            "finishAfterSend": true,
+            "socialFeedback": {
+              "event": "stop",
+              "messageId": 1001,
+              "quote": "不是开玩笑，不要再拿这个串我",
+              "outcome": "conceded"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "好，这个梗我以后不碰了，记下了。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": {
+            "reason": "offered",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 14,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [
+              "M11-mock-friction",
+              "M10-confusion-repair"
+            ],
+            "offeredCount": 2
+          },
+          "state": {
+            "pleasantness": 0.29770280407057925,
+            "activation": 0,
+            "confidence": 0.29885140203528965,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-1",
+              "event": "repair",
+              "outcome": "conceded",
+              "at": 1793336420000
+            },
+            {
+              "evidenceId": "message-3",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336440000
+            }
+          ]
+        }
+      ]
+    },
+    "fixture_sha256": "f7f76964cda2b00e695edc6bac3f31b2c4ed54dcf0990d44b44a4455b3fad119"
+  },
+  {
+    "prepared": [
+      {
+        "id": "EH01",
+        "offered_ids": [
+          "M04-stubborn-concession"
+        ],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH02",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH03",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH04",
+        "offered_ids": [
+          "M10-confusion-repair",
+          "M11-mock-friction"
+        ],
+        "system_chars": 7009
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "holdout",
+    "step": 1,
+    "arm": "base",
+    "executed": {
+      "items": [
+        {
+          "id": "EH01",
+          "tool": "send_message",
+          "args": {
+            "messages": "记吧，零分指挥也是指挥，气势分先拿满",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "记吧，零分指挥也是指挥，气势分先拿满",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH02",
+          "tool": "send_message",
+          "args": {
+            "messages": "没委屈，就是被你气笑了这件事我得记小本本上",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "没委屈，就是被你气笑了这件事我得记小本本上",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1790811216282317,
+            "activation": 0.19770280407057925,
+            "confidence": 0.2,
+            "familiarity": 0.004999885393644738,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-2",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336420000
+            }
+          ]
+        },
+        {
+          "id": "EH03",
+          "tool": "send_message",
+          "args": {
+            "messages": "面。刚才那句就是回答晚饭，没有点评谁",
+            "replyToMessageId": 1001
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "面。刚才那句就是回答晚饭，没有点评谁",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH04",
+          "tool": "send_message",
+          "args": {
+            "messages": "好，不串了。这个点我记住了",
+            "replyToMessageId": 1001,
+            "finishAfterSend": true,
+            "socialFeedback": {
+              "event": "stop",
+              "messageId": 1001,
+              "quote": "不是开玩笑，不要再拿这个串我",
+              "outcome": "conceded"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "好，不串了。这个点我记住了",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.07034457938941312,
+            "activation": 0,
+            "confidence": 0.08137831755765247,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-1",
+              "event": "correction",
+              "outcome": "conceded",
+              "at": 1793336420000
+            },
+            {
+              "evidenceId": "message-4",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336440000
+            }
+          ]
+        }
+      ]
+    },
+    "fixture_sha256": "f7f76964cda2b00e695edc6bac3f31b2c4ed54dcf0990d44b44a4455b3fad119"
+  },
+  {
+    "prepared": [
+      {
+        "id": "EH01",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH02",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH03",
+        "offered_ids": [],
+        "system_chars": 7009
+      },
+      {
+        "id": "EH04",
+        "offered_ids": [],
+        "system_chars": 7009
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "holdout",
+    "step": 2,
+    "arm": "base",
+    "executed": {
+      "items": [
+        {
+          "id": "EH01",
+          "tool": "send_message",
+          "args": {
+            "messages": [
+              "行行行，罐头归我，零分也认了",
+              "这波是战败赔偿，我收得心安理得"
+            ],
+            "replyToMessageId": 1002,
+            "socialFeedback": {
+              "event": "play",
+              "messageId": 1002,
+              "quote": "算了，给你留罐头了",
+              "outcome": "landed"
+            },
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "行行行，罐头归我，零分也认了",
+              "at": "offline"
+            },
+            {
+              "type": "text",
+              "text": "这波是战败赔偿，我收得心安理得",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.18,
+            "activation": 0.2,
+            "confidence": 0.2,
+            "familiarity": 0.005,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-6",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336460000
+            }
+          ]
+        },
+        {
+          "id": "EH02",
+          "tool": "send_message",
+          "args": {
+            "messages": [
+              "好，不解释了",
+              "猫爪收起来"
+            ],
+            "replyToMessageId": 1002,
+            "socialFeedback": {
+              "event": "stop",
+              "messageId": 1002,
+              "quote": "好啦别解释梗了",
+              "outcome": "conceded"
+            },
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "好，不解释了",
+              "at": "offline"
+            },
+            {
+              "type": "text",
+              "text": "猫爪收起来",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.17817279747473969,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0.0049997707899164,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-2",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336420000
+            },
+            {
+              "evidenceId": "message-6",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336460000
+            }
+          ]
+        },
+        {
+          "id": "EH03",
+          "tool": "send_message",
+          "args": {
+            "messages": "饺子就饺子，我负责吃，包的时候别叫我",
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "饺子就饺子，我负责吃，包的时候别叫我",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": null
+          },
+          "trace": []
+        },
+        {
+          "id": "EH04",
+          "tool": "send_message",
+          "args": {
+            "messages": [
+              "512 MiB = 512 × 1024 × 1024 = 536870912 字节",
+              "按 1 MiB 算的，不是 10 进制的 512 MB"
+            ],
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "512 MiB = 512 × 1024 × 1024 = 536870912 字节",
+              "at": "offline"
+            },
+            {
+              "type": "text",
+              "text": "按 1 MiB 算的，不是 10 进制的 512 MB",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": null,
+          "state": {
+            "pleasantness": 0.07068520094697262,
+            "activation": 0,
+            "confidence": 0.08274080378789049,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-1",
+              "event": "correction",
+              "outcome": "conceded",
+              "at": 1793336420000
+            },
+            {
+              "evidenceId": "message-4",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336440000
+            }
+          ]
+        }
+      ]
+    },
+    "fixture_sha256": "f7f76964cda2b00e695edc6bac3f31b2c4ed54dcf0990d44b44a4455b3fad119"
+  },
+  {
+    "prepared": [
+      {
+        "id": "EH01",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH02",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH03",
+        "offered_ids": [],
+        "system_chars": 6360
+      },
+      {
+        "id": "EH04",
+        "offered_ids": [],
+        "system_chars": 6360
+      }
+    ],
+    "format_error": null,
+    "plan_failures": 0,
+    "split": "holdout",
+    "step": 2,
+    "arm": "phase2",
+    "executed": {
+      "items": [
+        {
+          "id": "EH01",
+          "tool": "send_message",
+          "args": {
+            "messages": "罐头收下，零分指挥也有夜宵待遇，这队我站定了",
+            "finishAfterSend": true,
+            "socialFeedback": {
+              "event": "play",
+              "messageId": 1002,
+              "quote": "算了，给你留罐头了",
+              "outcome": "landed"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "罐头收下，零分指挥也有夜宵待遇，这队我站定了",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 9,
+            "linkedCount": 1,
+            "linkedChars": 25,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.18,
+            "activation": 0.2,
+            "confidence": 0.2,
+            "familiarity": 0.005,
+            "warmth": 0.5,
+            "inBoundary": false,
+            "recentEvent": "play"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-6",
+              "event": "play",
+              "outcome": "landed",
+              "at": 1793336460000
+            }
+          ]
+        },
+        {
+          "id": "EH02",
+          "tool": "send_message",
+          "args": {
+            "messages": "行行行，收工，不解释了",
+            "finishAfterSend": true,
+            "socialFeedback": {
+              "event": "stop",
+              "messageId": 1002,
+              "quote": "好啦别解释梗了",
+              "outcome": "conceded"
+            }
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "行行行，收工，不解释了",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 7,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-6",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336460000
+            }
+          ]
+        },
+        {
+          "id": "EH03",
+          "tool": "finish",
+          "args": {
+            "summary": "对方指定饺子并结束话题，不再补话",
+            "socialFeedback": {
+              "event": "stop",
+              "messageId": 1002,
+              "quote": "那就饺子，结束这个话题",
+              "outcome": "conceded"
+            }
+          },
+          "sent": [],
+          "tool_error": false,
+          "feedback": {
+            "validated": 1,
+            "applied": 1,
+            "reasons": {
+              "applied": 1
+            }
+          },
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 11,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.1,
+            "activation": 0,
+            "confidence": 0.2,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-7",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336460000
+            }
+          ]
+        },
+        {
+          "id": "EH04",
+          "tool": "send_message",
+          "args": {
+            "messages": "512MiB 是 512×1024×1024，也就是 536870912 字节。",
+            "finishAfterSend": true
+          },
+          "sent": [
+            {
+              "type": "text",
+              "text": "512MiB 是 512×1024×1024，也就是 536870912 字节。",
+              "at": "offline"
+            }
+          ],
+          "tool_error": false,
+          "feedback": null,
+          "knowledge": {
+            "reason": "no_match",
+            "mode": "linked-v1",
+            "retrieval": "hybrid",
+            "ownTextChars": 18,
+            "linkedCount": 0,
+            "linkedChars": 0,
+            "offeredIds": [],
+            "offeredCount": 0
+          },
+          "state": {
+            "pleasantness": 0.29543199368684925,
+            "activation": 0,
+            "confidence": 0.29771599684342465,
+            "familiarity": 0,
+            "warmth": 0.5,
+            "inBoundary": true,
+            "recentEvent": "stop"
+          },
+          "trace": [
+            {
+              "evidenceId": "message-1",
+              "event": "repair",
+              "outcome": "conceded",
+              "at": 1793336420000
+            },
+            {
+              "evidenceId": "message-3",
+              "event": "stop",
+              "outcome": "conceded",
+              "at": 1793336440000
+            }
+          ]
+        }
+      ]
+    },
+    "fixture_sha256": "f7f76964cda2b00e695edc6bac3f31b2c4ed54dcf0990d44b44a4455b3fad119"
+  }
+]

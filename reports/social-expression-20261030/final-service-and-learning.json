@@ -1,0 +1,1 @@
+{"qq_connected": true, "social_phase2": {"enabled": true, "interactionTrace": true, "humorKnowledge": true, "retrieval": "hybrid"}, "learning_enabled_for_requested_group": true, "community_read_for_members": true, "package": {"name": "@xzxzzx/bilibili-mcp", "version": "1.14.3", "license": "Apache-2.0"}, "qq_service": "active"}

@@ -1,0 +1,15 @@
+{
+  "provider": "gemini",
+  "requested_model": "gemini-3.8-flash-high",
+  "started_utc": "2026-10-30T07:57:41.119798+00:00",
+  "context_sha256": "1a0686c28cf4f09e247fad4f0c88a2d567d38fe340284df05eb73cfc9d90ec6a",
+  "task_sha256": "85d129c332d725df4bb5b38adeac680e2432cb23a218c9c8e2be44d81ef77997",
+  "automatic_retry": false,
+  "transport": "local_http",
+  "cloud_tunnel": false,
+  "pi": false,
+  "status": "failed",
+  "http_status": 500,
+  "quota_consumption": "unknown",
+  "elapsed_seconds": 127.529
+}

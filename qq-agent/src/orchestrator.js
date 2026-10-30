@@ -967,7 +967,7 @@ export class Orchestrator {
     skillContext.cacheScope = cacheScope;
     const socialHint=this.social?.hint(chatKey,triggerEntries,this.store);
     if(socialHint)extraSections.push({id:'social-continuity',title:'当前互动节奏',priority:45,content:socialHint});
-    const mechanismHint=this.social?.knowledgeHint(chatKey,triggerEntries,this.store);
+    const mechanismHint=this.social?.knowledgeHint(chatKey,triggerEntries,this.store,session);
     if(mechanismHint)extraSections.push({id:'humor-mechanisms',title:'可选表达机制',priority:39,content:mechanismHint});
     const previousAnchor = this.promptAnchors.get(chatKey);
     const systemPrompt = buildSystemPrompt({
