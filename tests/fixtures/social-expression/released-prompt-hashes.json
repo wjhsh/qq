@@ -1,0 +1,9 @@
+{
+  "sourceRevision": "8829a7bd8252859086eaa22f3d87e9c80223ac18",
+  "cases": {
+    "group:false": "5b2eb7c9f6cdd348ac5a11dc3e9c4eca6d1de8bf94cc23acb5402bf219e3ae8d",
+    "group:true": "54deb3e6ac682c9c690612868e4ccbf6e228860056d01bdbd48d1ed51551f475",
+    "private:false": "b9b6f3cabb4ec567ff8598a4b9be7d801e68075448bb30dab7906a25ce5f9ca9",
+    "private:true": "54deb3e6ac682c9c690612868e4ccbf6e228860056d01bdbd48d1ed51551f475"
+  }
+}

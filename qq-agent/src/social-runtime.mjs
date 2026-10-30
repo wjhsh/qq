@@ -2,6 +2,7 @@ import {SocialState,SOCIAL_OUTCOMES} from './social-state.mjs';
 import {isAutomatedPeer} from './bot-interaction.mjs';
 import {modelInputAllowed} from './input-guard.mjs';
 import {HumorKnowledge} from './humor-knowledge.mjs';
+import {buildKnowledgeQuery} from './social-knowledge-context.mjs';
 
 export const SOCIAL_FEEDBACK_SCHEMA={type:'object',additionalProperties:false,properties:{
   event:{type:'string',enum:['welcome','play','comfort','repair','correction','stop']},
@@ -134,15 +135,24 @@ export class SocialRuntime{
       return record('state_error',true,false);
     }
   }
-  knowledgeHint(chatKey,entries,store){
+  knowledgeHint(chatKey,entries,store,session=null){
     const cfg=this.getConfig();
-    if(!this.enabled()||!phase2Policy(cfg)||cfg.socialBehavior.phase2.humorKnowledge!==true)return'';
-    const owner=socialFocusOwner(this,chatKey,entries,store);if(!owner)return'';
-    const query=entries.filter(e=>String(e.senderId)===owner&&modelInputAllowed(e)).map(e=>e.directText||'').join('\n').slice(0,600);
-    if(!query.trim())return'';
+    const record=(reason,context={},cards=[])=>{
+      if(session&&typeof session==='object')session.socialKnowledge={
+        reason,mode:context.mode||'current',retrieval:cfg?.socialBehavior?.phase2?.retrieval==='hybrid'?'hybrid':'lexical',
+        ownTextChars:context.ownTextChars||0,linkedCount:context.linkedCount||0,linkedChars:context.linkedChars||0,
+        offeredIds:cards.map(c=>c.id),offeredCount:cards.length
+      };
+    };
+    if(!this.enabled()||!phase2Policy(cfg)||cfg.socialBehavior.phase2.humorKnowledge!==true){record('disabled');return'';}
+    const owner=socialFocusOwner(this,chatKey,entries,store);
+    if(!owner){record('no_owner');return'';}
+    const context=buildKnowledgeQuery({runtime:this,chatKey,entries,store,roleScope:this.scope(chatKey).roleScope,owner});
+    const query=context.query;
+    if(!query.trim()){record('empty_query',context);return'';}
     try{
       if(!this.knowledge&&!this.knowledgeFailed)this.knowledge=new HumorKnowledge({now:this.now});
-      if(!this.knowledge)return'';
+      if(!this.knowledge){record('knowledge_unavailable',context);return'';}
       // Cat-only cards require a host-selected role id, never a user's claim.
       const id=this.roleIdentity(cfg,chatKey).id;
       const key=JSON.stringify(this.scope(chatKey));this.recentMechanisms??=new Map();
@@ -150,8 +160,9 @@ export class SocialRuntime{
       const method=cfg.socialBehavior.phase2.retrieval==='hybrid'?'hybrid':'lexical';
       const cards=this.knowledge.search(query,{method,limit:2,roleKind:id==='hajimi-normal'?'cat':'any',recentIds:recent});
       if(cards.length){this.recentMechanisms.set(key,{at:this.now(),ids:cards.map(c=>c.id)});while(this.recentMechanisms.size>200)this.recentMechanisms.delete(this.recentMechanisms.keys().next().value);}
+      record(cards.length?'offered':'no_match',context,cards);
       return this.knowledge.format(cards);
-    }catch{this.knowledgeFailed=true;this.onError('通用幽默知识不可用，已跳过；群内梗与普通聊天保留');return'';}
+    }catch{this.knowledgeFailed=true;record('knowledge_error',context);this.onError('通用幽默知识不可用，已跳过；群内梗与普通聊天保留');return'';}
   }
   delivered(chatKey,entries){
     if(!this.enabled()||!entries.some(e=>isAutomatedPeer(this.getConfig(),chatKey,e.senderId)||e.automatedPeer===true))return;

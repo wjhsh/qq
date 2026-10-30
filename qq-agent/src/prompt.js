@@ -1,4 +1,5 @@
 import { naturalConversationRules } from './natural-chat.mjs';
+import {playfulExpressionEnabled,buildPlayfulExpressionBlock} from './social-expression.mjs';
 // 提示词组装 —— 新架构的心脏。
 //
 // 设计目标（对应"无状态 + 每次新开会话"的成本模型）：
@@ -165,7 +166,7 @@ function reportBan() {
   ].join('\n');
 }
 
-function qqSceneRules() {
+function qqSceneRules(lightStickers=false) {
   const cfg = getConfig();
   const vision = cfg.api?.vision !== false;
   const search = cfg.webSearch?.enabled !== false;
@@ -177,7 +178,9 @@ function qqSceneRules() {
   ];
   if (vision) {
     lines.push(
-      '- 消息里出现 [图片] / [表情]，或要用某个没备注的收藏表情时，可以用 get_message_images / get_sticker_image 看图（你能直接看懂图片内容），再自然回应；不要假装看不到图，也不要编造图片内容；工具获取失败就老实说看不到。'
+      lightStickers
+        ? '- [图片] / [表情] 先当消息附件，不自动当成需要解说的任务。明确问图中内容、确实依赖画面细节或要确认未知收藏表情时，用 get_message_images / get_sticker_image 读取；实际得到图像后才能说看见了什么。普通表情互动可以短接、回表情或不回复，不逐张翻译；没有取得图像或获取失败，不猜画面。'
+        : '- 消息里出现 [图片] / [表情]，或要用某个没备注的收藏表情时，可以用 get_message_images / get_sticker_image 看图（你能直接看懂图片内容），再自然回应；不要假装看不到图，也不要编造图片内容；工具获取失败就老实说看不到。'
     );
   } else {
     lines.push(
@@ -261,6 +264,7 @@ export function buildSystemPrompt({ persona, skillContext, extraSections = [] } 
     return parts.join('\n');
   }
 
+  const playful=playfulExpressionEnabled(getConfig(),{kind:skillContext?.kind,override});
   const parts = [
     `你是「${cfg.botName}」，正在 QQ ${isPrivate ? '私聊中与对方交流' : '群里与大家相处'}。用当前角色自然说话；发送、查询等行为通过实际提供的工具完成。`,
     '',
@@ -271,6 +275,7 @@ export function buildSystemPrompt({ persona, skillContext, extraSections = [] } 
     ...(String(cfg.roleText ?? '').trim() ? ['【当前角色卡（管理员设置）】', String(cfg.roleText).trim(), ''] : []),
     roleBoundaryRules(),
     '',
+    ...(playful ? [buildPlayfulExpressionBlock(participationText(cfg.participation)), ''] : [
     antiAiFlavor(),
     '',
     subjectivity(),
@@ -288,13 +293,14 @@ export function buildSystemPrompt({ persona, skillContext, extraSections = [] } 
     '',
     isPrivate ? '' : notModerator(),
     '',
+    ]),
     quoteAndAt(),
     '',
     memoryRules(),
     '',
     stickerRules(),
     '',
-    qqSceneRules(),
+    qqSceneRules(playful),
     '',
     reportBan()
   ];
