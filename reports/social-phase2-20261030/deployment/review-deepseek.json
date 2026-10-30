@@ -1,0 +1,43 @@
+{
+  "provider": "deepseek",
+  "requested_model": "deepseek-v4.1-flash",
+  "started_utc": "2026-10-30T07:02:04.563808+00:00",
+  "context_sha256": "de4c91810d9ec83b8461e6052d666e7aa3ebdc468c3344a1391b4b47419c718f",
+  "task_sha256": "4cca7d8ed7cdcc1bb42857991adce4eb17fd2a24aeaf18323e4558f261a31f6f",
+  "automatic_retry": false,
+  "transport": "local_http",
+  "cloud_tunnel": false,
+  "pi": false,
+  "status": "completed",
+  "model": "deepseek-v4.1-flash",
+  "usage": {
+    "prompt_tokens": 8225,
+    "completion_tokens": 2262,
+    "total_tokens": 10487,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "cached_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0,
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 8225,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "prompt_cache_write_tokens": 0,
+    "completion_thinking_tokens": 0,
+    "credit": 0.49,
+    "cached_tokens": 0
+  },
+  "finish_reason": "stop",
+  "text": "**结论：有阻断上线的问题。** 本次材料中的测试确实覆盖了 phase2 三种旧值（缺失/null/自定义）的往返和冲突拒绝，但这组测试掩盖了一个真实缺口：`apply` 失败后的自动回滚路径与服务手工回滚路径（`do_rollback`）在\"写入阶段中途失败\"时并不等价，其中自动回滚对\"新增文件\"的清理依赖 `p[\"prod\"]` 状态，而配置项可能已部分写入导致再入失败。更重要的是下面第 1 项——phase2 开关的写入与\"配置冲突拒绝\"的判定边界不一致，使自定义旧值在一种真实场景下被错误覆盖而非拒绝。\n\n## 阻断问题 1：phase2 自定义旧值被静默覆盖而非按\"冲突\"拒绝\n\n代码证据（`patch_cfg` / `WRITTEN`）：\n\n```python\nWRITTEN = {...,\"voice.provider\": \"edge\"}\nPHASE2 = {\"enabled\": True, \"interactionTrace\": True, ...}\n```\n\n`release_settings(\"phase2\")` 只是把整个 `PHASE2` 字典塞进 `socialBehavior.phase2`，会**整体替换**原有 `socialBehavior.phase2` 对象。测试 `test_phase2_custom_roundtrip` 恰恰证明这一点：旧值 `{\"enabled\":False,\"custom\":\"keep\"}` 被整块覆盖，回滚后才\"看起来\"恢复。也就是说：\n\n- apply 期间，用户已有的 `phase2.custom` 在服务运行期间**实际丢失**（不是暂存后合并），只有靠回滚才恢复。\n- 更关键：`do_rollback` 的冲突判定用 `type_eq(cur_val, wv)`，`wv` 是整体 `PHASE2`。若运维在 apply 后**手动在原 `phase2` 对象里补回 `custom`**，回滚时 `cur_val != wv` 且 `cur_val != 旧值`，会被判 `config-conflict`——即用户善意的兼容补丁会**卡死回滚**，此时 `svc_stop()` 已在 `do_rollback` 内触发（见 `do_rollback` 中 `svc_stop()` 在 try 之前？需确认顺序）。\n\n实际顺序是 `for key...: raise DeployError(\"config-conflict\")` 在 `svc_stop()` **之前**，所以 `test_phase2_rollback_rejects_nested_type_conflict` 里 `self.calls==[]` 成立——这点测试是对的。但 apply 阶段仍是\"整体替换\"，与你们要求的\"旧备份兼容/自定义值还原\"语义不符：**自定义 phase2 子键不是被保留而是被整块替换**，只是回滚兜底。\n\n最小修复：`patch_cfg` 对 dict 型目标做浅合并而非替换，并让 `WRITTEN`/冲突判定以\"叶子键\"为单位：\n\n```python\ndef merge_written(o, written):\n    for key, value in written.items():\n        sec, name = key.split(\".\")\n        cur = o.setdefault(sec, {}).get(name)\n        if isinstance(value, dict) and isinstance(cur, dict):\n            o[sec][name] = {**cur, **value}   # 保留 custom 等未受管子键\n        else:\n            o[sec][name] = value\n```\n\n并在 `three_now` 里对 dict 值只比较受管子键，冲突判定用受管子键集合，避免用户补丁把回滚卡死。若团队明确\"phase2 整块受管、覆盖即预期\"，则应在 `manifest`/文档中拒绝携带旧自定义子键的 release，并在测试里把 `test_phase2_custom_roundtrip` 改为断言\"apply 后 custom 丢失、需回滚恢复\"——二者必须选一，现状是语义含糊。\n\n## 阻断问题 2：apply 自动回滚在配置写入与文件写入交错时可能\"回滚不完整\"仍继续\n\n代码证据（`do_apply` except 分支）：\n\n```python\nif not applied and svc_stopped: ... start ...\nif applied:\n    try:\n        svc_stop()\n        for p in plan: ... atomic_write / unlink ...\n        cm2 = file_meta(CFG)\n        restored = restore_three(meta[\"three_before\"], read_cfg(), ...)\n        atomic_write(CFG, ...)\n        svc_start()\n```\n\n问题在于 `applied = True` 是在**备份完成后、写文件之前**就置位的，而 `meta` 只在备份循环里构建了 `meta[\"files\"]`；配置写入 `atomic_write(CFG,...)` 若失败，`read_cfg()` 读到的是**已部分写入或原样**的配置。`restore_three` 基于 `three_before` 与当前 cfg 求差集再写回，理论上能收敛；但：\n\n- 若失败点发生在 `new_cfg` 构造后、`atomic_write(CFG)` 抛错（如磁盘满），`read_cfg()` 仍是旧配置，`restore_three` 结果等于旧配置——回滚\"成功\"但**新文件已被覆盖**，此时 `svc_start()` 会用\"旧配置 + 新代码\"启动，即 phase2 开关未生效但代码已是新版，**状态不一致却上报回滚成功**（测试 `test_phase2_failed_config_write_restores_original_flags` 只断言配置回到 `oldcfg` 和文件回滚，没有断言\"服务启动时配置与代码一致\"）。\n- 测试用 `failed_once` 在 `count==1` 时对 CFG 抛错，恰好覆盖\"配置未写、文件已写\"这一情形，但它通过是因为旧配置本身没有 phase2 键，`restore_three` 无变更。**若旧配置已有 phase2 部分键，此路径下 `read_cfg()` 与 `meta[\"three_before\"]` 相同，回滚是 no-op，新代码 + 旧配置继续运行。**\n\n最小修复：在 `applied=True` 之前先生成 `new_cfg` 与 `restored_cfg` 到内存变量，把\"文件写入\"和\"配置写入\"包在同一个失败原子单元里；失败时显式用 `meta[\"three_before\"]` 重算 `restore_three(before, cfg0, ...)`（用 stop 后重读的 `cfg`，而非 `read_cfg()` 的当前值），并**校验回滚后 `three_now(read_cfg()) == meta[\"three_before\"]`**，不相等则 `out(\"rollback-incomplete\", ok=False)` 并**不启动服务**，交人工。\n\n## 阻断问题 3：新增文件的回滚清理依赖 `os.path.isfile`，与 apply 失败路径对\"部分写入的新文件\"处理不一致\n\n代码证据：\n\n```python\n# do_apply except:\nelse:\n    if os.path.isfile(p[\"prod\"]) and not os.path.islink(p[\"prod\"]):\n        os.unlink(p[\"prod\"])\n# do_rollback 中相同逻辑\n```\n\n`atomic_write` 走 `os.replace(tmp, path)`，正常不会留半截文件；但 apply 的 `for p in plan: os.makedirs(os.path.dirname(p[\"prod\"]), exist_ok=True)` 之后若在**第一个新增文件之前**就抛错，`p[\"prod\"]` 不存在，`isfile` 为假，跳过——正确。真正的问题在**回滚时新增文件的父目录残留**（`os.makedirs` 创建的中间目录不会被清理），下一轮 apply 对同 release 会因 `backup-exists` 直接拒绝（`make_backup` 中 `if os.path.lexists(bak): raise DeployError(\"backup-exists\")`），运维必须先手工删备份，否则重试永远失败。这不是数据损坏，但**阻断\"失败后可重试\"**，属于上线可靠性缺口。\n\n最小修复：回滚完成且校验通过后，若 `bak` 为空/仅元数据则允许清理，或 `make_backup` 对已存在备份做 `backup-meta.json` 存在性校验后允许覆盖（当前是硬拒绝）。测试里 `test_write_failure...keeps_backup` 明确断言备份保留，说明这是**有意设计**——那么请在 `out` 里输出可重试指引（如 `retry_blocked_by=backup-exists`），不要让运维从错误码反推。\n\n---\n\n## 其余观察（非阻断，仅供确认）\n\n- `status_idle` 要求 `paused is True` 严格布尔；若控制 API 返回字符串 `\"true\"` 会被判 busy，属于保守行为，可接受但需确认 API 契约。\n- `verify_manifest` 对 `old_sha256=None` 的\"新增文件\"用 `os.path.lexists` 判定；若生产路径是悬空 symlink，`lexists` 为真而 `isfile` 为假，会落 `prod-not-regular`，方向正确。\n- `three_now` 用 `value[name] if present else None`，对存在但值为 `null` 的项返回 `(None, True)`，测试 `test_phase2_null_roundtrip` 覆盖。\n\n## 剩余限制\n\n- 未执行，未验证 systemd/控制 API 实际行为；所有判断基于静态阅读提供的 `deploy.py` 与测试。\n- 未查看 `manifest` 生成侧与 `config_profile` 的约定（例如是否存在 `phase2` 之外的 profile 需要在 `release_settings` 中显式拒绝，现只有 `unknown-config-profile` 兜底）。\n- 第 1 项是否阻断取决于产品语义：若\"phase2 整块受管、覆盖即预期\"是正式设计，则降级为\"文档+测试语义需明确\"；否则按上述修复。\n\n**建议：问题 1 和问题 2 修复并补充\"配置已写、文件未全写\"和\"回滚后配置校验\"两个测试后再上线；问题 3 至少补可重试指引。**",
+  "elapsed_seconds": 17.026
+}
