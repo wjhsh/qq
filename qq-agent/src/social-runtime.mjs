@@ -35,6 +35,12 @@ export function socialRunOwner(runtime,chatKey,entries,store){
   if(direct.size)return direct.size===1?[...direct][0]:null;
   return people.size===1?[...people][0]:null;
 }
+// Cancellation ownership may fall back to one speaker. A relationship focus
+// requires actual addressing; ambient speech still follows normal admission.
+export function socialFocusOwner(runtime,chatKey,entries,store){
+  if(!Array.isArray(entries))return null;
+  return socialRunOwner(runtime,chatKey,entries.filter(e=>runtime?.directed(chatKey,e,store)),store);
+}
 
 // Hosts supply structural addressing. The model decides ambiguous social intent
 // in its normal reply turn; no extra classifier and no emotion keyword guessing.
@@ -79,10 +85,10 @@ export class SocialRuntime{
   }
   hint(chatKey,entries,store){
     if(!this.enabled())return'';
-    const owner=socialRunOwner(this,chatKey,entries,store),state=owner?this._state():null;
+    const owner=socialFocusOwner(this,chatKey,entries,store),state=owner?this._state():null;
     const phase2=phase2Policy(this.getConfig());
     const mood=state?state.format(this.scope(chatKey),owner,phase2?{compact:true,trace:this.getConfig().socialBehavior.phase2.interactionTrace===true}:undefined):'';
-    const focus=phase2?(owner?`本批唯一互动对象：QQ:${owner}。这不表示其他人也在同一话题。`:'本批无唯一互动对象；不借最后发言的人推定关系或情绪。'):'';
+    const focus=phase2?(owner?`本批明确互动对象：QQ:${owner}。这不表示其他人也在同一话题。`:'本批无明确互动对象；可自然参与环境闲聊，不推定个人关系或情绪。'):'';
     return [focus,mood,'先辨认谁对谁说话、引用与实际正文；不替别人答，不为每条消息找任务。表情可只是社交动作，无须翻译；没读取实际图像就不编画面。',
       '先接本轮一个具体细节，再决定普通回答、反串、猫式撒娇、一个表情、拍一下或finish。对方真叫停就收住；假生气只有被接住才继续，不连续补刀或解说笑点。',
       '当前角色为猫娘时，猫耳、尾巴、猫爪、小鱼干、罐头、傲娇和温柔保留为小心思；其他角色沿用自己的设定，不强套猫身份。共同经历用现有记忆，临时玩笑不存成对方事实。',
@@ -130,7 +136,7 @@ export class SocialRuntime{
   knowledgeHint(chatKey,entries,store){
     const cfg=this.getConfig();
     if(!this.enabled()||!phase2Policy(cfg)||cfg.socialBehavior.phase2.humorKnowledge!==true)return'';
-    const owner=socialRunOwner(this,chatKey,entries,store);if(!owner)return'';
+    const owner=socialFocusOwner(this,chatKey,entries,store);if(!owner)return'';
     const query=entries.filter(e=>String(e.senderId)===owner&&modelInputAllowed(e)).map(e=>e.directText||'').join('\n').slice(0,600);
     if(!query.trim())return'';
     try{

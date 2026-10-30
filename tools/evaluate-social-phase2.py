@@ -11,7 +11,7 @@ def parse(text):
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--endpoints',type=pathlib.Path,required=True);p.add_argument('--out',type=pathlib.Path,required=True);p.add_argument('--splits',default='development,holdout');p.add_argument('--resume-existing',action='store_true',help='Replay saved responses locally; do not repeat completed API calls')
     p.add_argument('--replay-only',action='store_true',help='Only execute saved plans locally; never make API calls')
-    a=p.parse_args();splits=a.splits.split(',');assert all(s in ['development','holdout'] for s in splits)
+    a=p.parse_args();splits=a.splits.split(',');assert all(s in ['development','holdout','confirmation'] for s in splits)
     a.out.mkdir(parents=True,exist_ok=True);assert a.replay_only or not (a.out/'transcripts.json').exists(),'Existing evaluation'
     spec=importlib.util.spec_from_file_location('local_workers',ROOT/'tools/model-collaboration.py');workers=importlib.util.module_from_spec(spec);spec.loader.exec_module(workers)
     baseline=subprocess.check_output(['git','show','9ff4631:qq-agent/src/social-runtime.mjs'],cwd=ROOT).decode('utf-8')
@@ -28,7 +28,7 @@ def main():
             if 'error' in result:raise RuntimeError(result['error'])
             return result
     def evaluate(provider):
-        status=[]
+        status=[];new_calls=0;reused=0
         for split in splits:
             for step in range(3):
                 for arm in (['base','phase2'] if step%2==0 else ['phase2','base']):
@@ -40,11 +40,13 @@ def main():
                     if existing.exists():
                         if not a.resume_existing:raise RuntimeError('Call exists; not retried')
                         result=json.loads(existing.read_text(encoding='utf-8'))
+                        reused+=1
                         assert result['context_sha256']==hashlib.sha256(context.encode()).hexdigest(),'Replay context drift'
                         assert result['task_sha256']==hashlib.sha256(task.encode()).hexdigest(),'Replay task drift'
                     else:
                         if a.replay_only:raise RuntimeError('Missing response in replay-only mode')
                         ok=workers.run(provider,settings,context,task,out,7500,300)
+                        new_calls+=1
                         if not ok:return{'provider':provider,'completed':False,'failed_at':str(out.relative_to(a.out))}
                         result=json.loads(existing.read_text(encoding='utf-8'))
                     assert result['status']=='completed','A failed request is not retried'
@@ -59,7 +61,7 @@ def main():
                     executed=command({'action':'apply','provider':provider,'arm':arm,'split':split,'step':step,'items':plans.get('items')})
                     status.append({'split':split,'step':step,'arm':arm,'executed':executed,'fixture_sha256':hashlib.sha256((ROOT/'tests/fixtures/social-phase2'/f'{split}.json').read_bytes()).hexdigest()})
                     (a.out/(provider+'-execution.json')).write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding='utf-8')
-        return{'provider':provider,'completed':True,'api_calls':len(status)}
+        return{'provider':provider,'completed':True,'distinct_api_responses':len(status),'new_api_calls':new_calls,'saved_responses_reused':reused}
     try:
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
             results=[f.result() for f in [pool.submit(evaluate,n) for n in ['gemini','deepseek']]]

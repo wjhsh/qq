@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {SocialState} from '../qq-agent/src/social-state.mjs';
-import {SocialRuntime,socialFeedbackSchema} from '../qq-agent/src/social-runtime.mjs';
+import {SocialRuntime,socialFeedbackSchema,socialFocusOwner,socialRunOwner} from '../qq-agent/src/social-runtime.mjs';
 import {HumorKnowledge,validateKnowledge,mechanismDigest} from '../qq-agent/src/humor-knowledge.mjs';
 import {rankMechanisms,tokenize} from '../qq-agent/src/humor-retrieval.mjs';
 const S={chatKey:'group:12345',roleScope:'hajimi-normal:one'},U='23456';
@@ -115,4 +115,14 @@ test('knowledge focus never searches other participants or a poke synthetic desc
   const f=fixture(t);assert.equal(f.runtime.knowledgeHint(S.chatKey,[{...message,directText:''},{...message,senderId:'45678',atMe:false,directText:'摸头申请猫爪印'}]),'');
   assert.equal(f.runtime.knowledgeHint(S.chatKey,[{...message,isPoke:true,directText:undefined,text:'[拍一拍]猫爪印申请'}]),'');
   assert.ok(f.runtime.knowledgeHint(S.chatKey,[{...message,directText:'摸头申请猫爪印'}]).includes('M03-bureaucratic-wrap'));
+});
+
+test('a sole ambient speaker owns their batch but is not automatically talking to the cat',t=>{
+  const f=fixture(t),ambient={...message,atMe:false,directText:'摸头申请猫爪印'};
+  assert.equal(socialRunOwner(f.runtime,S.chatKey,[ambient]),U);
+  assert.equal(socialFocusOwner(f.runtime,S.chatKey,[ambient]),null);
+  assert.equal(f.runtime.admit(S.chatKey,ambient).allow,true);
+  const hint=f.runtime.hint(S.chatKey,[ambient]);assert.ok(!hint.includes('自身倾向'));assert.ok(!hint.includes('本批明确互动对象：'));
+  assert.match(hint,/可自然参与/);assert.equal(f.runtime.knowledgeHint(S.chatKey,[ambient]),'');
+  assert.equal(socialFocusOwner(f.runtime,S.chatKey,[message]),U);
 });
