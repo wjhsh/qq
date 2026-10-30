@@ -51,6 +51,7 @@ export class SocialRuntime{
   enabled(){return socialPolicy(this.getConfig())&&!this.failed;}
   scope(chatKey){return{chatKey,roleScope:this.roleIdentity(this.getConfig(),chatKey).scope};}
   _state(){
+    if(this.failed)return null;
     if(!this.state&&!this.failed)try{this.state=new SocialState({filePath:this.filePath,now:this.now});}
     catch{this.failed=true;this.onError('社交状态不可读，已停用此功能；原文件保留');}
     return this.state;

@@ -86,6 +86,7 @@ test('phase2 off hides outcomes, trace and knowledge; state failure is observabl
   f.cfg.socialBehavior.phase2.enabled=true;assert.ok(socialFeedbackSchema(f.cfg).properties.outcome);
   const g=fixture(t);g.runtime._state().apply=()=>{throw Error('disk full');};assert.equal(g.runtime.feedback(g.ctx,{event:'comfort',messageId:11,quote:'摸摸头'}),false);
   assert.equal(g.ctx.session.socialFeedbackStats.reasons.state_error,1);assert.equal(g.runtime.admit(S.chatKey,message).allow,true);
+  assert.equal(g.runtime.admit(S.chatKey,{...message,atMe:false}).allow,false);
 });
 
 test('retrieval ranks individual documents, refuses unrelated inputs, bounds work and is deterministic',()=>{
