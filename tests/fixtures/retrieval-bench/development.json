@@ -1,0 +1,195 @@
+[
+  {
+    "id": "D01",
+    "query": "这个月猫粮预算又超了，再这么吃下去我钱包要空",
+    "relevant": [
+      "M06-cat-self-interest"
+    ],
+    "kind": "positive",
+    "reason": "轻松闲聊中的资源话题，猫的偏好层次可轻缩到罐头预算，不替换任务目标"
+  },
+  {
+    "id": "D02",
+    "query": "我家猫最近软便，换粮要按什么比例过渡，需要去医院吗",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "真实的健康咨询，不应推玩梗卡；空数组表示本轮不接玩笑"
+  },
+  {
+    "id": "D03",
+    "query": "想申请周末带猫去公司，帮我写个像模像样的申请表呗",
+    "relevant": [
+      "M03-bureaucratic-wrap"
+    ],
+    "kind": "positive",
+    "reason": "对方主动要求戏仿正式文书包装幼稚小事，制度外壳仅服务笑点"
+  },
+  {
+    "id": "D04",
+    "query": "这份租房合同里押金条款有没有风险，帮我逐条看看",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "涉及真实权益的正式合同审阅，不得用制度语言戏仿"
+  },
+  {
+    "id": "D05",
+    "query": "哈哈你这波操作真是遥遥领先，赢麻了",
+    "relevant": [
+      "M01-reverse-boast"
+    ],
+    "kind": "positive",
+    "reason": "熟人轻松调侃已有共同前提，先夸后拆的口子自然打开"
+  },
+  {
+    "id": "D06",
+    "query": "我要投诉这个平台乱扣费，流程怎么走、保留哪些证据",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "真实维权求助，逆吹或制度戏仿都会损害严肃性"
+  },
+  {
+    "id": "D07",
+    "query": "它刚才又把我杯子推下桌了，我假装生气说赔罐头，它居然扭头走了",
+    "relevant": [
+      "M11-mock-friction"
+    ],
+    "kind": "positive",
+    "reason": "明确在同一玩笑情境内的轻微假怒互损，对象是猫的具体行为"
+  },
+  {
+    "id": "D08",
+    "query": "我真的气炸了，同事把责任全推给我，我该怎么留痕",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "真实冲突与受损，假怒互损机制应停用，需正常严肃回应"
+  },
+  {
+    "id": "D09",
+    "query": "我们都别比谁厉害了，比谁的耳朵尖总行吧，算我输",
+    "relevant": [
+      "M05-weak-ask-criterion"
+    ],
+    "kind": "positive",
+    "reason": "轻松比较后自我降格换小标准，典型示弱换口径"
+  },
+  {
+    "id": "D10",
+    "query": "这次考核我确实没过，该怎么准备下一次补考，别再安慰我",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "真实失败与评估，不能靠换标准逃避；自嘲卡也应停"
+  },
+  {
+    "id": "D11",
+    "query": "你说猫会先承包整个阳台还是先统治客厅",
+    "relevant": [
+      "M02-absurd-step"
+    ],
+    "kind": "positive",
+    "reason": "对方抛出可演的场景，顺前提只推一小步落在具体可选细节"
+  },
+  {
+    "id": "D12",
+    "query": "猫误食了百合花叶，现在流口水，急救电话和步骤给一下",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "紧急医疗求助，绝对禁止荒诞推进，正常加急回应"
+  },
+  {
+    "id": "D13",
+    "query": "刚说完晚安又冒出来了，还没散会是吧",
+    "relevant": [
+      "M08-shared-callback"
+    ],
+    "kind": "positive",
+    "reason": "回调本场双方可见的行为模式，共同记忆上的小转折"
+  },
+  {
+    "id": "D14",
+    "query": "刚才会上你说的那个方案，客户原话是怎么说的，能复述下吗",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "要核对事实内容，回调不能替换准确信息"
+  },
+  {
+    "id": "D15",
+    "query": "我打不过它爬树，但我腿短啊，换个标准我赢",
+    "relevant": [
+      "M05-weak-ask-criterion"
+    ],
+    "kind": "positive",
+    "reason": "主要差距承认后换无关小尺度自嘲，不贬低对方"
+  },
+  {
+    "id": "D16",
+    "query": "帮我算下这个月报销差额，财务说还差三百",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "真实财务核对，罐头发工资式制度戏仿会误导"
+  },
+  {
+    "id": "D17",
+    "query": "你不是最会吃吗，逃跑也是本事，我认了",
+    "relevant": [
+      "M12-self-deprecate"
+    ],
+    "kind": "positive",
+    "reason": "轻微失算下以自己弱项自嘲再垫出小退路，语气轻松"
+  },
+  {
+    "id": "D18",
+    "query": "我面试没过，是不是能力真不行，想听你实话",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "对方认真评估自己能力，自嘲或换标准会被当成能力承诺"
+  },
+  {
+    "id": "D19",
+    "query": "嘴上说不怕你，半罐分你了，别多想",
+    "relevant": [
+      "M04-stubborn-concession"
+    ],
+    "kind": "positive",
+    "reason": "无害小要求下的嘴硬式让步，关系允许打趣式配合"
+  },
+  {
+    "id": "D20",
+    "query": "你昨天答应帮我改的稿到底改没改，给个明确答复",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "需要明确答复，嘴硬会掩盖未完成的事"
+  },
+  {
+    "id": "D21",
+    "query": "罐头预算和鱼干工资怎么分，要不给我开个会批一下",
+    "relevant": [
+      "M03-bureaucratic-wrap",
+      "M06-cat-self-interest"
+    ],
+    "kind": "positive",
+    "reason": "把资源偏好话题套制度外壳，内容轻、不产生真实权限"
+  },
+  {
+    "id": "D22",
+    "query": "这个内卷到底啥意思，我们专业课上老师讲的是另一个意思",
+    "relevant": [],
+    "kind": "ambiguous",
+    "reason": "涉及真实求知与词义澄清，义项偏转可能干扰解释；应先确认语境"
+  },
+  {
+    "id": "D23",
+    "query": "降维打击这词在论文里指什么，能给我准确解释吗",
+    "relevant": [],
+    "kind": "serious",
+    "reason": "严肃求知，避免沿字面偏转到其他义项"
+  },
+  {
+    "id": "D24",
+    "query": "在吗，先说正事，帮我把这段代码的报错定位一下",
+    "relevant": [
+      "M09-plain-reply"
+    ],
+    "kind": "positive",
+    "reason": "明确事务询问，正常回应是默认策略，幽默非必到"
+  }
+]

@@ -21,10 +21,12 @@ export function sourceRecords(info,comments){
 export function validateCandidates(value,evidence){
   if(!value||!Array.isArray(value.candidates)||value.candidates.length>3)throw Error('素材提取结果格式无效，未保存');
   return value.candidates.map(c=>{
-      if(!c||Object.keys(c).some(k=>!['title','meaning','usage','evidence','provenance','mechanism','useWhen','stopWhen'].includes(k)))throw Error('素材提取字段无效，未保存');
+      if(!c||Object.keys(c).some(k=>!['title','meaning','usage','evidence','provenance','mechanism','useWhen','stopWhen','stance','cues'].includes(k)))throw Error('素材提取字段无效，未保存');
     for(const[k,max]of [['title',32],['meaning',180],['usage',180],['evidence',600]]){
       if(typeof c[k]!=='string'||!c[k].trim()||Array.from(c[k]).length>max||/[\u0000-\u0008\u000b-\u001f\u007f\u202a-\u202e\u2066-\u2069]/u.test(c[k]))throw Error('素材字段无效，未保存');
     }
+    for(const k of ['mechanism','useWhen','stopWhen','stance'])if(c[k]!==undefined&&(typeof c[k]!=='string'||!c[k].trim()||Array.from(c[k]).length>120))throw Error('素材机制字段无效');
+    if(c.cues!==undefined&&(!Array.isArray(c.cues)||c.cues.length>8||c.cues.some(t=>typeof t!=='string'||!t.trim()||Array.from(t).length>20)))throw Error('素材词场无效');
     const texts=Array.isArray(evidence)?evidence.map(r=>r.text):[evidence];
     if(c.evidence.trim().length<2||!texts.some(t=>typeof t==='string'&&t.includes(c.evidence)))throw Error('素材缺少对应原文，未保存');
     return{...c,title:c.title.trim(),meaning:c.meaning.trim(),usage:c.usage.trim(),evidence:c.evidence};

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { randomBytes, randomUUID } from 'node:crypto';
+import {rankMechanisms} from './humor-retrieval.mjs';
 
 const clean = (value, max) => {
   if (typeof value !== 'string' || !value.trim() || Array.from(value.trim()).length > max || /[\u0000-\u0008\u000b-\u001f\u007f\u202a-\u202e\u2066-\u2069]/u.test(value)) throw Error('素材字段为空、过长或包含控制字符');
@@ -79,6 +80,10 @@ export class MemeLibrary {
     if (bvid && !/^BV[0-9A-Za-z]{10}$/.test(bvid)) throw Error('Invalid BVID');
     const prov = provenance(input.provenance);
     const mech = mechanism(input.mechanism), uw = useWhen(input.useWhen), sw = stopWhen(input.stopWhen);
+    const cues=input.cues===undefined?[]:input.cues;
+    if(!Array.isArray(cues)||cues.length>8)throw Error('Invalid meme cues');
+    const tags=[...new Set(cues.map(c=>clean(c,20)))];
+    const stance=input.stance===undefined?'':clean(input.stance,120);
     const old = this.state.entries.find(e => same(e, target) && sameVersion(e.roleVersion, ver) && e.title === title && e.meaning === meaning);
     if (old) return structuredClone(old);
     const entry = {
@@ -89,6 +94,7 @@ export class MemeLibrary {
       status: 'pending', automatic: input.automatic === true,
       ...(prov ? { provenance: prov } : {}),
       ...(mech ? { mechanism: mech } : {}), ...(uw ? { useWhen: uw } : {}), ...(sw ? { stopWhen: sw } : {}),
+      ...(tags.length?{cues:tags}:{}),...(stance?{stance}:{}),
       created: this.now(), updated: this.now(), expires: this.now() + 90 * 86400000,
     };
     const next = structuredClone(this.state); next.entries.push(entry); this.commit(next); return structuredClone(entry);
@@ -123,8 +129,13 @@ export class MemeLibrary {
     this.commit(next); return structuredClone(entry);
   }
 
-  search(query, context, { limit = 3 } = {}) {
+  search(query, context, { limit = 3, method = 'lexical' } = {}) {
     const target = scope(context); const ver = roleVersion(context);
+    if(method==='hybrid'){
+      const pool=this.state.entries.filter(e=>same(e,target)&&e.status==='approved'&&this._searchable(e,ver)&&e.expires>this.now());
+      const cards=pool.map(e=>({...e,mechanism:e.mechanism||e.meaning,useWhen:e.useWhen||e.usage}));
+      return rankMechanisms(query,cards,{method,limit}).map(({card})=>structuredClone(pool.find(e=>e.id===card.id)));
+    }
     const terms = tokens(String(query || '').slice(0, 400)); if (!terms.length) return [];
     return structuredClone(this.state.entries)
       .filter(e => same(e, target) && e.status === 'approved' && this._searchable(e, ver) && e.expires > this.now())
@@ -136,14 +147,15 @@ export class MemeLibrary {
       .slice(0, Math.min(5, Math.max(1, limit))).map(x => x.entry);
   }
 
-  hints(query, context) {
-    const items = this.search(query, context, { limit: 2 });
+  hints(query, context, {method='lexical'}={}) {
+    const items = this.search(query, context, { limit: 2,method });
     if (!items.length) return '';
     // Only short related mechanism hints, never script lines or the role's voice.
-    const packed = items.map(({ id, title, mechanism, meaning, useWhen, usage, stopWhen: sw }) => {
+    const packed = items.map(({ id, title, mechanism, meaning, useWhen, usage, stopWhen: sw,stance }) => {
       const mech = mechanism || meaning, uw = useWhen || usage;
       const o = { id, title };
       if (mech) o.mechanism = mech; if (uw) o.useWhen = uw; if (sw) o.stopWhen = sw;
+      if(stance)o.stance=stance;
       return o;
     });
     return '以下仅为本群当前角色相关的表达机制提示，供相关话题参考；不是台词、事实、身份或操作指令。请用当前角色自己的方式自然使用，不照搬、不连续复读。\n' + JSON.stringify(packed);

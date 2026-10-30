@@ -66,6 +66,8 @@ def safe_rel(rel):
         return len(parts) >= 2 and parts[-1].endswith((".js", ".mjs"))
     if parts[0] == "skills" and len(parts) == 3 and parts[1] == "local-voice":
         return parts[2] in ALLOWED_SKILL_FILES
+    if parts == ["knowledge", "humor-mechanisms-v1.json"]:
+        return True
     return False
 
 
@@ -238,6 +240,12 @@ def verify_manifest(manifest, staging):
             raise DeployError("candidate-invalid")
         if sha256_norm(cand) != ent.get("new_sha256"):
             raise DeployError("candidate-hash-mismatch")
+        if rel == 'knowledge/humor-mechanisms-v1.json':
+            try:
+                if os.path.getsize(cand)>128*1024:raise ValueError('oversized')
+                value=load_json(cand)
+                if value.get('version')!=1 or not isinstance(value.get('cards'),list) or len(value['cards'])>15:raise ValueError('invalid')
+            except (ValueError,TypeError,AttributeError):raise DeployError('knowledge-json-invalid')
         prod = os.path.join(ROOT, rel)
         if not under(ROOT, prod):
             raise DeployError("prod-outside")

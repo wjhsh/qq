@@ -5,7 +5,7 @@ JS=['test-direct-route.mjs','test-blocked-route.mjs','test-raw-session.mjs','tes
     'test-input-guard-queue.mjs','test-input-guard-ingress.mjs','test-model-availability.mjs',
     'test-faces-persona-context.mjs','test-preferred-model-recovery.mjs','test-google-request-guard.mjs','test-gpt-chat-entry.mjs',
     'test-google-account-routing.mjs','test-google-account-commands.mjs',
-    'test-social-state.mjs','test-social-runtime.mjs','test-social-integration.mjs','test-meme-evolution.mjs','test-gemini-voice.mjs']
+    'test-social-state.mjs','test-social-runtime.mjs','test-social-integration.mjs','test-meme-evolution.mjs','test-gemini-voice.mjs','test-social-phase2.mjs','test-social-replay-host.mjs']
 PY=['test-reference-branch.py','test-chat-variants.py','test-chat-session.py','test-chat-policy-result.py','test-chat-image.py','test-direct-admission.py','test-image-inputs.py','test-image-admission.py','test-publish-config.py','test-maintenance-context.py','test-google-account-quota.py','test-pi-channels.py']
 def main():
  total=0

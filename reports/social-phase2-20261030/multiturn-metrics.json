@@ -1,0 +1,47 @@
+{
+  "mechanical_metrics_only": true,
+  "metrics": {
+    "gemini-base": {
+      "case_turns": 72,
+      "tool_errors": 0,
+      "invalid_plan_turns": 11,
+      "host_silence": 3,
+      "feedback_requests": 6,
+      "validated_feedback": 0,
+      "applied_feedback": 0
+    },
+    "gemini-phase2": {
+      "case_turns": 72,
+      "tool_errors": 0,
+      "invalid_plan_turns": 24,
+      "host_silence": 3,
+      "feedback_requests": 5,
+      "validated_feedback": 4,
+      "applied_feedback": 4
+    },
+    "deepseek-base": {
+      "case_turns": 72,
+      "tool_errors": 0,
+      "invalid_plan_turns": 0,
+      "host_silence": 3,
+      "feedback_requests": 4,
+      "validated_feedback": 0,
+      "applied_feedback": 0
+    },
+    "deepseek-phase2": {
+      "case_turns": 72,
+      "tool_errors": 0,
+      "invalid_plan_turns": 0,
+      "host_silence": 3,
+      "feedback_requests": 2,
+      "validated_feedback": 2,
+      "applied_feedback": 2
+    }
+  },
+  "notes": [
+    "No automatic naturalness score.",
+    "Three Gemini batches failed JSON parsing: 11 baseline development turns and 24 phase2 development/holdout turns lack executable plans. All 24 Gemini pairs are excluded from naturalness win rates; 24 DeepSeek pairs are complete.",
+    "Two other saved batches received explicitly reviewed syntax-only recovery; raw outputs are retained privately. No wording was optimized.",
+    "Evaluator cross-split bookkeeping bug fixed and all saved responses replayed locally with matching context hashes. Zero API calls repeated."
+  ]
+}

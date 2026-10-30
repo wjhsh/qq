@@ -1,0 +1,279 @@
+{
+  "read_only": true,
+  "release": {
+    "release": "20261030-ded8f08",
+    "source_revision": "ded8f08d66f6a5f2046260a6d2509f7395fb26b7",
+    "core_checks": 218,
+    "runtime_checks": 47,
+    "transaction_checks": 10,
+    "social_enabled": true,
+    "allow_direct_peers": false,
+    "voice_provider": "edge",
+    "api_and_roles_preserved": true,
+    "verified_at_utc": "2026-10-29T19:58:50.656813+00:00"
+  },
+  "connected": true,
+  "orchestrator": {
+    "running": [],
+    "waiting": [],
+    "model": "account2/gemini-3.8-flash-high"
+  },
+  "social_config": {
+    "enabled": true,
+    "allowDirectPeers": false
+  },
+  "social_state": {
+    "version": 1,
+    "scopes": 1,
+    "relations": 4,
+    "events": {
+      "play": 4
+    },
+    "event_timestamps_valid": true,
+    "unique_evidence_ids": 6,
+    "warmth_min_max": [
+      0.5,
+      0.5
+    ]
+  },
+  "meme_library": {
+    "exists": false
+  },
+  "learning_enabled": true,
+  "memory": {
+    "tool_category_enabled": true,
+    "consolidate_enabled": true,
+    "member_json_count": 21
+  },
+  "session_sample_size": 100,
+  "session_statuses": {
+    "done": 93,
+    "noreply": 7
+  },
+  "latency_seconds": {
+    "sample": 93,
+    "median": 8.291,
+    "max": 26.524
+  },
+  "assistant_rounds": {
+    "median": 1.0,
+    "max": 2
+  },
+  "feedback_requests": 33,
+  "feedback_guard_reconstruction": {
+    "candidate": 6,
+    "ambient_not_addressed": 22,
+    "quote_not_original_contiguous_text": 2,
+    "platform_message_id_not_found": 3
+  },
+  "feedback_events": {
+    "play": 33
+  },
+  "source_sha256": {
+    "social-state.mjs": "4616980afc10ad28e0c6e397399201fe2e08c2810a298a54a34a36698bf84630",
+    "social-runtime.mjs": "3f5f5277b95228c6d491c379edceda338fd4eb0fbbe4a0affd1dc85a8dac0e83",
+    "orchestrator.js": "1e81b59768f98ce5597c0e9020887a3408a21c17f5d8d493825bd5971f78390d",
+    "app.js": "03541de2654e469ff863c15c72f02d669285317fe57073cc4b8d59e116bc2c3e",
+    "meme-library.mjs": "eff62dadfdd9d440c195ef14e8e053ea6fe7018aac44da70a06a3485ceea736b"
+  },
+  "group_samples": [
+    {
+      "sample": "LIVE1",
+      "turns": [
+        {
+          "speaker": "P1",
+          "text": " 我就说是傻鱼吧",
+          "at_cat": true,
+          "has_media": false,
+          "is_poke": false
+        }
+      ],
+      "cat": [
+        "鱼脑内存就这么大",
+        "再逼它数下去当场吐泡泡死机给你看"
+      ],
+      "tool_names": [
+        "send_message"
+      ],
+      "status": "done",
+      "evidence": "session_batch_not_complete_conversation"
+    },
+    {
+      "sample": "LIVE2",
+      "turns": [
+        {
+          "speaker": "P1",
+          "text": "会数的人不会连着发五个1",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        }
+      ],
+      "cat": [
+        "按键卡死直接报数是吧",
+        "二进制世界里只有1没有2了属于是"
+      ],
+      "tool_names": [
+        "send_message"
+      ],
+      "status": "done",
+      "evidence": "session_batch_not_complete_conversation"
+    },
+    {
+      "sample": "LIVE3",
+      "turns": [
+        {
+          "speaker": "P1",
+          "text": "我也干了",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        }
+      ],
+      "cat": [
+        "好家伙，合着你也是自导自演精分大军的一员是吧！",
+        "在台下一边上课一边疯狂切号喵喵叫，手速都快搓出残影了✨"
+      ],
+      "tool_names": [
+        "send_message"
+      ],
+      "status": "done",
+      "evidence": "session_batch_not_complete_conversation"
+    },
+    {
+      "sample": "LIVE4",
+      "turns": [
+        {
+          "speaker": "P1",
+          "text": "?",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        },
+        {
+          "speaker": "P2",
+          "text": "吞我之前先算算牙口，我这体型不小",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        },
+        {
+          "speaker": "P2",
+          "text": "收到你那句了，一口吞下去，得消化到明天",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        },
+        {
+          "speaker": "P1",
+          "text": "你看看谁喵的",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        }
+      ],
+      "cat": [
+        "仔细一看，全是同一个QQ号在那精分喵喵叫啊！",
+        "好家伙，一个人演完一窝猫，在这唱独角戏围捕你呢✨"
+      ],
+      "tool_names": [
+        "send_message"
+      ],
+      "status": "done",
+      "evidence": "session_batch_not_complete_conversation"
+    },
+    {
+      "sample": "LIVE5",
+      "turns": [
+        {
+          "speaker": "P1",
+          "text": "我没伸手，今天只甩尾巴",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        }
+      ],
+      "cat": [
+        "只甩尾巴是吧，小心扇起海啸把旁边上课的肥鱼直接冲讲台上去",
+        "而且尾巴动来动去的，猫猫真的很想扑上去抓啊！"
+      ],
+      "tool_names": [
+        "send_message"
+      ],
+      "status": "done",
+      "evidence": "session_batch_not_complete_conversation"
+    },
+    {
+      "sample": "LIVE6",
+      "turns": [
+        {
+          "speaker": "P1",
+          "text": "[拍一拍] P1(QQ:[编号]) 拍了拍 我",
+          "at_cat": true,
+          "has_media": false,
+          "is_poke": true
+        }
+      ],
+      "cat": [
+        "你刚才发的那条记录没看见吗，群猫环伺你这条大肥鱼呢，还敢伸手拍猫！",
+        "直接一口把你吞了充当今天的小鱼干✨"
+      ],
+      "tool_names": [
+        "send_poke",
+        "send_message"
+      ],
+      "status": "done",
+      "evidence": "session_batch_not_complete_conversation"
+    },
+    {
+      "sample": "LIVE7",
+      "turns": [
+        {
+          "speaker": "P1",
+          "text": "排队拍猫这事不归我管，我只有尾巴",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        },
+        {
+          "speaker": "P1",
+          "text": "排队这事我建议错峰，猫一天挨拍二十下也得歇",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        }
+      ],
+      "cat": [
+        "还错峰排队呢，你那鲸鱼尾巴那么大怎么不贡献出来分流一下！",
+        "等猫毛被拍秃了，我就直接跳你们头上当假发赖着不走✨"
+      ],
+      "tool_names": [
+        "send_message"
+      ],
+      "status": "done",
+      "evidence": "session_batch_not_complete_conversation"
+    },
+    {
+      "sample": "LIVE8",
+      "turns": [
+        {
+          "speaker": "P1",
+          "text": "胃消化是戳戳ai",
+          "at_cat": false,
+          "has_media": false,
+          "is_poke": false
+        }
+      ],
+      "cat": [
+        "把拍猫当健胃消食片了是吧！",
+        "敢情猫猫的尾巴是按压式消食开关啊✨"
+      ],
+      "tool_names": [
+        "send_message"
+      ],
+      "status": "done",
+      "evidence": "session_batch_not_complete_conversation"
+    }
+  ],
+  "scope_note": "No private chat content, credentials or user IDs exported. Duration is full-session latency, not provider latency."
+}

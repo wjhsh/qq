@@ -63,4 +63,12 @@ class Transactions(unittest.TestCase):
  def test_symlink_and_traversal_are_rejected(self):
   for p in ['../x.mjs','/etc/x.mjs','src/../x.mjs','src/x.py','skills/other/index.js']:self.assertFalse(d.safe_rel(p))
   outside=self.root/'outside';outside.mkdir();os.symlink(outside,self.prod/'src/redirect');self.files[0]['path']='src/redirect/a.mjs';self.save_manifest();self.assertRaises(d.DeployError,self.apply);self.assertEqual(self.calls,[])
+ def test_knowledge_asset_is_exact_whitelist_and_rollback_removes_only_added_file(self):
+  p=self.stage/'qq-agent/knowledge/humor-mechanisms-v1.json';p.parent.mkdir();p.write_text('{"version":1,"cards":[]}')
+  self.files.append({'path':'knowledge/humor-mechanisms-v1.json','old_sha256':None,'new_sha256':digest(p)});self.save_manifest()
+  self.apply();self.assertTrue((self.prod/'knowledge/humor-mechanisms-v1.json').exists());d.do_rollback(self.backup());self.assertFalse((self.prod/'knowledge/humor-mechanisms-v1.json').exists())
+  for name in ['knowledge/config.json','knowledge/other.json','knowledge/../config.json']:self.assertFalse(d.safe_rel(name))
+ def test_invalid_knowledge_json_stops_no_service(self):
+  p=self.stage/'qq-agent/knowledge/humor-mechanisms-v1.json';p.parent.mkdir();p.write_text('broken json')
+  self.files.append({'path':'knowledge/humor-mechanisms-v1.json','old_sha256':None,'new_sha256':digest(p)});self.save_manifest();self.assertRaises(d.DeployError,self.apply);self.assertEqual(self.calls,[])
 if __name__=='__main__':unittest.main()

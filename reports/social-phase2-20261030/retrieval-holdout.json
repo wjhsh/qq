@@ -1,0 +1,137 @@
+{
+  "split": "holdout",
+  "fixture_sha256": "60bbd12f80e25389c44bc58e4847fe94ddd027ecde7abf9b143a692af708bf55",
+  "conditions": "Same reviewed pool, top-k=2, fixed time, no fitting on holdout",
+  "methods": {
+    "lexical": {
+      "positive_queries": 6,
+      "negative_queries": 6,
+      "hit_at_2": 0.16666666666666666,
+      "recall_at_2": 0.16666666666666666,
+      "precision_at_2": 0.1111111111111111,
+      "false_recall_rate": 0.6666666666666666,
+      "hit_count": 1,
+      "false_recall_count": 4,
+      "balanced_utility": -7,
+      "latency_ms": {
+        "median": 0.020699999999976626,
+        "p95": 0.040300000000002
+      },
+      "heap_delta_bytes": 74472,
+      "failures": [
+        {
+          "id": "H01",
+          "type": "miss",
+          "found": [
+            "M01-reverse-boast",
+            "M04-stubborn-concession"
+          ],
+          "expected": [
+            "M06-cat-self-interest"
+          ]
+        },
+        {
+          "id": "H03",
+          "type": "false_recall",
+          "found": [
+            "M03-bureaucratic-wrap"
+          ],
+          "expected": []
+        },
+        {
+          "id": "H05",
+          "type": "miss",
+          "found": [
+            "M01-reverse-boast",
+            "M04-stubborn-concession"
+          ],
+          "expected": [
+            "M11-mock-friction"
+          ]
+        },
+        {
+          "id": "H06",
+          "type": "false_recall",
+          "found": [
+            "M11-mock-friction"
+          ],
+          "expected": []
+        },
+        {
+          "id": "H07",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M01-reverse-boast"
+          ]
+        },
+        {
+          "id": "H08",
+          "type": "false_recall",
+          "found": [
+            "M02-absurd-step"
+          ],
+          "expected": []
+        },
+        {
+          "id": "H09",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M02-absurd-step"
+          ]
+        },
+        {
+          "id": "H11",
+          "type": "miss",
+          "found": [],
+          "expected": [
+            "M08-shared-callback"
+          ]
+        },
+        {
+          "id": "H12",
+          "type": "false_recall",
+          "found": [
+            "M01-reverse-boast"
+          ],
+          "expected": []
+        }
+      ]
+    },
+    "hybrid": {
+      "positive_queries": 6,
+      "negative_queries": 6,
+      "hit_at_2": 1,
+      "recall_at_2": 1,
+      "precision_at_2": 0.6666666666666666,
+      "false_recall_rate": 0.3333333333333333,
+      "hit_count": 6,
+      "false_recall_count": 2,
+      "balanced_utility": 2,
+      "latency_ms": {
+        "median": 0.16269999999997253,
+        "p95": 0.2772000000000503
+      },
+      "heap_delta_bytes": 2859640,
+      "failures": [
+        {
+          "id": "H02",
+          "type": "false_recall",
+          "found": [
+            "M06-cat-self-interest"
+          ],
+          "expected": []
+        },
+        {
+          "id": "H06",
+          "type": "false_recall",
+          "found": [
+            "M11-mock-friction"
+          ],
+          "expected": []
+        }
+      ]
+    }
+  }
+}

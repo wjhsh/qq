@@ -7,7 +7,7 @@
 // 重构说明：所有工具通过 registerTool() 注册到 tool-registry.js，
 // 支持在设置页按卡片勾选启用/禁用。
 import { getConfig } from './config.js';
-import { SOCIAL_FEEDBACK_SCHEMA } from './social-runtime.mjs';
+import { socialFeedbackSchema } from './social-runtime.mjs';
 import { filterRoleHistory } from './role-isolation.mjs';
 import { filterAutomatedHistory } from './bot-interaction.mjs';
 import { normalizeMessageList, unquoteJsonString } from './util.js';
@@ -159,7 +159,7 @@ export function buildToolDefs() {
   loadPluginTools();
   return listTools().map(def=>{
     const extra={};
-    if(getConfig().socialBehavior?.enabled&&['send_message','send_sticker','send_face','finish'].includes(def.id))extra.socialFeedback=SOCIAL_FEEDBACK_SCHEMA;
+    if(getConfig().socialBehavior?.enabled&&['send_message','send_sticker','send_face','finish'].includes(def.id))extra.socialFeedback=socialFeedbackSchema(getConfig());
     if(['send_sticker','send_face','local-voice__send_voice'].includes(def.id))extra.finishAfterSend={type:'boolean',description:'本次已完整回应且没有待办时结束；仅实际发送成功后生效'};
     return Object.keys(extra).length?{...def,parameters:{...def.parameters,properties:{...def.parameters.properties,...extra}}}:def;
   });
