@@ -4,5 +4,6 @@
   "gpt_independent_proposal_sha256": "659162f98a9616fce383be2eadd693de8cf9cdca870303d8f5c670fb9b8de837",
   "gpt_proposal_excluded_from_round1_context": true,
   "same_round_context_task_for_workers": true,
-  "transport": "local process -> upstream; no SSH/Pi/QQ task relay"
+  "transport": "local process -> upstream; no SSH/Pi/QQ task relay",
+  "round3_context_sha256": "49727e225c450303e8706f83044b837924ae4e564c742ef893ebd5d8c8134f28"
 }

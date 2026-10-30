@@ -1,20 +1,20 @@
 {
   "summary": {
     "gemini": {
-      "calls": 16,
-      "reported_input_tokens": 207247,
-      "reported_output_tokens": 75672,
-      "reported_total_tokens": 282919,
+      "calls": 23,
+      "reported_input_tokens": 263666,
+      "reported_output_tokens": 85230,
+      "reported_total_tokens": 348896,
       "workbuddy_credit": 0,
-      "failed_requests": 0
+      "failed_upstream_requests": 0
     },
     "deepseek": {
-      "calls": 18,
-      "reported_input_tokens": 218024,
-      "reported_output_tokens": 22048,
-      "reported_total_tokens": 240072,
-      "workbuddy_credit": 5.6,
-      "failed_requests": 0
+      "calls": 26,
+      "reported_input_tokens": 270454,
+      "reported_output_tokens": 25221,
+      "reported_total_tokens": 295675,
+      "workbuddy_credit": 6.52,
+      "failed_upstream_requests": 0
     }
   },
   "requests": [
@@ -52,6 +52,42 @@
       },
       "elapsed_seconds": 16.592,
       "context_sha256": "516b84d23bfce8e6d790b92c266293e657dac0723403de5e4df4956cfb62fd3d",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-scenarios/deepseek.json",
+      "provider": "deepseek",
+      "model": "deepseek-v4.1-flash",
+      "status": "completed",
+      "usage": {
+        "prompt_tokens": 350,
+        "completion_tokens": 1516,
+        "total_tokens": 1866,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 350,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 0,
+        "credit": 0.18,
+        "cached_tokens": 0
+      },
+      "elapsed_seconds": 10.231,
+      "context_sha256": "d1c3166dfbedfb4a1033e9eec3d632209ec8c45d914c9553b51a4903fcde420f",
       "automatic_retry": false
     },
     {
@@ -283,6 +319,59 @@
       },
       "elapsed_seconds": 43.266,
       "context_sha256": "bb5f78d5982e29c8ec2b38a5327eef5e19ec6e2165181c16479b92c4d9a050bf",
+      "automatic_retry": false
+    },
+    {
+      "task": "round3/deepseek.json",
+      "provider": "deepseek",
+      "model": "deepseek-v4.1-flash",
+      "status": "completed",
+      "usage": {
+        "prompt_tokens": 4507,
+        "completion_tokens": 553,
+        "total_tokens": 5060,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 4507,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 0,
+        "credit": 0.19,
+        "cached_tokens": 0
+      },
+      "elapsed_seconds": 5.985,
+      "context_sha256": "b2d512ad4e86b107274d05f436d942da6778095d2f937a0811d894410a08dd51",
+      "automatic_retry": false
+    },
+    {
+      "task": "round3/gemini.json",
+      "provider": "gemini",
+      "model": "gemini-3.8-flash-n",
+      "status": "completed",
+      "usage": {
+        "completion_tokens": 2234,
+        "total_tokens": 7116,
+        "prompt_tokens": 4882,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1318
+        }
+      },
+      "elapsed_seconds": 30.251,
+      "context_sha256": "b2d512ad4e86b107274d05f436d942da6778095d2f937a0811d894410a08dd51",
       "automatic_retry": false
     },
     {
@@ -937,7 +1026,325 @@
       "elapsed_seconds": 7.161,
       "context_sha256": "43860f08a70aa123f136a6a236de6fe3dc496ca482915290936d7ec0d386d8e1",
       "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/gemini/confirmation/0-base/gemini.json",
+      "provider": "gemini",
+      "model": "gemini-3.8-flash-n",
+      "status": "completed",
+      "usage": {
+        "completion_tokens": 1368,
+        "total_tokens": 9108,
+        "prompt_tokens": 7740,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1183
+        }
+      },
+      "elapsed_seconds": 13.752,
+      "context_sha256": "7b8621d512c37a0bc6f50e4d9fb1948d8c469c1f7f32744d7f5bbdccc6f03dd3",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/gemini/confirmation/0-phase2/gemini.json",
+      "provider": "gemini",
+      "model": "gemini-3.8-flash-n",
+      "status": "completed",
+      "usage": {
+        "completion_tokens": 1160,
+        "total_tokens": 9491,
+        "prompt_tokens": 8331,
+        "completion_tokens_details": {
+          "reasoning_tokens": 878
+        }
+      },
+      "elapsed_seconds": 12.77,
+      "context_sha256": "ff63ce7493d80a936a4ea301fb069e62095baa52027b70f2df7a197179d16b70",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/gemini/confirmation/1-base/gemini.json",
+      "provider": "gemini",
+      "model": "gemini-3.8-flash-n",
+      "status": "completed",
+      "usage": {
+        "completion_tokens": 1526,
+        "total_tokens": 9674,
+        "prompt_tokens": 8148,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1169
+        }
+      },
+      "elapsed_seconds": 15.745,
+      "context_sha256": "cc73e977b348356f7e730eed83f8773b5d67a5a10b9d99bc2efa5bc011ba35bf",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/gemini/confirmation/1-phase2/gemini.json",
+      "provider": "gemini",
+      "model": "gemini-3.8-flash-n",
+      "status": "completed",
+      "usage": {
+        "completion_tokens": 1228,
+        "total_tokens": 9955,
+        "prompt_tokens": 8727,
+        "completion_tokens_details": {
+          "reasoning_tokens": 932
+        }
+      },
+      "elapsed_seconds": 17.629,
+      "context_sha256": "1d2d9b8f65890bec293d2bbfc16df0c437b2cc6b6a9972e8ccad72e3ac3e44e3",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/gemini/confirmation/2-base/gemini.json",
+      "provider": "gemini",
+      "model": "gemini-3.8-flash-n",
+      "status": "completed",
+      "usage": {
+        "completion_tokens": 984,
+        "total_tokens": 9550,
+        "prompt_tokens": 8566,
+        "completion_tokens_details": {
+          "reasoning_tokens": 638
+        }
+      },
+      "elapsed_seconds": 12.803,
+      "context_sha256": "6084af8e64136fa618512a376c590d7a25761a3789eca9dff2ce5335a2bb2a6a",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/gemini/confirmation/2-phase2/gemini.json",
+      "provider": "gemini",
+      "model": "gemini-3.8-flash-n",
+      "status": "completed",
+      "usage": {
+        "completion_tokens": 1058,
+        "total_tokens": 11083,
+        "prompt_tokens": 10025,
+        "completion_tokens_details": {
+          "reasoning_tokens": 716
+        }
+      },
+      "elapsed_seconds": 15.27,
+      "context_sha256": "9d15a6251505fe3306306bf711266f5bdfa2f829a7aadfcfb62d1134e70ec6fd",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/deepseek/confirmation/0-base/deepseek.json",
+      "provider": "deepseek",
+      "model": "deepseek-v4.1-flash",
+      "status": "completed",
+      "usage": {
+        "prompt_tokens": 7178,
+        "completion_tokens": 160,
+        "total_tokens": 7338,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 5376
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 1802,
+        "cache_read_input_tokens": 5376,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 0,
+        "credit": 0.07,
+        "cached_tokens": 5376
+      },
+      "elapsed_seconds": 3.259,
+      "context_sha256": "7b8621d512c37a0bc6f50e4d9fb1948d8c469c1f7f32744d7f5bbdccc6f03dd3",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/deepseek/confirmation/0-phase2/deepseek.json",
+      "provider": "deepseek",
+      "model": "deepseek-v4.1-flash",
+      "status": "completed",
+      "usage": {
+        "prompt_tokens": 7752,
+        "completion_tokens": 162,
+        "total_tokens": 7914,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 5632
+        },
+        "prompt_cache_hit_tokens": 5632,
+        "prompt_cache_miss_tokens": 2120,
+        "cache_read_input_tokens": 5632,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 0,
+        "credit": 0.08,
+        "cached_tokens": 5632
+      },
+      "elapsed_seconds": 3.663,
+      "context_sha256": "ff63ce7493d80a936a4ea301fb069e62095baa52027b70f2df7a197179d16b70",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/deepseek/confirmation/1-base/deepseek.json",
+      "provider": "deepseek",
+      "model": "deepseek-v4.1-flash",
+      "status": "completed",
+      "usage": {
+        "prompt_tokens": 7387,
+        "completion_tokens": 144,
+        "total_tokens": 7531,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 5376
+        },
+        "prompt_cache_hit_tokens": 5376,
+        "prompt_cache_miss_tokens": 2011,
+        "cache_read_input_tokens": 5376,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 0,
+        "credit": 0.08,
+        "cached_tokens": 5376
+      },
+      "elapsed_seconds": 3.17,
+      "context_sha256": "d60075b328811fc16156c0d8cd6c9b850c16be67ceddeadcaf1489c1c6da2f62",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/deepseek/confirmation/1-phase2/deepseek.json",
+      "provider": "deepseek",
+      "model": "deepseek-v4.1-flash",
+      "status": "completed",
+      "usage": {
+        "prompt_tokens": 8137,
+        "completion_tokens": 168,
+        "total_tokens": 8305,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 5632
+        },
+        "prompt_cache_hit_tokens": 5632,
+        "prompt_cache_miss_tokens": 2505,
+        "cache_read_input_tokens": 5632,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 0,
+        "credit": 0.09,
+        "cached_tokens": 5632
+      },
+      "elapsed_seconds": 2.771,
+      "context_sha256": "fdeb1606f66105187e48e8bdac76b2b76270e4da50f345336c4262cc85baa665",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/deepseek/confirmation/2-base/deepseek.json",
+      "provider": "deepseek",
+      "model": "deepseek-v4.1-flash",
+      "status": "completed",
+      "usage": {
+        "prompt_tokens": 7758,
+        "completion_tokens": 183,
+        "total_tokens": 7941,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 5504
+        },
+        "prompt_cache_hit_tokens": 5504,
+        "prompt_cache_miss_tokens": 2254,
+        "cache_read_input_tokens": 5504,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 0,
+        "credit": 0.09,
+        "cached_tokens": 5504
+      },
+      "elapsed_seconds": 2.96,
+      "context_sha256": "578a136d4d2017cbf6d6eb930bc081b4bb62d7fe6d687799da9a23fef1d26eeb",
+      "automatic_retry": false
+    },
+    {
+      "task": "confirmation-evaluation/deepseek/confirmation/2-phase2/deepseek.json",
+      "provider": "deepseek",
+      "model": "deepseek-v4.1-flash",
+      "status": "completed",
+      "usage": {
+        "prompt_tokens": 9361,
+        "completion_tokens": 287,
+        "total_tokens": 9648,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0,
+          "cached_tokens": 5760
+        },
+        "prompt_cache_hit_tokens": 5760,
+        "prompt_cache_miss_tokens": 3601,
+        "cache_read_input_tokens": 5760,
+        "cache_creation_input_tokens": 0,
+        "prompt_cache_write_tokens": 0,
+        "completion_thinking_tokens": 0,
+        "credit": 0.14,
+        "cached_tokens": 5760
+      },
+      "elapsed_seconds": 3.891,
+      "context_sha256": "47d015eeb865c25fd565e28232acab9367250e1cb7419bcd3fc562de1bb0da2c",
+      "automatic_retry": false
     }
   ],
-  "cost_note": "credit is not USD; Google subscription quota not priced here. GPT/Codex coordination usage unavailable. Saved-response local replay incurs zero new API calls."
+  "note": "Tokens as reported, including reasoning where counted. credit is not USD; no Google currency estimate or Codex coordination tokens. API success does not imply valid plan JSON. Saved-response replay makes zero new API calls."
 }

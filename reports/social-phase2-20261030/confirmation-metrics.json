@@ -1,0 +1,38 @@
+{
+  "mechanical_metrics_only": true,
+  "metrics": {
+    "gemini-base": {
+      "case_turns": 12,
+      "invalid_plan_turns": 0,
+      "tool_errors": 0,
+      "text_sends": 11,
+      "feedback_applied": 0
+    },
+    "gemini-phase2": {
+      "case_turns": 12,
+      "invalid_plan_turns": 0,
+      "tool_errors": 0,
+      "text_sends": 11,
+      "feedback_applied": 0
+    },
+    "deepseek-base": {
+      "case_turns": 12,
+      "invalid_plan_turns": 4,
+      "tool_errors": 0,
+      "text_sends": 8,
+      "feedback_applied": 0
+    },
+    "deepseek-phase2": {
+      "case_turns": 12,
+      "invalid_plan_turns": 0,
+      "tool_errors": 0,
+      "text_sends": 11,
+      "feedback_applied": 0
+    }
+  },
+  "notes": [
+    "Four complete Gemini paired dialogues; one DeepSeek baseline batch malformed, so DeepSeek confirmation pairs are not used as naturalness wins.",
+    "This tiny confirmation set is not evidence of overall personality improvement.",
+    "No response rewrites or repeat API calls."
+  ]
+}
