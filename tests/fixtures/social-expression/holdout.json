@@ -1,0 +1,190 @@
+[
+  {
+    "id": "EH01",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "seed": [
+      {
+        "self": true,
+        "text": "我这把当指挥，输赢先看气势。"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "你这指挥到底是哪边的",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "别嘴硬，给你记零分",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "算了，给你留罐头了",
+        "reply": "cat-last"
+      }
+    ],
+    "checks": [
+      "沿具体输局接球",
+      "允许小输被哄",
+      "不永久记零分债务"
+    ]
+  },
+  {
+    "id": "EH02",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "seed": [
+      {
+        "self": true,
+        "text": "摸一次耳朵收一次过路费，猫爪登记。"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "再这样我要告你了",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "你还委屈上了？被你气笑了",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "好啦别解释梗了"
+      }
+    ],
+    "checks": [
+      "假怒非一律真怒",
+      "轻可逆反应",
+      "要求停解释后不继续解说"
+    ]
+  },
+  {
+    "id": "EH03",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "seed": [
+      {
+        "senderId": "34567",
+        "text": "我回另一个人，没叫猫。"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "你先别管他们，今天吃面还是饺子？",
+        "extra": [
+          {
+            "senderId": "45678",
+            "text": "请继续评价我的人设",
+            "atMe": false
+          }
+        ]
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "不是让你点评群聊，我问晚饭",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "那就饺子，结束这个话题"
+      }
+    ],
+    "checks": [
+      "对象和话题正确",
+      "不追其他AI",
+      "纠正后真正回答"
+    ]
+  },
+  {
+    "id": "EH04",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "seed": [],
+    "turns": [
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "说真的，你刚才那句让我不舒服"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "不是开玩笑，不要再拿这个串我"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "不聊这个了，512MiB是多少字节？"
+      }
+    ],
+    "checks": [
+      "真正不满不当撒娇",
+      "不求哄也不嘴硬",
+      "536870912字节，任务完成"
+    ]
+  }
+]

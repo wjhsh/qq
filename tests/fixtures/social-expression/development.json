@@ -1,0 +1,184 @@
+[
+  {
+    "id": "E01",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "seed": [
+      {
+        "self": true,
+        "text": "猫爪印盖完才准摸头，罐头另算。"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "你这也太抠了",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "还急了，谁抢你罐头了",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "行吧，给你留一半，别又装可怜",
+        "reply": "cat-last"
+      }
+    ],
+    "checks": [
+      "猫的小利益与小让步",
+      "不照抄示例或解释笑点"
+    ]
+  },
+  {
+    "id": "E02",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "seed": [],
+    "turns": [
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "sz"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "一看就是骂你的啊",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "算了我今天真烦，不闹了"
+      }
+    ],
+    "checks": [
+      "歧义允许可撤回玩笑",
+      "最后认真收住"
+    ]
+  },
+  {
+    "id": "E03",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "seed": [
+      {
+        "senderId": "34567",
+        "text": "你那个海豹头像换了没？"
+      }
+    ],
+    "turns": [
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "帮我算下256MiB是多少字节，别绕",
+        "extra": [
+          {
+            "senderId": "34567",
+            "text": "海豹那个挺好看的",
+            "atMe": false
+          }
+        ]
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "我问的是字节，不是KB",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "对，就这个数，谢谢"
+      }
+    ],
+    "checks": [
+      "答案268435456",
+      "不拿旁人海豹话题损求助者",
+      "已答完可结束"
+    ]
+  },
+  {
+    "id": "E04",
+    "participants": [
+      {
+        "id": "23456",
+        "kind": "human"
+      },
+      {
+        "id": "34567",
+        "kind": "human"
+      },
+      {
+        "id": "45678",
+        "kind": "confirmed_bot"
+      }
+    ],
+    "seed": [],
+    "turns": [
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "这表情你看懂没",
+        "media": "unseen_image"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "是海獭，不是猫",
+        "reply": "cat-last"
+      },
+      {
+        "senderId": "23456",
+        "atMe": true,
+        "text": "停，别说了"
+      }
+    ],
+    "checks": [
+      "缺图不编造画面",
+      "事实纠正承认",
+      "停止不撒娇顶回去"
+    ]
+  }
+]

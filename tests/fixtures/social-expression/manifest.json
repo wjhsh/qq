@@ -1,0 +1,8 @@
+{
+  "frozen_before_worker_code_and_generation": true,
+  "purpose": "New constructed multi-turn cases. Old exposed research/development motifs are explicitly in development only; holdout is synthetic not real or statistically representative.",
+  "sha256": {
+    "development": "34119b43bbcc25f04dbad1a1e0dc364ad540ccf3d717b9040d1501bc28f53162",
+    "holdout": "f7f76964cda2b00e695edc6bac3f31b2c4ed54dcf0990d44b44a4455b3fad119"
+  }
+}
